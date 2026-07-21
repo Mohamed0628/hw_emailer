@@ -1,0 +1,4004 @@
+{
+ "3M": {
+  "status": "miss"
+ },
+ "3M Health Care": {
+  "status": "miss"
+ },
+ "6 River Systems": {
+  "status": "miss"
+ },
+ "ABB": {
+  "status": "miss"
+ },
+ "ABB Process Automation": {
+  "status": "miss"
+ },
+ "ABB Robotics": {
+  "status": "miss"
+ },
+ "AI Incorporated": {
+  "status": "miss"
+ },
+ "AMC (Advanced Motion Controls)": {
+  "status": "miss"
+ },
+ "AMD": {
+  "status": "miss"
+ },
+ "AMP Robotics": {
+  "ats": "ashby",
+  "jobs_seen": 0,
+  "status": "hit",
+  "token": "amprobotics"
+ },
+ "ANYbotics": {
+  "ats": "lever",
+  "jobs_seen": 14,
+  "status": "hit",
+  "token": "anybotics"
+ },
+ "APCT": {
+  "status": "miss"
+ },
+ "APCT Santa Clara": {
+  "status": "miss"
+ },
+ "ATI Industrial Automation": {
+  "status": "miss"
+ },
+ "ATS Corporation": {
+  "status": "miss"
+ },
+ "ATS Life Sciences": {
+  "status": "miss"
+ },
+ "AVEVA": {
+  "status": "miss"
+ },
+ "AVEVA Wonderware": {
+  "status": "miss"
+ },
+ "Abbott": {
+  "status": "miss"
+ },
+ "Abiomed": {
+  "status": "miss"
+ },
+ "Acacia Communications": {
+  "status": "miss"
+ },
+ "Accio Robotics": {
+  "status": "miss"
+ },
+ "Acclarent": {
+  "status": "miss"
+ },
+ "Accuray": {
+  "status": "miss"
+ },
+ "Achronix": {
+  "status": "miss"
+ },
+ "Actemium": {
+  "status": "miss"
+ },
+ "Acumed": {
+  "status": "miss"
+ },
+ "Acutus Medical": {
+  "status": "miss"
+ },
+ "Adafruit Industries": {
+  "status": "miss"
+ },
+ "AdaptHealth": {
+  "status": "miss"
+ },
+ "Adaptec Solutions": {
+  "status": "miss"
+ },
+ "Adaptiiv Medical Technologies": {
+  "status": "miss"
+ },
+ "Adept Technology": {
+  "status": "miss"
+ },
+ "Adtran": {
+  "status": "miss"
+ },
+ "Advamed": {
+  "status": "miss"
+ },
+ "Advanced Assembly": {
+  "status": "miss"
+ },
+ "Advanced Bionics": {
+  "status": "miss"
+ },
+ "Advanced Circuits": {
+  "status": "miss"
+ },
+ "Advanced Cooling Therapy": {
+  "status": "miss"
+ },
+ "Advanced Energy": {
+  "status": "miss"
+ },
+ "Advanced Farm Technologies": {
+  "status": "miss"
+ },
+ "Advanced Navigation": {
+  "status": "miss"
+ },
+ "Advanced Neuromodulation Systems": {
+  "status": "miss"
+ },
+ "Advanced Oxygen Therapy": {
+  "status": "miss"
+ },
+ "AdvancedPCB": {
+  "status": "miss"
+ },
+ "Advantech": {
+  "status": "miss"
+ },
+ "Aerin Medical": {
+  "status": "miss"
+ },
+ "AeroSpec": {
+  "status": "miss"
+ },
+ "AeroVironment": {
+  "status": "miss"
+ },
+ "Aerotech": {
+  "status": "miss"
+ },
+ "Aesculap": {
+  "status": "miss"
+ },
+ "Aethlon Medical": {
+  "status": "miss"
+ },
+ "Aethon": {
+  "status": "miss"
+ },
+ "Aeva Robotics": {
+  "status": "miss"
+ },
+ "Agiliti": {
+  "status": "miss"
+ },
+ "Agility Robotics": {
+  "ats": "greenhouse",
+  "jobs_seen": 54,
+  "status": "hit",
+  "token": "agilityrobotics"
+ },
+ "Aigen": {
+  "ats": "lever",
+  "jobs_seen": 0,
+  "status": "hit",
+  "token": "aigen"
+ },
+ "AirBorn": {
+  "status": "miss"
+ },
+ "Aisler": {
+  "status": "miss"
+ },
+ "Aitech Systems": {
+  "status": "miss"
+ },
+ "Alcon": {
+  "status": "miss"
+ },
+ "Align Production Systems": {
+  "ats": "greenhouse",
+  "jobs_seen": 11,
+  "status": "hit",
+  "token": "align"
+ },
+ "Align Technology": {
+  "ats": "greenhouse",
+  "jobs_seen": 11,
+  "status": "hit",
+  "token": "align"
+ },
+ "AliveCor": {
+  "status": "miss"
+ },
+ "All Flex Solutions": {
+  "status": "miss"
+ },
+ "Allegro MicroSystems": {
+  "ats": "greenhouse",
+  "jobs_seen": 0,
+  "status": "hit",
+  "token": "allegro"
+ },
+ "Alpha and Omega Semiconductor": {
+  "ats": "ashby",
+  "jobs_seen": 0,
+  "status": "hit",
+  "token": "alpha"
+ },
+ "Alphatec Spine": {
+  "status": "miss"
+ },
+ "Altium": {
+  "ats": "greenhouse",
+  "jobs_seen": 0,
+  "status": "hit",
+  "token": "altium"
+ },
+ "Altron Automation": {
+  "status": "miss"
+ },
+ "Ambi Robotics": {
+  "ats": "lever",
+  "jobs_seen": 6,
+  "status": "hit",
+  "token": "ambirobotics"
+ },
+ "Ambiq": {
+  "status": "miss"
+ },
+ "Ambu": {
+  "status": "miss"
+ },
+ "American Engineering Testing": {
+  "status": "miss"
+ },
+ "American Standard Circuits": {
+  "status": "miss"
+ },
+ "Ametek": {
+  "status": "miss"
+ },
+ "Ametek Automation": {
+  "status": "miss"
+ },
+ "Amitron": {
+  "status": "miss"
+ },
+ "Amphenol": {
+  "status": "miss"
+ },
+ "Analog Devices": {
+  "status": "miss"
+ },
+ "Anaren": {
+  "status": "miss"
+ },
+ "Anduril Industries": {
+  "ats": "greenhouse",
+  "jobs_seen": 2165,
+  "status": "hit",
+  "token": "andurilindustries"
+ },
+ "AngioDynamics": {
+  "status": "miss"
+ },
+ "Anika Therapeutics": {
+  "status": "miss"
+ },
+ "Anki": {
+  "status": "miss"
+ },
+ "Ansys": {
+  "status": "miss"
+ },
+ "Anteris Technologies": {
+  "status": "miss"
+ },
+ "Apex Automation": {
+  "status": "miss"
+ },
+ "Apex Controls": {
+  "status": "miss"
+ },
+ "Apex.AI": {
+  "ats": "lever",
+  "jobs_seen": 7,
+  "status": "hit",
+  "token": "apex-ai"
+ },
+ "Apple Hardware Engineering": {
+  "status": "miss"
+ },
+ "Applied Control Engineering": {
+  "ats": "ashby",
+  "jobs_seen": 260,
+  "status": "hit",
+  "token": "applied"
+ },
+ "Applied Engineering": {
+  "ats": "greenhouse",
+  "jobs_seen": 14,
+  "status": "hit",
+  "token": "appliedengineering"
+ },
+ "Applied Intuition": {
+  "ats": "ashby",
+  "jobs_seen": 260,
+  "status": "hit",
+  "token": "applied"
+ },
+ "Applied Manufacturing Technologies": {
+  "ats": "ashby",
+  "jobs_seen": 260,
+  "status": "hit",
+  "token": "applied"
+ },
+ "Applied Motion Products": {
+  "ats": "ashby",
+  "jobs_seen": 260,
+  "status": "hit",
+  "token": "applied"
+ },
+ "Apptronik": {
+  "ats": "greenhouse",
+  "jobs_seen": 98,
+  "status": "hit",
+  "token": "apptronik"
+ },
+ "Aptiv Autonomous Mobility": {
+  "status": "miss"
+ },
+ "Arc-Tronics": {
+  "status": "miss"
+ },
+ "ArcBest Robotics": {
+  "status": "miss"
+ },
+ "Archer Aviation Autonomy": {
+  "ats": "greenhouse",
+  "jobs_seen": 1,
+  "status": "hit",
+  "token": "archer"
+ },
+ "Arduino": {
+  "status": "miss"
+ },
+ "Argo AI": {
+  "status": "miss"
+ },
+ "Arista Networks": {
+  "status": "miss"
+ },
+ "Arm": {
+  "status": "miss"
+ },
+ "Arrow Electronics": {
+  "status": "miss"
+ },
+ "Arthrex": {
+  "status": "miss"
+ },
+ "Arxium": {
+  "status": "miss"
+ },
+ "Ascento": {
+  "status": "miss"
+ },
+ "Asensus Surgical": {
+  "status": "miss"
+ },
+ "AspenTech": {
+  "status": "miss"
+ },
+ "Asteelflash": {
+  "status": "miss"
+ },
+ "Astrodyne TDI": {
+  "status": "miss"
+ },
+ "Atkore": {
+  "status": "miss"
+ },
+ "Atracsys": {
+  "status": "miss"
+ },
+ "AtriCure": {
+  "ats": "greenhouse",
+  "jobs_seen": 60,
+  "status": "hit",
+  "token": "atricure"
+ },
+ "Atriomix": {
+  "status": "miss"
+ },
+ "Atrion": {
+  "status": "miss"
+ },
+ "Aubo Robotics": {
+  "status": "miss"
+ },
+ "Aurora Flight Sciences": {
+  "status": "miss"
+ },
+ "Aurora Innovation": {
+  "ats": "greenhouse",
+  "jobs_seen": 155,
+  "status": "hit",
+  "token": "aurorainnovation"
+ },
+ "Aurora Scientific": {
+  "status": "miss"
+ },
+ "AutoStore": {
+  "status": "miss"
+ },
+ "Automation Group": {
+  "status": "miss"
+ },
+ "Automation NTH": {
+  "status": "miss"
+ },
+ "Automation Solutions of America": {
+  "status": "miss"
+ },
+ "Automation Tooling Systems": {
+  "status": "miss"
+ },
+ "Automation.com": {
+  "status": "miss"
+ },
+ "AutomationDirect": {
+  "status": "miss"
+ },
+ "Autonomous Solutions": {
+  "ats": "lever",
+  "jobs_seen": 2,
+  "status": "hit",
+  "token": "autonomous"
+ },
+ "Autoware": {
+  "status": "miss"
+ },
+ "Avanceon": {
+  "status": "miss"
+ },
+ "Avanos Medical": {
+  "status": "miss"
+ },
+ "Avid Solutions": {
+  "status": "miss"
+ },
+ "Avidbots": {
+  "status": "miss"
+ },
+ "Avidity Science": {
+  "status": "miss"
+ },
+ "Avinger": {
+  "status": "miss"
+ },
+ "Avita Medical": {
+  "status": "miss"
+ },
+ "Avnet": {
+  "status": "miss"
+ },
+ "Avular": {
+  "status": "miss"
+ },
+ "Axogen": {
+  "ats": "greenhouse",
+  "jobs_seen": 32,
+  "status": "hit",
+  "token": "axogen"
+ },
+ "Axonics": {
+  "status": "miss"
+ },
+ "Azbil": {
+  "status": "miss"
+ },
+ "B&R Industrial Automation": {
+  "status": "miss"
+ },
+ "B&R USA": {
+  "status": "miss"
+ },
+ "B. Braun": {
+  "status": "miss"
+ },
+ "BAE Systems": {
+  "status": "miss"
+ },
+ "Bachelor Controls": {
+  "status": "miss"
+ },
+ "Badger Meter": {
+  "status": "miss"
+ },
+ "Balluff": {
+  "status": "miss"
+ },
+ "Banks Integration": {
+  "status": "miss"
+ },
+ "Banner Engineering": {
+  "status": "miss"
+ },
+ "Bardy Diagnostics": {
+  "status": "miss"
+ },
+ "Barr Engineering": {
+  "status": "miss"
+ },
+ "Barry-Wehmiller Design Group": {
+  "status": "miss"
+ },
+ "Bastian Solutions": {
+  "status": "miss"
+ },
+ "Baxter": {
+  "status": "miss"
+ },
+ "Bay Area Circuits": {
+  "status": "miss"
+ },
+ "Baylis Medical": {
+  "status": "miss"
+ },
+ "Beacon EmbeddedWorks": {
+  "status": "miss"
+ },
+ "BeagleBoard.org": {
+  "status": "miss"
+ },
+ "Bear Robotics": {
+  "status": "miss"
+ },
+ "Beckhoff Automation": {
+  "status": "miss"
+ },
+ "Beckhoff USA": {
+  "status": "miss"
+ },
+ "Becton Dickinson": {
+  "status": "miss"
+ },
+ "Bedrock Automation": {
+  "status": "miss"
+ },
+ "Bedrock Robotics": {
+  "ats": "ashby",
+  "jobs_seen": 29,
+  "status": "hit",
+  "token": "bedrock-robotics"
+ },
+ "BeeWise": {
+  "status": "miss"
+ },
+ "Bel Fuse": {
+  "status": "miss"
+ },
+ "Belden": {
+  "status": "miss"
+ },
+ "Belimo": {
+  "status": "miss"
+ },
+ "Benchmark Electronics": {
+  "status": "miss"
+ },
+ "Benchmark Phoenix": {
+  "status": "miss"
+ },
+ "Berkshire Grey": {
+  "status": "miss"
+ },
+ "Berkshire Grey AI": {
+  "status": "miss"
+ },
+ "Berkshire Grey Robotics": {
+  "status": "miss"
+ },
+ "Bio-Rad Laboratories": {
+  "status": "miss"
+ },
+ "Bio-Techne": {
+  "status": "miss"
+ },
+ "BioLife Solutions": {
+  "status": "miss"
+ },
+ "BioM\u00e9rieux": {
+  "status": "miss"
+ },
+ "BioSig Technologies": {
+  "status": "miss"
+ },
+ "BioTelemetry": {
+  "status": "miss"
+ },
+ "BioVentrix": {
+  "status": "miss"
+ },
+ "Bioinduction": {
+  "status": "miss"
+ },
+ "Bionik Laboratories": {
+  "status": "miss"
+ },
+ "Biosense Webster": {
+  "status": "miss"
+ },
+ "Biotronik": {
+  "status": "miss"
+ },
+ "Bisco Industries": {
+  "status": "miss"
+ },
+ "Bittele": {
+  "status": "miss"
+ },
+ "Bittele Electronics": {
+  "status": "miss"
+ },
+ "Black & Veatch": {
+  "status": "miss"
+ },
+ "Blackrock Neurotech": {
+  "status": "miss"
+ },
+ "Blue Ocean Robotics": {
+  "status": "miss"
+ },
+ "Blue River Technology": {
+  "status": "miss"
+ },
+ "Bonsai Robotics": {
+  "status": "miss"
+ },
+ "Bosch": {
+  "status": "miss"
+ },
+ "Bosch Rexroth": {
+  "status": "miss"
+ },
+ "Boston Dynamics": {
+  "status": "miss"
+ },
+ "Boston Engineering": {
+  "status": "miss"
+ },
+ "Boston Scientific": {
+  "status": "miss"
+ },
+ "Bourns": {
+  "status": "miss"
+ },
+ "Brain Corp": {
+  "status": "miss"
+ },
+ "Brainlab": {
+  "status": "miss"
+ },
+ "Bray Controls": {
+  "status": "miss"
+ },
+ "Bright Machines": {
+  "ats": "lever",
+  "jobs_seen": 15,
+  "status": "hit",
+  "token": "brightmachines"
+ },
+ "Broadcom": {
+  "status": "miss"
+ },
+ "Brock Solutions": {
+  "status": "miss"
+ },
+ "Built Robotics": {
+  "ats": "ashby",
+  "jobs_seen": 7,
+  "status": "hit",
+  "token": "built-robotics"
+ },
+ "Burkert": {
+  "status": "miss"
+ },
+ "Burns & McDonnell": {
+  "status": "miss"
+ },
+ "Burns Engineering": {
+  "status": "miss"
+ },
+ "Burro": {
+  "status": "miss"
+ },
+ "Burrow Global Automation": {
+  "status": "miss"
+ },
+ "Butterfly Network": {
+  "ats": "greenhouse",
+  "jobs_seen": 23,
+  "status": "hit",
+  "token": "butterflynetwork"
+ },
+ "CEVA": {
+  "status": "miss"
+ },
+ "CIM Systems": {
+  "status": "miss"
+ },
+ "CIMA Automation": {
+  "status": "miss"
+ },
+ "CIMON": {
+  "status": "miss"
+ },
+ "CMK Corporation": {
+  "status": "miss"
+ },
+ "COPA-DATA": {
+  "status": "miss"
+ },
+ "Cadence": {
+  "status": "miss"
+ },
+ "Cadence Design Systems": {
+  "status": "miss"
+ },
+ "Cala Health": {
+  "ats": "greenhouse",
+  "jobs_seen": 4,
+  "status": "hit",
+  "token": "calahealth"
+ },
+ "Calumet Electronics": {
+  "status": "miss"
+ },
+ "Calumet Electronics Michigan": {
+  "status": "miss"
+ },
+ "Cambridge Design Partnership": {
+  "status": "miss"
+ },
+ "Canary Labs": {
+  "status": "miss"
+ },
+ "Candor Industries": {
+  "status": "miss"
+ },
+ "Canvas": {
+  "status": "miss"
+ },
+ "Canvas Construction": {
+  "status": "miss"
+ },
+ "Capsa Healthcare": {
+  "ats": "ashby",
+  "jobs_seen": 13,
+  "status": "hit",
+  "token": "capsa"
+ },
+ "Carbon Robotics": {
+  "ats": "greenhouse",
+  "jobs_seen": 18,
+  "status": "hit",
+  "token": "carbonrobotics"
+ },
+ "Cardinal Health": {
+  "status": "miss"
+ },
+ "CardioDiagnostics": {
+  "status": "miss"
+ },
+ "CardioFocus": {
+  "status": "miss"
+ },
+ "CardioInsight": {
+  "status": "miss"
+ },
+ "CardioMEMS": {
+  "status": "miss"
+ },
+ "Cardionomic": {
+  "status": "miss"
+ },
+ "Cardiovascular Systems": {
+  "status": "miss"
+ },
+ "Cardiva Medical": {
+  "status": "miss"
+ },
+ "Carestream Health": {
+  "status": "miss"
+ },
+ "Carl Zeiss Meditec": {
+  "status": "miss"
+ },
+ "Cartesian": {
+  "status": "miss"
+ },
+ "Caterpillar Autonomy": {
+  "status": "miss"
+ },
+ "Celestica": {
+  "status": "miss"
+ },
+ "Celestica Toronto": {
+  "status": "miss"
+ },
+ "Cerebras Robotics": {
+  "ats": "ashby",
+  "jobs_seen": 107,
+  "status": "hit",
+  "token": "cerebras"
+ },
+ "Ceribell": {
+  "ats": "greenhouse",
+  "jobs_seen": 37,
+  "status": "hit",
+  "token": "ceribell"
+ },
+ "Cerus": {
+  "ats": "greenhouse",
+  "jobs_seen": 5,
+  "status": "hit",
+  "token": "cerus"
+ },
+ "Champion Technology Services": {
+  "ats": "greenhouse",
+  "jobs_seen": 0,
+  "status": "hit",
+  "token": "champion"
+ },
+ "Chart Industries": {
+  "status": "miss"
+ },
+ "Chef Robotics": {
+  "status": "miss"
+ },
+ "Ciena": {
+  "status": "miss"
+ },
+ "Cirexx": {
+  "status": "miss"
+ },
+ "Cirexx International": {
+  "status": "miss"
+ },
+ "Cirrus Logic": {
+  "status": "miss"
+ },
+ "Cirtec Medical": {
+  "status": "miss"
+ },
+ "Cisco": {
+  "status": "miss"
+ },
+ "Clarius Mobile Health": {
+  "status": "miss"
+ },
+ "Clayton & McKervey Automation": {
+  "status": "miss"
+ },
+ "ClearPoint Neuro": {
+  "ats": "lever",
+  "jobs_seen": 5,
+  "status": "hit",
+  "token": "clearpoint"
+ },
+ "Clearpath Robotics": {
+  "status": "miss"
+ },
+ "Cobalt Robotics": {
+  "ats": "lever",
+  "jobs_seen": 10,
+  "status": "hit",
+  "token": "cobaltrobotics"
+ },
+ "Cochlear": {
+  "status": "miss"
+ },
+ "Coco Robotics": {
+  "status": "miss"
+ },
+ "Cognex": {
+  "status": "miss"
+ },
+ "Cogniteam": {
+  "status": "miss"
+ },
+ "Coherent": {
+  "status": "miss"
+ },
+ "Collaborative Robotics": {
+  "status": "miss"
+ },
+ "Colonial Circuits": {
+  "status": "miss"
+ },
+ "Coloplast": {
+  "status": "miss"
+ },
+ "Comau": {
+  "status": "miss"
+ },
+ "CommScope": {
+  "status": "miss"
+ },
+ "Compunetics": {
+  "status": "miss"
+ },
+ "Compunetics PCB": {
+  "status": "miss"
+ },
+ "ConMed": {
+  "status": "miss"
+ },
+ "Concept Systems": {
+  "status": "miss"
+ },
+ "Control Assemblies Company": {
+  "status": "miss"
+ },
+ "Control Concepts": {
+  "status": "miss"
+ },
+ "Control Resources": {
+  "status": "miss"
+ },
+ "Control System Integrators": {
+  "status": "miss"
+ },
+ "ControlAir": {
+  "status": "miss"
+ },
+ "ControlTek": {
+  "status": "miss"
+ },
+ "Convergint": {
+  "status": "miss"
+ },
+ "Conveyors & Drives": {
+  "status": "miss"
+ },
+ "Cook Medical": {
+  "status": "miss"
+ },
+ "CooperCompanies": {
+  "status": "miss"
+ },
+ "Copley Controls": {
+  "status": "miss"
+ },
+ "CorMedix": {
+  "status": "miss"
+ },
+ "CorVista Health": {
+  "status": "miss"
+ },
+ "Corindus Vascular Robotics": {
+  "status": "miss"
+ },
+ "Cornerstone Automation Systems": {
+  "ats": "greenhouse",
+  "jobs_seen": 0,
+  "status": "hit",
+  "token": "cornerstone"
+ },
+ "Covariant": {
+  "status": "miss"
+ },
+ "Creation Technologies": {
+  "status": "miss"
+ },
+ "Creation Technologies Wisconsin": {
+  "status": "miss"
+ },
+ "Credo": {
+  "status": "miss"
+ },
+ "Credo Semiconductor": {
+  "status": "miss"
+ },
+ "Crenlo Engineered Cabs": {
+  "status": "miss"
+ },
+ "Cretex Companies": {
+  "status": "miss"
+ },
+ "Cretex Medical": {
+  "status": "miss"
+ },
+ "Cross Company": {
+  "status": "miss"
+ },
+ "Cruise": {
+  "status": "miss"
+ },
+ "CryoLife": {
+  "status": "miss"
+ },
+ "Cummins": {
+  "status": "miss"
+ },
+ "Cummins Power Generation": {
+  "status": "miss"
+ },
+ "Curtiss-Wright Defense Solutions": {
+  "status": "miss"
+ },
+ "Cutera": {
+  "status": "miss"
+ },
+ "Cyberdyne": {
+  "status": "miss"
+ },
+ "Cybernet Systems": {
+  "status": "miss"
+ },
+ "Cybertrol Engineering": {
+  "status": "miss"
+ },
+ "Cyngn": {
+  "ats": "lever",
+  "jobs_seen": 11,
+  "status": "hit",
+  "token": "cyngn"
+ },
+ "Cynosure": {
+  "status": "miss"
+ },
+ "DEKA Research & Development": {
+  "status": "miss"
+ },
+ "DENSO Robotics": {
+  "status": "miss"
+ },
+ "DMC": {
+  "status": "miss"
+ },
+ "DaVita Medical Group": {
+  "status": "miss"
+ },
+ "Daikin Applied": {
+  "status": "miss"
+ },
+ "Daimler Truck Robotics": {
+  "status": "miss"
+ },
+ "Danfoss": {
+  "status": "miss"
+ },
+ "Danfoss Autonomy": {
+  "status": "miss"
+ },
+ "DePuy Synthes": {
+  "status": "miss"
+ },
+ "Delkor Systems": {
+  "status": "miss"
+ },
+ "Delta Electronics": {
+  "status": "miss"
+ },
+ "Dentsply Sirona": {
+  "status": "miss"
+ },
+ "Design Ready Controls": {
+  "status": "miss"
+ },
+ "Dexcom": {
+  "status": "miss"
+ },
+ "Dexterity": {
+  "ats": "lever",
+  "jobs_seen": 25,
+  "status": "hit",
+  "token": "dexterity"
+ },
+ "DiaSorin": {
+  "status": "miss"
+ },
+ "Digi International": {
+  "status": "miss"
+ },
+ "Digi-Key Electronics": {
+  "status": "miss"
+ },
+ "Diligent Robotics": {
+  "ats": "greenhouse",
+  "jobs_seen": 6,
+  "status": "hit",
+  "token": "diligent"
+ },
+ "Diodes Incorporated": {
+  "status": "miss"
+ },
+ "Divergent Technologies": {
+  "ats": "greenhouse",
+  "jobs_seen": 57,
+  "status": "hit",
+  "token": "divergent"
+ },
+ "Donaldson Company": {
+  "status": "miss"
+ },
+ "Doosan Robotics": {
+  "status": "miss"
+ },
+ "Dorsett Controls": {
+  "status": "miss"
+ },
+ "Douglas Machine": {
+  "status": "miss"
+ },
+ "Doxel": {
+  "ats": "lever",
+  "jobs_seen": 15,
+  "status": "hit",
+  "token": "doxel"
+ },
+ "Draeger Medical": {
+  "status": "miss"
+ },
+ "Dragonfly Energy Robotics": {
+  "status": "miss"
+ },
+ "DuPont": {
+  "status": "miss"
+ },
+ "DuPont Interconnect Solutions": {
+  "status": "miss"
+ },
+ "Ducommun": {
+  "status": "miss"
+ },
+ "Dusty Robotics": {
+  "status": "miss"
+ },
+ "Dwyer Instruments": {
+  "status": "miss"
+ },
+ "Dynamic Air": {
+  "ats": "ashby",
+  "jobs_seen": 0,
+  "status": "hit",
+  "token": "dynamic"
+ },
+ "Dynamic Electronics": {
+  "ats": "ashby",
+  "jobs_seen": 0,
+  "status": "hit",
+  "token": "dynamic"
+ },
+ "E Tech Group": {
+  "ats": "greenhouse",
+  "jobs_seen": 116,
+  "status": "hit",
+  "token": "etechgroup"
+ },
+ "E Technologies Group": {
+  "status": "miss"
+ },
+ "EBV Elektronik": {
+  "status": "miss"
+ },
+ "EOSYS": {
+  "status": "miss"
+ },
+ "EPIC Systems Group": {
+  "status": "miss"
+ },
+ "EPIC Technologies": {
+  "status": "miss"
+ },
+ "ESC Automation": {
+  "status": "miss"
+ },
+ "Eargo": {
+  "status": "miss"
+ },
+ "EarthSense": {
+  "status": "miss"
+ },
+ "East West Manufacturing": {
+  "status": "miss"
+ },
+ "Eaton": {
+  "status": "miss"
+ },
+ "EchoNous": {
+  "status": "miss"
+ },
+ "Edan Instruments": {
+  "status": "miss"
+ },
+ "Edgewater Automation": {
+  "status": "miss"
+ },
+ "Edwards Lifesciences": {
+  "status": "miss"
+ },
+ "Efinix": {
+  "status": "miss"
+ },
+ "Egan Company": {
+  "status": "miss"
+ },
+ "Ekso Bionics": {
+  "status": "miss"
+ },
+ "Elecrow": {
+  "status": "miss"
+ },
+ "Electric Machinery Company": {
+  "ats": "ashby",
+  "jobs_seen": 2,
+  "status": "hit",
+  "token": "electric"
+ },
+ "ElectroCore": {
+  "status": "miss"
+ },
+ "Electronic Interconnect": {
+  "status": "miss"
+ },
+ "Elekta": {
+  "status": "miss"
+ },
+ "Ellex Medical Lasers": {
+  "status": "miss"
+ },
+ "Elmo Motion Control": {
+  "status": "miss"
+ },
+ "Elucid": {
+  "status": "miss"
+ },
+ "Embecta": {
+  "status": "miss"
+ },
+ "Emerson": {
+  "status": "miss"
+ },
+ "Emerson Automation Solutions": {
+  "status": "miss"
+ },
+ "Emerson Rosemount": {
+  "status": "miss"
+ },
+ "EndoGastric Solutions": {
+  "status": "miss"
+ },
+ "Endologix": {
+  "status": "miss"
+ },
+ "Endotronix": {
+  "status": "miss"
+ },
+ "Endress+Hauser": {
+  "status": "miss"
+ },
+ "Energid Technologies": {
+  "status": "miss"
+ },
+ "Energous": {
+  "status": "miss"
+ },
+ "Enics": {
+  "status": "miss"
+ },
+ "Enovis": {
+  "status": "miss"
+ },
+ "Entegris": {
+  "status": "miss"
+ },
+ "Envista Holdings": {
+  "status": "miss"
+ },
+ "Epec": {
+  "status": "miss"
+ },
+ "Epec Engineered Technologies": {
+  "status": "miss"
+ },
+ "Estun Automation": {
+  "status": "miss"
+ },
+ "Ethicon": {
+  "status": "miss"
+ },
+ "Eurocircuits": {
+  "status": "miss"
+ },
+ "Everspin Technologies": {
+  "status": "miss"
+ },
+ "Ewellix": {
+  "status": "miss"
+ },
+ "Exact Sciences": {
+  "status": "miss"
+ },
+ "Excel Automation": {
+  "ats": "greenhouse",
+  "jobs_seen": 43,
+  "status": "hit",
+  "token": "excel"
+ },
+ "Exotec": {
+  "status": "miss"
+ },
+ "Extreme Networks": {
+  "ats": "lever",
+  "jobs_seen": 54,
+  "status": "hit",
+  "token": "extremenetworks"
+ },
+ "F5": {
+  "status": "miss"
+ },
+ "FANUC America": {
+  "status": "miss"
+ },
+ "FMC Technologies": {
+  "status": "miss"
+ },
+ "FORT Robotics": {
+  "ats": "greenhouse",
+  "jobs_seen": 12,
+  "status": "hit",
+  "token": "fortrobotics"
+ },
+ "FOTONIQ": {
+  "status": "miss"
+ },
+ "FTG Circuits": {
+  "status": "miss"
+ },
+ "Farm-ng": {
+  "ats": "lever",
+  "jobs_seen": 0,
+  "status": "hit",
+  "token": "farm-ng"
+ },
+ "FarmWise": {
+  "status": "miss"
+ },
+ "Festo": {
+  "status": "miss"
+ },
+ "Fetch Robotics": {
+  "ats": "greenhouse",
+  "jobs_seen": 50,
+  "status": "hit",
+  "token": "fetch"
+ },
+ "Feyen Zylstra": {
+  "status": "miss"
+ },
+ "Field AI": {
+  "ats": "lever",
+  "jobs_seen": 98,
+  "status": "hit",
+  "token": "field-ai"
+ },
+ "Figure AI": {
+  "ats": "greenhouse",
+  "jobs_seen": 118,
+  "status": "hit",
+  "token": "figureai"
+ },
+ "Firan Technology Group": {
+  "status": "miss"
+ },
+ "Fisher & Paykel Healthcare": {
+  "status": "miss"
+ },
+ "Fisher Controls": {
+  "status": "miss"
+ },
+ "Flex": {
+  "ats": "greenhouse",
+  "jobs_seen": 53,
+  "status": "hit",
+  "token": "flex"
+ },
+ "Flex Austin": {
+  "status": "miss"
+ },
+ "Flexiv": {
+  "status": "miss"
+ },
+ "Flowserve": {
+  "status": "miss"
+ },
+ "Fluke": {
+  "status": "miss"
+ },
+ "Fluor": {
+  "status": "miss"
+ },
+ "FormFactor": {
+  "status": "miss"
+ },
+ "Formant": {
+  "status": "miss"
+ },
+ "Fortinet": {
+  "status": "miss"
+ },
+ "Fortive": {
+  "status": "miss"
+ },
+ "ForwardX Robotics": {
+  "status": "miss"
+ },
+ "Foth": {
+  "ats": "lever",
+  "jobs_seen": 41,
+  "status": "hit",
+  "token": "foth"
+ },
+ "Fox Robotics": {
+  "status": "miss"
+ },
+ "Foxboro": {
+  "status": "miss"
+ },
+ "Foxconn": {
+  "status": "miss"
+ },
+ "Foxconn Industrial Internet": {
+  "status": "miss"
+ },
+ "Franka Emika": {
+  "status": "miss"
+ },
+ "Franka Robotics": {
+  "status": "miss"
+ },
+ "Freedom Robotics": {
+  "status": "miss"
+ },
+ "Fresenius Medical Care": {
+  "status": "miss"
+ },
+ "Fuji Electric": {
+  "status": "miss"
+ },
+ "Fujifilm Healthcare": {
+  "status": "miss"
+ },
+ "Fujisoft": {
+  "status": "miss"
+ },
+ "Future Electronics": {
+  "ats": "greenhouse",
+  "jobs_seen": 5,
+  "status": "hit",
+  "token": "future"
+ },
+ "GE Digital": {
+  "status": "miss"
+ },
+ "GE HealthCare": {
+  "status": "miss"
+ },
+ "GE Proficy": {
+  "status": "miss"
+ },
+ "GE Vernova": {
+  "status": "miss"
+ },
+ "GPV": {
+  "status": "miss"
+ },
+ "GRAIL": {
+  "status": "miss"
+ },
+ "Galvani Bioelectronics": {
+  "status": "miss"
+ },
+ "Garmin": {
+  "status": "miss"
+ },
+ "Gatik": {
+  "status": "miss"
+ },
+ "Gecko Robotics": {
+  "ats": "ashby",
+  "jobs_seen": 16,
+  "status": "hit",
+  "token": "gecko-robotics"
+ },
+ "Geek+": {
+  "status": "miss"
+ },
+ "Geekplus": {
+  "status": "miss"
+ },
+ "Gems Sensors": {
+  "status": "miss"
+ },
+ "General Dynamics Mission Systems": {
+  "ats": "greenhouse",
+  "jobs_seen": 1,
+  "status": "hit",
+  "token": "general"
+ },
+ "Genesis Robotics": {
+  "ats": "greenhouse",
+  "jobs_seen": 0,
+  "status": "hit",
+  "token": "genesis"
+ },
+ "George T Hall": {
+  "status": "miss"
+ },
+ "Ghafari Associates": {
+  "status": "miss"
+ },
+ "Ghost Robotics": {
+  "ats": "greenhouse",
+  "jobs_seen": 5,
+  "status": "hit",
+  "token": "ghost"
+ },
+ "Gideon": {
+  "status": "miss"
+ },
+ "Gillette Children's (Biomedical Engineering)": {
+  "status": "miss"
+ },
+ "Glidewell Robotics": {
+  "status": "miss"
+ },
+ "GlobalFoundries": {
+  "status": "miss"
+ },
+ "Globus Medical": {
+  "status": "miss"
+ },
+ "Gold Phoenix PCB": {
+  "status": "miss"
+ },
+ "Graco": {
+  "status": "miss"
+ },
+ "Gray Solutions": {
+  "status": "miss"
+ },
+ "Great River Energy": {
+  "status": "miss"
+ },
+ "Green Circuits": {
+  "status": "miss"
+ },
+ "GreyOrange": {
+  "status": "miss"
+ },
+ "H.B. Fuller": {
+  "status": "miss"
+ },
+ "HAHN Automation": {
+  "status": "miss"
+ },
+ "HDR": {
+  "status": "miss"
+ },
+ "Hach": {
+  "status": "miss"
+ },
+ "Haddington Dynamics": {
+  "status": "miss"
+ },
+ "Haemonetics": {
+  "status": "miss"
+ },
+ "Hai Robotics": {
+  "status": "miss"
+ },
+ "Hallam-ICS": {
+  "status": "miss"
+ },
+ "Halodi Robotics": {
+  "status": "miss"
+ },
+ "Hargrove Controls + Automation": {
+  "status": "miss"
+ },
+ "Harman": {
+  "status": "miss"
+ },
+ "Harmonic Drive": {
+  "ats": "greenhouse",
+  "jobs_seen": 9,
+  "status": "hit",
+  "token": "harmonic"
+ },
+ "Harvest Automation": {
+  "status": "miss"
+ },
+ "Haskell": {
+  "status": "miss"
+ },
+ "Heilind Electronics": {
+  "status": "miss"
+ },
+ "Henkel Electronics": {
+  "status": "miss"
+ },
+ "Hewlett Packard Enterprise": {
+  "status": "miss"
+ },
+ "Hillrom": {
+  "status": "miss"
+ },
+ "Hirata": {
+  "status": "miss"
+ },
+ "HistoSonics": {
+  "status": "miss"
+ },
+ "Hitachi Industrial Equipment": {
+  "status": "miss"
+ },
+ "Hiwin Technologies": {
+  "status": "miss"
+ },
+ "Hixson": {
+  "status": "miss"
+ },
+ "Hocoma": {
+  "status": "miss"
+ },
+ "Hologic": {
+  "status": "miss"
+ },
+ "Honeybee Robotics": {
+  "status": "miss"
+ },
+ "Honeywell": {
+  "status": "miss"
+ },
+ "Honeywell Aerospace": {
+  "status": "miss"
+ },
+ "Honeywell Experion": {
+  "status": "miss"
+ },
+ "Honeywell Process Solutions": {
+  "status": "miss"
+ },
+ "Horner Automation": {
+  "status": "miss"
+ },
+ "Horton Holding": {
+  "status": "miss"
+ },
+ "Humatics": {
+  "status": "miss"
+ },
+ "Husqvarna Robotics": {
+  "status": "miss"
+ },
+ "Hyphen": {
+  "status": "miss"
+ },
+ "Hyundai Robotics": {
+  "status": "miss"
+ },
+ "IAM Robotics": {
+  "status": "miss"
+ },
+ "ICONICS": {
+  "status": "miss"
+ },
+ "ICR Services": {
+  "status": "miss"
+ },
+ "ICU Medical": {
+  "status": "miss"
+ },
+ "IMI Critical Engineering": {
+  "status": "miss"
+ },
+ "IRadimed": {
+  "status": "miss"
+ },
+ "Ignition by Inductive Automation": {
+  "ats": "greenhouse",
+  "jobs_seen": 2,
+  "status": "hit",
+  "token": "ignition"
+ },
+ "Igus": {
+  "status": "miss"
+ },
+ "Illumina": {
+  "status": "miss"
+ },
+ "ImageTrend": {
+  "status": "miss"
+ },
+ "Imagineering": {
+  "status": "miss"
+ },
+ "Impossible Metals": {
+  "status": "miss"
+ },
+ "Imricor Medical Systems": {
+  "status": "miss"
+ },
+ "InDro Robotics": {
+  "status": "miss"
+ },
+ "Inari Medical": {
+  "status": "miss"
+ },
+ "Indium Corporation": {
+  "status": "miss"
+ },
+ "Indoor Robotics": {
+  "status": "miss"
+ },
+ "Inductive Automation": {
+  "ats": "lever",
+  "jobs_seen": 0,
+  "status": "hit",
+  "token": "inductiveautomation"
+ },
+ "Industrial Automation Engineering": {
+  "ats": "greenhouse",
+  "jobs_seen": 1,
+  "status": "hit",
+  "token": "industrial"
+ },
+ "Industrial Control Repair": {
+  "ats": "greenhouse",
+  "jobs_seen": 1,
+  "status": "hit",
+  "token": "industrial"
+ },
+ "Industrial Perception": {
+  "ats": "greenhouse",
+  "jobs_seen": 1,
+  "status": "hit",
+  "token": "industrial"
+ },
+ "Infineon Technologies": {
+  "status": "miss"
+ },
+ "Ingenia Motion Control": {
+  "status": "miss"
+ },
+ "Innovative Control": {
+  "status": "miss"
+ },
+ "Innovative Control Systems": {
+  "status": "miss"
+ },
+ "Inogen": {
+  "status": "miss"
+ },
+ "Inspire Medical Systems": {
+  "status": "miss"
+ },
+ "Insulectro": {
+  "status": "miss"
+ },
+ "Insulet": {
+  "status": "miss"
+ },
+ "Integer Holdings": {
+  "status": "miss"
+ },
+ "Integra": {
+  "ats": "greenhouse",
+  "jobs_seen": 7,
+  "status": "hit",
+  "token": "integra"
+ },
+ "Integra LifeSciences": {
+  "ats": "greenhouse",
+  "jobs_seen": 7,
+  "status": "hit",
+  "token": "integra"
+ },
+ "Integra Neurosciences": {
+  "ats": "greenhouse",
+  "jobs_seen": 7,
+  "status": "hit",
+  "token": "integra"
+ },
+ "Integra Pain": {
+  "ats": "greenhouse",
+  "jobs_seen": 7,
+  "status": "hit",
+  "token": "integra"
+ },
+ "Integra York": {
+  "ats": "greenhouse",
+  "jobs_seen": 7,
+  "status": "hit",
+  "token": "integra"
+ },
+ "Integro Technologies": {
+  "status": "miss"
+ },
+ "Intel": {
+  "status": "miss"
+ },
+ "Intel PSG": {
+  "status": "miss"
+ },
+ "Intersect ENT": {
+  "ats": "lever",
+  "jobs_seen": 37,
+  "status": "hit",
+  "token": "intersect"
+ },
+ "Interstates": {
+  "ats": "greenhouse",
+  "jobs_seen": 156,
+  "status": "hit",
+  "token": "interstates"
+ },
+ "IntriCon": {
+  "status": "miss"
+ },
+ "Intrinsic": {
+  "ats": "ashby",
+  "jobs_seen": 0,
+  "status": "hit",
+  "token": "intrinsic"
+ },
+ "Intuitive Surgical": {
+  "status": "miss"
+ },
+ "Invio Automation": {
+  "status": "miss"
+ },
+ "Iron Ox": {
+  "status": "miss"
+ },
+ "Isola Group": {
+  "status": "miss"
+ },
+ "JAKA Robotics": {
+  "status": "miss"
+ },
+ "JHFOSTER": {
+  "status": "miss"
+ },
+ "JLCPCB": {
+  "status": "miss"
+ },
+ "JMP Solutions": {
+  "status": "miss"
+ },
+ "JR Automation": {
+  "status": "miss"
+ },
+ "Jabil": {
+  "status": "miss"
+ },
+ "Jabil St Petersburg": {
+  "status": "miss"
+ },
+ "Jacobs": {
+  "status": "miss"
+ },
+ "John Deere Robotics": {
+  "status": "miss"
+ },
+ "Johnson & Johnson MedTech": {
+  "status": "miss"
+ },
+ "Johnstech International": {
+  "status": "miss"
+ },
+ "Juniper Networks": {
+  "status": "miss"
+ },
+ "KARL STORZ": {
+  "status": "miss"
+ },
+ "KBR": {
+  "status": "miss"
+ },
+ "KEB America": {
+  "status": "miss"
+ },
+ "KEB Automation": {
+  "status": "miss"
+ },
+ "KLA": {
+  "status": "miss"
+ },
+ "KUKA Robotics": {
+  "status": "miss"
+ },
+ "Kardium": {
+  "status": "miss"
+ },
+ "Kasa Controls": {
+  "status": "miss"
+ },
+ "Kassow Robots": {
+  "status": "miss"
+ },
+ "Kawada Robotics": {
+  "status": "miss"
+ },
+ "Kawasaki Robotics": {
+  "status": "miss"
+ },
+ "Keenon Robotics": {
+  "status": "miss"
+ },
+ "Kepware": {
+  "status": "miss"
+ },
+ "Kestra Medical Technologies": {
+  "ats": "ashby",
+  "jobs_seen": 13,
+  "status": "hit",
+  "token": "kestra"
+ },
+ "Key Tronic": {
+  "status": "miss"
+ },
+ "Keyence": {
+  "status": "miss"
+ },
+ "Keysight Technologies": {
+  "status": "miss"
+ },
+ "Kimball Electronics": {
+  "status": "miss"
+ },
+ "Kimley-Horn": {
+  "status": "miss"
+ },
+ "Kindeva Drug Delivery": {
+  "status": "miss"
+ },
+ "Kinova Robotics": {
+  "status": "miss"
+ },
+ "Kion Group": {
+  "status": "miss"
+ },
+ "Kitron": {
+  "status": "miss"
+ },
+ "Kline Process Systems": {
+  "status": "miss"
+ },
+ "Knightscope": {
+  "status": "miss"
+ },
+ "Kodiak AI": {
+  "ats": "greenhouse",
+  "jobs_seen": 72,
+  "status": "hit",
+  "token": "kodiak"
+ },
+ "Kodiak Assembly Solutions": {
+  "ats": "greenhouse",
+  "jobs_seen": 72,
+  "status": "hit",
+  "token": "kodiak"
+ },
+ "Kodiak Robotics": {
+  "ats": "greenhouse",
+  "jobs_seen": 72,
+  "status": "hit",
+  "token": "kodiak"
+ },
+ "Kollmorgen": {
+  "status": "miss"
+ },
+ "Koninklijke Philips": {
+  "status": "miss"
+ },
+ "Koops Automation Systems": {
+  "status": "miss"
+ },
+ "Krohne": {
+  "status": "miss"
+ },
+ "Kuka": {
+  "status": "miss"
+ },
+ "LS Electric": {
+  "status": "miss"
+ },
+ "Labcorp Device Engineering": {
+  "status": "miss"
+ },
+ "Lacroix Electronics": {
+  "status": "miss"
+ },
+ "Lake Air Companies": {
+  "status": "miss"
+ },
+ "Lakeshirts Automation": {
+  "status": "miss"
+ },
+ "Lakeside Process Controls": {
+  "status": "miss"
+ },
+ "Lam Research": {
+  "status": "miss"
+ },
+ "Lantheus": {
+  "status": "miss"
+ },
+ "Lattice Semiconductor": {
+  "ats": "greenhouse",
+  "jobs_seen": 10,
+  "status": "hit",
+  "token": "lattice"
+ },
+ "LeMaitre Vascular": {
+  "status": "miss"
+ },
+ "Legrand": {
+  "status": "miss"
+ },
+ "Leica Microsystems": {
+  "status": "miss"
+ },
+ "Lely": {
+  "status": "miss"
+ },
+ "LifeScan": {
+  "status": "miss"
+ },
+ "Lifeward": {
+  "status": "miss"
+ },
+ "LinMot": {
+  "status": "miss"
+ },
+ "Lincoln Electric Automation": {
+  "ats": "greenhouse",
+  "jobs_seen": 19,
+  "status": "hit",
+  "token": "lincoln"
+ },
+ "Littelfuse": {
+  "status": "miss"
+ },
+ "LivaNova": {
+  "status": "miss"
+ },
+ "Locus": {
+  "status": "miss"
+ },
+ "Locus Robotics": {
+  "ats": "greenhouse",
+  "jobs_seen": 8,
+  "status": "hit",
+  "token": "locusrobotics"
+ },
+ "Logic PD": {
+  "status": "miss"
+ },
+ "Logical Systems": {
+  "status": "miss"
+ },
+ "Loram Maintenance of Way": {
+  "status": "miss"
+ },
+ "Lucid Diagnostics": {
+  "status": "miss"
+ },
+ "Lumentum": {
+  "status": "miss"
+ },
+ "M.C. Dean": {
+  "status": "miss"
+ },
+ "M.E. Simpson": {
+  "status": "miss"
+ },
+ "MACOM": {
+  "status": "miss"
+ },
+ "MC Assembly": {
+  "status": "miss"
+ },
+ "MCL": {
+  "status": "miss"
+ },
+ "MEC (Mayville Engineering Company)": {
+  "status": "miss"
+ },
+ "MSS Solutions": {
+  "status": "miss"
+ },
+ "MTS Systems": {
+  "status": "miss"
+ },
+ "MacDermid Alpha Electronics Solutions": {
+  "status": "miss"
+ },
+ "Machina Labs": {
+  "status": "miss"
+ },
+ "Mack Technologies": {
+  "status": "miss"
+ },
+ "Maclean Power Systems": {
+  "status": "miss"
+ },
+ "Macnica": {
+  "status": "miss"
+ },
+ "MacroFab": {
+  "status": "miss"
+ },
+ "MagVenture": {
+  "status": "miss"
+ },
+ "Magazino": {
+  "status": "miss"
+ },
+ "Magnetrol": {
+  "status": "miss"
+ },
+ "Magstim": {
+  "status": "miss"
+ },
+ "Mainstay Medical": {
+  "ats": "ashby",
+  "jobs_seen": 8,
+  "status": "hit",
+  "token": "mainstay"
+ },
+ "Malisko Engineering": {
+  "status": "miss"
+ },
+ "Mammotome": {
+  "status": "miss"
+ },
+ "Mangan": {
+  "status": "miss"
+ },
+ "Maple Systems": {
+  "ats": "ashby",
+  "jobs_seen": 14,
+  "status": "hit",
+  "token": "maple"
+ },
+ "Marble Robot": {
+  "ats": "ashby",
+  "jobs_seen": 7,
+  "status": "hit",
+  "token": "marble"
+ },
+ "Markforged": {
+  "ats": "greenhouse",
+  "jobs_seen": 3,
+  "status": "hit",
+  "token": "markforged"
+ },
+ "MartinCSI": {
+  "status": "miss"
+ },
+ "Marvell": {
+  "status": "miss"
+ },
+ "Marvin": {
+  "status": "miss"
+ },
+ "Masimo": {
+  "status": "miss"
+ },
+ "Master Electronics": {
+  "status": "miss"
+ },
+ "Matrikon": {
+  "status": "miss"
+ },
+ "Matrix Technologies": {
+  "ats": "lever",
+  "jobs_seen": 4,
+  "status": "hit",
+  "token": "matrix-technologies"
+ },
+ "Matternet": {
+  "status": "miss"
+ },
+ "Maverick Technologies": {
+  "status": "miss"
+ },
+ "MaxLinear": {
+  "status": "miss"
+ },
+ "Maxon": {
+  "status": "miss"
+ },
+ "May Mobility": {
+  "ats": "greenhouse",
+  "jobs_seen": 39,
+  "status": "hit",
+  "token": "maymobility"
+ },
+ "Mayer Electric Supply": {
+  "status": "miss"
+ },
+ "McEnery Automation": {
+  "status": "miss"
+ },
+ "Mecademic": {
+  "status": "miss"
+ },
+ "Mecademic Robotics": {
+  "status": "miss"
+ },
+ "Mechatronic Solutions": {
+  "status": "miss"
+ },
+ "Med-El": {
+  "status": "miss"
+ },
+ "Medela": {
+  "status": "miss"
+ },
+ "MediaTek": {
+  "status": "miss"
+ },
+ "Medical Microinstruments": {
+  "status": "miss"
+ },
+ "Medline Industries": {
+  "status": "miss"
+ },
+ "Medtronic": {
+  "status": "miss"
+ },
+ "Mellanox": {
+  "status": "miss"
+ },
+ "Mendaera": {
+  "status": "miss"
+ },
+ "Mentee Robotics": {
+  "status": "miss"
+ },
+ "Mentor Worldwide": {
+  "status": "miss"
+ },
+ "Mer-Mar Electronics": {
+  "status": "miss"
+ },
+ "Meridian Bioscience": {
+  "status": "miss"
+ },
+ "Merit Medical Systems": {
+  "status": "miss"
+ },
+ "Mersen": {
+  "status": "miss"
+ },
+ "Metalcraft of Mayville": {
+  "status": "miss"
+ },
+ "MetraLabs": {
+  "status": "miss"
+ },
+ "Mettler Toledo": {
+  "status": "miss"
+ },
+ "MiR": {
+  "status": "miss"
+ },
+ "Micro Control Company": {
+  "status": "miss"
+ },
+ "MicroPort": {
+  "status": "miss"
+ },
+ "MicroTransponder": {
+  "status": "miss"
+ },
+ "MicroVision": {
+  "ats": "lever",
+  "jobs_seen": 13,
+  "status": "hit",
+  "token": "microvision"
+ },
+ "Microchip FPGA": {
+  "status": "miss"
+ },
+ "Microchip Technology": {
+  "status": "miss"
+ },
+ "Micron Technology": {
+  "status": "miss"
+ },
+ "Middough": {
+  "status": "miss"
+ },
+ "Mikros Technologies": {
+  "status": "miss"
+ },
+ "Millennium Circuits": {
+  "status": "miss"
+ },
+ "Miller Resource Group Automation": {
+  "status": "miss"
+ },
+ "Millerbernd Manufacturing": {
+  "status": "miss"
+ },
+ "Milrem Robotics": {
+  "status": "miss"
+ },
+ "Milwaukee Tool": {
+  "status": "miss"
+ },
+ "Mindray": {
+  "status": "miss"
+ },
+ "Miso Robotics": {
+  "status": "miss"
+ },
+ "Mission Design & Automation": {
+  "status": "miss"
+ },
+ "Mitsubishi Electric Automation": {
+  "status": "miss"
+ },
+ "Mitsubishi Electric Factory Automation": {
+  "status": "miss"
+ },
+ "Mitsubishi Factory Automation": {
+  "status": "miss"
+ },
+ "Mobile Industrial Robots (MiR)": {
+  "status": "miss"
+ },
+ "Molex": {
+  "status": "miss"
+ },
+ "Moley Robotics": {
+  "status": "miss"
+ },
+ "Monarch Tractor": {
+  "status": "miss"
+ },
+ "Monolithic Power Systems": {
+  "status": "miss"
+ },
+ "Moore Industries": {
+  "status": "miss"
+ },
+ "Morrison Industrial Equipment": {
+  "status": "miss"
+ },
+ "Motion Controls Robotics": {
+  "status": "miss"
+ },
+ "Motional": {
+  "ats": "greenhouse",
+  "jobs_seen": 113,
+  "status": "hit",
+  "token": "motional"
+ },
+ "Motional Robotics": {
+  "ats": "greenhouse",
+  "jobs_seen": 113,
+  "status": "hit",
+  "token": "motional"
+ },
+ "Mouser Electronics": {
+  "status": "miss"
+ },
+ "Movicon": {
+  "status": "miss"
+ },
+ "Mujin": {
+  "status": "miss"
+ },
+ "MultiSource Manufacturing": {
+  "status": "miss"
+ },
+ "Murata": {
+  "status": "miss"
+ },
+ "Myomo": {
+  "status": "miss"
+ },
+ "NCAB Group": {
+  "status": "miss"
+ },
+ "NORD Drivesystems": {
+  "status": "miss"
+ },
+ "NOTE": {
+  "status": "miss"
+ },
+ "NOVA Automation": {
+  "status": "miss"
+ },
+ "NVIDIA": {
+  "status": "miss"
+ },
+ "NVIDIA Robotics": {
+  "status": "miss"
+ },
+ "NXP Semiconductors": {
+  "status": "miss"
+ },
+ "Nachi Robotics": {
+  "status": "miss"
+ },
+ "Naio Technologies": {
+  "status": "miss"
+ },
+ "Nalu Medical": {
+  "status": "miss"
+ },
+ "Nanotec": {
+  "status": "miss"
+ },
+ "Napatech": {
+  "status": "miss"
+ },
+ "National Instruments": {
+  "ats": "greenhouse",
+  "jobs_seen": 8,
+  "status": "hit",
+  "token": "national"
+ },
+ "Natus Medical": {
+  "status": "miss"
+ },
+ "Navitas Semiconductor": {
+  "status": "miss"
+ },
+ "Near Earth Autonomy": {
+  "status": "miss"
+ },
+ "Neles": {
+  "status": "miss"
+ },
+ "Neocis": {
+  "status": "miss"
+ },
+ "NetApp": {
+  "status": "miss"
+ },
+ "Neura Robotics": {
+  "status": "miss"
+ },
+ "Neuralink": {
+  "ats": "greenhouse",
+  "jobs_seen": 79,
+  "status": "hit",
+  "token": "neuralink"
+ },
+ "NeuroOne Medical Technologies": {
+  "status": "miss"
+ },
+ "NeuroPace": {
+  "ats": "greenhouse",
+  "jobs_seen": 6,
+  "status": "hit",
+  "token": "neuropace"
+ },
+ "NeuroSigma": {
+  "status": "miss"
+ },
+ "Neuroelectrics": {
+  "status": "miss"
+ },
+ "Neurolutions": {
+  "status": "miss"
+ },
+ "Neuronetics": {
+  "status": "miss"
+ },
+ "Nevro": {
+  "status": "miss"
+ },
+ "New Scale Robotics": {
+  "status": "miss"
+ },
+ "Newark Electronics": {
+  "status": "miss"
+ },
+ "Neways Electronics": {
+  "status": "miss"
+ },
+ "NexLogic": {
+  "status": "miss"
+ },
+ "Nexperia": {
+  "status": "miss"
+ },
+ "Neya Systems": {
+  "status": "miss"
+ },
+ "Nidec Industrial Solutions": {
+  "status": "miss"
+ },
+ "Nihon Kohden": {
+  "status": "miss"
+ },
+ "Nilfisk": {
+  "status": "miss"
+ },
+ "Nokia": {
+  "status": "miss"
+ },
+ "Nomagic": {
+  "status": "miss"
+ },
+ "Nord Modules": {
+  "status": "miss"
+ },
+ "Nordic Semiconductor": {
+  "status": "miss"
+ },
+ "Nordson MEDICAL": {
+  "status": "miss"
+ },
+ "Nortech Systems": {
+  "status": "miss"
+ },
+ "Northern Technologies International Corporation": {
+  "status": "miss"
+ },
+ "Novanta": {
+  "status": "miss"
+ },
+ "Novanta IMS": {
+  "status": "miss"
+ },
+ "Novaspect": {
+  "status": "miss"
+ },
+ "Novocure": {
+  "status": "miss"
+ },
+ "NuVasive": {
+  "status": "miss"
+ },
+ "Nuro": {
+  "ats": "greenhouse",
+  "jobs_seen": 95,
+  "status": "hit",
+  "token": "nuro"
+ },
+ "Nuvectra": {
+  "status": "miss"
+ },
+ "Nuvoton": {
+  "status": "miss"
+ },
+ "O'Brien": {
+  "ats": "greenhouse",
+  "jobs_seen": 0,
+  "status": "hit",
+  "token": "obrien"
+ },
+ "OSI Electronics": {
+  "status": "miss"
+ },
+ "OSIsoft": {
+  "status": "miss"
+ },
+ "OTSI": {
+  "status": "miss"
+ },
+ "OTTO Motors": {
+  "status": "miss"
+ },
+ "Ocado Technology": {
+  "status": "miss"
+ },
+ "Ocean Infinity": {
+  "ats": "ashby",
+  "jobs_seen": 3,
+  "status": "hit",
+  "token": "ocean"
+ },
+ "Olympus": {
+  "ats": "ashby",
+  "jobs_seen": 1,
+  "status": "hit",
+  "token": "olympus"
+ },
+ "Omnicell": {
+  "status": "miss"
+ },
+ "Omron Automation": {
+  "status": "miss"
+ },
+ "Omron Industrial Automation": {
+  "status": "miss"
+ },
+ "Omron Robotics": {
+  "status": "miss"
+ },
+ "OnRobot": {
+  "status": "miss"
+ },
+ "Onsemi": {
+  "status": "miss"
+ },
+ "Open Robotics": {
+  "status": "miss"
+ },
+ "OpenAI Robotics": {
+  "ats": "ashby",
+  "jobs_seen": 724,
+  "status": "hit",
+  "token": "openai"
+ },
+ "Optimation Technology": {
+  "status": "miss"
+ },
+ "Opto 22": {
+  "status": "miss"
+ },
+ "Ortho Clinical Diagnostics": {
+  "status": "miss"
+ },
+ "Orthofix": {
+  "status": "miss"
+ },
+ "Osaro": {
+  "ats": "lever",
+  "jobs_seen": 9,
+  "status": "hit",
+  "token": "osaro"
+ },
+ "Osh Park": {
+  "status": "miss"
+ },
+ "Ottobock": {
+  "status": "miss"
+ },
+ "OurPCB": {
+  "status": "miss"
+ },
+ "Outrider": {
+  "ats": "greenhouse",
+  "jobs_seen": 10,
+  "status": "hit",
+  "token": "outrider"
+ },
+ "Outset Medical": {
+  "ats": "greenhouse",
+  "jobs_seen": 27,
+  "status": "hit",
+  "token": "outsetmedical"
+ },
+ "Owens & Minor": {
+  "status": "miss"
+ },
+ "PA Solutions": {
+  "status": "miss"
+ },
+ "PAR Systems": {
+  "status": "miss"
+ },
+ "PBC Linear": {
+  "status": "miss"
+ },
+ "PCB Universe": {
+  "status": "miss"
+ },
+ "PCBCart": {
+  "status": "miss"
+ },
+ "PCBWay": {
+  "status": "miss"
+ },
+ "PCEA": {
+  "status": "miss"
+ },
+ "PNC Inc.": {
+  "status": "miss"
+ },
+ "Panasonic Industry": {
+  "status": "miss"
+ },
+ "Paradromics": {
+  "status": "miss"
+ },
+ "Paragon 28": {
+  "ats": "ashby",
+  "jobs_seen": 3,
+  "status": "hit",
+  "token": "paragon"
+ },
+ "Parallel Systems": {
+  "ats": "greenhouse",
+  "jobs_seen": 10,
+  "status": "hit",
+  "token": "parallel"
+ },
+ "Parker Hannifin": {
+  "ats": "ashby",
+  "jobs_seen": 13,
+  "status": "hit",
+  "token": "parker"
+ },
+ "Particle": {
+  "status": "miss"
+ },
+ "Parvalux": {
+  "status": "miss"
+ },
+ "Path Robotics": {
+  "ats": "greenhouse",
+  "jobs_seen": 39,
+  "status": "hit",
+  "token": "pathrobotics"
+ },
+ "Patti Engineering": {
+  "status": "miss"
+ },
+ "PeakLogix": {
+  "status": "miss"
+ },
+ "Penumbra": {
+  "status": "miss"
+ },
+ "Pepperl+Fuchs": {
+  "status": "miss"
+ },
+ "Percepto": {
+  "status": "miss"
+ },
+ "Performance Motion Devices": {
+  "status": "miss"
+ },
+ "PerkinElmer": {
+  "status": "miss"
+ },
+ "Permobil": {
+  "status": "miss"
+ },
+ "Phantom Auto": {
+  "ats": "ashby",
+  "jobs_seen": 14,
+  "status": "hit",
+  "token": "phantom"
+ },
+ "Philips Healthcare": {
+  "status": "miss"
+ },
+ "Phillips & Temro Industries": {
+  "status": "miss"
+ },
+ "Phoenix Contact": {
+  "ats": "greenhouse",
+  "jobs_seen": 46,
+  "status": "hit",
+  "token": "phoenixcontact"
+ },
+ "Piab": {
+  "status": "miss"
+ },
+ "Piab Robotics": {
+  "status": "miss"
+ },
+ "PickNik Robotics": {
+  "ats": "ashby",
+  "jobs_seen": 5,
+  "status": "hit",
+  "token": "picknik"
+ },
+ "Pickle Robot": {
+  "ats": "lever",
+  "jobs_seen": 17,
+  "status": "hit",
+  "token": "picklerobot"
+ },
+ "Pilz": {
+  "status": "miss"
+ },
+ "Plexus": {
+  "ats": "lever",
+  "jobs_seen": 2,
+  "status": "hit",
+  "token": "plexus"
+ },
+ "Plexus Neenah": {
+  "ats": "lever",
+  "jobs_seen": 2,
+  "status": "hit",
+  "token": "plexus"
+ },
+ "Plus One Robotics": {
+  "status": "miss"
+ },
+ "Polar Semiconductor": {
+  "ats": "ashby",
+  "jobs_seen": 2,
+  "status": "hit",
+  "token": "polar"
+ },
+ "Polaris": {
+  "ats": "greenhouse",
+  "jobs_seen": 2,
+  "status": "hit",
+  "token": "polaris"
+ },
+ "Polymath Robotics": {
+  "ats": "ashby",
+  "jobs_seen": 5,
+  "status": "hit",
+  "token": "polymath"
+ },
+ "Polytron": {
+  "status": "miss"
+ },
+ "Power Engineers": {
+  "status": "miss"
+ },
+ "Power System Engineering (PSE)": {
+  "status": "miss"
+ },
+ "Precision Neuroscience": {
+  "status": "miss"
+ },
+ "Precision PCB Services": {
+  "status": "miss"
+ },
+ "Precision Robotics": {
+  "status": "miss"
+ },
+ "PrecisionHawk": {
+  "status": "miss"
+ },
+ "Premier Automation": {
+  "ats": "greenhouse",
+  "jobs_seen": 6,
+  "status": "hit",
+  "token": "premierautomation"
+ },
+ "Prime Controls": {
+  "status": "miss"
+ },
+ "Pro-face": {
+  "status": "miss"
+ },
+ "ProAutomated": {
+  "status": "miss"
+ },
+ "ProMinent": {
+  "status": "miss"
+ },
+ "Process Automation Solutions": {
+  "status": "miss"
+ },
+ "Prodrive Technologies": {
+  "status": "miss"
+ },
+ "Progea": {
+  "status": "miss"
+ },
+ "Proto Labs": {
+  "ats": "lever",
+  "jobs_seen": 79,
+  "status": "hit",
+  "token": "protolabs"
+ },
+ "Pudu Robotics": {
+  "status": "miss"
+ },
+ "Pulse Biosciences": {
+  "ats": "greenhouse",
+  "jobs_seen": 5,
+  "status": "hit",
+  "token": "pulsebiosciences"
+ },
+ "Qorvo": {
+  "status": "miss"
+ },
+ "Qualcomm": {
+  "status": "miss"
+ },
+ "Quality Tech Services (QTS)": {
+  "status": "miss"
+ },
+ "QuidelOrtho": {
+  "status": "miss"
+ },
+ "RFA Engineering": {
+  "status": "miss"
+ },
+ "RMS Company": {
+  "status": "miss"
+ },
+ "RS Group": {
+  "status": "miss"
+ },
+ "RapidAI": {
+  "ats": "lever",
+  "jobs_seen": 6,
+  "status": "hit",
+  "token": "rapidai"
+ },
+ "Rapyuta Robotics": {
+  "status": "miss"
+ },
+ "Raspberry Pi": {
+  "ats": "ashby",
+  "jobs_seen": 14,
+  "status": "hit",
+  "token": "raspberry"
+ },
+ "ReCor Medical": {
+  "status": "miss"
+ },
+ "ReWalk": {
+  "status": "miss"
+ },
+ "ReWalk Robotics": {
+  "status": "miss"
+ },
+ "Realtek Semiconductor": {
+  "status": "miss"
+ },
+ "Realtime Robotics": {
+  "status": "miss"
+ },
+ "Red Lion Controls": {
+  "status": "miss"
+ },
+ "RedViking": {
+  "status": "miss"
+ },
+ "Regal Rexnord": {
+  "status": "miss"
+ },
+ "Rehab Robotics": {
+  "status": "miss"
+ },
+ "Reko International": {
+  "status": "miss"
+ },
+ "Reliable Robotics": {
+  "ats": "ashby",
+  "jobs_seen": 68,
+  "status": "hit",
+  "token": "reliable-robotics"
+ },
+ "Renesas Electronics": {
+  "status": "miss"
+ },
+ "Renishaw": {
+  "status": "miss"
+ },
+ "ResMed": {
+  "status": "miss"
+ },
+ "Reshape Biotech": {
+  "status": "miss"
+ },
+ "Resideo": {
+  "status": "miss"
+ },
+ "RevMedica": {
+  "status": "miss"
+ },
+ "Revere Control Systems": {
+  "status": "miss"
+ },
+ "Ribbon Communications": {
+  "status": "miss"
+ },
+ "Richardson Electronics": {
+  "status": "miss"
+ },
+ "RightHand Robotics": {
+  "status": "miss"
+ },
+ "Righthand AI": {
+  "status": "miss"
+ },
+ "Ritalka": {
+  "status": "miss"
+ },
+ "Robex": {
+  "status": "miss"
+ },
+ "RoboDK": {
+  "status": "miss"
+ },
+ "RoboSense": {
+  "status": "miss"
+ },
+ "Robomart": {
+  "status": "miss"
+ },
+ "Roboteam": {
+  "status": "miss"
+ },
+ "Roboteq": {
+  "status": "miss"
+ },
+ "Robotiq": {
+  "status": "miss"
+ },
+ "Robust AI": {
+  "ats": "lever",
+  "jobs_seen": 5,
+  "status": "hit",
+  "token": "robust-ai"
+ },
+ "Roche Diagnostics": {
+  "status": "miss"
+ },
+ "Rockwell Automation": {
+  "status": "miss"
+ },
+ "Rockwell FactoryTalk": {
+  "status": "miss"
+ },
+ "Rockwell Plex": {
+  "status": "miss"
+ },
+ "Rogers Corporation": {
+  "status": "miss"
+ },
+ "Rohm Semiconductor": {
+  "status": "miss"
+ },
+ "Rokae Robotics": {
+  "status": "miss"
+ },
+ "Roper Technologies": {
+  "status": "miss"
+ },
+ "Rosemount": {
+  "status": "miss"
+ },
+ "Rotork": {
+  "status": "miss"
+ },
+ "RoviSys": {
+  "status": "miss"
+ },
+ "RoviSys Building Technologies": {
+  "status": "miss"
+ },
+ "Royal Circuit Solutions": {
+  "status": "miss"
+ },
+ "Royal Circuits": {
+  "status": "miss"
+ },
+ "Ruckus Networks": {
+  "status": "miss"
+ },
+ "Rush PCB": {
+  "status": "miss"
+ },
+ "Rutronik": {
+  "status": "miss"
+ },
+ "SAGE Group": {
+  "ats": "greenhouse",
+  "jobs_seen": 0,
+  "status": "hit",
+  "token": "sage"
+ },
+ "SAMSON Controls": {
+  "status": "miss"
+ },
+ "SCHUNK": {
+  "status": "miss"
+ },
+ "SFCircuits": {
+  "status": "miss"
+ },
+ "SIASUN": {
+  "status": "miss"
+ },
+ "SICK": {
+  "status": "miss"
+ },
+ "SIIX": {
+  "status": "miss"
+ },
+ "SMC Corporation": {
+  "status": "miss"
+ },
+ "SMTC": {
+  "status": "miss"
+ },
+ "SPR Therapeutics": {
+  "status": "miss"
+ },
+ "SPS Commerce": {
+  "status": "miss"
+ },
+ "STERIS": {
+  "status": "miss"
+ },
+ "STMicroelectronics": {
+  "status": "miss"
+ },
+ "SVT Robotics": {
+  "status": "miss"
+ },
+ "Sager Electronics": {
+  "status": "miss"
+ },
+ "Saline Lectronics": {
+  "status": "miss"
+ },
+ "Saluda Medical": {
+  "status": "miss"
+ },
+ "Samsung Electro-Mechanics": {
+  "status": "miss"
+ },
+ "Samtec": {
+  "status": "miss"
+ },
+ "San Francisco Circuits": {
+  "status": "miss"
+ },
+ "Sankyo Automation": {
+  "status": "miss"
+ },
+ "Sanmina": {
+  "status": "miss"
+ },
+ "Sanmina Huntsville": {
+  "status": "miss"
+ },
+ "Sarcos Technology": {
+  "status": "miss"
+ },
+ "Saturn Electronics": {
+  "ats": "ashby",
+  "jobs_seen": 7,
+  "status": "hit",
+  "token": "saturn"
+ },
+ "Saturn Systems": {
+  "ats": "ashby",
+  "jobs_seen": 7,
+  "status": "hit",
+  "token": "saturn"
+ },
+ "Savioke": {
+  "status": "miss"
+ },
+ "Scanfil": {
+  "status": "miss"
+ },
+ "Schneider Citect": {
+  "status": "miss"
+ },
+ "Schneider Electric": {
+  "status": "miss"
+ },
+ "Schneider Modicon": {
+  "status": "miss"
+ },
+ "Scott Technology": {
+  "status": "miss"
+ },
+ "Screaming Circuits": {
+  "status": "miss"
+ },
+ "Scythe Robotics": {
+  "status": "miss"
+ },
+ "Seagate Technology": {
+  "status": "miss"
+ },
+ "Seaspine": {
+  "status": "miss"
+ },
+ "Securian (Building Automation/Facilities Engineering)": {
+  "status": "miss"
+ },
+ "Seeed Studio": {
+  "status": "miss"
+ },
+ "Seegrid": {
+  "status": "miss"
+ },
+ "Seismic": {
+  "status": "miss"
+ },
+ "Semtech": {
+  "status": "miss"
+ },
+ "Senseonics": {
+  "status": "miss"
+ },
+ "Sensirion": {
+  "status": "miss"
+ },
+ "Sentrilock Automation": {
+  "status": "miss"
+ },
+ "Sepro Group": {
+  "status": "miss"
+ },
+ "Serra": {
+  "status": "miss"
+ },
+ "Serve Robotics": {
+  "ats": "ashby",
+  "jobs_seen": 54,
+  "status": "hit",
+  "token": "serverobotics"
+ },
+ "Servo2Go": {
+  "status": "miss"
+ },
+ "SetPoint Medical": {
+  "ats": "greenhouse",
+  "jobs_seen": 16,
+  "status": "hit",
+  "token": "setpoint"
+ },
+ "Sevensense Robotics": {
+  "status": "miss"
+ },
+ "Shape Corp Automation": {
+  "status": "miss"
+ },
+ "Shape Process Automation": {
+  "status": "miss"
+ },
+ "SharkNinja Robotics": {
+  "status": "miss"
+ },
+ "Shennan Circuits": {
+  "status": "miss"
+ },
+ "Shibaura Machine": {
+  "status": "miss"
+ },
+ "Shockwave Medical": {
+  "status": "miss"
+ },
+ "Shutterfly Manufacturing": {
+  "status": "miss"
+ },
+ "Siemens": {
+  "status": "miss"
+ },
+ "Siemens Digital Industries": {
+  "status": "miss"
+ },
+ "Siemens Healthineers": {
+  "status": "miss"
+ },
+ "Siemens WinCC": {
+  "status": "miss"
+ },
+ "Sierra Assembly Technology": {
+  "ats": "ashby",
+  "jobs_seen": 156,
+  "status": "hit",
+  "token": "sierra"
+ },
+ "Sierra Circuits": {
+  "ats": "ashby",
+  "jobs_seen": 156,
+  "status": "hit",
+  "token": "sierra"
+ },
+ "SigmaTron International": {
+  "status": "miss"
+ },
+ "Silicom": {
+  "status": "miss"
+ },
+ "Silicon Labs": {
+  "ats": "greenhouse",
+  "jobs_seen": 0,
+  "status": "hit",
+  "token": "silicon"
+ },
+ "Simbe Robotics": {
+  "status": "miss"
+ },
+ "SkySpecs": {
+  "status": "miss"
+ },
+ "SkyWater Technology": {
+  "status": "miss"
+ },
+ "Skydio": {
+  "ats": "ashby",
+  "jobs_seen": 110,
+  "status": "hit",
+  "token": "skydio"
+ },
+ "Skyline Robotics": {
+  "status": "miss"
+ },
+ "Skyworks Solutions": {
+  "status": "miss"
+ },
+ "Slip Robotics": {
+  "status": "miss"
+ },
+ "Smith+Nephew": {
+  "status": "miss"
+ },
+ "Smiths Medical": {
+  "status": "miss"
+ },
+ "Socionext": {
+  "status": "miss"
+ },
+ "Soft Robotics": {
+  "status": "miss"
+ },
+ "Sonic Healthcare": {
+  "ats": "greenhouse",
+  "jobs_seen": 14,
+  "status": "hit",
+  "token": "sonic"
+ },
+ "Sonic Manufacturing Technologies": {
+  "ats": "greenhouse",
+  "jobs_seen": 14,
+  "status": "hit",
+  "token": "sonic"
+ },
+ "Sonova": {
+  "status": "miss"
+ },
+ "Sorin Group": {
+  "status": "miss"
+ },
+ "Spacelabs Healthcare": {
+  "status": "miss"
+ },
+ "SparkFun Electronics": {
+  "status": "miss"
+ },
+ "Sparton": {
+  "status": "miss"
+ },
+ "Spartronics": {
+  "status": "miss"
+ },
+ "Spectranetics": {
+  "status": "miss"
+ },
+ "Spineology": {
+  "status": "miss"
+ },
+ "Spirax Sarco": {
+  "status": "miss"
+ },
+ "Standard Bots": {
+  "ats": "ashby",
+  "jobs_seen": 32,
+  "status": "hit",
+  "token": "standardbots"
+ },
+ "Stantec": {
+  "status": "miss"
+ },
+ "Starkey": {
+  "status": "miss"
+ },
+ "Starship Robotics": {
+  "status": "miss"
+ },
+ "Starship Technologies": {
+  "status": "miss"
+ },
+ "Staubli Robotics": {
+  "status": "miss"
+ },
+ "Stereotaxis": {
+  "status": "miss"
+ },
+ "Stober Drives": {
+  "status": "miss"
+ },
+ "Stone Technologies": {
+  "ats": "greenhouse",
+  "jobs_seen": 383,
+  "status": "hit",
+  "token": "stone"
+ },
+ "Stratasys": {
+  "status": "miss"
+ },
+ "Straumann": {
+  "status": "miss"
+ },
+ "Stryker": {
+  "status": "miss"
+ },
+ "Summit Electronics": {
+  "status": "miss"
+ },
+ "Summit Interconnect": {
+  "status": "miss"
+ },
+ "Sun Country Airlines (Aircraft Electrical Engineering)": {
+  "status": "miss"
+ },
+ "Sunstone": {
+  "status": "miss"
+ },
+ "Sunstone Circuits": {
+  "status": "miss"
+ },
+ "Superior Controls": {
+  "ats": "greenhouse",
+  "jobs_seen": 2,
+  "status": "hit",
+  "token": "superior"
+ },
+ "Surgical Robotics Technology": {
+  "status": "miss"
+ },
+ "Surtel Technologies": {
+  "status": "miss"
+ },
+ "Swagelok": {
+  "status": "miss"
+ },
+ "Symbotic": {
+  "status": "miss"
+ },
+ "Synapticon": {
+  "status": "miss"
+ },
+ "Synaptics": {
+  "status": "miss"
+ },
+ "Synchron": {
+  "status": "miss"
+ },
+ "Synopsys": {
+  "status": "miss"
+ },
+ "Systems Control": {
+  "ats": "greenhouse",
+  "jobs_seen": 0,
+  "status": "hit",
+  "token": "systems"
+ },
+ "Systems Interface": {
+  "ats": "greenhouse",
+  "jobs_seen": 0,
+  "status": "hit",
+  "token": "systems"
+ },
+ "TDK": {
+  "status": "miss"
+ },
+ "TE Connectivity": {
+  "status": "miss"
+ },
+ "THK": {
+  "status": "miss"
+ },
+ "TKDA": {
+  "ats": "lever",
+  "jobs_seen": 64,
+  "status": "hit",
+  "token": "tkda"
+ },
+ "TT Electronics": {
+  "status": "miss"
+ },
+ "TTI Inc": {
+  "status": "miss"
+ },
+ "TTM Chippewa Falls": {
+  "status": "miss"
+ },
+ "TTM Logan": {
+  "status": "miss"
+ },
+ "TTM Technologies": {
+  "status": "miss"
+ },
+ "TURCK USA": {
+  "status": "miss"
+ },
+ "Tactile Medical": {
+  "ats": "greenhouse",
+  "jobs_seen": 47,
+  "status": "hit",
+  "token": "tactilemedical"
+ },
+ "Takeda": {
+  "status": "miss"
+ },
+ "Tandem Diabetes Care": {
+  "status": "miss"
+ },
+ "Tata Technologies Automation": {
+  "status": "miss"
+ },
+ "Taurus Industrial Group": {
+  "status": "miss"
+ },
+ "Tecan": {
+  "status": "miss"
+ },
+ "Technosoft Motion": {
+  "status": "miss"
+ },
+ "Technotronix": {
+  "status": "miss"
+ },
+ "Teledyne LeCroy": {
+  "status": "miss"
+ },
+ "Teleflex": {
+  "status": "miss"
+ },
+ "Telexistence": {
+  "status": "miss"
+ },
+ "Tempo Automation": {
+  "ats": "greenhouse",
+  "jobs_seen": 5,
+  "status": "hit",
+  "token": "tempo"
+ },
+ "Tempus AI": {
+  "status": "miss"
+ },
+ "Tennant Company": {
+  "status": "miss"
+ },
+ "Tennibot": {
+  "status": "miss"
+ },
+ "Teradyne": {
+  "status": "miss"
+ },
+ "Teradyne Robotics": {
+  "status": "miss"
+ },
+ "Terumo": {
+  "status": "miss"
+ },
+ "Tesco Controls": {
+  "status": "miss"
+ },
+ "Tesla Robotics": {
+  "status": "miss"
+ },
+ "Tetra Pak Automation": {
+  "ats": "greenhouse",
+  "jobs_seen": 1,
+  "status": "hit",
+  "token": "tetra"
+ },
+ "Texas Instruments": {
+  "status": "miss"
+ },
+ "The Toro Company": {
+  "status": "miss"
+ },
+ "Theranica": {
+  "status": "miss"
+ },
+ "Thermo Fisher Process Instruments": {
+  "status": "miss"
+ },
+ "Thermo Fisher Scientific": {
+  "status": "miss"
+ },
+ "Thermo King": {
+  "status": "miss"
+ },
+ "Thermo Systems": {
+  "status": "miss"
+ },
+ "Third Wave Automation": {
+  "ats": "greenhouse",
+  "jobs_seen": 6,
+  "status": "hit",
+  "token": "thirdwaveautomation"
+ },
+ "Times Microwave Systems": {
+  "status": "miss"
+ },
+ "Titan Medical": {
+  "ats": "ashby",
+  "jobs_seen": 11,
+  "status": "hit",
+  "token": "titan"
+ },
+ "Tolomatic": {
+  "status": "miss"
+ },
+ "Toradex": {
+  "ats": "greenhouse",
+  "jobs_seen": 19,
+  "status": "hit",
+  "token": "toradex"
+ },
+ "Torc Robotics": {
+  "ats": "greenhouse",
+  "jobs_seen": 48,
+  "status": "hit",
+  "token": "torcrobotics"
+ },
+ "Toshiba Industrial": {
+  "status": "miss"
+ },
+ "Total Systems Design": {
+  "status": "miss"
+ },
+ "Tower Semiconductor": {
+  "status": "miss"
+ },
+ "Toyota Connected Robotics": {
+  "status": "miss"
+ },
+ "Toyota Research Institute": {
+  "status": "miss"
+ },
+ "TransMedics": {
+  "status": "miss"
+ },
+ "Transphorm": {
+  "status": "miss"
+ },
+ "Treace Medical Concepts": {
+  "status": "miss"
+ },
+ "TriCore": {
+  "status": "miss"
+ },
+ "Trice Medical": {
+  "status": "miss"
+ },
+ "Trinamic": {
+  "status": "miss"
+ },
+ "Trystar": {
+  "status": "miss"
+ },
+ "Tyromotion": {
+  "status": "miss"
+ },
+ "UBTECH": {
+  "status": "miss"
+ },
+ "US Digital": {
+  "status": "miss"
+ },
+ "Ubiquiti": {
+  "ats": "greenhouse",
+  "jobs_seen": 161,
+  "status": "hit",
+  "token": "ubiquiti"
+ },
+ "Ulteig": {
+  "status": "miss"
+ },
+ "Ultra Machining Company": {
+  "ats": "ashby",
+  "jobs_seen": 9,
+  "status": "hit",
+  "token": "ultra"
+ },
+ "Unimicron": {
+  "status": "miss"
+ },
+ "United Microelectronics": {
+  "status": "miss"
+ },
+ "United Power": {
+  "status": "miss"
+ },
+ "Unitree Robotics": {
+  "status": "miss"
+ },
+ "Unitronics": {
+  "status": "miss"
+ },
+ "Universal Logic": {
+  "ats": "greenhouse",
+  "jobs_seen": 2,
+  "status": "hit",
+  "token": "universal"
+ },
+ "Universal Robots": {
+  "ats": "greenhouse",
+  "jobs_seen": 2,
+  "status": "hit",
+  "token": "universal"
+ },
+ "VEX Robotics": {
+  "status": "miss"
+ },
+ "Vaisala": {
+  "status": "miss"
+ },
+ "Vanderlande": {
+  "status": "miss"
+ },
+ "Varex Imaging": {
+  "status": "miss"
+ },
+ "Varian": {
+  "status": "miss"
+ },
+ "Variscite": {
+  "status": "miss"
+ },
+ "Vecna Robotics": {
+  "status": "miss"
+ },
+ "Veeco": {
+  "status": "miss"
+ },
+ "Velico Medical": {
+  "status": "miss"
+ },
+ "Ventec International": {
+  "status": "miss"
+ },
+ "Vention": {
+  "status": "miss"
+ },
+ "Venture Electronics": {
+  "status": "miss"
+ },
+ "Venture Solutions": {
+  "status": "miss"
+ },
+ "Veracyte": {
+  "ats": "greenhouse",
+  "jobs_seen": 37,
+  "status": "hit",
+  "token": "veracyte"
+ },
+ "Verity": {
+  "ats": "lever",
+  "jobs_seen": 0,
+  "status": "hit",
+  "token": "verity"
+ },
+ "Vertech": {
+  "status": "miss"
+ },
+ "Vertiv": {
+  "status": "miss"
+ },
+ "Vexos": {
+  "status": "miss"
+ },
+ "Viasion Technology": {
+  "status": "miss"
+ },
+ "Viavi Solutions": {
+  "status": "miss"
+ },
+ "Vicarious": {
+  "status": "miss"
+ },
+ "Vicarious Surgical": {
+  "ats": "greenhouse",
+  "jobs_seen": 0,
+  "status": "hit",
+  "token": "vicarioussurgical"
+ },
+ "Vicor": {
+  "status": "miss"
+ },
+ "ViewRay": {
+  "status": "miss"
+ },
+ "Viking Masek": {
+  "status": "miss"
+ },
+ "Viracon": {
+  "status": "miss"
+ },
+ "Virtual Incision": {
+  "status": "miss"
+ },
+ "Vishay": {
+  "status": "miss"
+ },
+ "VisionNav Robotics": {
+  "status": "miss"
+ },
+ "VitalPath": {
+  "status": "miss"
+ },
+ "Voliro": {
+  "status": "miss"
+ },
+ "Vyaire Medical": {
+  "status": "miss"
+ },
+ "WAGO": {
+  "status": "miss"
+ },
+ "WPG Holdings": {
+  "status": "miss"
+ },
+ "WSP": {
+  "status": "miss"
+ },
+ "Wandelbots": {
+  "status": "miss"
+ },
+ "Watlow": {
+  "status": "miss"
+ },
+ "Wauseon Machine": {
+  "status": "miss"
+ },
+ "Waypoint Robotics": {
+  "status": "miss"
+ },
+ "Weidmuller": {
+  "status": "miss"
+ },
+ "Werfen": {
+  "status": "miss"
+ },
+ "West Pharmaceutical Services": {
+  "status": "miss"
+ },
+ "Westinghouse Electric": {
+  "status": "miss"
+ },
+ "Westwood Professional Services": {
+  "status": "miss"
+ },
+ "Wiferion": {
+  "status": "miss"
+ },
+ "Winnebago Advanced Technology Group": {
+  "status": "miss"
+ },
+ "Winnebago Industries": {
+  "status": "miss"
+ },
+ "Wipotec": {
+  "status": "miss"
+ },
+ "Wittenstein": {
+  "status": "miss"
+ },
+ "Wolfspeed": {
+  "status": "miss"
+ },
+ "Wood": {
+  "status": "miss"
+ },
+ "Wood Automation and Controls": {
+  "status": "miss"
+ },
+ "Worley": {
+  "status": "miss"
+ },
+ "Wright Medical": {
+  "status": "miss"
+ },
+ "Wunderlich-Malec": {
+  "status": "miss"
+ },
+ "Wunderlich-Malec Engineering": {
+  "status": "miss"
+ },
+ "W\u00fcrth Elektronik": {
+  "status": "miss"
+ },
+ "XES Inc.": {
+  "status": "miss"
+ },
+ "XYZ Robotics": {
+  "status": "miss"
+ },
+ "Xcel Energy": {
+  "status": "miss"
+ },
+ "Xcel Energy Transmission": {
+  "status": "miss"
+ },
+ "Xilinx (AMD)": {
+  "status": "miss"
+ },
+ "Xtant Medical": {
+  "status": "miss"
+ },
+ "Yamaha Robotics": {
+  "status": "miss"
+ },
+ "Yaskawa America": {
+  "status": "miss"
+ },
+ "Yaskawa Motoman": {
+  "status": "miss"
+ },
+ "Yaskawa Robotics": {
+  "status": "miss"
+ },
+ "Yokogawa": {
+  "status": "miss"
+ },
+ "Yokogawa Corporation of America": {
+  "status": "miss"
+ },
+ "ZEF Energy": {
+  "status": "miss"
+ },
+ "ZOLL Medical": {
+  "status": "miss"
+ },
+ "Zebra Machine Vision": {
+  "status": "miss"
+ },
+ "Zebra Robotics Automation": {
+  "status": "miss"
+ },
+ "Zebra Technologies": {
+  "status": "miss"
+ },
+ "Zentech Manufacturing": {
+  "status": "miss"
+ },
+ "Zeus Electric Chassis": {
+  "status": "miss"
+ },
+ "Ziegler CAT": {
+  "status": "miss"
+ },
+ "ZimVie": {
+  "status": "miss"
+ },
+ "Zimmer Biomet": {
+  "status": "miss"
+ },
+ "Zipline": {
+  "status": "miss"
+ },
+ "iRhythm Technologies": {
+  "status": "miss"
+ },
+ "iRobot": {
+  "status": "miss"
+ },
+ "iSchemaView": {
+  "status": "miss"
+ },
+ "ifm electronic": {
+  "status": "miss"
+ },
+ "inVia Robotics": {
+  "status": "miss"
+ },
+ "nVent": {
+  "status": "miss"
+ },
+ "\u00d6ssur": {
+  "status": "miss"
+ }
+}

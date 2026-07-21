@@ -1,0 +1,841 @@
+===== BASE =====
+"""Source base class + shared HTTP helpers."""
+
+from __future__ import annotations
+
+import logging
+import time
+from abc import ABC, abstractmethod
+from typing import Any, Optional
+
+import requests
+
+from .. import config
+from ..models import Job
+
+log = logging.getLogger(__name__)
+
+
+def _http_cfg() -> dict[str, Any]:
+    return config.settings().get("http", {}) or {}
+
+
+def make_session() -> requests.Session:
+    s = requests.Session()
+    ua = _http_cfg().get("user_agent", "intern-pos-emailer/1.0")
+    s.headers.update({"User-Agent": ua, "Accept": "application/json"})
+    return s
+
+
+def request_json(
+    session: requests.Session,
+    method: str,
+    url: str,
+    *,
+    json_body: Optional[dict] = None,
+    params: Optional[dict] = None,
+) -> Optional[Any]:
+    """GET/POST returning parsed JSON, with retries + timeout. None on failure."""
+    cfg = _http_cfg()
+    timeout = cfg.get("timeout_seconds", 20)
+    retries = int(cfg.get("retries", 2))
+    backoff = cfg.get("retry_backoff_seconds", 2)
+    delay = cfg.get("per_request_delay", 0.0)
+
+    last_err: Optional[Exception] = None
+    for attempt in range(retries + 1):
+        try:
+            if delay:
+                time.sleep(delay)
+            resp = session.request(
+                method, url, json=json_body, params=params, timeout=timeout
+            )
+            if resp.status_code == 404:
+                log.warning("404 (not found): %s", url)
+                return None
+            resp.raise_for_status()
+            return resp.json()
+        except Exception as exc:  # noqa: BLE001 - we want to isolate any failure
+            last_err = exc
+            if attempt < retries:
+                time.sleep(backoff * (attempt + 1))
+    log.warning("request failed after retries: %s (%s)", url, last_err)
+    return None
+
+
+def request_text(session: requests.Session, url: str) -> Optional[str]:
+    """GET returning response text, with retries + timeout. None on failure."""
+    cfg = _http_cfg()
+    timeout = cfg.get("timeout_seconds", 20)
+    retries = int(cfg.get("retries", 2))
+    backoff = cfg.get("retry_backoff_seconds", 2)
+    delay = cfg.get("per_request_delay", 0.0)
+
+    last_err: Optional[Exception] = None
+    for attempt in range(retries + 1):
+        try:
+            if delay:
+                time.sleep(delay)
+            resp = session.get(url, timeout=timeout)
+            if resp.status_code == 404:
+                log.warning("404 (not found): %s", url)
+                return None
+            resp.raise_for_status()
+            return resp.text
+        except Exception as exc:  # noqa: BLE001
+            last_err = exc
+            if attempt < retries:
+                time.sleep(backoff * (attempt + 1))
+    log.warning("request failed after retries: %s (%s)", url, last_err)
+    return None
+
+
+class Source(ABC):
+    """A source fetches and returns a list of normalized Job objects.
+
+    Implementations must never raise on network/parse errors — they should log
+    and return whatever they managed to collect, so one dead endpoint can't kill
+    the whole run.
+    """
+
+    name: str = "source"
+
+    @abstractmethod
+    def fetch(self, session: requests.Session) -> list[Job]:
+        ...
+
+    def safe_fetch(self, session: requests.Session) -> list[Job]:
+        try:
+            jobs = self.fetch(session)
+        except Exception as exc:  # noqa: BLE001
+            log.warning("source %s crashed: %s", self.name, exc)
+            return []
+        cap = config.settings().get("max_jobs_per_source", 0) or 0
+        if cap and len(jobs) > cap:
+            jobs = jobs[:cap]
+        log.info("source %s -> %d jobs", self.name, len(jobs))
+        return jobs
+===== GREENHOUSE =====
+"""Greenhouse public board API.
+
+    GET https://boards-api.greenhouse.io/v1/boards/{token}/jobs?content=true
+    -> {"jobs": [{"title", "absolute_url", "location": {"name"}, "offices": [...],
+                  "updated_at"}]}
+"""
+
+from __future__ import annotations
+
+import requests
+
+from ..models import Job
+from .base import Source, request_json
+
+API = "https://boards-api.greenhouse.io/v1/boards/{token}/jobs"
+
+
+class GreenhouseSource(Source):
+    def __init__(self, company: str, token: str):
+        self.company = company
+        self.token = token
+        self.name = f"greenhouse:{company}"
+
+    def fetch(self, session: requests.Session) -> list[Job]:
+        data = request_json(
+            session, "GET", API.format(token=self.token), params={"content": "true"}
+        )
+        if not data or not isinstance(data, dict):
+            return []
+        jobs: list[Job] = []
+        for raw in data.get("jobs", []) or []:
+            title = raw.get("title")
+            url = raw.get("absolute_url")
+            if not (title and url):
+                continue
+            locations: list[str] = []
+            loc = (raw.get("location") or {}).get("name")
+            if loc:
+                locations.append(loc)
+            for office in raw.get("offices", []) or []:
+                nm = office.get("name")
+                if nm and nm not in locations:
+                    locations.append(nm)
+            jobs.append(
+                Job(
+                    company=self.company,
+                    title=str(title),
+                    url=str(url),
+                    locations=locations,
+                    source=self.name,
+                    ats="greenhouse",
+                    posted_date=(raw.get("updated_at") or "")[:10] or None,
+                )
+            )
+        return jobs
+===== WORKDAY =====
+"""Workday CXS public jobs endpoint (used by many banks / big tech / consulting).
+
+    POST https://{tenant}.wd{n}.myworkdayjobs.com/wday/cxs/{tenant}/{site}/jobs
+    body: {"appliedFacets": {}, "limit": 20, "offset": 0, "searchText": ""}
+    -> {"total", "jobPostings": [{"title", "externalPath", "locationsText",
+                                  "postedOn", "bulletFields"}]}
+
+Job URL = https://{tenant}.wd{n}.myworkdayjobs.com/en-US/{site}{externalPath}
+"""
+
+from __future__ import annotations
+
+import requests
+
+from ..models import Job
+from .base import Source, request_json
+
+PAGE = 20
+MAX_PAGES = 25  # safety cap (=500 postings/company)
+
+
+class WorkdaySource(Source):
+    def __init__(self, company: str, tenant: str, wd_num, site: str, search_text: str = "intern"):
+        self.company = company
+        self.tenant = tenant
+        self.wd_num = wd_num
+        self.site = site
+        # Narrow the server-side search so we don't page through thousands of
+        # unrelated roles; filtering still happens locally.
+        self.search_text = search_text
+        self.name = f"workday:{company}"
+        self.base = f"https://{tenant}.wd{wd_num}.myworkdayjobs.com"
+        self.api = f"{self.base}/wday/cxs/{tenant}/{site}/jobs"
+
+    def _job_url(self, external_path: str) -> str:
+        return f"{self.base}/en-US/{self.site}{external_path}"
+
+    def fetch(self, session: requests.Session) -> list[Job]:
+        jobs: list[Job] = []
+        offset = 0
+        for _ in range(MAX_PAGES):
+            body = {
+                "appliedFacets": {},
+                "limit": PAGE,
+                "offset": offset,
+                "searchText": self.search_text,
+            }
+            data = request_json(
+                session, "POST", self.api, json_body=body
+            )
+            if not data or not isinstance(data, dict):
+                break
+            postings = data.get("jobPostings") or []
+            if not postings:
+                break
+            for raw in postings:
+                title = raw.get("title")
+                ext = raw.get("externalPath")
+                if not (title and ext):
+                    continue
+                loc = raw.get("locationsText")
+                jobs.append(
+                    Job(
+                        company=self.company,
+                        title=str(title),
+                        url=self._job_url(ext),
+                        locations=[loc] if loc else [],
+                        source=self.name,
+                        ats="workday",
+                        posted_date=None,  # Workday gives relative text ("Posted 3 days ago")
+                    )
+                )
+            offset += PAGE
+            if offset >= int(data.get("total", 0)):
+                break
+        return jobs
+===== MODELS =====
+"""Core data models."""
+
+from __future__ import annotations
+
+import hashlib
+import re
+from datetime import date
+from typing import Optional
+
+from pydantic import BaseModel, Field
+
+# Categories a job can be classified into (set during filtering).
+Category = str  # one of: "silicon", "hardware", "firmware", "other"
+
+
+def normalize_title(title: str) -> str:
+    """Lowercase + collapse whitespace, for stable IDs and matching."""
+    return re.sub(r"\s+", " ", (title or "").strip().lower())
+
+
+class Job(BaseModel):
+    """A normalized job posting from any source."""
+
+    company: str
+    title: str
+    url: str
+    locations: list[str] = Field(default_factory=list)
+    source: str = ""  # e.g. "simplify-summer", "greenhouse:Stripe"
+    ats: Optional[str] = None  # greenhouse | lever | ashby | workday | github-list
+
+    # Filled in by the filter step.
+    category: Optional[Category] = None
+    season: Optional[str] = None  # summer | spring | fall | winter | offcycle
+    year: Optional[int] = None
+
+    # Optional metadata when the source provides it.
+    posted_date: Optional[str] = None  # ISO date string when known
+    sponsorship: Optional[str] = None
+    active: bool = True
+
+    @property
+    def location_str(self) -> str:
+        return " | ".join(self.locations) if self.locations else ""
+
+    @property
+    def job_id(self) -> str:
+        """Stable id used for dedup. Based on company + normalized title + url."""
+        basis = f"{self.company.strip().lower()}|{normalize_title(self.title)}|{self.url.strip()}"
+        return hashlib.sha1(basis.encode("utf-8")).hexdigest()[:16]
+
+
+class ApplicantProfile(BaseModel):
+    """Stored applicant info for the (future) auto-apply module.
+
+    Loaded from config/profile.yaml (gitignored if it holds real data).
+    Nothing here is used by the notify pipeline today — it exists so the
+    auto-apply module has a stable contract to build against.
+    """
+
+    full_name: str = ""
+    email: str = ""
+    phone: str = ""
+    school: str = ""
+    graduation_date: str = ""  # e.g. "2027-05"
+    gpa: str = ""
+    current_location: str = ""  # e.g. "Boston, MA"
+    work_authorization: str = ""  # e.g. "US Citizen", "Need sponsorship"
+    requires_sponsorship: Optional[bool] = None
+    linkedin: str = ""
+    github: str = ""
+    website: str = ""
+    resume_path: str = ""  # local path to resume PDF (gitignored)
+    # A few sentences about your background/skills — used to ground the
+    # AI-generated cover letter so it reflects real experience, not invention.
+    summary: str = ""
+    # Common screening questions -> canned answers, e.g.
+    #   {"Are you authorized to work in the US?": "Yes"}
+    common_answers: dict[str, str] = Field(default_factory=dict)
+
+    @property
+    def is_configured(self) -> bool:
+        """Minimum needed to attempt an application."""
+        return bool(self.full_name and self.email and self.resume_path)
+===== CONFIG =====
+"""Configuration + secrets loading."""
+
+from __future__ import annotations
+
+import os
+from functools import lru_cache
+from pathlib import Path
+from typing import Any
+
+import yaml
+from dotenv import load_dotenv
+
+# Repo root = parent of the `src/` package.
+ROOT = Path(__file__).resolve().parent.parent
+CONFIG_DIR = ROOT / "config"
+
+# Load .env once on import (no-op if the file is absent, e.g. in CI where
+# secrets come from the environment directly).
+load_dotenv(ROOT / ".env")
+
+
+def _load_yaml(name: str) -> dict[str, Any]:
+    path = CONFIG_DIR / name
+    if not path.exists():
+        return {}
+    with path.open("r", encoding="utf-8") as fh:
+        return yaml.safe_load(fh) or {}
+
+
+@lru_cache(maxsize=None)
+def filters() -> dict[str, Any]:
+    return _load_yaml("filters.yaml")
+
+
+@lru_cache(maxsize=None)
+def github_lists() -> dict[str, Any]:
+    return _load_yaml("github_lists.yaml")
+
+
+@lru_cache(maxsize=None)
+def companies() -> dict[str, Any]:
+    return _load_yaml("companies.yaml")
+
+
+@lru_cache(maxsize=None)
+def settings() -> dict[str, Any]:
+    return _load_yaml("settings.yaml")
+
+
+def state_path() -> Path:
+    rel = settings().get("state_file", "data/seen_jobs.json")
+    return ROOT / rel
+
+
+def secrets() -> dict[str, str]:
+    """Return notification secrets from the environment (may be empty)."""
+    keys = [
+        "GMAIL_USER",
+        "GMAIL_APP_PASSWORD",
+        "EMAIL_TO",
+        "TWILIO_ACCOUNT_SID",
+        "TWILIO_AUTH_TOKEN",
+        "TWILIO_FROM",
+        "SMS_TO",
+    ]
+    return {k: os.environ.get(k, "") for k in keys}
+===== COMPANIES =====
+# Company sources for hw_emailer.
+#
+# RULES (learned the hard way):
+#   1. Exactly ONE of each top-level key: greenhouse / lever / ashby / workday.
+#      YAML silently keeps only the LAST duplicate top-level key, and indented
+#      section headers get swallowed into the previous list item. New companies
+#      must be appended INSIDE the existing section.
+#   2. Workday entries can't be guessed. Open the company's careers site, click
+#      a job, and copy from the URL:
+#        https://<TENANT>.wd<NUM>.myworkdayjobs.com/<SITE>/job/...
+#      -> tenant: <TENANT>, wd_num: <NUM>, site: <SITE>
+#   3. Don't guess ATS board tokens. A wrong token either 404s or (worse)
+#      silently returns some OTHER company's board and inflates counts.
+#      Verify at:  https://boards-api.greenhouse.io/v1/boards/<token>/jobs
+#                  https://api.lever.co/v0/postings/<token>
+#                  https://jobs.ashbyhq.com/<token>
+
+greenhouse:
+- company: Tactile Medical
+  token: tactilemedical
+- company: Agility Robotics
+  token: agilityrobotics
+- company: Altium
+  token: altium
+- company: Anduril
+  token: andurilindustries
+- company: Applied Engineering
+  token: appliedengineering
+- company: Apptronik
+  token: apptronik
+- company: Archer Aviation
+  token: archer
+- company: Aurora Innovation
+  token: aurorainnovation
+- company: Axogen
+  token: axogen
+- company: Butterfly Network
+  token: butterflynetwork
+- company: Cala Health
+  token: calahealth
+- company: Carbon Robotics
+  token: carbonrobotics
+- company: Ceribell
+  token: ceribell
+- company: Cerus
+  token: cerus
+- company: Diligent Robotics
+  token: diligentrobotics
+- company: Divergent Technologies
+  token: divergent
+- company: E Tech Group
+  token: etechgroup
+- company: Figure AI
+  token: figureai
+- company: FORT Robotics
+  token: fortrobotics
+- company: Interstates
+  token: interstates
+- company: Kodiak Robotics
+  token: kodiak
+- company: Locus Robotics
+  token: locusrobotics
+- company: Markforged
+  token: markforged
+- company: May Mobility
+  token: maymobility
+- company: Motional
+  token: motional
+- company: Neuralink
+  token: neuralink
+- company: NeuroPace
+  token: neuropace
+- company: Nuro
+  token: nuro
+- company: Outrider
+  token: outrider
+- company: Outset Medical
+  token: outsetmedical
+- company: Parallel Systems
+  token: parallel
+- company: Path Robotics
+  token: pathrobotics
+- company: Phoenix Contact
+  token: phoenixcontact
+- company: Premier Automation
+  token: premierautomation
+- company: Pulse Biosciences
+  token: pulsebiosciences
+- company: SpaceX
+  token: spacex
+- company: Samsara
+  token: samsara
+- company: Third Wave Automation
+  token: thirdwaveautomation
+- company: Toradex
+  token: toradex
+- company: Torc Robotics
+  token: torcrobotics
+- company: Veracyte
+  token: veracyte
+- company: Verkada
+  token: verkada
+- company: Vicarious Surgical
+  token: vicarioussurgical
+- company: Allegro MicroSystems
+  token: allegro
+- company: Ghost Robotics
+  token: ghost              # VERIFY: generic token, may be a different "Ghost"
+- company: SetPoint Medical
+  token: setpoint
+- company: Ubiquiti
+  token: ubiquiti
+- company: Zipline
+  token: flyzipline
+- company: Align Technology
+  token: align              # VERIFY: generic token (was duplicated 2x)
+- company: AtriCure
+  token: atricure
+- company: Excel Automation
+  token: excel              # VERIFY: generic token
+- company: Fetch Robotics
+  token: fetch              # VERIFY: generic token
+- company: Flex
+  token: flex
+- company: Future Electronics
+  token: future             # VERIFY: generic token
+- company: General Dynamics Mission Systems
+  token: general            # VERIFY: generic token (1 job — suspicious)
+- company: Harmonic Drive
+  token: harmonic           # VERIFY: generic token
+- company: Ignition by Inductive Automation
+  token: ignition           # VERIFY: generic token
+- company: Industrial Automation Engineering
+  token: industrial         # VERIFY: generic token (was duplicated 3x)
+- company: Integra LifeSciences
+  token: integra            # was duplicated 5x under different names
+- company: Lattice Semiconductor
+  token: lattice
+- company: Lincoln Electric Automation
+  token: lincoln            # VERIFY: generic token
+- company: National Instruments
+  token: national           # VERIFY: generic token
+- company: Polaris
+  token: polaris
+- company: Sonic Manufacturing Technologies
+  token: sonic              # VERIFY: generic token (was duplicated 2x)
+- company: Stone Technologies
+  token: stone
+- company: Superior Controls
+  token: superior           # VERIFY: generic token
+- company: Tempo Automation
+  token: tempo              # VERIFY: generic token
+- company: Tetra Pak Automation
+  token: tetra              # VERIFY: generic token
+- company: Universal Robots
+  token: universal          # VERIFY: generic token (was duplicated 2x)
+# --- new additions ---
+- company: Astera Labs
+  token: asteralabs
+- company: Astrobotic
+  token: astrobotic
+- company: Astranis
+  token: astranis           # confirmed via digest URL
+- company: Aeva
+  token: aeva
+- company: AEye
+  token: aeye
+- company: CelLink
+  token: cellink
+- company: Commonwealth Fusion Systems
+  token: cfs
+- company: Crusoe
+  token: crusoe
+- company: EnCharge AI
+  token: enchargeai
+- company: Form Energy
+  token: formenergy
+- company: HeartFlow
+  token: heartflow
+- company: Lumafield
+  token: lumafield
+- company: Shield AI
+  token: shieldai
+- company: Saildrone
+  token: saildrone
+- company: Varda Space
+  token: vardaspace
+- company: Voxel51
+  token: voxel51
+- company: Warp
+  token: warp
+- company: Whoop
+  token: whoop
+# Removed (bad/unverified tokens — returned 0 or 404):
+#   Boston Dynamics (bostondynamics -> 404)
+#   Champion Technology Services, Cornerstone Automation Systems, Genesis Robotics,
+#   O'Brien, SAGE Group, Silicon Labs (Workday company), Systems Control, Systems Interface
+# Removed (moved to correct ATS): Ambarella -> workday, Saronic -> ashby
+
+lever:
+- company: TKDA
+  token: tkda
+- company: Proto Labs
+  token: protolabs
+- company: Foth
+  token: foth
+- company: Aigen
+  token: aigen
+- company: Ambi Robotics
+  token: ambirobotics
+- company: ANYbotics
+  token: anybotics
+- company: Apex.AI
+  token: apex-ai
+- company: Bright Machines
+  token: brightmachines
+- company: Cobalt Robotics
+  token: cobaltrobotics
+- company: Cyngn
+  token: cyngn
+- company: Dexterity
+  token: dexterity
+- company: Doxel
+  token: doxel
+- company: Extreme Networks
+  token: extremenetworks
+- company: Farm-ng
+  token: farm-ng
+- company: Field AI
+  token: field-ai
+- company: Inductive Automation
+  token: inductiveautomation
+- company: Matrix Technologies
+  token: matrix-technologies
+- company: MicroVision
+  token: microvision
+- company: Osaro
+  token: osaro
+- company: Pickle Robot
+  token: picklerobot
+- company: RapidAI
+  token: rapidai
+- company: Robust AI
+  token: robust-ai
+- company: Verity
+  token: verity
+- company: ClearPoint Neuro
+  token: clearpoint         # VERIFY: generic token
+- company: Autonomous Solutions
+  token: autonomous         # VERIFY: generic token
+- company: Intersect ENT
+  token: intersect          # VERIFY: generic token
+- company: Plexus
+  token: plexus             # was duplicated 2x
+# --- new additions ---
+- company: Chef Robotics
+  token: chefrobotics       # duplicate "Chef"/chef entry removed
+- company: Flywheel
+  token: flywheel
+- company: Hadrian
+  token: hadrian
+- company: Lab0
+  token: lab0
+- company: Mach Industries
+  token: machindustries
+- company: Physical Intelligence
+  token: physical-intelligence
+- company: Redwood Materials
+  token: redwoodmaterials   # was also under ashby; kept lever only — VERIFY which is live
+- company: RIOS Intelligent Machines
+  token: rios
+- company: Slip Robotics
+  token: sliprobotics
+- company: Viam
+  token: viam
+# Removed (moved to correct ATS): Atomic Semi -> ashby, Saronic -> ashby
+
+ashby:
+- company: Polar Semiconductor
+  token: polar
+- company: Saturn Systems
+  token: saturn
+- company: Ultra Machining Company
+  token: ultra
+- company: AMP Robotics
+  token: amprobotics
+- company: Bedrock Robotics
+  token: bedrock-robotics
+- company: Built Robotics
+  token: built-robotics
+- company: Gecko Robotics
+  token: gecko-robotics
+- company: OpenAI
+  token: openai
+- company: PickNik Robotics
+  token: picknik
+- company: Polymath Robotics
+  token: polymath
+- company: Reliable Robotics
+  token: reliable-robotics
+- company: Serve Robotics
+  token: serverobotics
+- company: Skydio
+  token: skydio
+- company: Standard Bots
+  token: standardbots
+- company: Capsa Healthcare
+  token: capsa              # VERIFY: generic token
+- company: Cerebras
+  token: cerebras
+- company: Intrinsic
+  token: intrinsic
+- company: Kestra Medical
+  token: kestra             # VERIFY: generic token
+- company: Mainstay Medical
+  token: mainstay           # VERIFY: generic token
+- company: Ocean Infinity
+  token: ocean              # VERIFY: generic token
+- company: Paragon 28
+  token: paragon            # VERIFY: generic token
+- company: Raspberry Pi
+  token: raspberry          # VERIFY: generic token
+- company: Titan Medical
+  token: titan              # VERIFY: generic token
+- company: Applied Intuition
+  token: applied            # returned 260 jobs; the 3 other "Applied *" entries with
+                            # the same token were duplicates of this board — removed
+- company: Electric Machinery Company
+  token: electric           # VERIFY: generic token
+- company: Maple Systems
+  token: maple              # VERIFY: generic token
+- company: Marble Robot
+  token: marble             # VERIFY: generic token
+- company: Olympus
+  token: olympus            # VERIFY: 1 job — possibly wrong board
+- company: Parker Hannifin
+  token: parker             # VERIFY: generic token
+- company: Phantom Auto
+  token: phantom            # VERIFY: generic token
+- company: Sierra Circuits
+  token: sierra             # VERIFY: generic token (was duplicated 2x; 156 jobs — suspicious)
+# --- new additions ---
+- company: Aescape
+  token: aescape
+- company: Atomic Machines
+  token: atomic-machines
+- company: Atomic Semi
+  token: AtomicSemi         # confirmed via digest URL (moved from lever)
+- company: Saronic
+  token: saronic            # confirmed via digest URL (moved from greenhouse/lever)
+- company: BrightAI
+  token: brightai
+- company: Canvas Construction
+  token: canvas             # VERIFY: generic token
+- company: Clone Robotics
+  token: clone              # VERIFY: generic token
+- company: Foundation
+  token: foundation         # VERIFY: generic token
+- company: FuriosaAI
+  token: furiosa
+- company: Hebbia
+  token: hebbia
+- company: HeyGen
+  token: heygen
+- company: Machina Labs
+  token: machina            # VERIFY: generic token
+- company: Nirvana Insurance
+  token: nirvana            # VERIFY: generic token
+- company: Reflect Orbital
+  token: reflect            # VERIFY: generic token
+- company: TensorWave
+  token: tensorwave
+- company: Trunk Tools
+  token: trunktools
+# --- confirmed from digest URLs (jobs you were already getting via GitHub lists) ---
+- company: Base Power
+  token: base-power
+- company: Etched
+  token: Etched
+- company: Eight Sleep
+  token: eightsleep
+- company: Human Computer Lab
+  token: human-computer-lab
+- company: Apex Technology
+  token: apex-technology-inc
+
+workday:
+- company: NVIDIA
+  tenant: nvidia
+  wd_num: 5
+  site: NVIDIAExternalCareerSite
+- company: Marvell            # confirmed via digest URL (was wd2/External — wrong)
+  tenant: marvell
+  wd_num: 1
+  site: MarvellCareers
+- company: Ambarella          # confirmed via digest URL (was under greenhouse — wrong)
+  tenant: ambarella
+  wd_num: 108
+  site: ambarella
+# The entries below were guessed as wd2/External — those hostnames DON'T EXIST
+# (this caused the DNS-failure retry storm that slowed your runs down).
+# Look up the real tenant/wd_num/site from each company's careers URL, fill in,
+# and uncomment. Note some (e.g. Cisco, TI) may not use a public Workday board.
+# - company: AMD
+#   tenant: amd
+#   wd_num: ?
+#   site: ?
+# - company: Analog Devices
+#   tenant: analogdevices
+#   wd_num: ?
+#   site: ?
+# - company: Cisco
+#   tenant: cisco
+#   wd_num: ?
+#   site: ?
+# - company: Qualcomm
+#   tenant: qualcomm
+#   wd_num: ?
+#   site: ?
+# - company: Texas Instruments
+#   tenant: texasinstruments
+#   wd_num: ?
+#   site: ?
+# - company: Synopsys
+#   tenant: synopsys
+#   wd_num: ?
+#   site: ?
+# - company: Cadence Design Systems
+#   tenant: cadence
+#   wd_num: ?
+#   site: ?
+# - company: Microchip Technology
+#   tenant: microchip
+#   wd_num: ?
+#   site: ?
+# - company: Silicon Labs
+#   tenant: siliconlabs
+#   wd_num: ?
+#   site: ?

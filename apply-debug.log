@@ -1,0 +1,224 @@
+19:51:34 INFO src.sources.registry: built 181 sources
+19:51:34 INFO src.sources.base: source githublist:vanshb03-summer2027 -> 148 jobs
+19:51:35 INFO src.sources.base: source githublist:zapply-2027 -> 513 jobs
+19:51:35 INFO src.sources.base: source greenhouse:Tactile Medical -> 47 jobs
+19:51:36 INFO src.sources.base: source greenhouse:Agility Robotics -> 54 jobs
+19:51:36 INFO src.sources.base: source greenhouse:Altium -> 0 jobs
+19:51:37 INFO src.sources.base: source greenhouse:Anduril -> 2165 jobs
+19:51:38 INFO src.sources.base: source greenhouse:Applied Engineering -> 14 jobs
+19:51:38 INFO src.sources.base: source greenhouse:Apptronik -> 98 jobs
+19:51:39 INFO src.sources.base: source greenhouse:Archer Aviation -> 1 jobs
+19:51:39 INFO src.sources.base: source greenhouse:Aurora Innovation -> 155 jobs
+19:51:40 INFO src.sources.base: source greenhouse:Axogen -> 32 jobs
+19:51:40 INFO src.sources.base: source greenhouse:Butterfly Network -> 23 jobs
+19:51:41 INFO src.sources.base: source greenhouse:Cala Health -> 4 jobs
+19:51:41 INFO src.sources.base: source greenhouse:Carbon Robotics -> 18 jobs
+19:51:42 INFO src.sources.base: source greenhouse:Ceribell -> 37 jobs
+19:51:42 INFO src.sources.base: source greenhouse:Cerus -> 5 jobs
+19:51:43 INFO src.sources.base: source greenhouse:Diligent Robotics -> 11 jobs
+19:51:43 INFO src.sources.base: source greenhouse:Divergent Technologies -> 57 jobs
+19:51:44 INFO src.sources.base: source greenhouse:E Tech Group -> 118 jobs
+19:51:44 INFO src.sources.base: source greenhouse:Figure AI -> 118 jobs
+19:51:45 INFO src.sources.base: source greenhouse:FORT Robotics -> 12 jobs
+19:51:45 INFO src.sources.base: source greenhouse:Interstates -> 156 jobs
+19:51:46 INFO src.sources.base: source greenhouse:Kodiak Robotics -> 72 jobs
+19:51:46 INFO src.sources.base: source greenhouse:Locus Robotics -> 8 jobs
+19:51:46 INFO src.sources.base: source greenhouse:Markforged -> 3 jobs
+19:51:47 INFO src.sources.base: source greenhouse:May Mobility -> 39 jobs
+19:51:47 INFO src.sources.base: source greenhouse:Motional -> 113 jobs
+19:51:48 INFO src.sources.base: source greenhouse:Neuralink -> 79 jobs
+19:51:48 INFO src.sources.base: source greenhouse:NeuroPace -> 6 jobs
+19:51:49 INFO src.sources.base: source greenhouse:Nuro -> 95 jobs
+19:51:49 INFO src.sources.base: source greenhouse:Outrider -> 10 jobs
+19:51:50 INFO src.sources.base: source greenhouse:Outset Medical -> 27 jobs
+19:51:50 INFO src.sources.base: source greenhouse:Parallel Systems -> 10 jobs
+19:51:51 INFO src.sources.base: source greenhouse:Path Robotics -> 39 jobs
+19:51:51 INFO src.sources.base: source greenhouse:Phoenix Contact -> 46 jobs
+19:51:51 INFO src.sources.base: source greenhouse:Premier Automation -> 6 jobs
+19:51:52 INFO src.sources.base: source greenhouse:Pulse Biosciences -> 5 jobs
+19:51:53 INFO src.sources.base: source greenhouse:SpaceX -> 1953 jobs
+19:51:54 INFO src.sources.base: source greenhouse:Samsara -> 337 jobs
+19:51:54 INFO src.sources.base: source greenhouse:Third Wave Automation -> 6 jobs
+19:51:54 INFO src.sources.base: source greenhouse:Toradex -> 19 jobs
+19:51:55 INFO src.sources.base: source greenhouse:Torc Robotics -> 48 jobs
+19:51:55 INFO src.sources.base: source greenhouse:Veracyte -> 37 jobs
+19:51:56 INFO src.sources.base: source greenhouse:Verkada -> 283 jobs
+19:51:56 INFO src.sources.base: source greenhouse:Vicarious Surgical -> 0 jobs
+19:51:57 INFO src.sources.base: source greenhouse:Allegro MicroSystems -> 0 jobs
+19:51:57 INFO src.sources.base: source greenhouse:Ghost Robotics -> 5 jobs
+19:51:57 INFO src.sources.base: source greenhouse:SetPoint Medical -> 16 jobs
+19:51:58 INFO src.sources.base: source greenhouse:Ubiquiti -> 161 jobs
+19:51:58 INFO src.sources.base: source greenhouse:Zipline -> 133 jobs
+19:51:59 INFO src.sources.base: source greenhouse:Align Technology -> 11 jobs
+19:51:59 INFO src.sources.base: source greenhouse:AtriCure -> 60 jobs
+19:52:00 INFO src.sources.base: source greenhouse:Excel Automation -> 43 jobs
+19:52:00 INFO src.sources.base: source greenhouse:Fetch Robotics -> 50 jobs
+19:52:01 INFO src.sources.base: source greenhouse:Flex -> 53 jobs
+19:52:01 INFO src.sources.base: source greenhouse:Future Electronics -> 5 jobs
+19:52:01 INFO src.sources.base: source greenhouse:General Dynamics Mission Systems -> 1 jobs
+19:52:02 INFO src.sources.base: source greenhouse:Harmonic Drive -> 9 jobs
+19:52:02 INFO src.sources.base: source greenhouse:Ignition by Inductive Automation -> 2 jobs
+19:52:03 INFO src.sources.base: source greenhouse:Industrial Automation Engineering -> 1 jobs
+19:52:03 INFO src.sources.base: source greenhouse:Integra LifeSciences -> 7 jobs
+19:52:04 INFO src.sources.base: source greenhouse:Lattice Semiconductor -> 10 jobs
+19:52:04 INFO src.sources.base: source greenhouse:Lincoln Electric Automation -> 19 jobs
+19:52:04 INFO src.sources.base: source greenhouse:National Instruments -> 8 jobs
+19:52:05 INFO src.sources.base: source greenhouse:Polaris -> 2 jobs
+19:52:05 INFO src.sources.base: source greenhouse:Sonic Manufacturing Technologies -> 14 jobs
+19:52:06 INFO src.sources.base: source greenhouse:Stone Technologies -> 383 jobs
+19:52:06 INFO src.sources.base: source greenhouse:Superior Controls -> 2 jobs
+19:52:07 INFO src.sources.base: source greenhouse:Tempo Automation -> 5 jobs
+19:52:07 INFO src.sources.base: source greenhouse:Tetra Pak Automation -> 1 jobs
+19:52:08 INFO src.sources.base: source greenhouse:Universal Robots -> 2 jobs
+19:52:08 INFO src.sources.base: source greenhouse:Astera Labs -> 156 jobs
+19:52:08 WARNING src.sources.base: 404 (not found): https://boards-api.greenhouse.io/v1/boards/astrobotic/jobs
+19:52:08 INFO src.sources.base: source greenhouse:Astrobotic -> 0 jobs
+19:52:09 INFO src.sources.base: source greenhouse:Astranis -> 94 jobs
+19:52:09 WARNING src.sources.base: 404 (not found): https://boards-api.greenhouse.io/v1/boards/aeva/jobs
+19:52:09 INFO src.sources.base: source greenhouse:Aeva -> 0 jobs
+19:52:10 WARNING src.sources.base: 404 (not found): https://boards-api.greenhouse.io/v1/boards/aeye/jobs
+19:52:10 INFO src.sources.base: source greenhouse:AEye -> 0 jobs
+19:52:10 INFO src.sources.base: source greenhouse:CelLink -> 32 jobs
+19:52:10 WARNING src.sources.base: 404 (not found): https://boards-api.greenhouse.io/v1/boards/cfs/jobs
+19:52:10 INFO src.sources.base: source greenhouse:Commonwealth Fusion Systems -> 0 jobs
+19:52:11 WARNING src.sources.base: 404 (not found): https://boards-api.greenhouse.io/v1/boards/crusoe/jobs
+19:52:11 INFO src.sources.base: source greenhouse:Crusoe -> 0 jobs
+19:52:11 WARNING src.sources.base: 404 (not found): https://boards-api.greenhouse.io/v1/boards/enchargeai/jobs
+19:52:11 INFO src.sources.base: source greenhouse:EnCharge AI -> 0 jobs
+19:52:12 WARNING src.sources.base: 404 (not found): https://boards-api.greenhouse.io/v1/boards/formenergy/jobs
+19:52:12 INFO src.sources.base: source greenhouse:Form Energy -> 0 jobs
+19:52:12 WARNING src.sources.base: 404 (not found): https://boards-api.greenhouse.io/v1/boards/heartflow/jobs
+19:52:12 INFO src.sources.base: source greenhouse:HeartFlow -> 0 jobs
+19:52:12 WARNING src.sources.base: 404 (not found): https://boards-api.greenhouse.io/v1/boards/lumafield/jobs
+19:52:12 INFO src.sources.base: source greenhouse:Lumafield -> 0 jobs
+19:52:13 WARNING src.sources.base: 404 (not found): https://boards-api.greenhouse.io/v1/boards/shieldai/jobs
+19:52:13 INFO src.sources.base: source greenhouse:Shield AI -> 0 jobs
+19:52:13 WARNING src.sources.base: 404 (not found): https://boards-api.greenhouse.io/v1/boards/saildrone/jobs
+19:52:13 INFO src.sources.base: source greenhouse:Saildrone -> 0 jobs
+19:52:14 INFO src.sources.base: source greenhouse:Varda Space -> 92 jobs
+19:52:14 INFO src.sources.base: source greenhouse:Voxel51 -> 0 jobs
+19:52:15 INFO src.sources.base: source greenhouse:Warp -> 2 jobs
+19:52:15 WARNING src.sources.base: 404 (not found): https://boards-api.greenhouse.io/v1/boards/whoop/jobs
+19:52:15 INFO src.sources.base: source greenhouse:Whoop -> 0 jobs
+19:52:16 INFO src.sources.base: source lever:TKDA -> 64 jobs
+19:52:17 INFO src.sources.base: source lever:Proto Labs -> 79 jobs
+19:52:18 INFO src.sources.base: source lever:Foth -> 41 jobs
+19:52:18 INFO src.sources.base: source lever:Aigen -> 0 jobs
+19:52:19 INFO src.sources.base: source lever:Ambi Robotics -> 6 jobs
+19:52:19 INFO src.sources.base: source lever:ANYbotics -> 14 jobs
+19:52:20 INFO src.sources.base: source lever:Apex.AI -> 7 jobs
+19:52:21 INFO src.sources.base: source lever:Bright Machines -> 15 jobs
+19:52:21 INFO src.sources.base: source lever:Cobalt Robotics -> 10 jobs
+19:52:21 INFO src.sources.base: source lever:Cyngn -> 11 jobs
+19:52:22 INFO src.sources.base: source lever:Dexterity -> 25 jobs
+19:52:23 INFO src.sources.base: source lever:Doxel -> 15 jobs
+19:52:23 INFO src.sources.base: source lever:Extreme Networks -> 53 jobs
+19:52:23 INFO src.sources.base: source lever:Farm-ng -> 0 jobs
+19:52:24 INFO src.sources.base: source lever:Field AI -> 98 jobs
+19:52:24 INFO src.sources.base: source lever:Inductive Automation -> 0 jobs
+19:52:25 INFO src.sources.base: source lever:Matrix Technologies -> 4 jobs
+19:52:25 INFO src.sources.base: source lever:MicroVision -> 13 jobs
+19:52:26 INFO src.sources.base: source lever:Osaro -> 9 jobs
+19:52:26 INFO src.sources.base: source lever:Pickle Robot -> 17 jobs
+19:52:26 INFO src.sources.base: source lever:RapidAI -> 6 jobs
+19:52:27 INFO src.sources.base: source lever:Robust AI -> 5 jobs
+19:52:27 INFO src.sources.base: source lever:Verity -> 0 jobs
+19:52:28 INFO src.sources.base: source lever:ClearPoint Neuro -> 5 jobs
+19:52:28 INFO src.sources.base: source lever:Autonomous Solutions -> 2 jobs
+19:52:35 INFO src.sources.base: source lever:Intersect ENT -> 36 jobs
+19:52:36 INFO src.sources.base: source lever:Plexus -> 2 jobs
+19:52:36 WARNING src.sources.base: 404 (not found): https://api.lever.co/v0/postings/chefrobotics
+19:52:36 INFO src.sources.base: source lever:Chef Robotics -> 0 jobs
+19:52:37 WARNING src.sources.base: 404 (not found): https://api.lever.co/v0/postings/flywheel
+19:52:37 INFO src.sources.base: source lever:Flywheel -> 0 jobs
+19:52:37 WARNING src.sources.base: 404 (not found): https://api.lever.co/v0/postings/hadrian
+19:52:37 INFO src.sources.base: source lever:Hadrian -> 0 jobs
+19:52:37 WARNING src.sources.base: 404 (not found): https://api.lever.co/v0/postings/lab0
+19:52:37 INFO src.sources.base: source lever:Lab0 -> 0 jobs
+19:52:38 WARNING src.sources.base: 404 (not found): https://api.lever.co/v0/postings/machindustries
+19:52:38 INFO src.sources.base: source lever:Mach Industries -> 0 jobs
+19:52:38 WARNING src.sources.base: 404 (not found): https://api.lever.co/v0/postings/physical-intelligence
+19:52:38 INFO src.sources.base: source lever:Physical Intelligence -> 0 jobs
+19:52:38 WARNING src.sources.base: 404 (not found): https://api.lever.co/v0/postings/redwoodmaterials
+19:52:38 INFO src.sources.base: source lever:Redwood Materials -> 0 jobs
+19:52:39 WARNING src.sources.base: 404 (not found): https://api.lever.co/v0/postings/rios
+19:52:39 INFO src.sources.base: source lever:RIOS Intelligent Machines -> 0 jobs
+19:52:39 WARNING src.sources.base: 404 (not found): https://api.lever.co/v0/postings/sliprobotics
+19:52:39 INFO src.sources.base: source lever:Slip Robotics -> 0 jobs
+19:52:40 WARNING src.sources.base: 404 (not found): https://api.lever.co/v0/postings/viam
+19:52:40 INFO src.sources.base: source lever:Viam -> 0 jobs
+19:52:40 INFO src.sources.base: source ashby:Polar Semiconductor -> 2 jobs
+19:52:41 INFO src.sources.base: source ashby:Saturn Systems -> 7 jobs
+19:52:41 INFO src.sources.base: source ashby:Ultra Machining Company -> 9 jobs
+19:52:41 INFO src.sources.base: source ashby:AMP Robotics -> 0 jobs
+19:52:42 INFO src.sources.base: source ashby:Bedrock Robotics -> 29 jobs
+19:52:42 INFO src.sources.base: source ashby:Built Robotics -> 7 jobs
+19:52:43 INFO src.sources.base: source ashby:Gecko Robotics -> 16 jobs
+19:52:43 INFO src.sources.base: source ashby:OpenAI -> 723 jobs
+19:52:44 INFO src.sources.base: source ashby:PickNik Robotics -> 5 jobs
+19:52:44 INFO src.sources.base: source ashby:Polymath Robotics -> 5 jobs
+19:52:44 INFO src.sources.base: source ashby:Reliable Robotics -> 68 jobs
+19:52:45 INFO src.sources.base: source ashby:Serve Robotics -> 55 jobs
+19:52:45 INFO src.sources.base: source ashby:Skydio -> 110 jobs
+19:52:46 INFO src.sources.base: source ashby:Standard Bots -> 32 jobs
+19:52:46 INFO src.sources.base: source ashby:Capsa Healthcare -> 13 jobs
+19:52:47 INFO src.sources.base: source ashby:Cerebras -> 107 jobs
+19:52:47 INFO src.sources.base: source ashby:Intrinsic -> 0 jobs
+19:52:47 INFO src.sources.base: source ashby:Kestra Medical -> 13 jobs
+19:52:48 INFO src.sources.base: source ashby:Mainstay Medical -> 8 jobs
+19:52:48 INFO src.sources.base: source ashby:Ocean Infinity -> 3 jobs
+19:52:49 INFO src.sources.base: source ashby:Paragon 28 -> 3 jobs
+19:52:49 INFO src.sources.base: source ashby:Raspberry Pi -> 14 jobs
+19:52:50 INFO src.sources.base: source ashby:Titan Medical -> 11 jobs
+19:52:50 INFO src.sources.base: source ashby:Applied Intuition -> 261 jobs
+19:52:51 INFO src.sources.base: source ashby:Electric Machinery Company -> 2 jobs
+19:52:51 INFO src.sources.base: source ashby:Maple Systems -> 14 jobs
+19:52:51 INFO src.sources.base: source ashby:Marble Robot -> 7 jobs
+19:52:52 INFO src.sources.base: source ashby:Olympus -> 1 jobs
+19:52:52 INFO src.sources.base: source ashby:Parker Hannifin -> 13 jobs
+19:52:53 INFO src.sources.base: source ashby:Phantom Auto -> 14 jobs
+19:52:53 INFO src.sources.base: source ashby:Sierra Circuits -> 156 jobs
+19:52:53 INFO src.sources.base: source ashby:Aescape -> 2 jobs
+19:52:54 WARNING src.sources.base: 404 (not found): https://api.ashbyhq.com/posting-api/job-board/atomic-machines
+19:52:54 INFO src.sources.base: source ashby:Atomic Machines -> 0 jobs
+19:52:54 WARNING src.sources.base: 404 (not found): https://api.ashbyhq.com/posting-api/job-board/AtomicSemi
+19:52:54 INFO src.sources.base: source ashby:Atomic Semi -> 0 jobs
+19:52:55 INFO src.sources.base: source ashby:Saronic -> 288 jobs
+19:52:55 WARNING src.sources.base: 404 (not found): https://api.ashbyhq.com/posting-api/job-board/brightai
+19:52:55 INFO src.sources.base: source ashby:BrightAI -> 0 jobs
+19:52:55 WARNING src.sources.base: 404 (not found): https://api.ashbyhq.com/posting-api/job-board/canvas
+19:52:55 INFO src.sources.base: source ashby:Canvas Construction -> 0 jobs
+19:52:56 WARNING src.sources.base: 404 (not found): https://api.ashbyhq.com/posting-api/job-board/clone
+19:52:56 INFO src.sources.base: source ashby:Clone Robotics -> 0 jobs
+19:52:56 INFO src.sources.base: source ashby:Foundation -> 4 jobs
+19:52:57 WARNING src.sources.base: 404 (not found): https://api.ashbyhq.com/posting-api/job-board/furiosa
+19:52:57 INFO src.sources.base: source ashby:FuriosaAI -> 0 jobs
+19:52:57 WARNING src.sources.base: 404 (not found): https://api.ashbyhq.com/posting-api/job-board/hebbia
+19:52:57 INFO src.sources.base: source ashby:Hebbia -> 0 jobs
+19:52:58 WARNING src.sources.base: 404 (not found): https://api.ashbyhq.com/posting-api/job-board/heygen
+19:52:58 INFO src.sources.base: source ashby:HeyGen -> 0 jobs
+19:52:58 WARNING src.sources.base: 404 (not found): https://api.ashbyhq.com/posting-api/job-board/machina
+19:52:58 INFO src.sources.base: source ashby:Machina Labs -> 0 jobs
+19:52:58 INFO src.sources.base: source ashby:Nirvana Insurance -> 4 jobs
+19:52:59 WARNING src.sources.base: 404 (not found): https://api.ashbyhq.com/posting-api/job-board/reflect
+19:52:59 INFO src.sources.base: source ashby:Reflect Orbital -> 0 jobs
+19:52:59 INFO src.sources.base: source ashby:TensorWave -> 33 jobs
+19:52:59 WARNING src.sources.base: 404 (not found): https://api.ashbyhq.com/posting-api/job-board/trunktools
+19:52:59 INFO src.sources.base: source ashby:Trunk Tools -> 0 jobs
+19:53:00 INFO src.sources.base: source ashby:Base Power -> 163 jobs
+19:53:01 INFO src.sources.base: source ashby:Etched -> 96 jobs
+19:53:01 INFO src.sources.base: source ashby:Eight Sleep -> 50 jobs
+19:53:01 INFO src.sources.base: source ashby:Human Computer Lab -> 8 jobs
+19:53:02 INFO src.sources.base: source ashby:Apex Technology -> 98 jobs
+19:53:04 INFO src.sources.base: source workday:NVIDIA -> 40 jobs
+19:53:06 INFO src.sources.base: source workday:Marvell -> 40 jobs
+19:53:07 INFO src.sources.base: source workday:Ambarella -> 16 jobs
+19:53:07 INFO intern_pos_emailer: collected 11493 raw jobs from 181 sources
+19:53:07 INFO intern_pos_emailer.apply: will process 1 job(s) in mode=auto_simple_review_hard prepare_only=True
+
+[1/1] Firmware Intern — Etched (ashby)
+  form: https://jobs.ashbyhq.com/Etched/1efd9b58-66fe-4798-a877-776857b4e189/application
+  filled=[] resume=False unfilled_required=0 submit_btn=False
+  SKIP: posting is closed / not accepting applications
+
+Done. submitted=0 skipped=0 closed=1 failed=0 prepared=0

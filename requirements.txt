@@ -1,0 +1,12 @@
+requests>=2.31
+pydantic>=2,<3
+PyYAML>=6
+python-dotenv>=1
+beautifulsoup4>=4.12
+lxml>=4.9
+
+# dev / test
+pytest>=7
+
+# optional: only needed if you ever re-enable SMS in config/settings.yaml
+# twilio>=8

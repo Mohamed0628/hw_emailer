@@ -1,0 +1,10 @@
+# Dependencies for the LOCAL auto-apply tool (python -m src.apply).
+# Not needed for the daily email job, so kept out of requirements.txt.
+#
+#   pip install -r requirements.txt -r requirements-apply.txt
+#   playwright install chromium      # one-time browser download
+
+-r requirements.txt
+
+playwright>=1.40        # browser automation to fill application forms
+google-genai>=1.0       # Gemini 2.5 Flash for per-job cover letters

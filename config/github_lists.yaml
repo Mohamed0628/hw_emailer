@@ -1,0 +1,24 @@
+# Community-maintained internship aggregators that publish a structured
+# `listings.json`. These lists skew SWE, but hardware/EE/firmware postings do
+# appear in them and are the channel through which custom-career-site giants
+# (Apple, Tesla, Intel, TI, Lockheed, Raytheon, ...) reach you. The hardware
+# keyword filters in config/filters.yaml do the narrowing — SWE-only titles are
+# dropped. If you find a dedicated hardware-internships list repo, add its raw
+# listings.json / README URL below.
+#
+# Currently tracking the Summer 2027 cycle. These repos roll names each cycle
+# (Summer2027 -> Summer2028); update `url` when the next cycle's repo appears.
+# To find the raw URL: open the repo, go to .github/scripts/listings.json on the
+# `dev` branch, click "Raw".
+
+enabled: true
+
+# JSON lists (SimplifyJobs-style listings.json schema).
+lists:
+  - name: vanshb03-summer2027
+    url: https://raw.githubusercontent.com/vanshb03/Summer2027-Internships/dev/.github/scripts/listings.json
+
+# README markdown-table lists (Company | Role | Location | Posted | Visa | Apply).
+readme_tables:
+  - name: zapply-2027
+    url: https://raw.githubusercontent.com/zapplyjobs/Internships-2027/main/README.md

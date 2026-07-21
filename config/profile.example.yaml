@@ -1,0 +1,38 @@
+# Applicant profile for the auto-apply tool (python -m src.apply).
+# Copy to config/profile.yaml and fill in your real details.
+# config/profile.yaml is gitignored — your personal data stays out of the repo.
+#
+# Minimum required to apply: full_name, email, resume_path.
+
+full_name: "Jane Doe"
+email: "jane@example.com"
+phone: "+1 555 555 5555"
+school: "State University"
+graduation_date: "2027-05"
+gpa: "3.8"
+current_location: "Boston, MA"
+work_authorization: "US Citizen"
+requires_sponsorship: false
+linkedin: "https://linkedin.com/in/janedoe"
+github: "https://github.com/janedoe"
+website: "https://janedoe.dev"
+
+# Path to your resume PDF. Put the file under resumes/ (gitignored) and point here.
+# Relative paths are resolved from the repo root.
+resume_path: "resumes/jane_doe_resume.pdf"
+
+# A few sentences about your background — used to ground the AI cover letter so
+# it reflects real experience. Be concrete (skills, projects, coursework).
+summary: >
+  Third-year CS student focused on backend and distributed systems. Built a
+  real-time order-matching simulator in C++ and a Python data pipeline processing
+  10M+ events/day. Comfortable with Go, Python, C++, SQL, and AWS. Interested in
+  low-latency systems and quantitative trading infrastructure.
+
+# Canned answers to common screening questions (key = question text fragment,
+# matched case-insensitively).
+common_answers:
+  "authorized to work in the united states": "Yes"
+  "require sponsorship": "No"
+  "willing to relocate": "Yes"
+  "gpa": "3.8"

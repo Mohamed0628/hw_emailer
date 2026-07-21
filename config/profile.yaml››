@@ -1,0 +1,36 @@
+full_name: "Mohamed Ahmed"
+email: "ahme0712@umn.edu"
+phone: "763-248-8763"
+school: "University of Minnesota - Twin Cities"
+graduation_date: "2027-05"
+gpa: "3.15"
+current_location: "Minneapolis, MN"
+work_authorization: "Authorized to work in the United States"
+requires_sponsorship: false
+
+linkedin: "https://www.linkedin.com/in/mohamed-ahmed-89b807328/"
+github: ""
+website: ""
+
+resume_path: "/Users/mahmed/Documents/Gray/Resume July.pdf"
+summary: >
+  Electrical Engineering student at the University of Minnesota graduating in
+  May 2027 with experience in PCB design, embedded systems, robotics, power
+  electronics, controls, and engineering project management. Electrical Team
+  Lead for STRIVE Medical, leading the development of medical robotics hardware,
+  embedded systems, and custom PCBs. Project Management Intern at Michels Power
+  supporting utility infrastructure projects. Built custom ESP32-based embedded
+  systems and four-layer PCB designs. Seeking hardware engineering, embedded
+  systems, PCB design, robotics, and controls engineering roles.
+common_answers:
+  "authorized to work in the united states": "Yes"
+  "require sponsorship": "No"
+  "willing to relocate": "Yes"
+  "gpa": "3.15"
+  "expected graduation": "May 2027
+  "expected graduation": "May 2027"
+  "eligible to work": "Yes"
+  "driver's license": "Yes"
+  "travel": "Yes"
+
+

@@ -1,0 +1,69 @@
+name: Daily internship digest
+
+on:
+  schedule:
+    # 13:00 UTC ~= 9:00 AM US Eastern (8:00 AM during standard time).
+    # GitHub cron can be delayed under load; that's fine for a daily digest.
+    - cron: "0 13 * * *"
+  workflow_dispatch:
+    # Manual trigger from the Actions tab — use it to test or to keep the
+    # schedule alive (GitHub disables crons after 60 days of repo inactivity).
+    inputs:
+      dry_run:
+        description: "Run without sending or saving state"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write   # needed to commit the updated data/seen_jobs.json
+
+concurrency:
+  group: daily-internship-digest
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run bot
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          # SMS is off by default. If you enable it in config/settings.yaml, also
+          # add these secrets:
+          # TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+          # TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
+          # TWILIO_FROM: ${{ secrets.TWILIO_FROM }}
+          # SMS_TO: ${{ secrets.SMS_TO }}
+        run: |
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            python -m src.main --dry-run
+          else
+            python -m src.main
+          fi
+
+      - name: Commit updated state
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet -- data/seen_jobs.json; then
+            git add data/seen_jobs.json
+            git commit -m "chore: update seen jobs state [skip ci]"
+            git push
+          else
+            echo "No state changes to commit."
+          fi

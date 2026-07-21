@@ -1,0 +1,324 @@
+# Filtering rules. Everything here is tunable without touching code.
+# A job is kept only if it passes ALL of: role/season, category keywords, US location, active.
+
+# ---------------------------------------------------------------------------
+# 1) ROLE / SEASON
+# ---------------------------------------------------------------------------
+role:
+  # We only want internships (not new-grad full-time / experienced).
+  require_internship: true
+
+  # Title substrings (lowercased) that mark a posting as an internship.
+  internship_terms:
+    - intern
+    - internship
+    - co-op
+    - coop
+    - "co op"
+    - summer analyst        # banks/quant call interns "summer analyst"
+    - industrial placement
+    - student
+
+  # If a title contains any of these, it is rejected outright (full-time/senior roles).
+  # NOTE: applied carefully — "intern" titles win even if "engineer" appears.
+  exclude_terms:
+    - senior
+    - staff
+    - principal
+    - lead
+    - manager
+    - director
+    - "full-time" # only excluded when no internship term present (see code)
+    - "full time"
+
+  # Seasons we accept. A job's season is detected from tags or title.
+  # Empty list = accept any season.
+  seasons:
+    - summer
+    - spring
+    - fall          # keep fall/off-cycle co-ops; remove if you only want summer/spring
+    - offcycle
+    - winter
+
+  # Only keep postings whose detected year is in this list (when a year is detectable).
+  # Jobs with no detectable year are kept (many ATS postings omit the year).
+  years:
+    - 2026
+    - 2027
+
+# ---------------------------------------------------------------------------
+# 2) CATEGORY KEYWORDS  (title is matched against each group; first hit wins)
+#    Order matters: silicon is checked before hardware so "ASIC Design Intern"
+#    classifies as silicon, not generic hardware.
+# ---------------------------------------------------------------------------
+categories:
+  silicon:                 # chip design / verification / physical design
+    - asic
+    - vlsi
+    - rtl
+    - "digital design"
+    - "digital ic"
+    - "analog design"
+    - "analog ic"
+    - "mixed-signal"
+    - "mixed signal"
+    - "design verification"
+    - "verification engineer"
+    - "verification intern"
+    - "physical design"
+    - dft
+    - "silicon"
+    - "soc "
+    - "soc,"
+    - "soc design"
+    - "system-on-chip"
+    - rfic
+    - "rf ic"
+    - "cpu design"
+    - "gpu design"
+    - "chip design"
+    - "memory design"
+    - tapeout
+    - "cad engineer"
+    - "emulation engineer"
+    - "circuit design"
+    - fpga
+  hardware:                # board / system-level electrical engineering
+    - "hardware engineer"
+    - "hardware engineering"
+    - "hardware design"
+    - "hardware development"
+    - "hardware test"
+    - "hardware intern"
+    - "hardware co-op"
+    - "electrical engineer"
+    - "electrical engineering"
+    - "electrical intern"
+    - "electrical design"
+    - "electronics engineer"
+    - "electronics intern"
+    - pcb
+    - "power electronics"
+    - "rf engineer"
+    - "rf intern"
+    - "rf design"
+    - antenna
+    - "signal integrity"
+    - "power integrity"
+    - "board design"
+    - avionics
+    - "test engineer"       # HW companies' test-eng interns; remove if too broad
+    - mechatronics
+  firmware:                # embedded software close to the metal
+    - firmware
+    - "embedded software"
+    - "embedded systems"
+    - "embedded engineer"
+    - "embedded intern"
+    - "bare metal"
+    - "bare-metal"
+    - rtos
+    - "device driver"
+    - "bsp "
+    - microcontroller
+
+# If true, a job must match at least one category group to be kept.
+require_category: true
+
+# ---------------------------------------------------------------------------
+# 3) LOCATION  (US-only)
+# ---------------------------------------------------------------------------
+location:
+  require_us: true
+
+  # Any of these substrings (lowercased) marks a location as US-eligible.
+  us_terms:
+    - united states
+    - "usa"
+    - " us"
+    - "u.s."
+    - remote          # treated as US-eligible unless a non-US term also appears
+    # state names
+    - alabama
+    - alaska
+    - arizona
+    - arkansas
+    - california
+    - colorado
+    - connecticut
+    - delaware
+    - florida
+    - georgia
+    - hawaii
+    - idaho
+    - illinois
+    - indiana
+    - iowa
+    - kansas
+    - kentucky
+    - louisiana
+    - maine
+    - maryland
+    - massachusetts
+    - michigan
+    - minnesota
+    - mississippi
+    - missouri
+    - montana
+    - nebraska
+    - nevada
+    - "new hampshire"
+    - "new jersey"
+    - "new mexico"
+    - "new york"
+    - "north carolina"
+    - "north dakota"
+    - ohio
+    - oklahoma
+    - oregon
+    - pennsylvania
+    - "rhode island"
+    - "south carolina"
+    - "south dakota"
+    - tennessee
+    - texas
+    - utah
+    - vermont
+    - virginia
+    - washington
+    - "west virginia"
+    - wisconsin
+    - wyoming
+    - "washington, d.c."
+    - "washington dc"
+    # state abbreviations (matched as ", XX" to avoid false hits)
+    - ", al"
+    - ", ak"
+    - ", az"
+    - ", ar"
+    - ", ca"
+    - ", co"
+    - ", ct"
+    - ", de"
+    - ", fl"
+    - ", ga"
+    - ", hi"
+    - ", id"
+    - ", il"
+    - ", in"
+    - ", ia"
+    - ", ks"
+    - ", ky"
+    - ", la"
+    - ", ma"
+    - ", md"
+    - ", me"
+    - ", mi"
+    - ", mn"
+    - ", mo"
+    - ", ms"
+    - ", mt"
+    - ", nc"
+    - ", nd"
+    - ", ne"
+    - ", nh"
+    - ", nj"
+    - ", nm"
+    - ", nv"
+    - ", ny"
+    - ", oh"
+    - ", ok"
+    - ", or"
+    - ", pa"
+    - ", ri"
+    - ", sc"
+    - ", sd"
+    - ", tn"
+    - ", tx"
+    - ", ut"
+    - ", va"
+    - ", vt"
+    - ", wa"
+    - ", wi"
+    - ", wv"
+    - ", wy"
+    - ", dc"
+    # major US tech hubs (city-only strings)
+    - "new york city"
+    - "san francisco"
+    - "bay area"
+    - "palo alto"
+    - "mountain view"
+    - "menlo park"
+    - "sunnyvale"
+    - "san jose"
+    - "seattle"
+    - "bellevue"
+    - "redmond"
+    - "boston"
+    - "cambridge"
+    - "chicago"
+    - "austin"
+    - "los angeles"
+    - "san diego"
+    - "denver"
+    - "atlanta"
+    - "pittsburgh"
+
+  # If a location contains any of these, it is treated as NON-US and rejected
+  # (takes precedence — handles "Remote, Canada", "London, UK", etc.).
+  non_us_terms:
+    - canada
+    - toronto
+    - vancouver
+    - montreal
+    - waterloo
+    - ontario
+    - " uk"
+    - "u.k."
+    - "united kingdom"
+    - england
+    - london
+    - ireland
+    - dublin
+    - india
+    - bangalore
+    - bengaluru
+    - hyderabad
+    - pune
+    - gurgaon
+    - mumbai
+    - singapore
+    - "hong kong"
+    - china
+    - shanghai
+    - beijing
+    - japan
+    - tokyo
+    - australia
+    - sydney
+    - germany
+    - berlin
+    - munich
+    - france
+    - paris
+    - netherlands
+    - amsterdam
+    - switzerland
+    - zurich
+    - israel
+    - "tel aviv"
+    - brazil
+    - mexico
+    - poland
+    - warsaw
+    - spain
+    - sweden
+    - "abu dhabi"
+    - dubai
+    - emea
+    - apac
+    - latam
+
+  # If a posting has NO location info at all, keep it? (ATS sometimes omit it.)
+  keep_when_location_unknown: true
