@@ -1,26 +1,65 @@
-# Filtering rules. Everything here is tunable without touching code.
-# A job is kept only if it passes ALL of: role/season, category keywords, US location, active.
+
+# Filtering rules. Everything here is tunable without touching Python code.
+#
+# A job is kept only if it passes all applicable checks:
+# 1. It is an allowed internship or new-grad role.
+# 2. Its detected season and year are allowed.
+# 3. Its title matches a target engineering category.
+# 4. Its location is in the United States or is otherwise US-eligible.
 
 # ---------------------------------------------------------------------------
-# 1) ROLE / SEASON
+# 1) ROLE / SEASON / YEAR
 # ---------------------------------------------------------------------------
 role:
-  # We only want internships (not new-grad full-time / experienced).
-  require_internship: true
+  # Enable or disable each type of opportunity independently.
+  allow_internships: true
+  allow_new_grad: true
 
-  # Title substrings (lowercased) that mark a posting as an internship.
+  # Title substrings that identify internships and co-ops.
   internship_terms:
     - intern
     - internship
     - co-op
     - coop
     - "co op"
-    - summer analyst        # banks/quant call interns "summer analyst"
-    - industrial placement
+    - "summer analyst"
+    - "industrial placement"
     - student
 
-  # If a title contains any of these, it is rejected outright (full-time/senior roles).
-  # NOTE: applied carefully — "intern" titles win even if "engineer" appears.
+  # Title substrings that identify explicit new-grad and early-career roles.
+  #
+  # These terms are intentionally conservative. Generic titles such as
+  # "Electrical Engineer" are not enough by themselves because they could
+  # require several years of experience.
+  new_grad_terms:
+    - "new grad"
+    - "new graduate"
+    - "graduate engineer"
+    - "graduate program"
+    - "graduate programme"
+    - "recent graduate"
+    - "university graduate"
+    - "college graduate"
+    - "early career"
+    - "early-career"
+    - "entry level"
+    - "entry-level"
+    - "campus hire"
+    - "campus graduate"
+    - "university hire"
+    - "associate engineer"
+    - "associate electrical engineer"
+    - "associate hardware engineer"
+    - "associate firmware engineer"
+    - "rotational engineer"
+    - "engineering rotational"
+    - "engineering development program"
+    - "engineering development programme"
+
+  # Reject titles containing clear seniority or management indicators.
+  #
+  # Full-time terms are included for compatibility with the filtering code,
+  # but they are not treated as hard exclusions for valid new-grad roles.
   exclude_terms:
     - senior
     - staff
@@ -28,31 +67,45 @@ role:
     - lead
     - manager
     - director
-    - "full-time" # only excluded when no internship term present (see code)
+    - supervisor
+    - architect
+    - distinguished
+    - fellow
+    - "vice president"
+    - "head of"
+    - "full-time"
     - "full time"
+    - fulltime
 
-  # Seasons we accept. A job's season is detected from tags or title.
-  # Empty list = accept any season.
+  # Accepted internship seasons.
+  #
+  # New-grad postings usually have no season in their titles, so they will
+  # still be kept when no season can be detected.
+  #
+  # Empty list = accept every season.
   seasons:
     - summer
     - spring
-    - fall          # keep fall/off-cycle co-ops; remove if you only want summer/spring
+    - fall
     - offcycle
     - winter
 
-  # Only keep postings whose detected year is in this list (when a year is detectable).
-  # Jobs with no detectable year are kept (many ATS postings omit the year).
+  # Accepted years when a year appears in the title or source metadata.
+  #
+  # Jobs with no detectable year are kept because many ATS postings omit it.
   years:
     - 2026
     - 2027
 
 # ---------------------------------------------------------------------------
-# 2) CATEGORY KEYWORDS  (title is matched against each group; first hit wins)
-#    Order matters: silicon is checked before hardware so "ASIC Design Intern"
-#    classifies as silicon, not generic hardware.
+# 2) CATEGORY KEYWORDS
+#
+# The title is checked against each category in order. The first match wins.
+# Silicon appears before hardware so a title such as "ASIC Design Intern"
+# is classified as silicon rather than generic hardware.
 # ---------------------------------------------------------------------------
 categories:
-  silicon:                 # chip design / verification / physical design
+  silicon:
     - asic
     - vlsi
     - rtl
@@ -67,7 +120,7 @@ categories:
     - "verification intern"
     - "physical design"
     - dft
-    - "silicon"
+    - silicon
     - "soc "
     - "soc,"
     - "soc design"
@@ -83,7 +136,8 @@ categories:
     - "emulation engineer"
     - "circuit design"
     - fpga
-  hardware:                # board / system-level electrical engineering
+
+  hardware:
     - "hardware engineer"
     - "hardware engineering"
     - "hardware design"
@@ -96,9 +150,15 @@ categories:
     - "electrical intern"
     - "electrical design"
     - "electronics engineer"
+    - "electronics engineering"
     - "electronics intern"
     - pcb
     - "power electronics"
+    - "power engineer"
+    - "controls engineer"
+    - "control systems"
+    - "automation engineer"
+    - "systems engineer"
     - "rf engineer"
     - "rf intern"
     - "rf design"
@@ -107,9 +167,13 @@ categories:
     - "power integrity"
     - "board design"
     - avionics
-    - "test engineer"       # HW companies' test-eng interns; remove if too broad
+    - "test engineer"
     - mechatronics
-  firmware:                # embedded software close to the metal
+    - robotics
+    - "electromechanical"
+    - "instrumentation engineer"
+
+  firmware:
     - firmware
     - "embedded software"
     - "embedded systems"
@@ -122,23 +186,24 @@ categories:
     - "bsp "
     - microcontroller
 
-# If true, a job must match at least one category group to be kept.
+# If true, a job must match at least one category group.
 require_category: true
 
 # ---------------------------------------------------------------------------
-# 3) LOCATION  (US-only)
+# 3) LOCATION
 # ---------------------------------------------------------------------------
 location:
   require_us: true
 
-  # Any of these substrings (lowercased) marks a location as US-eligible.
+  # Any matching term marks the posting as potentially US-eligible.
   us_terms:
-    - united states
-    - "usa"
+    - "united states"
+    - usa
     - " us"
     - "u.s."
-    - remote          # treated as US-eligible unless a non-US term also appears
-    # state names
+    - remote
+
+    # State names
     - alabama
     - alaska
     - arizona
@@ -191,7 +256,8 @@ location:
     - wyoming
     - "washington, d.c."
     - "washington dc"
-    # state abbreviations (matched as ", XX" to avoid false hits)
+
+    # State abbreviations
     - ", al"
     - ", ak"
     - ", az"
@@ -243,30 +309,42 @@ location:
     - ", wv"
     - ", wy"
     - ", dc"
-    # major US tech hubs (city-only strings)
+
+    # Major US technology and engineering hubs
     - "new york city"
     - "san francisco"
     - "bay area"
     - "palo alto"
     - "mountain view"
     - "menlo park"
-    - "sunnyvale"
+    - sunnyvale
     - "san jose"
-    - "seattle"
-    - "bellevue"
-    - "redmond"
-    - "boston"
-    - "cambridge"
-    - "chicago"
-    - "austin"
+    - seattle
+    - bellevue
+    - redmond
+    - boston
+    - cambridge
+    - chicago
+    - austin
     - "los angeles"
     - "san diego"
-    - "denver"
-    - "atlanta"
-    - "pittsburgh"
+    - denver
+    - atlanta
+    - pittsburgh
+    - minneapolis
+    - "saint paul"
+    - "st. paul"
+    - "eden prairie"
+    - bloomington
+    - plymouth
+    - maplewood
+    - shakopee
 
-  # If a location contains any of these, it is treated as NON-US and rejected
-  # (takes precedence — handles "Remote, Canada", "London, UK", etc.).
+  # A posting is rejected as non-US when it has no US location match and
+  # contains one of these terms.
+  #
+  # When a posting lists both US and international locations, the Python
+  # filter keeps it because at least one US option exists.
   non_us_terms:
     - canada
     - toronto
@@ -320,5 +398,6 @@ location:
     - apac
     - latam
 
-  # If a posting has NO location info at all, keep it? (ATS sometimes omit it.)
+  # Keep postings when the ATS provides no location information.
   keep_when_location_unknown: true
+
