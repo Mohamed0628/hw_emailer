@@ -1,0 +1,64 @@
+name: Software Internship Digest
+
+on:
+  schedule:
+    # Runs every day at 9 AM UTC
+    - cron: "0 9 * * *"
+
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Run without sending email or saving state"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: software-internship-digest
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run software internship bot
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: |
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            python -m src.main --config config/software_companies.yaml --dry-run
+          else
+            python -m src.main --config config/software_companies.yaml
+          fi
+
+      - name: Commit updated state
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          if ! git diff --quiet; then
+            git add .
+            git commit -m "chore: update software internship state [skip ci]"
+            git push
+          else
+            echo "No changes."
+          fi
