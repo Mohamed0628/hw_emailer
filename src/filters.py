@@ -1,4 +1,3 @@
-
 """Filtering: keep US internships and new-grad jobs in our target categories.
 
 A job passes only if it is:
@@ -20,7 +19,21 @@ from typing import Iterable, Optional
 from . import config
 from .models import Job
 
+
 _YEAR_RE = re.compile(r"\b(20\d{2})\b")
+
+# Match entry-level Engineer I titles without accidentally matching
+# Engineer II, Engineer III, or Engineer IV.
+#
+# Accepted examples:
+#   Electrical Engineer I
+#   Hardware Engineer 1
+#   Firmware Engineer Level I
+#   Controls Engineer Level 1
+_ENGINEER_I_RE = re.compile(
+    r"\bengineer\s+(?:level\s+)?(?:1|i)\b(?!\s*i)",
+    re.IGNORECASE,
+)
 
 # Map detection keywords to canonical season labels.
 _SEASON_KEYWORDS = [
@@ -38,10 +51,12 @@ _FULLTIME_VARIANTS = {"full-time", "full time", "fulltime"}
 
 
 def _lc(s: str) -> str:
+    """Return a lowercase string, safely handling empty values."""
     return (s or "").lower()
 
 
 def _contains_any(text: str, terms: Iterable[str]) -> bool:
+    """Return True when any configured term occurs in the text."""
     return any(term in text for term in terms)
 
 
@@ -60,11 +75,13 @@ def _loc_regex(terms: tuple[str, ...]):
 
 
 def _loc_match(text: str, terms: Iterable[str]) -> bool:
+    """Return True when the location text matches a configured term."""
     rx = _loc_regex(tuple(terms))
     return bool(rx.search(text)) if rx else False
 
 
 def detect_season(job: Job) -> Optional[str]:
+    """Detect and normalize a job's season."""
     if job.season:
         season = job.season.lower()
 
@@ -84,6 +101,7 @@ def detect_season(job: Job) -> Optional[str]:
 
 
 def detect_year(job: Job) -> Optional[int]:
+    """Detect a four-digit year from the job title."""
     if job.year:
         return job.year
 
@@ -116,6 +134,15 @@ def is_internship(title_lc: str, role_cfg: dict) -> bool:
     return True
 
 
+def is_engineer_i(title_lc: str) -> bool:
+    """Return True for Engineer I or Engineer 1 titles.
+
+    The regex deliberately avoids matching higher levels such as
+    Engineer II, Engineer III, or Engineer IV.
+    """
+    return bool(_ENGINEER_I_RE.search(title_lc))
+
+
 def is_new_grad(title_lc: str, role_cfg: dict) -> bool:
     """Return True if the title looks like a new-grad or early-career role."""
     new_grad_terms = [
@@ -123,7 +150,10 @@ def is_new_grad(title_lc: str, role_cfg: dict) -> bool:
         for term in role_cfg.get("new_grad_terms", [])
     ]
 
-    if not _contains_any(title_lc, new_grad_terms):
+    has_new_grad_term = _contains_any(title_lc, new_grad_terms)
+    has_engineer_i_title = is_engineer_i(title_lc)
+
+    if not has_new_grad_term and not has_engineer_i_title:
         return False
 
     if _contains_any(title_lc, _hard_excludes(role_cfg)):
@@ -243,6 +273,6 @@ def apply_filters(
     jobs: list[Job],
     f: Optional[dict] = None,
 ) -> list[Job]:
+    """Apply the configured filters to a list of jobs."""
     filters_config = f if f is not None else config.filters()
     return [job for job in jobs if passes(job, filters_config)]
-
