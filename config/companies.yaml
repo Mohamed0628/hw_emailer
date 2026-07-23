@@ -113,7 +113,7 @@ greenhouse:
   token: viamrobotics
 - company: BrightAI
   token: brightai
-  - company: Astranis
+- company: Astranis
   token: astranis
 
 - company: Carbon Robotics
