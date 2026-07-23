@@ -1,143 +1,297 @@
 greenhouse:
-- company: Stripe
-  token: stripe
-- company: Datadog
-  token: datadog
-- company: Plaid
-  token: plaid
-- company: Figma
-  token: figma
-- company: Discord
-  token: discord
-- company: Grammarly
-  token: grammarly
-- company: Asana
-  token: asana
-- company: Notion
-  token: notion
-- company: Cockroach Labs
-  token: cockroachlabs
-- company: HashiCorp
-  token: hashicorp
-- company: MongoDB
-  token: mongodb
-- company: Vercel
-  token: vercel
-- company: Canva
-  token: canva
-- company: Robinhood
-  token: robinhood
-- company: Ramp
-  token: ramp
-- company: Dropbox
-  token: dropbox
-- company: Cloudflare
-  token: cloudflare
-- company: Airtable
-  token: airtable
-- company: Scale AI
-  token: scaleai
-- company: OpenAI
-  token: openai
-
+- company: Tactile Medical
+  token: tactilemedical
+- company: Agility Robotics
+  token: agilityrobotics
+- company: Altium
+  token: altium
+- company: Anduril
+  token: andurilindustries
+- company: Applied Engineering
+  token: appliedengineering
+- company: Apptronik
+  token: apptronik
+- company: Archer Aviation
+  token: archer
+- company: Aurora Innovation
+  token: aurorainnovation
+- company: Axogen
+  token: axogen
+- company: Butterfly Network
+  token: butterflynetwork
+- company: Cala Health
+  token: calahealth
+- company: Carbon Robotics
+  token: carbonrobotics
+- company: Ceribell
+  token: ceribell
+- company: Diligent Robotics
+  token: diligentrobotics
+- company: Divergent Technologies
+  token: divergent
+- company: E Tech Group
+  token: etechgroup
+- company: Figure AI
+  token: figureai
+- company: FORT Robotics
+  token: fortrobotics
+- company: Interstates
+  token: interstates
+- company: Kodiak Robotics
+  token: kodiak
+- company: Locus Robotics
+  token: locusrobotics
+- company: Markforged
+  token: markforged
+- company: May Mobility
+  token: maymobility
+- company: Motional
+  token: motional
+- company: Neuralink
+  token: neuralink
+- company: NeuroPace
+  token: neuropace
+- company: Nuro
+  token: nuro
+- company: Outrider
+  token: outrider
+- company: Outset Medical
+  token: outsetmedical
+- company: Parallel Systems
+  token: parallel
+- company: Path Robotics
+  token: pathrobotics
+- company: Phoenix Contact
+  token: phoenixcontact
+- company: Premier Automation
+  token: premierautomation
+- company: Pulse Biosciences
+  token: pulsebiosciences
+- company: SpaceX
+  token: spacex
+- company: Third Wave Automation
+  token: thirdwaveautomation
+- company: Toradex
+  token: toradex
+- company: Torc Robotics
+  token: torcrobotics
+- company: Vicarious Surgical
+  token: vicarioussurgical
+- company: Allegro MicroSystems
+  token: allegro
+- company: SetPoint Medical
+  token: setpoint
+- company: Ubiquiti
+  token: ubiquiti
+- company: Zipline
+  token: flyzipline
+- company: AtriCure
+  token: atricure
+- company: Flex
+  token: flex
+- company: Integra LifeSciences
+  token: integra
+- company: Lattice Semiconductor
+  token: lattice
+- company: Polaris
+  token: polaris
+- company: Stone Technologies
+  token: stone
+- company: Astera Labs
+  token: asteralabs
+- company: Astranis
+  token: astranis
+- company: CelLink
+  token: cellink
+- company: Varda Space
+  token: vardaspace
+- company: EnCharge AI
+  token: enchargeai36
+- company: HeartFlow
+  token: heartflowinc
+- company: Viam
+  token: viamrobotics
+- company: BrightAI
+  token: brightai
 lever:
-- company: Netflix
-  token: netflix
-- company: Rippling
-  token: rippling
-- company: Brex
-  token: brex
-- company: PostHog
-  token: posthog
-- company: Sourcegraph
-  token: sourcegraph
-- company: Render
-  token: render
-- company: Temporal
-  token: temporal
-- company: Convex
-  token: convex
-- company: Retool
-  token: retool
-- company: LaunchDarkly
-  token: launchdarkly
-- company: ClickHouse
-  token: clickhouse
-- company: Pinecone
-  token: pinecone
-- company: Weights & Biases
-  token: wandb
-- company: Modal
-  token: modal
-- company: Zapier
-  token: zapier
-
+- company: TKDA
+  token: tkda
+- company: Proto Labs
+  token: protolabs
+- company: Foth
+  token: foth
+- company: Aigen
+  token: aigen
+- company: Ambi Robotics
+  token: ambirobotics
+- company: ANYbotics
+  token: anybotics
+- company: Apex.AI
+  token: apex-ai
+- company: Bright Machines
+  token: brightmachines
+- company: Cobalt Robotics
+  token: cobaltrobotics
+- company: Cyngn
+  token: cyngn
+- company: Dexterity
+  token: dexterity
+- company: Doxel
+  token: doxel
+- company: Farm-ng
+  token: farm-ng
+- company: Field AI
+  token: field-ai
+- company: Inductive Automation
+  token: inductiveautomation
+- company: Matrix Technologies
+  token: matrix-technologies
+- company: MicroVision
+  token: microvision
+- company: Osaro
+  token: osaro
+- company: Pickle Robot
+  token: picklerobot
+- company: RapidAI
+  token: rapidai
+- company: Robust AI
+  token: robust-ai
+- company: Verity
+  token: verity
+- company: Plexus
+  token: plexus
+- company: Aeva
+  token: aeva
+- company: Commonwealth Fusion Systems
+  token: cfsenergy
+- company: Chef Robotics
+  token: ChefRobotics
+- company: Shield AI
+  token: shieldai
 ashby:
-- company: Anthropic
-  token: anthropic
-- company: Cursor
-  token: cursor
-- company: Linear
-  token: linear
-- company: Mercury
-  token: mercury
-- company: Perplexity
-  token: perplexity
-- company: Together AI
-  token: together-ai
-- company: Cohere
-  token: cohere
-- company: ElevenLabs
-  token: elevenlabs
-- company: Glean
-  token: glean
-- company: Decagon
-  token: decagon
-- company: Runway
-  token: runway
-- company: Anysphere
-  token: anysphere
-- company: Windsurf
-  token: windsurf
-- company: Neon
-  token: neon
-- company: Turso
-  token: turso
-
+- company: Polar Semiconductor
+  token: polar
+- company: Saturn Systems
+  token: saturn
+- company: Ultra Machining Company
+  token: ultra
+- company: AMP Robotics
+  token: amprobotics
+- company: Bedrock Robotics
+  token: bedrock-robotics
+- company: Built Robotics
+  token: built-robotics
+- company: Gecko Robotics
+  token: gecko-robotics
+- company: PickNik Robotics
+  token: picknik
+- company: Polymath Robotics
+  token: polymath
+- company: Reliable Robotics
+  token: reliable-robotics
+- company: Serve Robotics
+  token: serverobotics
+- company: Skydio
+  token: skydio
+- company: Standard Bots
+  token: standardbots
+- company: Cerebras
+  token: cerebras
+- company: Intrinsic
+  token: intrinsic
+- company: Applied Intuition
+  token: applied
+- company: Aescape
+  token: aescape
+- company: Saronic
+  token: saronic
+- company: TensorWave
+  token: tensorwave
+- company: Base Power
+  token: base-power
+- company: Etched
+  token: Etched
+- company: Eight Sleep
+  token: eightsleep
+- company: Apex Technology
+  token: apex-technology-inc
+- company: Crusoe
+  token: Crusoe
+- company: Mach Industries
+  token: mach
+- company: Physical Intelligence
+  token: physicalintelligence
+- company: FuriosaAI
+  token: furiosa-ai
 workday:
-- company: Amazon
-  tenant: amazon
+- company: NVIDIA
+  tenant: nvidia
+  wd_num: 5
+  site: NVIDIAExternalCareerSite
+- company: Marvell
+  tenant: marvell
   wd_num: 1
-  site: AmazonJobs
-
-- company: Microsoft
-  tenant: microsoft
-  wd_num: 2
-  site: MicrosoftCareers
-
-- company: Intel
-  tenant: intel
+  site: MarvellCareers
+- company: Ambarella
+  tenant: ambarella
+  wd_num: 108
+  site: ambarella
+- company: Medtronic
+  tenant: medtronic
   wd_num: 1
-  site: IntelCareers
-
-- company: Oracle
-  tenant: oracle
-  wd_num: 2
-  site: Oracle
-
+  site: MedtronicCareers
 icims:
-- company: Garmin
-  url: https://careers-garmin.icims.com/jobs
+- company: FUJIFILM Healthcare and Sonosite
+  url: https://uscareers-fujifilm.icims.com/jobs
   enabled: true
-
-- company: Epic Systems
-  url: https://careers-epic.icims.com/jobs
+- company: Resonetics
+  url: https://careers-resonetics.icims.com/jobs
   enabled: true
-
-- company: MITRE
-  url: https://careers-mitre.icims.com/jobs
+- company: Cretex Medical - rms
+  url: https://rms-cretex.icims.com/jobs
   enabled: true
-
-- company: Esri
-  url: https://careers-esri.icims.com/jobs
+- company: Hamilton Medical
+  url: https://careers-hamiltonmedical.icims.com/jobs
+  enabled: true
+- company: Verathon
+  url: https://us-careers-verathon.icims.com/jobs
+  enabled: true
+- company: SRI International
+  url: https://careers-sri.icims.com/jobs
+  enabled: true
+- company: MAG Aerospace
+  url: https://careers-magaero.icims.com/jobs
+  enabled: true
+- company: General Dynamics Mission Systems
+  url: https://careers-gdms.icims.com/jobs
+  enabled: true
+- company: Persistent Systems
+  url: https://careers-persistentsystems.icims.com/jobs
+  enabled: true
+- company: Ricardo
+  url: https://careers-ricardo.icims.com/jobs
+  enabled: true
+- company: Calspan
+  url: https://careers-calspan.icims.com/jobs
+  enabled: true
+- company: Shure
+  url: https://careersus-shure.icims.com/jobs
+  enabled: true
+- company: MaxLinear USA
+  url: https://careersus-maxlinear.icims.com/jobs
+  enabled: true
+- company: MaxLinear International
+  url: https://careersintl-maxlinear.icims.com/jobs
+  enabled: true
+- company: SimVentions
+  url: https://careers-simventions.icims.com/jobs
+  enabled: true
+- company: Integration Innovation i3
+  url: https://careers-i3-corps.icims.com/jobs
+  enabled: true
+- company: Legrand
+  url: https://jobs-legrand.icims.com/jobs
+  enabled: true
+- company: Delta Electronics Americas
+  url: https://careers-delta-americas.icims.com/jobs
   enabled: true

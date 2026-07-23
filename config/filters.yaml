@@ -22,6 +22,9 @@ role:
     - co-op
     - coop
     - "co op"
+    - "summer analyst"
+    - "industrial placement"
+    - student
 
   # Title substrings that identify explicit new-grad and early-career roles.
   #
