@@ -113,6 +113,35 @@ greenhouse:
   token: viamrobotics
 - company: BrightAI
   token: brightai
+  - company: Astranis
+  token: astranis
+
+- company: Carbon Robotics
+  token: carbonrobotics
+
+- company: FORT Robotics
+  token: fortrobotics
+
+- company: Saildrone
+  token: saildrone
+
+- company: Reliable Robotics
+  token: reliablerobotics
+
+- company: Varda Space Industries
+  token: vardaspace
+
+- company: Aalo Atomics
+  token: aalo
+
+- company: Apex Space
+  token: apex
+
+- company: Saronic
+  token: saronic
+
+- company: Hadrian
+  token: hadrian
 lever:
 - company: TKDA
   token: tkda
