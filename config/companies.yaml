@@ -197,6 +197,8 @@ lever:
   token: ChefRobotics
 - company: Shield AI
   token: shieldai
+- company: Machina Labs
+  token: machinalabs
 ashby:
 - company: Polar Semiconductor
   token: polar
@@ -269,6 +271,10 @@ workday:
   tenant: medtronic
   wd_num: 1
   site: MedtronicCareers
+- company: Boston Dynamics
+  tenant: bostondynamics
+  wd_num: 1
+  site: Boston_Dynamics
 icims:
 - company: FUJIFILM Healthcare and Sonosite
   url: https://uscareers-fujifilm.icims.com/jobs
