@@ -61,6 +61,8 @@ greenhouse:
   token: parallel
 - company: Path Robotics
   token: pathrobotics
+- company: Okta
+  token: okta
 - company: Phoenix Contact
   token: phoenixcontact
 - company: Premier Automation
