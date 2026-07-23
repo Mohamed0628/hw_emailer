@@ -1,1 +1,626 @@
-{}
+{
+  "00cf288872567ab2": {
+    "company": "Etched",
+    "first_seen": "2026-07-23",
+    "title": "Firmware Intern",
+    "url": "https://jobs.ashbyhq.com/Etched/8134a9bf-9624-48dd-98be-0bf1c3cb1f55"
+  },
+  "02a1ff639f4b4c59": {
+    "company": "Zipline",
+    "first_seen": "2026-07-23",
+    "title": "Electrical Engineer Intern (Fall 2026)",
+    "url": "https://www.zipline.com/open-roles?gh_jid=7743207003"
+  },
+  "039c833920e0303c": {
+    "company": "Ambarella",
+    "first_seen": "2026-07-23",
+    "title": "Mixed Signal Engineer Intern",
+    "url": "https://ambarella.wd108.myworkdayjobs.com/en-US/ambarella/job/US-Headquarters/Mixed-Signal-Engineer-Intern_JR100105"
+  },
+  "0860f44d58d78ea2": {
+    "company": "Jump Trading",
+    "first_seen": "2026-07-23",
+    "title": "Campus Systems Engineer (Intern)",
+    "url": "https://www.jumptrading.com/hr/job?gh_jid=8007788"
+  },
+  "08f35284e51ac5a2": {
+    "company": "Figure AI",
+    "first_seen": "2026-07-23",
+    "title": "Electrical Engineering Intern [Fall 2026]",
+    "url": "https://job-boards.greenhouse.io/figureai/jobs/4676467006"
+  },
+  "0b2e190626419304": {
+    "company": "Neuralink",
+    "first_seen": "2026-07-23",
+    "title": "Digital IC Design Engineer Intern",
+    "url": "https://boards.greenhouse.io/neuralink/jobs/7090489003?gh_jid=7090489003"
+  },
+  "11912f560c4d6ff4": {
+    "company": "Ambarella",
+    "first_seen": "2026-07-23",
+    "title": "ASIC Design Engineer Intern",
+    "url": "https://ambarella.wd108.myworkdayjobs.com/ambarella/job/US-Headquarters/ASIC-Design-Engineer-Intern_JR100100"
+  },
+  "14686cc28c92bb88": {
+    "company": "Jump Trading",
+    "first_seen": "2026-07-23",
+    "title": "Campus FPGA Engineer (Intern)",
+    "url": "https://www.jumptrading.com/hr/job?gh_jid=8003013"
+  },
+  "1bbbebd081bd2188": {
+    "company": "Torc Robotics",
+    "first_seen": "2026-07-23",
+    "title": "Systems Engineer I - Test Automation",
+    "url": "https://job-boards.greenhouse.io/torcrobotics/jobs/8554813002"
+  },
+  "20750721fb095c9d": {
+    "company": "Neuralink",
+    "first_seen": "2026-07-23",
+    "title": "Firmware Engineer Intern, Robotics an",
+    "url": "https://boards.greenhouse.io/neuralink/jobs/6648992003?gh_jid=6648992003"
+  },
+  "224369f1f80af159": {
+    "company": "Torc Robotics",
+    "first_seen": "2026-07-23",
+    "title": "Software Engineer I - Device Drivers",
+    "url": "https://job-boards.greenhouse.io/torcrobotics/jobs/8534177002"
+  },
+  "23a3c5c623cccf7b": {
+    "company": "Shield AI",
+    "first_seen": "2026-07-23",
+    "title": "Electrical Engineering Spring Co-op (",
+    "url": "https://jobs.lever.co/shieldai/87d982f2-8b2b-4c73-9a19-71e461c7b724/apply"
+  },
+  "2622d9391b19b6b4": {
+    "company": "Base Power",
+    "first_seen": "2026-07-23",
+    "title": "Firmware Engineering Intern",
+    "url": "https://jobs.ashbyhq.com/base-power/a8ee9a66-e90b-42c2-a4a2-28d997c3e8c7/application"
+  },
+  "275c5c0b6881f8ac": {
+    "company": "Ambarella",
+    "first_seen": "2026-07-23",
+    "title": "DFT Engineer Intern",
+    "url": "https://ambarella.wd108.myworkdayjobs.com/en-US/ambarella/job/US-Headquarters/DFT-Engineer-Intern_JR100103"
+  },
+  "27b8b21d8226c241": {
+    "company": "Bio-Techne",
+    "first_seen": "2026-07-23",
+    "title": "Hardware Engineering Intern",
+    "url": "https://biotechne.wd5.myworkdayjobs.com/Biotechne/job/San-Jose-CA/Hardware-Engineering-Intern_JR101533"
+  },
+  "2c1d9be198192f2f": {
+    "company": "Nidec",
+    "first_seen": "2026-07-23",
+    "title": "Electrical Engineer Intern",
+    "url": "https://nidec.wd1.myworkdayjobs.com/nidec/job/North-AmericaUSATennesseeLexington-TN/Electrical-Engineer-Intern_R0015984"
+  },
+  "2c47c93e244bf1fc": {
+    "company": "Zipline",
+    "first_seen": "2026-07-23",
+    "title": "Flight Test Engineer Intern (Fall 2026)",
+    "url": "https://www.zipline.com/open-roles?gh_jid=7767622003"
+  },
+  "2d2bd5cb4f461ac4": {
+    "company": "Figure AI",
+    "first_seen": "2026-07-23",
+    "title": "Firmware Intern [Fall 2026]",
+    "url": "https://job-boards.greenhouse.io/figureai/jobs/4691070006"
+  },
+  "2e708b49e16997df": {
+    "company": "Applied Intuition",
+    "first_seen": "2026-07-23",
+    "title": "Research Intern - Reinforcement Learning, Robotics",
+    "url": "https://jobs.ashbyhq.com/applied/bb953f29-0059-4a40-aa9e-3a8c88733902"
+  },
+  "3449bc5539c0bdab": {
+    "company": "Anduril",
+    "first_seen": "2026-07-23",
+    "title": "2026 Early Career Flight Test Engineer, Mission Autonomy",
+    "url": "https://boards.greenhouse.io/andurilindustries/jobs/5185089007?gh_jid=5185089007"
+  },
+  "36897ec89317b522": {
+    "company": "Jump Trading",
+    "first_seen": "2026-07-23",
+    "title": "Campus Systems Engineer Intern",
+    "url": "https://www.jumptrading.com/hr/job?gh_jid=8007788"
+  },
+  "378c806a89c6c8fd": {
+    "company": "PlusAI",
+    "first_seen": "2026-07-23",
+    "title": "Systems Engineering Intern",
+    "url": "https://jobs.lever.co/plus-2/43bad137-b976-4dfa-b72d-96918929e9db/apply"
+  },
+  "37ea96a1c7cf5dd9": {
+    "company": "Shield AI",
+    "first_seen": "2026-07-23",
+    "title": "Electrical Engineer I (SD)",
+    "url": "https://jobs.lever.co/shieldai/1b229cdc-9a0b-4704-b39b-b3b4c6e3fa89"
+  },
+  "3f84fe51607bf125": {
+    "company": "Shield AI",
+    "first_seen": "2026-07-23",
+    "title": "Power Electronics - Thermal Engineer I (R4842)",
+    "url": "https://jobs.lever.co/shieldai/f6bbec19-f1c6-44ce-9af5-132b25b6e83a"
+  },
+  "40bcb9ed1e802008": {
+    "company": "Motorola Solutions",
+    "first_seen": "2026-07-23",
+    "title": "Intern - Embedded Software, System, a",
+    "url": "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Irvine-CA/Intern---Embedded-Software--System--and-Test-Engineer---2026_R62372"
+  },
+  "419ce8ee9e685d2e": {
+    "company": "Neuralink",
+    "first_seen": "2026-07-23",
+    "title": "Firmware Engineer Intern, Robotics and Surgery Engineering",
+    "url": "https://boards.greenhouse.io/neuralink/jobs/6648992003?gh_jid=6648992003"
+  },
+  "457fd1fa07b7b5ab": {
+    "company": "Astranis",
+    "first_seen": "2026-07-23",
+    "title": "Electrical Integration Intern - Avionics (Fall 2026)",
+    "url": "https://job-boards.greenhouse.io/astranis/jobs/4679105006"
+  },
+  "47ba4c14ef4d9d1c": {
+    "company": "Etched",
+    "first_seen": "2026-07-23",
+    "title": "Design Verification Engineer - Internal IP",
+    "url": "https://jobs.ashbyhq.com/Etched/77f0497f-086e-4d89-bbcd-bac7a79bf9a1"
+  },
+  "48abd0c9fb6d10c4": {
+    "company": "Neuralink",
+    "first_seen": "2026-07-23",
+    "title": "Software Engineer Intern, Robotics",
+    "url": "https://boards.greenhouse.io/neuralink/jobs/5469305003?gh_jid=5469305003"
+  },
+  "4cf031dc9a03f217": {
+    "company": "Generac",
+    "first_seen": "2026-07-23",
+    "title": "Intern Firmware Engineering",
+    "url": "https://generac.wd5.myworkdayjobs.com/External/job/Reno-NV---USA/Intern-Firmware-Engineering_JR14674"
+  },
+  "4e9da6df99d26cdc": {
+    "company": "DRW",
+    "first_seen": "2026-07-23",
+    "title": "FPGA Intern",
+    "url": "https://job-boards.greenhouse.io/drweng/jobs/8038923"
+  },
+  "52e4722d9602602b": {
+    "company": "Anduril",
+    "first_seen": "2026-07-23",
+    "title": "2027 Electrical Engineer Intern",
+    "url": "https://boards.greenhouse.io/andurilindustries/jobs/5148101007?gh_jid=5148101007"
+  },
+  "542bb735208fa80b": {
+    "company": "Torc Robotics",
+    "first_seen": "2026-07-23",
+    "title": "Hardware Engineer I - Sensors",
+    "url": "https://job-boards.greenhouse.io/torcrobotics/jobs/8622606002"
+  },
+  "582d64f91e4cfb6c": {
+    "company": "IMC Trading",
+    "first_seen": "2026-07-23",
+    "title": "Hardware Engineer Intern - Summer 2027",
+    "url": "https://job-boards.eu.greenhouse.io/imc/jobs/4823945101"
+  },
+  "59fe1d08b0a3c317": {
+    "company": "Human Computer Lab",
+    "first_seen": "2026-07-23",
+    "title": "Intern - Electrical Engineer",
+    "url": "https://jobs.ashbyhq.com/human-computer-lab/004ff3a2-7e38-4959-8bd7-48489cbc78f4/application"
+  },
+  "5ae699852da71b31": {
+    "company": "Anduril",
+    "first_seen": "2026-07-23",
+    "title": "2026 Early Career Electrical Engineer, Battlespace Awareness Radar Team",
+    "url": "https://boards.greenhouse.io/andurilindustries/jobs/4747967007?gh_jid=4747967007"
+  },
+  "5fefe830b76d8996": {
+    "company": "Huntsman",
+    "first_seen": "2026-07-23",
+    "title": "Electrical Engineering Intern",
+    "url": "https://huntsman.wd1.myworkdayjobs.com/Huntsman/job/USA---Texas---Houston---The-Woodlands---Corporate-Office/Electrical-Engineering-Intern_J-020027"
+  },
+  "626552c518d2577c": {
+    "company": "Bosch Group",
+    "first_seen": "2026-07-23",
+    "title": "Electronics Engineering Intern",
+    "url": "https://jobs.smartrecruiters.com/BoschGroup/744000126066306"
+  },
+  "671db468f84777e2": {
+    "company": "Schweitzer Engineering Laboratories",
+    "first_seen": "2026-07-23",
+    "title": "Power Engineer Intern",
+    "url": "https://selinc.wd1.myworkdayjobs.com/SEL/job/Pennsylvania---King-of-Prussia/Power-Engineer-Intern_2026-21156"
+  },
+  "6833ce3d250e0eb8": {
+    "company": "Apex Technology, Inc.",
+    "first_seen": "2026-07-23",
+    "title": "Software Engineering Intern, Embedded Systems",
+    "url": "https://jobs.ashbyhq.com/apex-technology-inc/5ec2dfa9-724d-4ce4-ab97-5067ec747f11"
+  },
+  "6b87c1f6445bfead": {
+    "company": "Moog",
+    "first_seen": "2026-07-23",
+    "title": "Intern, Test Engineering",
+    "url": "https://moog.wd5.myworkdayjobs.com/moog_external_career_site/job/Buffalo-NY/Intern--Test-Engineering_R-26-18775"
+  },
+  "6d94ef5c1651fa3a": {
+    "company": "Etched",
+    "first_seen": "2026-07-23",
+    "title": "RTL Intern",
+    "url": "https://jobs.ashbyhq.com/Etched/157ed4f4-6e3b-4ec9-b93f-3e363e92041e"
+  },
+  "6e9576429da265ee": {
+    "company": "Zipline",
+    "first_seen": "2026-07-23",
+    "title": "Embedded Software Engineer Intern (Fall 2026)",
+    "url": "https://www.zipline.com/open-roles?gh_jid=7765240003"
+  },
+  "6ebb3ab680c0caf8": {
+    "company": "Astranis",
+    "first_seen": "2026-07-23",
+    "title": "Environmental Test Engineer Intern (Fall 2026)",
+    "url": "https://job-boards.greenhouse.io/astranis/jobs/4676888006"
+  },
+  "720f054c31a22d8d": {
+    "company": "Neuralink",
+    "first_seen": "2026-07-23",
+    "title": "Analog and Mixed-Signal IC Design Engineer Intern ",
+    "url": "https://boards.greenhouse.io/neuralink/jobs/7565469003?gh_jid=7565469003"
+  },
+  "72f361105f05446c": {
+    "company": "Zipline",
+    "first_seen": "2026-07-23",
+    "title": "Mechatronics Perception Intern (Fall 2026)",
+    "url": "https://www.zipline.com/open-roles?gh_jid=7763697003"
+  },
+  "73c90e35f76f337b": {
+    "company": "Anduril",
+    "first_seen": "2026-07-23",
+    "title": "2027 Early Career Electrical Engineer",
+    "url": "https://boards.greenhouse.io/andurilindustries/jobs/5136925007?gh_jid=5136925007"
+  },
+  "7695f4c5455a6a35": {
+    "company": "Agilent Technologies",
+    "first_seen": "2026-07-23",
+    "title": "Electrical Engineering Intern",
+    "url": "https://agilent.wd5.myworkdayjobs.com/Agilent_Student_Careers/job/US-DE-Wilmington/Electrical-Engineering-Intern_4038526"
+  },
+  "769ca076a7bf623c": {
+    "company": "Base Power",
+    "first_seen": "2026-07-23",
+    "title": "Hardware Engineering Intern",
+    "url": "https://jobs.ashbyhq.com/base-power/f22cee0e-55d9-42cd-806e-1c1fc7217770"
+  },
+  "777216ffd7949dfe": {
+    "company": "Applied Intuition",
+    "first_seen": "2026-07-23",
+    "title": "Research Intern - World-Action Foundation Model, Robotics",
+    "url": "https://jobs.ashbyhq.com/applied/edc2528d-6e6c-4a67-b871-bfe7d9c890b4"
+  },
+  "7942fcdf08083f72": {
+    "company": "Neuralink",
+    "first_seen": "2026-07-23",
+    "title": "Electrical Engineer Intern, Implant Embedded Systems",
+    "url": "https://boards.greenhouse.io/neuralink/jobs/7702527003?gh_jid=7702527003"
+  },
+  "82865a648aa3734a": {
+    "company": "Zipline",
+    "first_seen": "2026-07-23",
+    "title": "Controls Engineer Intern (Fall 2026)",
+    "url": "https://www.zipline.com/open-roles?gh_jid=7772233003"
+  },
+  "84836f726a8b6769": {
+    "company": "Tesla",
+    "first_seen": "2026-07-23",
+    "title": "Embedded Software Engineer Intern, Keys & Authentication",
+    "url": "https://www.tesla.com/careers/search/job/internship-embedded-software-engineer-keys-authentication-fall-2026-270067"
+  },
+  "8958fd73ac705c26": {
+    "company": "Skyworks",
+    "first_seen": "2026-07-23",
+    "title": "Analog IC Design Co-op",
+    "url": "https://careers.skyworksinc.com/job/Irvine-Analog-IC-Design-SummerFall-Co-Op-(June-&apos;26-Dec-&apos;26)-CA-92602/76295-en_US/?feedId=177100"
+  },
+  "8b9252e1ec80912e": {
+    "company": "Hermeus",
+    "first_seen": "2026-07-23",
+    "title": "Subsystem Test Engineering Intern - F",
+    "url": "https://jobs.lever.co/hermeus/3ee3f243-bab8-4bdb-b0d0-2214874ef49e/apply"
+  },
+  "8c127912df87a859": {
+    "company": "Magna",
+    "first_seen": "2026-07-23",
+    "title": "Intern - Systems Engineering",
+    "url": "https://magna.wd3.myworkdayjobs.com/Magna/job/Southfield-Michigan-US/Intern---Engineering_R00235437"
+  },
+  "8cdfeed099278505": {
+    "company": "Atomic Semi",
+    "first_seen": "2026-07-23",
+    "title": "Embedded Software Engineering Intern",
+    "url": "https://jobs.ashbyhq.com/AtomicSemi/13e95284-dbcf-4cf2-8151-c9687dfc1889"
+  },
+  "8d457af9dd77fcb6": {
+    "company": "Etched",
+    "first_seen": "2026-07-23",
+    "title": "Firmware Intern",
+    "url": "https://jobs.ashbyhq.com/Etched/1efd9b58-66fe-4798-a877-776857b4e189"
+  },
+  "8d8b6f608c66c99d": {
+    "company": "Astranis",
+    "first_seen": "2026-07-23",
+    "title": "Hardware Design Intern, Software Defi",
+    "url": "https://job-boards.greenhouse.io/astranis/jobs/4691163006"
+  },
+  "9186b72374ad29c7": {
+    "company": "Neuralink",
+    "first_seen": "2026-07-23",
+    "title": "Mechanical Engineering Intern, Robotics",
+    "url": "https://boards.greenhouse.io/neuralink/jobs/6514169003?gh_jid=6514169003"
+  },
+  "927c6fe949c7d930": {
+    "company": "The Exploration Company",
+    "first_seen": "2026-07-23",
+    "title": "Crew Systems Engineering Intern - Mec",
+    "url": "https://jobs.ashbyhq.com/the-exploration-company/90170478-eb9d-46cd-bdf2-7967875919a6/application"
+  },
+  "939d96b41a7a57d2": {
+    "company": "Etched",
+    "first_seen": "2026-07-23",
+    "title": "Design Verification Engineer - Internal IP",
+    "url": "https://jobs.ashbyhq.com/Etched/7aeafe31-c2c6-43e0-bb31-01868dcfad39"
+  },
+  "951fc3927b8ab511": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-23",
+    "title": "Entry Level Production Technician - PCBA",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8352158002?gh_jid=8352158002"
+  },
+  "9558be4f644613c0": {
+    "company": "Astranis",
+    "first_seen": "2026-07-23",
+    "title": "Power Electronics Intern (Fall 2026)",
+    "url": "https://job-boards.greenhouse.io/astranis/jobs/4625923006"
+  },
+  "9d08c79ea7867243": {
+    "company": "Base Power",
+    "first_seen": "2026-07-23",
+    "title": "Hardware Engineering Intern",
+    "url": "https://jobs.ashbyhq.com/base-power/f22cee0e-55d9-42cd-806e-1c1fc7217770/application"
+  },
+  "9f3cde7462a41576": {
+    "company": "Shield AI",
+    "first_seen": "2026-07-23",
+    "title": "Electrical Engineer I (BOS) (R5046)",
+    "url": "https://jobs.lever.co/shieldai/37fa20c1-57dc-4aa1-9515-ecc87f22f31b"
+  },
+  "a86e2f567cb9ec8d": {
+    "company": "Astranis",
+    "first_seen": "2026-07-23",
+    "title": "Hardware Design Intern, Software Defined Radio Team (Fall 2026)",
+    "url": "https://job-boards.greenhouse.io/astranis/jobs/4691163006"
+  },
+  "a8d76977320cc13e": {
+    "company": "Amazon",
+    "first_seen": "2026-07-23",
+    "title": "Robotics - Software Development Engineer Intern/Co-op",
+    "url": "https://www.amazon.jobs/en/jobs/3136266/robotics-software-development-engineer-intern-co-op-2026?no_int_redir=1"
+  },
+  "ab08d1dcbb23c536": {
+    "company": "Astranis",
+    "first_seen": "2026-07-23",
+    "title": "Avionics Engineer Intern (Fall 2026)",
+    "url": "https://job-boards.greenhouse.io/astranis/jobs/4597413006"
+  },
+  "adafc99407350f52": {
+    "company": "Anduril",
+    "first_seen": "2026-07-23",
+    "title": "2026 Early Career Electrical Engineer",
+    "url": "https://boards.greenhouse.io/andurilindustries/jobs/4802172007?gh_jid=4802172007"
+  },
+  "af1a42ada7422713": {
+    "company": "Apptronik",
+    "first_seen": "2026-07-23",
+    "title": "Robotics Software Intern – Real-Time Controls",
+    "url": "https://boards.greenhouse.io/apptronik/jobs/5985132004?gh_jid=5985132004"
+  },
+  "af52c9a2debb5c11": {
+    "company": "Contoro Robotics",
+    "first_seen": "2026-07-23",
+    "title": "Robotics Engineer Intern - Test & Val",
+    "url": "https://jobs.ashbyhq.com/contoro/cf7c8043-8fbe-4c7e-b91f-ee6db2a616c5/application"
+  },
+  "b1bcabc5028c6f80": {
+    "company": "Field AI",
+    "first_seen": "2026-07-23",
+    "title": "1.53 Robotics Research Internship, Humanoid Manipulation (Summer 2026) | PhD Internship",
+    "url": "https://jobs.lever.co/field-ai/2a2c8f00-3a28-481b-882c-33cb0ec4a3a0"
+  },
+  "b5690852994755fa": {
+    "company": "Shield AI",
+    "first_seen": "2026-07-23",
+    "title": "Power Electronics - Electrical Engineer I",
+    "url": "https://jobs.lever.co/shieldai/0af53b2b-e1ba-4e73-9e94-a4a689cabab9"
+  },
+  "bf4c256263afc4ab": {
+    "company": "Etched",
+    "first_seen": "2026-07-23",
+    "title": "Firmware Intern",
+    "url": "https://jobs.ashbyhq.com/Etched/0e78a385-c450-4749-9803-0970ce2971a5"
+  },
+  "c331b8d4ca29aa27": {
+    "company": "Shield AI",
+    "first_seen": "2026-07-23",
+    "title": "Electrical Engineer I (TX)",
+    "url": "https://jobs.lever.co/shieldai/c9321f8a-b367-4dcb-9308-bd64ae6bac1d"
+  },
+  "c5c4cd8c56ccf4dc": {
+    "company": "Saronic",
+    "first_seen": "2026-07-23",
+    "title": "Test Engineer Intern (Fall 2026)",
+    "url": "https://jobs.ashbyhq.com/saronic/927985ae-7a48-4628-9e03-36510d64fb5f"
+  },
+  "c9b9e784550a7509": {
+    "company": "Astranis",
+    "first_seen": "2026-07-23",
+    "title": "Antenna Intern (Fall 2026)",
+    "url": "https://job-boards.greenhouse.io/astranis/jobs/4677763006"
+  },
+  "ca21d9815f0752b4": {
+    "company": "Ambarella",
+    "first_seen": "2026-07-23",
+    "title": "Verification Engineer Intern",
+    "url": "https://ambarella.wd108.myworkdayjobs.com/en-US/ambarella/job/US-Headquarters/Verification-Engineer-Intern_JR100109"
+  },
+  "cd150f7e52ec872d": {
+    "company": "Anduril",
+    "first_seen": "2026-07-23",
+    "title": "Early Career Firmware Engineer ",
+    "url": "https://boards.greenhouse.io/andurilindustries/jobs/5167865007?gh_jid=5167865007"
+  },
+  "d166e1c6339ae0b0": {
+    "company": "Shield AI",
+    "first_seen": "2026-07-23",
+    "title": "Electrical Engineering Spring Co-op (January 2027) (R4475)",
+    "url": "https://jobs.lever.co/shieldai/87d982f2-8b2b-4c73-9a19-71e461c7b724"
+  },
+  "d71b5a2d116ee034": {
+    "company": "PlusAI",
+    "first_seen": "2026-07-23",
+    "title": "Systems Engineering Intern",
+    "url": "https://jobs.lever.co/plus-2/bbdaa94b-6c29-4b1b-b810-05cda3c08d03/apply"
+  },
+  "d8a81a3aaf3892b5": {
+    "company": "Astranis",
+    "first_seen": "2026-07-23",
+    "title": "FPGA Intern (Fall 2026)",
+    "url": "https://job-boards.greenhouse.io/astranis/jobs/4677338006"
+  },
+  "db1dd36f518e6733": {
+    "company": "Layup Parts",
+    "first_seen": "2026-07-23",
+    "title": "Electrical Engineering Intern",
+    "url": "https://jobs.lever.co/layup/0d8b26c2-f4f9-4dc1-b987-1e496fd616aa/apply"
+  },
+  "df5bd56e337aeb42": {
+    "company": "Standard Bots",
+    "first_seen": "2026-07-23",
+    "title": "Associate Electrical Engineer (On-site)",
+    "url": "https://jobs.ashbyhq.com/standardbots/d76f7109-578b-48b5-9ee1-b0526e43e718"
+  },
+  "e0951eb93c917c4f": {
+    "company": "Ambarella",
+    "first_seen": "2026-07-23",
+    "title": "ASIC Design Engineer Intern",
+    "url": "https://ambarella.wd108.myworkdayjobs.com/en-US/ambarella/job/US-Headquarters/ASIC-Design-Engineer-Intern_JR100100"
+  },
+  "e0dc1b10dec5f091": {
+    "company": "Apptronik",
+    "first_seen": "2026-07-23",
+    "title": "Robotics Software Intern – Real-Time",
+    "url": "https://boards.greenhouse.io/apptronik/jobs/5985132004?gh_jid=5985132004"
+  },
+  "e42f0a94e6dcbfc8": {
+    "company": "Aevex Aerospace",
+    "first_seen": "2026-07-23",
+    "title": "Robotics Engineering Co-op",
+    "url": "https://job-boards.greenhouse.io/aevexaerospace/jobs/5255526008"
+  },
+  "e48f4d7ff6343f49": {
+    "company": "Etched",
+    "first_seen": "2026-07-23",
+    "title": "Firmware Intern",
+    "url": "https://jobs.ashbyhq.com/Etched/699f3ab2-07e4-466c-9d76-3d4a3abb4ebc"
+  },
+  "e73db1f98b40a03f": {
+    "company": "Astranis",
+    "first_seen": "2026-07-23",
+    "title": "Embedded Software Developer, Network/Payload Software Intern (Fall 2026)",
+    "url": "https://job-boards.greenhouse.io/astranis/jobs/4601135006"
+  },
+  "e7d369e8832a1909": {
+    "company": "Saronic",
+    "first_seen": "2026-07-23",
+    "title": "Electrical Engineer Intern (Fall 2026)",
+    "url": "https://jobs.ashbyhq.com/saronic/62c0a94b-c5a7-4b35-8092-d01dba301519"
+  },
+  "eb3db8cf18b090f3": {
+    "company": "Neuralink",
+    "first_seen": "2026-07-23",
+    "title": "Embedded Software Engineer Intern, Implant Embedded Systems",
+    "url": "https://boards.greenhouse.io/neuralink/jobs/6283663003?gh_jid=6283663003"
+  },
+  "eb44a8c267fb304a": {
+    "company": "Base Power",
+    "first_seen": "2026-07-23",
+    "title": "Firmware Engineering Intern",
+    "url": "https://jobs.ashbyhq.com/base-power/a8ee9a66-e90b-42c2-a4a2-28d997c3e8c7"
+  },
+  "ecdafc7691be636e": {
+    "company": "Tesla",
+    "first_seen": "2026-07-23",
+    "title": "Chassis Validation Engineer Intern, Vehicle Firmware",
+    "url": "https://www.tesla.com/careers/search/job/247990"
+  },
+  "f0147c33991761e5": {
+    "company": "Base Power",
+    "first_seen": "2026-07-23",
+    "title": "Manufacturing Controls Engineering Intern",
+    "url": "https://jobs.ashbyhq.com/base-power/6c56e236-888e-423d-9f68-764bd9a4742d"
+  },
+  "f0c920aa9880c8df": {
+    "company": "Verkada",
+    "first_seen": "2026-07-23",
+    "title": "Hardware Engineer (Fall Co-op)",
+    "url": "https://job-boards.greenhouse.io/verkada/jobs/4321159007"
+  },
+  "f2621bc40d4ae395": {
+    "company": "Marvell",
+    "first_seen": "2026-07-23",
+    "title": "Design/DSP/Verification Intern - PhD",
+    "url": "https://marvell.wd1.myworkdayjobs.com/MarvellCareers/job/Santa-Clara-CA/Design-DSP-Verification-Intern---PhD-Degree_2502786-1"
+  },
+  "f32323e64ababaf6": {
+    "company": "Neuralink",
+    "first_seen": "2026-07-23",
+    "title": "Electrical Engineer Intern, Implant E",
+    "url": "https://boards.greenhouse.io/neuralink/jobs/7702527003?gh_jid=7702527003"
+  },
+  "f5caf405ec738da7": {
+    "company": "Tesla",
+    "first_seen": "2026-07-23",
+    "title": "Chassis Integration Engineer Intern, Vehicle Firmware",
+    "url": "https://www.tesla.com/careers/search/job/247989?source=Indeed&source=Indeed&tags=organicjob"
+  },
+  "f6d9a3c994021b00": {
+    "company": "Akuna Capital",
+    "first_seen": "2026-07-23",
+    "title": "Hardware Engineer Intern, Summer 2027",
+    "url": "https://www.akunacapital.com/careers/job/8018880/?gh_jid=8018880"
+  },
+  "f7959a2258c8f177": {
+    "company": "Figure AI",
+    "first_seen": "2026-07-23",
+    "title": "Electrical Engineering Intern [Fall 2",
+    "url": "https://job-boards.greenhouse.io/figureai/jobs/4676467006"
+  },
+  "f83a2c745ea4cf93": {
+    "company": "PlusAI",
+    "first_seen": "2026-07-23",
+    "title": "Systems Engineering Intern",
+    "url": "https://jobs.lever.co/plus-2/1864b1be-25e5-424f-9626-09e58f6147f2/apply"
+  },
+  "f87ceb05afa6bab9": {
+    "company": "Etched",
+    "first_seen": "2026-07-23",
+    "title": "DFT Intern",
+    "url": "https://jobs.ashbyhq.com/Etched/5f1f5739-3b58-467c-b351-ff183c94d96d"
+  },
+  "fa2e6d5fa5f7e4c7": {
+    "company": "Saronic Technologies",
+    "first_seen": "2026-07-23",
+    "title": "Electrical Engineer Intern (Fall 2026)",
+    "url": "https://jobs.ashbyhq.com/saronic/62c0a94b-c5a7-4b35-8092-d01dba301519/application"
+  }
+}
