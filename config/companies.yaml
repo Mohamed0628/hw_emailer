@@ -117,33 +117,52 @@ greenhouse:
   token: brightai
 - company: Astranis
   token: astranis
-
 - company: Carbon Robotics
   token: carbonrobotics
-
 - company: FORT Robotics
   token: fortrobotics
-
 - company: Saildrone
   token: saildrone
-
 - company: Reliable Robotics
   token: reliablerobotics
-
 - company: Varda Space Industries
   token: vardaspace
-
 - company: Aalo Atomics
   token: aalo
-
 - company: Apex Space
   token: apex
-
 - company: Saronic
   token: saronic
-
 - company: Hadrian
   token: hadrian
+- company: Natera
+  token: natera
+- company: 10x Genomics
+  token: 10xgenomics
+- company: Twist Bioscience
+  token: twistbioscience
+- company: Element Biosciences
+  token: elementbiosciences
+- company: Ultima Genomics
+  token: ultimagenomics
+- company: Noah Medical
+  token: noahmedical
+- company: Hyperfine
+  token: hyperfine53
+- company: Freenome
+  token: freenome
+- company: Singular Genomics
+  token: singulargenomics
+- company: Quantum-Si
+  token: quantumsi25
+- company: Parse Biosciences
+  token: parsebiosciences
+- company: Recursion Pharmaceuticals
+  token: recursionpharmaceuticals
+- company: BillionToOne
+  token: billiontoone
+- company: Alamar Biosciences
+  token: alamarbiosciences
 lever:
 - company: TKDA
   token: tkda
@@ -201,6 +220,14 @@ lever:
   token: shieldai
 - company: Machina Labs
   token: machinalabs
+- company: GRAIL
+  token: grailbio
+- company: Capstan Medical
+  token: capstan-medical
+- company: Penumbra
+  token: penumbrainc
+- company: Cellares
+  token: cellares
 ashby:
 - company: Polar Semiconductor
   token: polar
@@ -365,6 +392,50 @@ workday:
   tenant: biotechne
   wd_num: 5
   site: Biotechne
+- company: Johnson & Johnson MedTech
+  tenant: jj
+  wd_num: 5
+  site: JJ
+- company: Globus Medical
+  tenant: globusmedical
+  wd_num: 5
+  site: GMED_Careers
+- company: Danaher / Beckman Coulter
+  tenant: danaher
+  wd_num: 1
+  site: DanaherJobs
+- company: Envista
+  tenant: envista
+  wd_num: 1
+  site: envistacareers
+- company: Exact Sciences
+  tenant: exactsciences
+  wd_num: 1
+  site: Exact_Sciences
+- company: iRhythm
+  tenant: irhythmtech
+  wd_num: 5
+  site: iRhythm
+- company: PROCEPT BioRobotics
+  tenant: proceptbiorobotics
+  wd_num: 108
+  site: PROCEPT
+- company: Roche Diagnostics
+  tenant: roche
+  wd_num: 3
+  site: roche-ext
+- company: Clario Clinical
+  tenant: clarioclinical
+  wd_num: 1
+  site: clarioclinical_careers
+- company: Sartorius
+  tenant: sartorius
+  wd_num: 3
+  site: sartoriuscareers
+- company: LivaNova
+  tenant: livanova
+  wd_num: 5
+  site: Search
 - company: Boston Dynamics
   tenant: bostondynamics
   wd_num: 1
@@ -423,4 +494,7 @@ icims:
   enabled: true
 - company: Delta Electronics Americas
   url: https://careers-delta-americas.icims.com/jobs
+  enabled: true
+- company: Nevro
+  url: https://careers-nevro.icims.com/jobs
   enabled: true
