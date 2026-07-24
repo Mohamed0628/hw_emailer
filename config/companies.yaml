@@ -325,6 +325,46 @@ workday:
   tenant: dexcom
   wd_num: 1
   site: Dexcom
+- company: Alcon
+  tenant: alcon
+  wd_num: 5
+  site: careers_alcon
+- company: Agilent Technologies
+  tenant: agilent
+  wd_num: 5
+  site: Agilent_Careers
+- company: Thermo Fisher Scientific
+  tenant: thermofisher
+  wd_num: 5
+  site: ThermoFisherCareers
+- company: Illumina
+  tenant: illumina
+  wd_num: 1
+  site: illumina-careers
+- company: ZOLL Medical
+  tenant: zoll
+  wd_num: 5
+  site: ZOLLMedicalCorp
+- company: Cepheid
+  tenant: vhr-cepheid
+  wd_num: 1
+  site: External_English
+- company: Haemonetics
+  tenant: haemonetics
+  wd_num: 5
+  site: HAE
+- company: Revvity
+  tenant: revvity
+  wd_num: 103
+  site: External
+- company: QuidelOrtho
+  tenant: orthoclinical
+  wd_num: 1
+  site: Search
+- company: Bio-Techne
+  tenant: biotechne
+  wd_num: 5
+  site: Biotechne
 - company: Boston Dynamics
   tenant: bostondynamics
   wd_num: 1
