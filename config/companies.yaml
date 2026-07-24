@@ -285,6 +285,46 @@ workday:
   tenant: integer
   wd_num: 1
   site: External
+- company: Smith+Nephew
+  tenant: smithnephew
+  wd_num: 5
+  site: External
+- company: Philips
+  tenant: philips
+  wd_num: 3
+  site: jobs-and-careers
+- company: Edwards Lifesciences
+  tenant: edwards
+  wd_num: 5
+  site: EdwardsCareers
+- company: Baxter
+  tenant: baxter
+  wd_num: 1
+  site: baxter
+- company: BD
+  tenant: bdx
+  wd_num: 1
+  site: EXTERNAL_CAREER_SITE_USA
+- company: GE HealthCare
+  tenant: gehc
+  wd_num: 5
+  site: GEHC_ExternalSite
+- company: ResMed
+  tenant: resmed
+  wd_num: 3
+  site: ResMed_External_Careers
+- company: Insulet
+  tenant: insulet
+  wd_num: 5
+  site: insuletcareers
+- company: Stryker
+  tenant: stryker
+  wd_num: 1
+  site: StrykerCareers
+- company: Dexcom
+  tenant: dexcom
+  wd_num: 1
+  site: Dexcom
 - company: Boston Dynamics
   tenant: bostondynamics
   wd_num: 1
