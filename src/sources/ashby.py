@@ -1,10 +1,4 @@
-"""Ashby public job-board API.
-
-    GET https://api.ashbyhq.com/posting-api/job-board/{token}?includeCompensation=true
-    -> {"jobs": [{"title", "location", "secondaryLocations": [{"location"}],
-                  "isRemote", "isListed", "jobUrl", "applyUrl", "publishedAt",
-                  "employmentType"}]}
-"""
+"""Ashby public job-board API."""
 
 from __future__ import annotations
 
@@ -12,6 +6,7 @@ import requests
 
 from ..models import Job
 from .base import Source, request_json
+from .text import plain_text
 
 API = "https://api.ashbyhq.com/posting-api/job-board/{token}"
 
@@ -31,6 +26,7 @@ class AshbySource(Source):
         )
         if not data or not isinstance(data, dict):
             return []
+
         jobs: list[Job] = []
         for raw in data.get("jobs", []) or []:
             if raw.get("isListed") is False:
@@ -39,15 +35,17 @@ class AshbySource(Source):
             url = raw.get("jobUrl") or raw.get("applyUrl")
             if not (title and url):
                 continue
+
             locations: list[str] = []
             if raw.get("location"):
                 locations.append(raw["location"])
-            for sec in raw.get("secondaryLocations", []) or []:
-                loc = sec.get("location") if isinstance(sec, dict) else sec
-                if loc and loc not in locations:
-                    locations.append(loc)
-            if raw.get("isRemote") and not any("remote" in l.lower() for l in locations):
+            for secondary in raw.get("secondaryLocations", []) or []:
+                location = secondary.get("location") if isinstance(secondary, dict) else secondary
+                if location and location not in locations:
+                    locations.append(location)
+            if raw.get("isRemote") and not any("remote" in location.lower() for location in locations):
                 locations.append("Remote")
+
             jobs.append(
                 Job(
                     company=self.company,
@@ -57,6 +55,14 @@ class AshbySource(Source):
                     source=self.name,
                     ats="ashby",
                     posted_date=(raw.get("publishedAt") or "")[:10] or None,
+                    description=plain_text(
+                        raw.get("descriptionPlain")
+                        or raw.get("descriptionHtml")
+                        or raw.get("description")
+                    ),
+                    department=raw.get("department"),
+                    team=raw.get("team"),
+                    employment_type=raw.get("employmentType"),
                 )
             )
         return jobs
