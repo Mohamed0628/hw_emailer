@@ -1,4 +1,10 @@
 {
+  "0051ee02f3d11cb2": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Process Development Engineer ",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8555804002?gh_jid=8555804002"
+  },
   "00cf288872567ab2": {
     "company": "Etched",
     "first_seen": "2026-07-23",
@@ -11,6 +17,18 @@
     "title": "Hardware Engineer Intern",
     "url": "https://akunacapital.com/careers/job/8018880/?gh_jid=8018880"
   },
+  "02199bad3ea65d3a": {
+    "company": "Astranis",
+    "first_seen": "2026-07-25",
+    "title": "Propulsion Manufacturing Intern (Fall 2026)",
+    "url": "https://job-boards.greenhouse.io/astranis/jobs/4679102006"
+  },
+  "024ef5039ba26059": {
+    "company": "Shield AI",
+    "first_seen": "2026-07-25",
+    "title": "Hardware Reliability Engineer II (R4675)",
+    "url": "https://jobs.lever.co/shieldai/55e14c5c-ee01-4c42-afc1-3583cf5e93d9"
+  },
   "02a1ff639f4b4c59": {
     "company": "Zipline",
     "first_seen": "2026-07-23",
@@ -22,6 +40,24 @@
     "first_seen": "2026-07-23",
     "title": "Mixed Signal Engineer Intern",
     "url": "https://ambarella.wd108.myworkdayjobs.com/en-US/ambarella/job/US-Headquarters/Mixed-Signal-Engineer-Intern_JR100105"
+  },
+  "03c4958f3f31f8d6": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Software Engineer, Hardware Test & Automation (Starshield)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8574243002?gh_jid=8574243002"
+  },
+  "05158ea393676170": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "SCADA & Controls Engineer, Infrastructure & Utility (Starship)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8592882002?gh_jid=8592882002"
+  },
+  "07e45090b9503de4": {
+    "company": "Neuralink",
+    "first_seen": "2026-07-25",
+    "title": "Quality Systems Engineer",
+    "url": "https://boards.greenhouse.io/neuralink/jobs/7615715003?gh_jid=7615715003"
   },
   "0860f44d58d78ea2": {
     "company": "Jump Trading",
@@ -41,11 +77,53 @@
     "title": "Digital IC Design Engineer Intern",
     "url": "https://boards.greenhouse.io/neuralink/jobs/7090489003?gh_jid=7090489003"
   },
+  "0c49fd26370c7ec8": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Site Reliability Engineer - Top Secret Clearance",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8362795002?gh_jid=8362795002"
+  },
+  "0d0fe8832b48a272": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Mechatronics Maintenance Engineer (Starship)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8490223002?gh_jid=8490223002"
+  },
   "0d72b8674c25179a": {
     "company": "Formlabs",
     "first_seen": "2026-07-24",
     "title": "Hardware R&D Engineering Intern (Fall",
     "url": "https://careers.formlabs.com/job/7890746/apply/?gh_jid=7890746"
+  },
+  "0e53b74699a3ec52": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Software Engineer, Hardware-in-the-Loop (Starlink)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8583074002?gh_jid=8583074002"
+  },
+  "0e7e0c4a6adf2613": {
+    "company": "Apex Technology",
+    "first_seen": "2026-07-25",
+    "title": "System Verification Engineer",
+    "url": "https://jobs.ashbyhq.com/apex-technology-inc/9bc0160d-116e-4ffc-9a59-9e0cf43d5bbd"
+  },
+  "0fee754a730e4730": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Embedded Software Engineer, OS/Platform  (Starlink)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8552893002?gh_jid=8552893002"
+  },
+  "101a59dd4e1fb2e2": {
+    "company": "Reliable Robotics",
+    "first_seen": "2026-07-25",
+    "title": "System Integration Engineer",
+    "url": "https://jobs.ashbyhq.com/reliable-robotics/ae921c92-6552-4905-acde-4dd17b2e0d1d"
+  },
+  "111546838f90c9d7": {
+    "company": "Shield AI",
+    "first_seen": "2026-07-25",
+    "title": "Electrical Integration - Electrical Engineer II (R4627)",
+    "url": "https://jobs.lever.co/shieldai/aad6341b-0825-48e0-8d31-95e72f915ca0"
   },
   "11912f560c4d6ff4": {
     "company": "Ambarella",
@@ -59,11 +137,83 @@
     "title": "Campus FPGA Engineer (Intern)",
     "url": "https://www.jumptrading.com/hr/job?gh_jid=8003013"
   },
+  "150ad317f558a847": {
+    "company": "Interstates",
+    "first_seen": "2026-07-25",
+    "title": "Electrical Controls Engineer- EPLAN Focused",
+    "url": "https://www.interstates.com/careers/jobs?gh_jid=4247454009&gh_jid=4247454009"
+  },
+  "15a72bb628d1e7c9": {
+    "company": "Integer Holdings",
+    "first_seen": "2026-07-25",
+    "title": "Intern-4",
+    "url": "https://integer.wd1.myworkdayjobs.com/en-US/External/job/Santo-Domingo-DR/Intern-4_R35408"
+  },
+  "15d9579a5ac97914": {
+    "company": "Shield AI",
+    "first_seen": "2026-07-25",
+    "title": "Engineer II, Mechanical Test (R4935)",
+    "url": "https://jobs.lever.co/shieldai/1d56e321-727e-4d28-a99c-99c4aec117eb"
+  },
+  "16089bb63789568b": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Mechanical Design Engineer (Starfall)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8626590002?gh_jid=8626590002"
+  },
+  "16272e62149faeb5": {
+    "company": "Shield AI",
+    "first_seen": "2026-07-25",
+    "title": "Power Electronics - Electrical Engineer II",
+    "url": "https://jobs.lever.co/shieldai/622ee448-5ab3-4b2e-b20b-1fff995cbc45"
+  },
+  "1883572deaefca68": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Electrical Engineer, Facilities (Starlink)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8594402002?gh_jid=8594402002"
+  },
+  "192809cb2c670711": {
+    "company": "Mach Industries",
+    "first_seen": "2026-07-25",
+    "title": "Propulsion Test Engineer",
+    "url": "https://jobs.ashbyhq.com/mach/a8163881-1ca5-496e-b524-fad4bf1a4eff"
+  },
+  "196d2048d21fc6a7": {
+    "company": "Anduril",
+    "first_seen": "2026-07-25",
+    "title": "Flight Test Engineer",
+    "url": "https://boards.greenhouse.io/andurilindustries/jobs/5093774007?gh_jid=5093774007"
+  },
+  "1b86780651721494": {
+    "company": "Anduril",
+    "first_seen": "2026-07-25",
+    "title": " Early Career Product Operations Rotation Program ",
+    "url": "https://boards.greenhouse.io/andurilindustries/jobs/5181983007?gh_jid=5181983007"
+  },
+  "1bb57adc4576fbff": {
+    "company": "CelLink",
+    "first_seen": "2026-07-25",
+    "title": "CAD Design Engineer, NPI",
+    "url": "https://cellinktechnologies.com/job-listing?gh_jid=4712301005"
+  },
   "1bbbebd081bd2188": {
     "company": "Torc Robotics",
     "first_seen": "2026-07-23",
     "title": "Systems Engineer I - Test Automation",
     "url": "https://job-boards.greenhouse.io/torcrobotics/jobs/8554813002"
+  },
+  "1ccdd4cdf52f3c4e": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Avionics Systems Engineer (Starship)   ",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8356336002?gh_jid=8356336002"
+  },
+  "1cdc55bdb1f7a3c6": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "IT Systems Engineer - Top Secret Clearance",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8548102002?gh_jid=8548102002"
   },
   "1db17b931c94a0eb": {
     "company": "Apple",
@@ -71,17 +221,77 @@
     "title": "Hardware Masters Engineering Internships",
     "url": "https://jobs.apple.com/en-us/details/200664419/hardware-masters-engineering-internships"
   },
+  "1e5d2233625e3a77": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Avionics Systems Engineer (Starship) ",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8377628002?gh_jid=8377628002"
+  },
+  "1e8e0e716828f631": {
+    "company": "Astranis",
+    "first_seen": "2026-07-25",
+    "title": "Radiation Effects Engineer Intern (Fall 2026)",
+    "url": "https://job-boards.greenhouse.io/astranis/jobs/4694853006"
+  },
+  "1ee943a7b1d255a3": {
+    "company": "Penumbra",
+    "first_seen": "2026-07-25",
+    "title": "R&D Engineer II - Embedded Firmware",
+    "url": "https://jobs.lever.co/penumbrainc/fb4ae1fb-99a3-4510-a290-5e355f20dcd9"
+  },
+  "1f6d2280f30b11b2": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Embedded Software Engineer, Satellite Antenna (Starlink)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8603628002?gh_jid=8603628002"
+  },
+  "1fecb4b21a14f61f": {
+    "company": "Anduril",
+    "first_seen": "2026-07-25",
+    "title": "Data Engineer, Manufacturing Quality",
+    "url": "https://boards.greenhouse.io/andurilindustries/jobs/5167749007?gh_jid=5167749007"
+  },
   "20750721fb095c9d": {
     "company": "Neuralink",
     "first_seen": "2026-07-23",
     "title": "Firmware Engineer Intern, Robotics an",
     "url": "https://boards.greenhouse.io/neuralink/jobs/6648992003?gh_jid=6648992003"
   },
+  "2117312ffbff331f": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Hardware Development Engineer- Microelectronics ",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8613971002?gh_jid=8613971002"
+  },
+  "2120b837a67eb307": {
+    "company": "Locus Robotics",
+    "first_seen": "2026-07-25",
+    "title": "Onsite Support Engineer, Robotics (2:30PM-11:00PM ET)",
+    "url": "https://job-boards.greenhouse.io/locusrobotics/jobs/5194542007"
+  },
+  "212174ba792d2224": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Mechanical Engineer, Machine Design (Starship)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8559200002?gh_jid=8559200002"
+  },
+  "219e58f4d66467c3": {
+    "company": "Field AI",
+    "first_seen": "2026-07-25",
+    "title": "Embedded Systems Engineer-Federal",
+    "url": "https://jobs.lever.co/field-ai/5aa0a3ef-b693-4404-829a-63d8b9dad776"
+  },
   "224369f1f80af159": {
     "company": "Torc Robotics",
     "first_seen": "2026-07-23",
     "title": "Software Engineer I - Device Drivers",
     "url": "https://job-boards.greenhouse.io/torcrobotics/jobs/8534177002"
+  },
+  "238e52221d2d4cdd": {
+    "company": "Figure AI",
+    "first_seen": "2026-07-25",
+    "title": "Electrical Engineer (All Levels)",
+    "url": "https://job-boards.greenhouse.io/figureai/jobs/4313470006"
   },
   "23a3c5c623cccf7b": {
     "company": "Shield AI",
@@ -95,11 +305,53 @@
     "title": "Hardware Reliability Intern [Fall 2026]",
     "url": "https://job-boards.greenhouse.io/figureai/jobs/4613067006"
   },
+  "242becacb14d94f5": {
+    "company": "Twist Bioscience",
+    "first_seen": "2026-07-25",
+    "title": "Mechanical Engineer - Automation Systems (Contract)",
+    "url": "https://job-boards.greenhouse.io/twistbioscience/jobs/8056058"
+  },
+  "244689fd14292349": {
+    "company": "Saronic",
+    "first_seen": "2026-07-25",
+    "title": "Systems Architecture, Integration, and Test Engineer (Mechanical)",
+    "url": "https://jobs.ashbyhq.com/saronic/85c2c8d6-4890-4440-be3d-72778b1948fe"
+  },
+  "2465373cfecf176b": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Test Engineer, Oxygen",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8628878002?gh_jid=8628878002"
+  },
+  "24864c86971d1e66": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "December 2026 New Graduate Engineer, Mechanical (Starship)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8627507002?gh_jid=8627507002"
+  },
+  "24ec5e5b21f4ba46": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Propulsion Engineer, Avionics Manufacturing (Raptor)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8623602002?gh_jid=8623602002"
+  },
+  "25e8209903f5a460": {
+    "company": "Field AI",
+    "first_seen": "2026-07-25",
+    "title": "Electrical Engineer, Robotics Hardware",
+    "url": "https://jobs.lever.co/field-ai/93042d45-ffe3-46a1-8eaf-e229ea228b06"
+  },
   "2622d9391b19b6b4": {
     "company": "Base Power",
     "first_seen": "2026-07-23",
     "title": "Firmware Engineering Intern",
     "url": "https://jobs.ashbyhq.com/base-power/a8ee9a66-e90b-42c2-a4a2-28d997c3e8c7/application"
+  },
+  "26fa40e666f566a4": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Facilities Controls & Automation Engineer (Starlink)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8597945002?gh_jid=8597945002"
   },
   "275c5c0b6881f8ac": {
     "company": "Ambarella",
@@ -113,11 +365,41 @@
     "title": "Hardware Engineering Intern",
     "url": "https://biotechne.wd5.myworkdayjobs.com/Biotechne/job/San-Jose-CA/Hardware-Engineering-Intern_JR101533"
   },
+  "28169aa711826567": {
+    "company": "Varda Space",
+    "first_seen": "2026-07-25",
+    "title": "Aerodynamics and Flight Mechanics Engineer II",
+    "url": "https://job-boards.greenhouse.io/vardaspace/jobs/7792159003"
+  },
+  "284840108762eaac": {
+    "company": "Pulse Biosciences",
+    "first_seen": "2026-07-25",
+    "title": "Manufacturing Test Engineer (Electro-Mechanical Systems)",
+    "url": "https://job-boards.greenhouse.io/pulsebiosciences/jobs/5310354008"
+  },
+  "28ec4c9420501fa6": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "New Graduate Engineer, Mechanical (Starshield)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8493166002?gh_jid=8493166002"
+  },
+  "2a88704a80c25e4f": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Mechanical Engineer, Flight Termination System (Starship)  ",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8604710002?gh_jid=8604710002"
+  },
   "2c1d9be198192f2f": {
     "company": "Nidec",
     "first_seen": "2026-07-23",
     "title": "Electrical Engineer Intern",
     "url": "https://nidec.wd1.myworkdayjobs.com/nidec/job/North-AmericaUSATennesseeLexington-TN/Electrical-Engineer-Intern_R0015984"
+  },
+  "2c2656d15f7e420a": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Electrical Test Engineer (Starshield)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8643997002?gh_jid=8643997002"
   },
   "2c47c93e244bf1fc": {
     "company": "Zipline",
@@ -131,11 +413,53 @@
     "title": "Firmware Intern [Fall 2026]",
     "url": "https://job-boards.greenhouse.io/figureai/jobs/4691070006"
   },
+  "2e5f6387bb2c5367": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Embedded Software Engineer, Laser Mesh Routing (Starlink)   ",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8578934002?gh_jid=8578934002"
+  },
   "2e708b49e16997df": {
     "company": "Applied Intuition",
     "first_seen": "2026-07-23",
     "title": "Research Intern - Reinforcement Learning, Robotics",
     "url": "https://jobs.ashbyhq.com/applied/bb953f29-0059-4a40-aa9e-3a8c88733902"
+  },
+  "2ed7a1b1d6245566": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Design Criteria Engineer (Starship)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8499349002?gh_jid=8499349002"
+  },
+  "303e7413a1bd9a21": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Avionics Test Engineer (Starfall)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8644026002?gh_jid=8644026002"
+  },
+  "3075edb121d1e345": {
+    "company": "Cellares",
+    "first_seen": "2026-07-25",
+    "title": "Automation Equipment Engineer (I, II, III)",
+    "url": "https://jobs.lever.co/cellares/dffbdc42-0173-4396-b77f-8541dd4973e5"
+  },
+  "31030a5a34040f95": {
+    "company": "Apex Technology",
+    "first_seen": "2026-07-25",
+    "title": "Spacecraft Systems Integration and Test Responsible Engineer (Early)",
+    "url": "https://jobs.ashbyhq.com/apex-technology-inc/a9db4ffa-3e36-495e-b413-92097800e0f0"
+  },
+  "318c588b8521eea8": {
+    "company": "Astera Labs",
+    "first_seen": "2026-07-25",
+    "title": "Product Quality Engineer (NCG)",
+    "url": "https://job-boards.greenhouse.io/asteralabs/jobs/4695147005"
+  },
+  "32d7df3b70c5bba2": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Security Engineer (Embedded & Networking)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8593385002?gh_jid=8593385002"
   },
   "32fae91182bd9f1a": {
     "company": "Bio-Techne",
@@ -143,11 +467,47 @@
     "title": "Hardware Engineering Intern",
     "url": "https://biotechne.wd5.myworkdayjobs.com/en-US/Biotechne/job/San-Jose-CA/Hardware-Engineering-Intern_JR101533"
   },
+  "33a4c5050748ddda": {
+    "company": "Ultima Genomics",
+    "first_seen": "2026-07-25",
+    "title": "Field Service Engineer I, Development Program",
+    "url": "https://job-boards.greenhouse.io/ultimagenomics/jobs/5619330004"
+  },
+  "33ca4f766f27da7a": {
+    "company": "Saronic",
+    "first_seen": "2026-07-25",
+    "title": "Mechanical Engineer, Hardware Integration",
+    "url": "https://jobs.ashbyhq.com/saronic/44fd5e00-0ddf-4efb-8e81-18caddc331b1"
+  },
   "3449bc5539c0bdab": {
     "company": "Anduril",
     "first_seen": "2026-07-23",
     "title": "2026 Early Career Flight Test Engineer, Mission Autonomy",
     "url": "https://boards.greenhouse.io/andurilindustries/jobs/5185089007?gh_jid=5185089007"
+  },
+  "3500f3257abb0b84": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Site Reliability Engineer (Top Secret Clearance)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8601223002?gh_jid=8601223002"
+  },
+  "35abfbdd9a796bc0": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "December 2026 New Graduate Engineer, Propulsion (Starship)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8627510002?gh_jid=8627510002"
+  },
+  "35b9fe0b5b1bc1ca": {
+    "company": "Field AI",
+    "first_seen": "2026-07-25",
+    "title": "Robotics QA / QC Engineer",
+    "url": "https://jobs.lever.co/field-ai/8df764f7-7451-4813-a4f3-69277b9fef76"
+  },
+  "364aa57cfa4c2b22": {
+    "company": "Etched",
+    "first_seen": "2026-07-25",
+    "title": "SI/PI Intern",
+    "url": "https://jobs.ashbyhq.com/Etched/ce683632-421a-4ef9-8664-b253356969a3"
   },
   "36897ec89317b522": {
     "company": "Jump Trading",
@@ -167,11 +527,59 @@
     "title": "Electrical Engineer I (SD)",
     "url": "https://jobs.lever.co/shieldai/1b229cdc-9a0b-4704-b39b-b3b4c6e3fa89"
   },
+  "3831f67d0b8a8784": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Test Engineer, Powertrain Components (Starship)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8592829002?gh_jid=8592829002"
+  },
+  "3a35d1b99ed8515e": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Equipment Maintenance & Reliability Engineer, PCB (Starlink)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8568127002?gh_jid=8568127002"
+  },
+  "3a6950da761f389a": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Mechanical Engineer, Fluid Systems (Design & Build)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8578082002?gh_jid=8578082002"
+  },
+  "3adc084b1b93f754": {
+    "company": "Varda Space",
+    "first_seen": "2026-07-25",
+    "title": "Integration and Test Engineer",
+    "url": "https://job-boards.greenhouse.io/vardaspace/jobs/6485429003"
+  },
+  "3c4c59efe357cb25": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Electrical Design Engineer (Starshield)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8358201002?gh_jid=8358201002"
+  },
+  "3c785066abea33a3": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Propulsion Engineer (Raptor Test)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8395154002?gh_jid=8395154002"
+  },
+  "3c8b6d3728efb5d2": {
+    "company": "Applied Intuition",
+    "first_seen": "2026-07-25",
+    "title": "Hardware Integration Engineer",
+    "url": "https://jobs.ashbyhq.com/applied/0bf0067b-38bb-4916-9fa3-d234eec3ba42"
+  },
   "3ce2ba9b1ecfcd06": {
     "company": "Jane Street",
     "first_seen": "2026-07-24",
     "title": "Hardware Engineer (FPGA/ASIC) Intern",
     "url": "https://www.janestreet.com/join-jane-street/position/8624440002/"
+  },
+  "3e7b48b91f21c0a8": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Automation & Controls Engineer (Starship)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8350391002?gh_jid=8350391002"
   },
   "3f84fe51607bf125": {
     "company": "Shield AI",
@@ -179,11 +587,29 @@
     "title": "Power Electronics - Thermal Engineer I (R4842)",
     "url": "https://jobs.lever.co/shieldai/f6bbec19-f1c6-44ce-9af5-132b25b6e83a"
   },
+  "3f9d56d146147f3e": {
+    "company": "Astranis",
+    "first_seen": "2026-07-25",
+    "title": "Reliability Design Intern (Fall 2026)",
+    "url": "https://job-boards.greenhouse.io/astranis/jobs/4681472006"
+  },
   "40bcb9ed1e802008": {
     "company": "Motorola Solutions",
     "first_seen": "2026-07-23",
     "title": "Intern - Embedded Software, System, a",
     "url": "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Irvine-CA/Intern---Embedded-Software--System--and-Test-Engineer---2026_R62372"
+  },
+  "40d9bc5375bb3d8d": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Automation & Controls Engineer (Starship Launch Hardware)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8433913002?gh_jid=8433913002"
+  },
+  "4178fc761f9aa24e": {
+    "company": "Chef Robotics",
+    "first_seen": "2026-07-25",
+    "title": "Robotic Operations Engineer",
+    "url": "https://jobs.lever.co/ChefRobotics/9fdbf4fe-7318-4340-81ef-126000ddf11b"
   },
   "419ce8ee9e685d2e": {
     "company": "Neuralink",
@@ -191,11 +617,47 @@
     "title": "Firmware Engineer Intern, Robotics and Surgery Engineering",
     "url": "https://boards.greenhouse.io/neuralink/jobs/6648992003?gh_jid=6648992003"
   },
+  "424df45c75171536": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Quality Systems Engineer (Starlink)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8633640002?gh_jid=8633640002"
+  },
+  "42b3ac0888259aec": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Software Engineer, Hardware Test & Automation (Starlink)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8565155002?gh_jid=8565155002"
+  },
+  "42efce2395c61224": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Embedded Security Engineer (Starlink)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8577410002?gh_jid=8577410002"
+  },
+  "44d2193d13f2f7a4": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "IT Windows Systems Engineer - Top Secret Clearance",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8548907002?gh_jid=8548907002"
+  },
   "457fd1fa07b7b5ab": {
     "company": "Astranis",
     "first_seen": "2026-07-23",
     "title": "Electrical Integration Intern - Avionics (Fall 2026)",
     "url": "https://job-boards.greenhouse.io/astranis/jobs/4679105006"
+  },
+  "46589abcab26a1fb": {
+    "company": "Anduril",
+    "first_seen": "2026-07-25",
+    "title": "Product Sourcing Engineer",
+    "url": "https://boards.greenhouse.io/andurilindustries/jobs/5192035007?gh_jid=5192035007"
+  },
+  "466f84ed5d584e49": {
+    "company": "Physical Intelligence",
+    "first_seen": "2026-07-25",
+    "title": "Forward Deployed Robotics Engineer",
+    "url": "https://jobs.ashbyhq.com/physicalintelligence/567d620f-7600-4e35-9edd-f41ed4db45ce"
   },
   "46a7aa1b457859ea": {
     "company": "Applied Intuition",
@@ -203,11 +665,35 @@
     "title": "Research Intern - Robotic Hardware, Simulation and Data",
     "url": "https://jobs.ashbyhq.com/applied/5bb0567a-8d07-4cc4-be7c-c06b31361883"
   },
+  "475bd6ceecfd89d4": {
+    "company": "Physical Intelligence",
+    "first_seen": "2026-07-25",
+    "title": "Research Internships",
+    "url": "https://jobs.ashbyhq.com/physicalintelligence/f020ff1a-4b4c-4415-8434-2da5010a7076"
+  },
   "47ba4c14ef4d9d1c": {
     "company": "Etched",
     "first_seen": "2026-07-23",
     "title": "Design Verification Engineer - Internal IP",
     "url": "https://jobs.ashbyhq.com/Etched/77f0497f-086e-4d89-bbcd-bac7a79bf9a1"
+  },
+  "47c263559e85855f": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Test Engineer, Propulsion Components (Starship)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8423223002?gh_jid=8423223002"
+  },
+  "47d88d5bd3820698": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Embedded Security Engineer (Starlink)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8543670002?gh_jid=8543670002"
+  },
+  "4826fcbca547439d": {
+    "company": "Varda Space",
+    "first_seen": "2026-07-25",
+    "title": "Vehicle Integration and Test Internship - Fall 2026",
+    "url": "https://job-boards.greenhouse.io/vardaspace/jobs/7660858003"
   },
   "48abd0c9fb6d10c4": {
     "company": "Neuralink",
@@ -221,11 +707,47 @@
     "title": "Hardware & Embedded Research Intern (",
     "url": "https://jobs.smartrecruiters.com/BoschGroup/744000131150005"
   },
+  "49bd50dd991e880d": {
+    "company": "Mach Industries",
+    "first_seen": "2026-07-25",
+    "title": "Build Reliability Engineer",
+    "url": "https://jobs.ashbyhq.com/mach/320395b8-b461-4695-b874-ceedaf7f9d7e"
+  },
+  "49ebd80bf5ea44c9": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Automation & Controls Engineer (Asset Engineering)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8540471002?gh_jid=8540471002"
+  },
+  "4a2577f5dfd8b1a2": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Silicon Packaging Process Engineer, Production (Starlink)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8524877002?gh_jid=8524877002"
+  },
+  "4ad5938174d9a49b": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Electrical Engineer (Starship Avionics)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8593382002?gh_jid=8593382002"
+  },
   "4cf031dc9a03f217": {
     "company": "Generac",
     "first_seen": "2026-07-23",
     "title": "Intern Firmware Engineering",
     "url": "https://generac.wd5.myworkdayjobs.com/External/job/Reno-NV---USA/Intern-Firmware-Engineering_JR14674"
+  },
+  "4d9b406484b4ac90": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Reliability Engineer, Facilities ",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8474952002?gh_jid=8474952002"
+  },
+  "4e8b36b43888bef4": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Test Engineer (Falcon Test)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8594458002?gh_jid=8594458002"
   },
   "4e9da6df99d26cdc": {
     "company": "DRW",
@@ -233,11 +755,47 @@
     "title": "FPGA Intern",
     "url": "https://job-boards.greenhouse.io/drweng/jobs/8038923"
   },
+  "4faca00e5e3857d3": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Security Engineer (Embedded OT)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8593389002?gh_jid=8593389002"
+  },
+  "4fbffba045122e49": {
+    "company": "Natera",
+    "first_seen": "2026-07-25",
+    "title": "Laboratory Automation Engineer",
+    "url": "https://job-boards.greenhouse.io/natera/jobs/6098764004"
+  },
+  "4fe9f465608da2a2": {
+    "company": "Etched",
+    "first_seen": "2026-07-25",
+    "title": "Infrastructure Intern",
+    "url": "https://jobs.ashbyhq.com/Etched/1b073af4-6764-45ca-a22d-40a4823f0877"
+  },
+  "5015ffd6afaf2f02": {
+    "company": "May Mobility",
+    "first_seen": "2026-07-25",
+    "title": "Robotics Engineer II",
+    "url": "https://job-boards.greenhouse.io/maymobility/jobs/8502427002"
+  },
+  "52ae6d17790920bd": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Equipment Reliability Engineer (Starlink/Akoustis)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8567008002?gh_jid=8567008002"
+  },
   "52e4722d9602602b": {
     "company": "Anduril",
     "first_seen": "2026-07-23",
     "title": "2027 Electrical Engineer Intern",
     "url": "https://boards.greenhouse.io/andurilindustries/jobs/5148101007?gh_jid=5148101007"
+  },
+  "539565e1857ae977": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Thermal Mechanical Test Engineer, Silicon Packaging (Starlink) ",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8613825002?gh_jid=8613825002"
   },
   "542bb735208fa80b": {
     "company": "Torc Robotics",
@@ -251,11 +809,41 @@
     "title": "Title SEDSS- Junior Systems Engineer **",
     "url": "https://careers-simventions.icims.com/jobs/1583/sedss--junior-systems-engineer-**/job"
   },
+  "5504323a2dab001b": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Reliability Engineer (Starlink/Akoustis)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8473716002?gh_jid=8473716002"
+  },
+  "57f054ddfb36e47e": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Software Engineer, Hardware Test & Automation (Optical Payloads)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8545930002?gh_jid=8545930002"
+  },
   "582d64f91e4cfb6c": {
     "company": "IMC Trading",
     "first_seen": "2026-07-23",
     "title": "Hardware Engineer Intern - Summer 2027",
     "url": "https://job-boards.eu.greenhouse.io/imc/jobs/4823945101"
+  },
+  "58a2b9971fd0ed0e": {
+    "company": "Field AI",
+    "first_seen": "2026-07-25",
+    "title": "Sensor Systems Engineer-Federal",
+    "url": "https://jobs.lever.co/field-ai/c0932811-6a6e-45b4-bced-4d0efe50d427"
+  },
+  "58ae0e70b92524a5": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Wireless Firmware Engineer (Starlink Mobile)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8546713002?gh_jid=8546713002"
+  },
+  "594c353dc296c81a": {
+    "company": "Astranis",
+    "first_seen": "2026-07-25",
+    "title": "Mission Engineering Intern (Fall 2026)",
+    "url": "https://job-boards.greenhouse.io/astranis/jobs/4628847006"
   },
   "59fe1d08b0a3c317": {
     "company": "Human Computer Lab",
@@ -275,17 +863,107 @@
     "title": "Associate Systems Engineer",
     "url": "https://insulet.wd5.myworkdayjobs.com/en-US/insuletcareers/job/Aviacon-Tijuana/Associate-Systems-Engineer_REQ-2026-17340"
   },
+  "5cddc48a2eb21831": {
+    "company": "Applied Intuition",
+    "first_seen": "2026-07-25",
+    "title": "OTA Validation Engineer",
+    "url": "https://jobs.ashbyhq.com/applied/567062a4-578e-4d05-a175-4fff84dd07b5"
+  },
+  "5e31e935b2141c79": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Wireless Firmware Engineer (Starlink Mobile)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8546722002?gh_jid=8546722002"
+  },
+  "5f12398c3077c2ee": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Electrical Engineer, Facilities Infrastructure",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8583707002?gh_jid=8583707002"
+  },
+  "5f3a27e7ebdc5be9": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Power Systems Engineer (Starlink)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8594403002?gh_jid=8594403002"
+  },
   "5fefe830b76d8996": {
     "company": "Huntsman",
     "first_seen": "2026-07-23",
     "title": "Electrical Engineering Intern",
     "url": "https://huntsman.wd1.myworkdayjobs.com/Huntsman/job/USA---Texas---Houston---The-Woodlands---Corporate-Office/Electrical-Engineering-Intern_J-020027"
   },
+  "605606e1d7c58477": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Integration & Test Engineer (Starship)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8553658002?gh_jid=8553658002"
+  },
+  "6067fca16fab04dd": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Test Engineer, Battery Development",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8621451002?gh_jid=8621451002"
+  },
+  "607bc5355d50125d": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Embedded Security Engineer (Starlink)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8624836002?gh_jid=8624836002"
+  },
+  "60c5db558b90a57b": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Automation & Controls Engineer, Insource Manufacturing (Starlink)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8612924002?gh_jid=8612924002"
+  },
+  "6124c23c40424638": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Electrical Engineer, Spacecraft Avionics (Starshield)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8358203002?gh_jid=8358203002"
+  },
+  "61f3ee05b2e9616e": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Process Controls Engineer, Solar Cell Factory (Starlink)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8383450002?gh_jid=8383450002"
+  },
+  "620a7bed7724ec47": {
+    "company": "Anduril",
+    "first_seen": "2026-07-25",
+    "title": "Open Architecture Systems Engineer, Mission Systems",
+    "url": "https://boards.greenhouse.io/andurilindustries/jobs/5173074007?gh_jid=5173074007"
+  },
+  "621791c872188fdc": {
+    "company": "Etched",
+    "first_seen": "2026-07-25",
+    "title": "Mech / Thermal Intern",
+    "url": "https://jobs.ashbyhq.com/Etched/f05e3218-5ec7-41d1-bc99-bb7014422229"
+  },
   "626552c518d2577c": {
     "company": "Bosch Group",
     "first_seen": "2026-07-23",
     "title": "Electronics Engineering Intern",
     "url": "https://jobs.smartrecruiters.com/BoschGroup/744000126066306"
+  },
+  "62f2da101abefc56": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Tooling Design & Automation Engineer (Starlink)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8365425002?gh_jid=8365425002"
+  },
+  "63369735c92a6057": {
+    "company": "Etched",
+    "first_seen": "2026-07-25",
+    "title": "DV Intern",
+    "url": "https://jobs.ashbyhq.com/Etched/dacedaca-c4ca-4964-85a7-8df1738005bb"
+  },
+  "662722f653cb46bc": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Electrical Engineer, Propellant Generation (Starship)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8500856002?gh_jid=8500856002"
   },
   "671db468f84777e2": {
     "company": "Schweitzer Engineering Laboratories",
@@ -299,11 +977,23 @@
     "title": "Software Engineering Intern, Embedded Systems",
     "url": "https://jobs.ashbyhq.com/apex-technology-inc/5ec2dfa9-724d-4ce4-ab97-5067ec747f11"
   },
+  "685373a445af2a7e": {
+    "company": "E Tech Group",
+    "first_seen": "2026-07-25",
+    "title": "Controls Engineer",
+    "url": "https://etechgroup.com/careers-list?gh_jid=5985907004"
+  },
   "6a575b05c16859bd": {
     "company": "TETRAMEM",
     "first_seen": "2026-07-24",
     "title": "Software Engineer Intern, Embedded",
     "url": "https://tetramem.hrmdirect.com/employment/job-opening.php?req=3491042#job"
+  },
+  "6b58a86acf7d5455": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Propulsion Engineer, Components Manufacturing (Raptor)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8512813002?gh_jid=8512813002"
   },
   "6b87c1f6445bfead": {
     "company": "Moog",
@@ -329,6 +1019,42 @@
     "title": "Environmental Test Engineer Intern (Fall 2026)",
     "url": "https://job-boards.greenhouse.io/astranis/jobs/4676888006"
   },
+  "6fb5abfaec4237c7": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "New Graduate Engineer, Propulsion (Raptor)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8517361002?gh_jid=8517361002"
+  },
+  "6fea58fa00e9d763": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Welding Automation Engineer, Chamber and Nozzle (Raptor) ",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8544608002?gh_jid=8544608002"
+  },
+  "709464e2dba050c1": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Power Systems Engineer (Starship Avionics) ",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8627222002?gh_jid=8627222002"
+  },
+  "70d88be01bd8e884": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Test Engineer (Starship Development)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8477466002?gh_jid=8477466002"
+  },
+  "7128274b4cf0457f": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Avionics Test Engineer (Starshield)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8501166002?gh_jid=8501166002"
+  },
+  "71f3be75e1ef2f0b": {
+    "company": "Interstates",
+    "first_seen": "2026-07-25",
+    "title": "Electrical Controls Engineer- EPLAN Focused",
+    "url": "https://www.interstates.com/careers/jobs?gh_jid=4247448009&gh_jid=4247448009"
+  },
   "720f054c31a22d8d": {
     "company": "Neuralink",
     "first_seen": "2026-07-23",
@@ -347,17 +1073,53 @@
     "title": "Mechatronics Perception Intern (Fall 2026)",
     "url": "https://www.zipline.com/open-roles?gh_jid=7763697003"
   },
+  "7341be1c3cba6eb9": {
+    "company": "Apex.AI",
+    "first_seen": "2026-07-25",
+    "title": "Application Engineer (Early Career)",
+    "url": "https://jobs.lever.co/apex-ai/f2fa3bf3-ddf5-4a9a-9c92-4647a31ef486"
+  },
   "7353bba665f4540d": {
     "company": "SpaceX",
     "first_seen": "2026-07-24",
     "title": "New Graduate Engineer, Electrical (Starshield)",
     "url": "https://boards.greenhouse.io/spacex/jobs/8483305002?gh_jid=8483305002"
   },
+  "73a1d066629419e6": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Automation Engineer, Blades and Vanes Foundry",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8502939002?gh_jid=8502939002"
+  },
+  "73a4aec47cf4e2cb": {
+    "company": "Field AI",
+    "first_seen": "2026-07-25",
+    "title": "Electrical Engineer-Federal",
+    "url": "https://jobs.lever.co/field-ai/9ad21207-951e-43f5-a63f-69f02f7c95c2"
+  },
   "73c90e35f76f337b": {
     "company": "Anduril",
     "first_seen": "2026-07-23",
     "title": "2027 Early Career Electrical Engineer",
     "url": "https://boards.greenhouse.io/andurilindustries/jobs/5136925007?gh_jid=5136925007"
+  },
+  "74d72c0e4a97cc1c": {
+    "company": "Field AI",
+    "first_seen": "2026-07-25",
+    "title": "Product QA & Data Engineer",
+    "url": "https://jobs.lever.co/field-ai/bbb7838b-7eb5-4899-ac38-f2d95285a84d"
+  },
+  "75007a13baa8cd75": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "New Graduate Engineer, Launch & Test (Starship)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8578087002?gh_jid=8578087002"
+  },
+  "757576c3bcf6ab69": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Structures Design Engineer",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8529478002?gh_jid=8529478002"
   },
   "7695f4c5455a6a35": {
     "company": "Agilent Technologies",
@@ -371,11 +1133,35 @@
     "title": "Hardware Engineering Intern",
     "url": "https://jobs.ashbyhq.com/base-power/f22cee0e-55d9-42cd-806e-1c1fc7217770"
   },
+  "76c2ec27cfc29b0b": {
+    "company": "Ubiquiti",
+    "first_seen": "2026-07-25",
+    "title": "DQA Engineer (Network Product)",
+    "url": "https://job-boards.greenhouse.io/ubiquiti/jobs/4329333009"
+  },
+  "76d5d16c42b747e1": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Site Reliability Engineer, GNC",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8527730002?gh_jid=8527730002"
+  },
+  "76f05bfb533f393e": {
+    "company": "Applied Intuition",
+    "first_seen": "2026-07-25",
+    "title": "Research Intern - Reinforcement Learning, Self-Driving",
+    "url": "https://jobs.ashbyhq.com/applied/ce58d9fd-f22b-4336-80b5-ba1e8d764526"
+  },
   "777216ffd7949dfe": {
     "company": "Applied Intuition",
     "first_seen": "2026-07-23",
     "title": "Research Intern - World-Action Foundation Model, Robotics",
     "url": "https://jobs.ashbyhq.com/applied/edc2528d-6e6c-4a67-b871-bfe7d9c890b4"
+  },
+  "78699727029de7e9": {
+    "company": "Etched",
+    "first_seen": "2026-07-25",
+    "title": "Supercomputing Intern",
+    "url": "https://jobs.ashbyhq.com/Etched/b45e357c-07ea-4499-9911-1d3cc9b9ac71"
   },
   "7942fcdf08083f72": {
     "company": "Neuralink",
@@ -383,11 +1169,59 @@
     "title": "Electrical Engineer Intern, Implant Embedded Systems",
     "url": "https://boards.greenhouse.io/neuralink/jobs/7702527003?gh_jid=7702527003"
   },
+  "79890d11fcfb40ff": {
+    "company": "Anduril",
+    "first_seen": "2026-07-25",
+    "title": "Systems Engineer, Mission Autonomy, Active Clearance",
+    "url": "https://boards.greenhouse.io/andurilindustries/jobs/4653705007?gh_jid=4653705007"
+  },
+  "79991097b0852149": {
+    "company": "Varda Space Industries",
+    "first_seen": "2026-07-25",
+    "title": "Flight Software (C++) Internship - Summer 2026",
+    "url": "https://job-boards.greenhouse.io/vardaspace/jobs/6824788003"
+  },
+  "7c84d682fd24626c": {
+    "company": "Anduril",
+    "first_seen": "2026-07-25",
+    "title": "Flight Software Engineer, Embedded C/C++, Air Dominance & Strike - Advanced Effects",
+    "url": "https://boards.greenhouse.io/andurilindustries/jobs/5035788007?gh_jid=5035788007"
+  },
+  "7c9ce341d0b0fb4a": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Mechanical Engineer, Printer Design & Manufacturing (Raptor)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8607193002?gh_jid=8607193002"
+  },
+  "7df63e0e49a89d18": {
+    "company": "Anduril",
+    "first_seen": "2026-07-25",
+    "title": "2026 Early Career Test & Evaluation Engineer",
+    "url": "https://boards.greenhouse.io/andurilindustries/jobs/5185888007?gh_jid=5185888007"
+  },
+  "7e79019af4b2828b": {
+    "company": "Varda Space",
+    "first_seen": "2026-07-25",
+    "title": "Propulsion Engineer II - Ground Fluids",
+    "url": "https://job-boards.greenhouse.io/vardaspace/jobs/7746433003"
+  },
   "7e9f955501614b43": {
     "company": "Apple",
     "first_seen": "2026-07-24",
     "title": "Hardware Undergrad Engineering Intern",
     "url": "https://jobs.apple.com/en-us/details/200663981/hardware-undergrad-engineering-internships"
+  },
+  "7f6dd218a6803be5": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Production Engineer (Starship Electronics)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8420823002?gh_jid=8420823002"
+  },
+  "800eff0798a7f071": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Propulsion Engineer, Combustion Devices Manufacturing (Raptor)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8511177002?gh_jid=8511177002"
   },
   "804bd5ccf8a4095d": {
     "company": "WSP",
@@ -395,11 +1229,35 @@
     "title": "Electrical Engineering Co-op - Fall 2",
     "url": "https://emit.fa.ca3.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_2001/job/87098"
   },
+  "81edda5efbdab03b": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Electrical Engineer, Hardware Reliability (Starlink)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8581449002?gh_jid=8581449002"
+  },
+  "821ba09201142fa3": {
+    "company": "Mach Industries",
+    "first_seen": "2026-07-25",
+    "title": "Fall 2026 Engineering Internship",
+    "url": "https://jobs.ashbyhq.com/mach/021b2c1d-5257-4dea-b06d-0c445de44d28"
+  },
   "82865a648aa3734a": {
     "company": "Zipline",
     "first_seen": "2026-07-23",
     "title": "Controls Engineer Intern (Fall 2026)",
     "url": "https://www.zipline.com/open-roles?gh_jid=7772233003"
+  },
+  "838ae0db1259d11b": {
+    "company": "Saronic",
+    "first_seen": "2026-07-25",
+    "title": "Structures Test Engineer",
+    "url": "https://jobs.ashbyhq.com/saronic/89c34139-0005-4bd5-aa25-845d56a76bd3"
+  },
+  "842feb73622d9b0c": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Harness Design Engineer (Starshield) ",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8635886002?gh_jid=8635886002"
   },
   "84836f726a8b6769": {
     "company": "Tesla",
@@ -407,11 +1265,41 @@
     "title": "Embedded Software Engineer Intern, Keys & Authentication",
     "url": "https://www.tesla.com/careers/search/job/internship-embedded-software-engineer-keys-authentication-fall-2026-270067"
   },
+  "85beeab67849f532": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Design Criteria Engineer (Starshield)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8492189002?gh_jid=8492189002"
+  },
+  "877e786892244030": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Hardware Test Engineer (Starlink)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8497592002?gh_jid=8497592002"
+  },
+  "87dc6c7bc6a6f62e": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Supplier Development Engineer, Automation & Controls (Starlink)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8533957002?gh_jid=8533957002"
+  },
   "890d7b1d9f222d30": {
     "company": "GE HealthCare",
     "first_seen": "2026-07-24",
     "title": "Verification Intern",
     "url": "https://gehc.wd5.myworkdayjobs.com/en-US/GEHC_ExternalSite/job/Haifa/Verification-Intern_R4040730-1"
+  },
+  "890d7dd6a0eaab36": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Software Engineer, Embedded Software (Starshield)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8436708002?gh_jid=8436708002"
+  },
+  "89427a5fc8bec10b": {
+    "company": "Interstates",
+    "first_seen": "2026-07-25",
+    "title": "Electrical Controls Engineer- EPLAN Focused",
+    "url": "https://www.interstates.com/careers/jobs?gh_jid=4247357009&gh_jid=4247357009"
   },
   "8958fd73ac705c26": {
     "company": "Skyworks",
@@ -419,11 +1307,23 @@
     "title": "Analog IC Design Co-op",
     "url": "https://careers.skyworksinc.com/job/Irvine-Analog-IC-Design-SummerFall-Co-Op-(June-&apos;26-Dec-&apos;26)-CA-92602/76295-en_US/?feedId=177100"
   },
+  "8aa9b9c7561ba9ad": {
+    "company": "Integer Holdings",
+    "first_seen": "2026-07-25",
+    "title": "Intern-1",
+    "url": "https://integer.wd1.myworkdayjobs.com/en-US/External/job/Santo-Domingo-DR/Intern-1_R35405"
+  },
   "8b9252e1ec80912e": {
     "company": "Hermeus",
     "first_seen": "2026-07-23",
     "title": "Subsystem Test Engineering Intern - F",
     "url": "https://jobs.lever.co/hermeus/3ee3f243-bab8-4bdb-b0d0-2214874ef49e/apply"
+  },
+  "8beb18f3715d8a67": {
+    "company": "Shield AI",
+    "first_seen": "2026-07-25",
+    "title": "EWIS Harness Design - Engineer I (R5018)",
+    "url": "https://jobs.lever.co/shieldai/dc29adac-fe50-41c1-a466-71b7700626ba"
   },
   "8c127912df87a859": {
     "company": "Magna",
@@ -443,17 +1343,53 @@
     "title": "Firmware Intern",
     "url": "https://jobs.ashbyhq.com/Etched/1efd9b58-66fe-4798-a877-776857b4e189"
   },
+  "8d73018b21179215": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Manufacturing Engineer, PCBA (Starlink)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8440246002?gh_jid=8440246002"
+  },
+  "8d7ed763c7c92b01": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Hardware Development Engineer, PCBA Manufacturing (Starlink) ",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8340749002?gh_jid=8340749002"
+  },
   "8d8b6f608c66c99d": {
     "company": "Astranis",
     "first_seen": "2026-07-23",
     "title": "Hardware Design Intern, Software Defi",
     "url": "https://job-boards.greenhouse.io/astranis/jobs/4691163006"
   },
+  "8e46243689a9d02e": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Software Engineer, Embedded Software (Starlink)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8552752002?gh_jid=8552752002"
+  },
+  "8e89a996fc0b7194": {
+    "company": "Etched",
+    "first_seen": "2026-07-25",
+    "title": "Inference Intern",
+    "url": "https://jobs.ashbyhq.com/Etched/6f23713f-5409-45b7-aae8-adb8710cdbc3"
+  },
+  "9184daaea7fbdaf0": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Electrical Engineer (Starship Avionics)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8559232002?gh_jid=8559232002"
+  },
   "9186b72374ad29c7": {
     "company": "Neuralink",
     "first_seen": "2026-07-23",
     "title": "Mechanical Engineering Intern, Robotics",
     "url": "https://boards.greenhouse.io/neuralink/jobs/6514169003?gh_jid=6514169003"
+  },
+  "91e4181c2924d7e6": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Test Stand Design & Build Engineer (Structures/Fluid Systems)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8477422002?gh_jid=8477422002"
   },
   "9268a07be7b79cdd": {
     "company": "Cellares",
@@ -491,11 +1427,35 @@
     "title": "Power Electronics Intern (Fall 2026)",
     "url": "https://job-boards.greenhouse.io/astranis/jobs/4625923006"
   },
+  "9816ab0dae710dbb": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Materials Engineer, Test (Starship)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8614546002?gh_jid=8614546002"
+  },
+  "99ac945607ce7a8c": {
+    "company": "Aurora Innovation",
+    "first_seen": "2026-07-25",
+    "title": "Automation Engineer II",
+    "url": "https://aurora.tech/jobs/8642293002?gh_jid=8642293002"
+  },
   "9a6acf7659cce005": {
     "company": "Rivian and Volkswagen Group Technologies",
     "first_seen": "2026-07-24",
     "title": "Engineering Intern, Embedded Hardware, Vehicle Networking & Audio",
     "url": "https://careers.rivianvw.tech/rivian-vw-group-technology/jobs/27276/job"
+  },
+  "9ae6bff443f988a5": {
+    "company": "Varda Space",
+    "first_seen": "2026-07-25",
+    "title": "Flight Software Internship - Fall 2026",
+    "url": "https://job-boards.greenhouse.io/vardaspace/jobs/7676465003"
+  },
+  "9ae976d749bb615e": {
+    "company": "Danaher / Beckman Coulter",
+    "first_seen": "2026-07-25",
+    "title": "Systems Engineer II",
+    "url": "https://danaher.wd1.myworkdayjobs.com/en-US/DanaherJobs/job/Chaska-Minnesota-United-States/Systems-Engineer-II_R1312920-1"
   },
   "9d08c79ea7867243": {
     "company": "Base Power",
@@ -503,11 +1463,35 @@
     "title": "Hardware Engineering Intern",
     "url": "https://jobs.ashbyhq.com/base-power/f22cee0e-55d9-42cd-806e-1c1fc7217770/application"
   },
+  "9e1b1e293bd74bf8": {
+    "company": "Varda Space",
+    "first_seen": "2026-07-25",
+    "title": "Flight Software (C++) Internship - Summer 2026",
+    "url": "https://job-boards.greenhouse.io/vardaspace/jobs/6824788003"
+  },
   "9f3cde7462a41576": {
     "company": "Shield AI",
     "first_seen": "2026-07-23",
     "title": "Electrical Engineer I (BOS) (R5046)",
     "url": "https://jobs.lever.co/shieldai/37fa20c1-57dc-4aa1-9515-ecc87f22f31b"
+  },
+  "9ffc5d8c5abf3cb8": {
+    "company": "Apptronik",
+    "first_seen": "2026-07-25",
+    "title": "Firmware Engineer",
+    "url": "https://boards.greenhouse.io/apptronik/jobs/5812723004?gh_jid=5812723004"
+  },
+  "a011eb7ea7956d1d": {
+    "company": "Anduril",
+    "first_seen": "2026-07-25",
+    "title": "Open Architecture Systems Engineer, Ground Systems",
+    "url": "https://boards.greenhouse.io/andurilindustries/jobs/5173109007?gh_jid=5173109007"
+  },
+  "a0356a8641067b0c": {
+    "company": "Anduril",
+    "first_seen": "2026-07-25",
+    "title": "Open Architecture Systems Engineer, C2",
+    "url": "https://boards.greenhouse.io/andurilindustries/jobs/4657146007?gh_jid=4657146007"
   },
   "a0827592ae449649": {
     "company": "Shield AI",
@@ -515,11 +1499,47 @@
     "title": "Engineer I, Electrical Integration & Test (R5136)",
     "url": "https://jobs.lever.co/shieldai/49d0cfc6-952f-42b6-ad6c-630597a1780a"
   },
+  "a11d0a116686c524": {
+    "company": "Shield AI",
+    "first_seen": "2026-07-25",
+    "title": "Mechanical Engineer I, Systems Integration (R5344)",
+    "url": "https://jobs.lever.co/shieldai/6df24cd9-5111-4e63-a88a-d76166677000"
+  },
+  "a26b382f8493ecbb": {
+    "company": "Reliable Robotics",
+    "first_seen": "2026-07-25",
+    "title": "Electrical Test Engineer",
+    "url": "https://jobs.ashbyhq.com/reliable-robotics/2395e156-c2dd-449c-8dc6-354a8745eb22"
+  },
+  "a4be992dff5bcd05": {
+    "company": "Anduril",
+    "first_seen": "2026-07-25",
+    "title": "Flight Software Engineer, Embedded C/C++, Air Dominance & Strike",
+    "url": "https://boards.greenhouse.io/andurilindustries/jobs/4164476007?gh_jid=4164476007"
+  },
   "a4e36bc32b4b5b16": {
     "company": "SpaceX",
     "first_seen": "2026-07-24",
     "title": "New Graduate Engineer, Electrical - Satellites (Starlink) ",
     "url": "https://boards.greenhouse.io/spacex/jobs/8541336002?gh_jid=8541336002"
+  },
+  "a4ec0fa4a58ac777": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "New Graduate Engineer, Mechanical (Starlink)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8578053002?gh_jid=8578053002"
+  },
+  "a65cdec2731469f6": {
+    "company": "Integer Holdings",
+    "first_seen": "2026-07-25",
+    "title": "Intern - Engineering",
+    "url": "https://integer.wd1.myworkdayjobs.com/en-US/External/job/Santo-Domingo-DR/Intern-5_R35409"
+  },
+  "a67070176edce2ca": {
+    "company": "Ubiquiti",
+    "first_seen": "2026-07-25",
+    "title": "Quality Assurance Engineer",
+    "url": "https://job-boards.greenhouse.io/ubiquiti/jobs/4204494009"
   },
   "a86e2f567cb9ec8d": {
     "company": "Astranis",
@@ -533,17 +1553,59 @@
     "title": "Robotics - Software Development Engineer Intern/Co-op",
     "url": "https://www.amazon.jobs/en/jobs/3136266/robotics-software-development-engineer-intern-co-op-2026?no_int_redir=1"
   },
+  "a9097a798d4d2e0d": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Embedded Software Engineer, OS/Platform (Starlink)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8511391002?gh_jid=8511391002"
+  },
+  "a95cb52de1a3179d": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Fluids Systems Engineer, Solar Cell Factory (Starlink)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8346155002?gh_jid=8346155002"
+  },
+  "aa2f06d292040961": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Electrical Design Engineer (Falcon & Dragon Avionics)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8629130002?gh_jid=8629130002"
+  },
   "ab08d1dcbb23c536": {
     "company": "Astranis",
     "first_seen": "2026-07-23",
     "title": "Avionics Engineer Intern (Fall 2026)",
     "url": "https://job-boards.greenhouse.io/astranis/jobs/4597413006"
   },
+  "ac1b5d17e7406ae2": {
+    "company": "Applied Intuition",
+    "first_seen": "2026-07-25",
+    "title": "Research Intern - 3D Vision and Generation, Self-Driving",
+    "url": "https://jobs.ashbyhq.com/applied/91e0686e-272a-4780-b33d-d7860b94a7b4"
+  },
+  "ac8544126b2a34cc": {
+    "company": "Serve Robotics",
+    "first_seen": "2026-07-25",
+    "title": "Reliability Operations Engineer (Malaysia)",
+    "url": "https://jobs.ashbyhq.com/serverobotics/14aa411e-217c-409d-a2e3-b093469f435e"
+  },
+  "ada9ebe75d798011": {
+    "company": "Anduril",
+    "first_seen": "2026-07-25",
+    "title": "Systems Engineer, Air Vehicle Systems, Active Clearance",
+    "url": "https://boards.greenhouse.io/andurilindustries/jobs/5173154007?gh_jid=5173154007"
+  },
   "adafc99407350f52": {
     "company": "Anduril",
     "first_seen": "2026-07-23",
     "title": "2026 Early Career Electrical Engineer",
     "url": "https://boards.greenhouse.io/andurilindustries/jobs/4802172007?gh_jid=4802172007"
+  },
+  "ae6a52f2552d01d5": {
+    "company": "Shield AI",
+    "first_seen": "2026-07-25",
+    "title": "Engineer II, Mechanical (R4886)",
+    "url": "https://jobs.lever.co/shieldai/87a9df91-ce26-475f-9d93-c01991441847"
   },
   "af1a42ada7422713": {
     "company": "Apptronik",
@@ -557,11 +1619,41 @@
     "title": "Robotics Engineer Intern - Test & Val",
     "url": "https://jobs.ashbyhq.com/contoro/cf7c8043-8fbe-4c7e-b91f-ee6db2a616c5/application"
   },
+  "afb17a0d5204456f": {
+    "company": "Anduril",
+    "first_seen": "2026-07-25",
+    "title": "Systems Engineer, Advanced Effects, Active Clearance",
+    "url": "https://boards.greenhouse.io/andurilindustries/jobs/4657118007?gh_jid=4657118007"
+  },
+  "afd98061bebbc308": {
+    "company": "Interstates",
+    "first_seen": "2026-07-25",
+    "title": "Electrical Controls Engineer- EPLAN Focused",
+    "url": "https://www.interstates.com/careers/jobs?gh_jid=4247441009&gh_jid=4247441009"
+  },
+  "b167638d8f52979e": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Test Engineer (Dragon)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8492521002?gh_jid=8492521002"
+  },
   "b1bcabc5028c6f80": {
     "company": "Field AI",
     "first_seen": "2026-07-23",
     "title": "1.53 Robotics Research Internship, Humanoid Manipulation (Summer 2026) | PhD Internship",
     "url": "https://jobs.lever.co/field-ai/2a2c8f00-3a28-481b-882c-33cb0ec4a3a0"
+  },
+  "b29b5b74620301a1": {
+    "company": "Neuralink",
+    "first_seen": "2026-07-25",
+    "title": "Embedded Software Engineer, Implant Embedded Systems",
+    "url": "https://boards.greenhouse.io/neuralink/jobs/6550259003?gh_jid=6550259003"
+  },
+  "b2eb968bfa215600": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Electrical Engineer - Instrumentation and Controls",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8621275002?gh_jid=8621275002"
   },
   "b2f38399bea4f332": {
     "company": "Cellares",
@@ -569,11 +1661,23 @@
     "title": "Automation Engineer (I, II, III)",
     "url": "https://jobs.lever.co/cellares/9087d00f-cb41-4cc8-ac29-318274e7e246"
   },
+  "b350be1362508848": {
+    "company": "Field AI",
+    "first_seen": "2026-07-25",
+    "title": "Electrical Engineer, Robotics Hardware",
+    "url": "https://jobs.lever.co/field-ai/e6717cef-ac78-4e67-a8de-33e195490ac8"
+  },
   "b3681f37c041a613": {
     "company": "Apple",
     "first_seen": "2026-07-24",
     "title": "Hardware Technologies PhD Internships",
     "url": "https://jobs.apple.com/en-us/details/200664414/hardware-technologies-phd-internships"
+  },
+  "b47a91ebf51b184c": {
+    "company": "Varda Space Industries",
+    "first_seen": "2026-07-25",
+    "title": "Integration and Test Engineer",
+    "url": "https://job-boards.greenhouse.io/vardaspace/jobs/6485429003"
   },
   "b5690852994755fa": {
     "company": "Shield AI",
@@ -587,11 +1691,89 @@
     "title": "Electrical Platform Intern",
     "url": "https://jobs.ashbyhq.com/Etched/904ddf46-55fc-4a8f-8b49-f32cfe88116a"
   },
+  "b85ba04cf4744b1b": {
+    "company": "Anduril",
+    "first_seen": "2026-07-25",
+    "title": "Materials and Process Engineer, Air Dominance and Strike ",
+    "url": "https://boards.greenhouse.io/andurilindustries/jobs/5187843007?gh_jid=5187843007"
+  },
+  "b8ba5daf062cd0da": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Automation & Controls Engineer, Assembly Manufacturing (Starlink)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8506443002?gh_jid=8506443002"
+  },
+  "b8d678a4dcd080c6": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Hardware Development Engineer, PCBA Manufacturing (Starlink)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8558344002?gh_jid=8558344002"
+  },
+  "b99d0c54fd63b1ba": {
+    "company": "Etched",
+    "first_seen": "2026-07-25",
+    "title": "PD Intern",
+    "url": "https://jobs.ashbyhq.com/Etched/bd8c5768-7efa-4a18-9e56-485ccaf4ec77"
+  },
+  "b9bd4e2235d178ae": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Avionics Test Engineer (Starship)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8355075002?gh_jid=8355075002"
+  },
+  "bc709ca4508277e0": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Battery Test Engineer, Satellites (Starlink)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8488324002?gh_jid=8488324002"
+  },
+  "be533d003301c363": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Embedded Software Engineer, Laser Mesh Routing (Starlink)   ",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8578936002?gh_jid=8578936002"
+  },
+  "befae8e1b570592c": {
+    "company": "Astranis",
+    "first_seen": "2026-07-25",
+    "title": "Assembly, Integration, and Test Intern Fall 2026",
+    "url": "https://job-boards.greenhouse.io/astranis/jobs/4679080006"
+  },
   "bf4c256263afc4ab": {
     "company": "Etched",
     "first_seen": "2026-07-23",
     "title": "Firmware Intern",
     "url": "https://jobs.ashbyhq.com/Etched/0e78a385-c450-4749-9803-0970ce2971a5"
+  },
+  "c098beea42f9a494": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "New Graduate Engineer, Propulsion (Starship)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8497447002?gh_jid=8497447002"
+  },
+  "c122a28164f10a49": {
+    "company": "Astranis",
+    "first_seen": "2026-07-25",
+    "title": "Harness Design Engineer Intern (Fall 2026)",
+    "url": "https://job-boards.greenhouse.io/astranis/jobs/4597559006"
+  },
+  "c17b77f12be15a5d": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Automation & Controls Engineer (Starship)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8558761002?gh_jid=8558761002"
+  },
+  "c192a1454b727d38": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Embedded Software Engineer, OS/Platform (Starshield)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8530798002?gh_jid=8530798002"
+  },
+  "c231d9db56e81eb3": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Structures Design Engineer (Starship)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8493176002?gh_jid=8493176002"
   },
   "c331b8d4ca29aa27": {
     "company": "Shield AI",
@@ -599,17 +1781,65 @@
     "title": "Electrical Engineer I (TX)",
     "url": "https://jobs.lever.co/shieldai/c9321f8a-b367-4dcb-9308-bd64ae6bac1d"
   },
+  "c4b574c78cc71169": {
+    "company": "Integer Holdings",
+    "first_seen": "2026-07-25",
+    "title": "Quality Engineer I",
+    "url": "https://integer.wd1.myworkdayjobs.com/en-US/External/job/Alden-Plant-Alden-NY/Quality-Engineer-I_R35275-1"
+  },
+  "c4e996a1fc2fd099": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Security Engineer (Embedded OT)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8593388002?gh_jid=8593388002"
+  },
+  "c56f945f5e335acc": {
+    "company": "Astranis",
+    "first_seen": "2026-07-25",
+    "title": "Environmental Test Engineer",
+    "url": "https://job-boards.greenhouse.io/astranis/jobs/4403140006"
+  },
   "c5c4cd8c56ccf4dc": {
     "company": "Saronic",
     "first_seen": "2026-07-23",
     "title": "Test Engineer Intern (Fall 2026)",
     "url": "https://jobs.ashbyhq.com/saronic/927985ae-7a48-4628-9e03-36510d64fb5f"
   },
+  "c665019f0f0dab15": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "New Graduate Engineer, Mechanical (Cape Canaveral)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8622574002?gh_jid=8622574002"
+  },
+  "c75be3f4e7900630": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Wi-Fi Engineer, Hardware Reliability (Starlink)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8632015002?gh_jid=8632015002"
+  },
+  "c76435065798e7e4": {
+    "company": "Aurora Innovation",
+    "first_seen": "2026-07-25",
+    "title": "Automation Engineer II",
+    "url": "https://aurora.tech/jobs/8641734002?gh_jid=8641734002"
+  },
+  "c7d0d606a88eb772": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Mechanical Engineer, Tower/Launch and Test",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8504788002?gh_jid=8504788002"
+  },
   "c817b05917ff54bd": {
     "company": "SpaceX",
     "first_seen": "2026-07-24",
     "title": "New Graduate Engineer, Electrical (Starlink) ",
     "url": "https://boards.greenhouse.io/spacex/jobs/8565726002?gh_jid=8565726002"
+  },
+  "c88d7569cf047ee6": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "New Graduate Engineer, Mechanical (Starship)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8497499002?gh_jid=8497499002"
   },
   "c9b9e784550a7509": {
     "company": "Astranis",
@@ -623,6 +1853,12 @@
     "title": "Verification Engineer Intern",
     "url": "https://ambarella.wd108.myworkdayjobs.com/en-US/ambarella/job/US-Headquarters/Verification-Engineer-Intern_JR100109"
   },
+  "ca4e290f9844def1": {
+    "company": "Varda Space Industries",
+    "first_seen": "2026-07-25",
+    "title": "Vehicle Integration and Test Internship - Fall 2026",
+    "url": "https://job-boards.greenhouse.io/vardaspace/jobs/7660858003"
+  },
   "ca5b061205e19976": {
     "company": "Zipline",
     "first_seen": "2026-07-24",
@@ -635,11 +1871,77 @@
     "title": "Early Career Firmware Engineer ",
     "url": "https://boards.greenhouse.io/andurilindustries/jobs/5167865007?gh_jid=5167865007"
   },
+  "cd3d6f445c489ced": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Supplier Development Engineer, Hardware & Fasteners (Starship)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8636180002?gh_jid=8636180002"
+  },
+  "cd5c9cba327f0f5a": {
+    "company": "Ubiquiti",
+    "first_seen": "2026-07-25",
+    "title": "Automation QA Engineer",
+    "url": "https://job-boards.greenhouse.io/ubiquiti/jobs/4187549009"
+  },
+  "cda03150a977d1dd": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Power Systems Engineer (Starship Avionics) ",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8627410002?gh_jid=8627410002"
+  },
+  "cf4baeb3c2bf5b5d": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Automation & Controls Engineer, Launch Pad (Starship)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8536717002?gh_jid=8536717002"
+  },
+  "d0789ffefbd14fad": {
+    "company": "TKDA",
+    "first_seen": "2026-07-25",
+    "title": "Graduate Design Engineer, Water-Wastewater",
+    "url": "https://jobs.lever.co/tkda/21fc0643-c8db-489b-8377-a2cbeeb2fe56"
+  },
+  "d0d38f9d8059f6a4": {
+    "company": "Shield AI",
+    "first_seen": "2026-07-25",
+    "title": "Engineer II, Mechanical (R5310)",
+    "url": "https://jobs.lever.co/shieldai/794e65fd-e809-43b4-87c1-2cd82651cda7"
+  },
   "d166e1c6339ae0b0": {
     "company": "Shield AI",
     "first_seen": "2026-07-23",
     "title": "Electrical Engineering Spring Co-op (January 2027) (R4475)",
     "url": "https://jobs.lever.co/shieldai/87d982f2-8b2b-4c73-9a19-71e461c7b724"
+  },
+  "d1c316b26d299b05": {
+    "company": "Shield AI",
+    "first_seen": "2026-07-25",
+    "title": "Engineer II, C++ Systems Integration (R4021)",
+    "url": "https://jobs.lever.co/shieldai/7b464b08-12bf-4d07-826d-8fabb3f33954"
+  },
+  "d1faacb57892b11a": {
+    "company": "Apptronik",
+    "first_seen": "2026-07-25",
+    "title": "Robotics Test Engineer",
+    "url": "https://boards.greenhouse.io/apptronik/jobs/5988482004?gh_jid=5988482004"
+  },
+  "d26ccd7b2fe5f794": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Security Engineer (Embedded & Networking)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8593384002?gh_jid=8593384002"
+  },
+  "d51991b7e879ed52": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Embedded Software Engineer (Starlink) ",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8368715002?gh_jid=8368715002"
+  },
+  "d592c37f6590bb38": {
+    "company": "Anduril",
+    "first_seen": "2026-07-25",
+    "title": "Systems Engineer, Launched Effects ",
+    "url": "https://boards.greenhouse.io/andurilindustries/jobs/5157570007?gh_jid=5157570007"
   },
   "d5dbbad95eb749ab": {
     "company": "Apple",
@@ -659,11 +1961,41 @@
     "title": "FPGA Intern (Fall 2026)",
     "url": "https://job-boards.greenhouse.io/astranis/jobs/4677338006"
   },
+  "d9832cc8adddc92b": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "RF Engineer, Hardware Reliability (Starlink)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8586647002?gh_jid=8586647002"
+  },
+  "d9e784a83d0c7fd9": {
+    "company": "Etched",
+    "first_seen": "2026-07-25",
+    "title": "GTM Intern",
+    "url": "https://jobs.ashbyhq.com/Etched/0321523b-f0c3-44cd-9c46-cf318a1cad9e"
+  },
   "db1dd36f518e6733": {
     "company": "Layup Parts",
     "first_seen": "2026-07-23",
     "title": "Electrical Engineering Intern",
     "url": "https://jobs.lever.co/layup/0d8b26c2-f4f9-4dc1-b987-1e496fd616aa/apply"
+  },
+  "dbcdb085275435d9": {
+    "company": "Shield AI",
+    "first_seen": "2026-07-25",
+    "title": "Engineer II, Electrical Failure Analysis (R4593)",
+    "url": "https://jobs.lever.co/shieldai/73be298c-49d5-4f38-bdf5-93a0c0e8a7a5"
+  },
+  "dc1919a2fc7e5d18": {
+    "company": "Locus Robotics",
+    "first_seen": "2026-07-25",
+    "title": "Onsite Support Engineer, Robotics (6AM-2:30PM ET)",
+    "url": "https://job-boards.greenhouse.io/locusrobotics/jobs/5194537007"
+  },
+  "dcde01d7a961e1e7": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Automation & Controls Engineer (Facilities)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8546353002?gh_jid=8546353002"
   },
   "dcf62cd7285fe0a8": {
     "company": "IMC",
@@ -677,11 +2009,41 @@
     "title": "Manufacturing Engineering Internship, Electrical",
     "url": "https://revvity.wd103.myworkdayjobs.com/en-US/External/job/Llantrisant/Manufacturing-Engineering-Internship--Electrical_JR-044631"
   },
+  "de2a10784a449180": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Harness Design Engineer, Satellites (Starlink)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8612778002?gh_jid=8612778002"
+  },
+  "deb6b97bd0931955": {
+    "company": "Abbott",
+    "first_seen": "2026-07-25",
+    "title": "R&D Engineer II",
+    "url": "https://abbott.wd5.myworkdayjobs.com/en-US/abbottcareers/job/United-States---Minnesota---Plymouth/R-D-Engineer-II_31154130-1"
+  },
   "df5bd56e337aeb42": {
     "company": "Standard Bots",
     "first_seen": "2026-07-23",
     "title": "Associate Electrical Engineer (On-site)",
     "url": "https://jobs.ashbyhq.com/standardbots/d76f7109-578b-48b5-9ee1-b0526e43e718"
+  },
+  "df984a69cd7374e8": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Integration & Test Engineer (Fairings)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8609453002?gh_jid=8609453002"
+  },
+  "e040668cda419629": {
+    "company": "Integer Holdings",
+    "first_seen": "2026-07-25",
+    "title": "Post Market Surveillance Engineer II",
+    "url": "https://integer.wd1.myworkdayjobs.com/en-US/External/job/Plymouth-MN/Post-Market-Surveillance-Engineer-II_R35148-1"
+  },
+  "e093a9b0761d4aa6": {
+    "company": "Varda Space Industries",
+    "first_seen": "2026-07-25",
+    "title": "Propulsion Engineer II - Ground Fluids",
+    "url": "https://job-boards.greenhouse.io/vardaspace/jobs/7746433003"
   },
   "e0951eb93c917c4f": {
     "company": "Ambarella",
@@ -695,6 +2057,24 @@
     "title": "Robotics Software Intern – Real-Time",
     "url": "https://boards.greenhouse.io/apptronik/jobs/5985132004?gh_jid=5985132004"
   },
+  "e0e6ed9ab84a84fd": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Production Reliability Engineer (Starship Electronics)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8611123002?gh_jid=8611123002"
+  },
+  "e0ec1448cb0ce088": {
+    "company": "Torc Robotics",
+    "first_seen": "2026-07-25",
+    "title": "System Triage Engineer Intern",
+    "url": "https://job-boards.greenhouse.io/torcrobotics/jobs/8597138002"
+  },
+  "e12b089a08647270": {
+    "company": "Shield AI",
+    "first_seen": "2026-07-25",
+    "title": "Engineer I, Mechanical Test (R5207)",
+    "url": "https://jobs.lever.co/shieldai/792d3340-fe18-4caa-a5c6-9905e67213e3"
+  },
   "e42f0a94e6dcbfc8": {
     "company": "Aevex Aerospace",
     "first_seen": "2026-07-23",
@@ -706,6 +2086,24 @@
     "first_seen": "2026-07-23",
     "title": "Firmware Intern",
     "url": "https://jobs.ashbyhq.com/Etched/699f3ab2-07e4-466c-9d76-3d4a3abb4ebc"
+  },
+  "e4fcafdf47efcdcb": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Supplier Development Engineer, Reliability (Starlink)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8533955002?gh_jid=8533955002"
+  },
+  "e55d507b9e824997": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Instrumentation & Controls Engineer, Solar Cell Factory (Starlink)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8418457002?gh_jid=8418457002"
+  },
+  "e67d703328977542": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Test Engineer, Avionics (Starship)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8582141002?gh_jid=8582141002"
   },
   "e73db1f98b40a03f": {
     "company": "Astranis",
@@ -719,11 +2117,53 @@
     "title": "Electrical Engineer Intern (Fall 2026)",
     "url": "https://jobs.ashbyhq.com/saronic/62c0a94b-c5a7-4b35-8092-d01dba301519"
   },
+  "e8244df91d65fefc": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Facilities Engineer, Electrical (Starlink)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8594360002?gh_jid=8594360002"
+  },
+  "e82a72647ddfc0c8": {
+    "company": "Etched",
+    "first_seen": "2026-07-25",
+    "title": "Core Ops Intern",
+    "url": "https://jobs.ashbyhq.com/Etched/f32908bd-8abc-495c-ab69-ac893b6c924d"
+  },
   "e848ef85e93376af": {
     "company": "WSP",
     "first_seen": "2026-07-23",
     "title": "Electrical Engineering Intern (Substa",
     "url": "https://emit.fa.ca3.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_2001/job/90824"
+  },
+  "e86f8baa05297fef": {
+    "company": "Anduril",
+    "first_seen": "2026-07-25",
+    "title": "2027 Early Career Manufacturing Engineer",
+    "url": "https://boards.greenhouse.io/andurilindustries/jobs/5136970007?gh_jid=5136970007"
+  },
+  "ea08dd5e55ab26a0": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Development Test Engineer, Battery (Starship Electronics)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8647452002?gh_jid=8647452002"
+  },
+  "ea5d150e2b9fe667": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Mechanical Design Engineer, PCB (STARLINK)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8602985002?gh_jid=8602985002"
+  },
+  "eabe11368c984d95": {
+    "company": "Neuralink",
+    "first_seen": "2026-07-25",
+    "title": "Robot Optics Intern",
+    "url": "https://boards.greenhouse.io/neuralink/jobs/6576326003?gh_jid=6576326003"
+  },
+  "eb3bcbe522af05f7": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Power Systems Engineer (Starship)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8450056002?gh_jid=8450056002"
   },
   "eb3db8cf18b090f3": {
     "company": "Neuralink",
@@ -743,11 +2183,89 @@
     "title": "Chassis Validation Engineer Intern, Vehicle Firmware",
     "url": "https://www.tesla.com/careers/search/job/247990"
   },
+  "ecfe1df5f432eb91": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Power Generation Engineer (Starship)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8592867002?gh_jid=8592867002"
+  },
+  "ed0e15a143e0e3b4": {
+    "company": "Figure AI",
+    "first_seen": "2026-07-25",
+    "title": "Electrical Engineer, Actuator Systems",
+    "url": "https://job-boards.greenhouse.io/figureai/jobs/4688381006"
+  },
+  "ed39068dbca1c38b": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Electrical Engineer, Launch Pad (Starship)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8564730002?gh_jid=8564730002"
+  },
+  "ed5a6b1c4d694838": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Supplier Development Engineer, Power Electronics (Starlink)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8533953002?gh_jid=8533953002"
+  },
+  "ed8101b2d87da8c4": {
+    "company": "Apex Technology",
+    "first_seen": "2026-07-25",
+    "title": "Spacecraft Systems Integration Engineer",
+    "url": "https://jobs.ashbyhq.com/apex-technology-inc/ab6b7b22-4264-418b-8145-232c6589e7a0"
+  },
+  "ee4b67f17872b1c8": {
+    "company": "Integer Holdings",
+    "first_seen": "2026-07-25",
+    "title": "Intern-3",
+    "url": "https://integer.wd1.myworkdayjobs.com/en-US/External/job/Santo-Domingo-DR/Intern-3_R35407-1"
+  },
+  "ef487f82664a19c3": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Hardware Test Automation Engineer, Satellites (Starlink)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8440972002?gh_jid=8440972002"
+  },
+  "ef7f1572a6f13dd9": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Mechanical Engineer, Hardware Reliability (Starlink)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8521383002?gh_jid=8521383002"
+  },
+  "efb0b6879c771da8": {
+    "company": "Varda Space Industries",
+    "first_seen": "2026-07-25",
+    "title": "Flight Software Internship - Fall 2026",
+    "url": "https://job-boards.greenhouse.io/vardaspace/jobs/7676465003"
+  },
+  "efe66974f4367594": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Site Reliability Engineer — HPC & Automation (Silicon Engineering)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8614963002?gh_jid=8614963002"
+  },
   "f0147c33991761e5": {
     "company": "Base Power",
     "first_seen": "2026-07-23",
     "title": "Manufacturing Controls Engineering Intern",
     "url": "https://jobs.ashbyhq.com/base-power/6c56e236-888e-423d-9f68-764bd9a4742d"
+  },
+  "f0395b7b9b9cc94a": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Automation & Controls Engineer, Infrastructure & Utility (Starship)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8395276002?gh_jid=8395276002"
+  },
+  "f0514667f578de51": {
+    "company": "Neuralink",
+    "first_seen": "2026-07-25",
+    "title": "Software Design Control Engineer",
+    "url": "https://boards.greenhouse.io/neuralink/jobs/7738240003?gh_jid=7738240003"
+  },
+  "f05525f6619eb706": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Mechanical Design Engineer, Gateways (Starlink)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8542789002?gh_jid=8542789002"
   },
   "f0c920aa9880c8df": {
     "company": "Verkada",
@@ -761,17 +2279,35 @@
     "title": "Design/DSP/Verification Intern - PhD",
     "url": "https://marvell.wd1.myworkdayjobs.com/MarvellCareers/job/Santa-Clara-CA/Design-DSP-Verification-Intern---PhD-Degree_2502786-1"
   },
+  "f2fc73306d524e93": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Equipment Reliability Engineer, PCB Maintenance (Starlink)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8568130002?gh_jid=8568130002"
+  },
   "f32323e64ababaf6": {
     "company": "Neuralink",
     "first_seen": "2026-07-23",
     "title": "Electrical Engineer Intern, Implant E",
     "url": "https://boards.greenhouse.io/neuralink/jobs/7702527003?gh_jid=7702527003"
   },
+  "f36e2bcc6d03d3bf": {
+    "company": "Medtronic",
+    "first_seen": "2026-07-25",
+    "title": "Embedded Firmware Software Engineer II – Rice Creek, MN",
+    "url": "https://medtronic.wd1.myworkdayjobs.com/en-US/MedtronicCareers/job/Fridley-Minnesota-United-States-of-America/Software-Engineer-II---PH---Fridley-Rice-Creek--MN--Onsite-_R70203-1"
+  },
   "f513db14fd9f41d0": {
     "company": "Western Digital",
     "first_seen": "2026-07-24",
     "title": "Fall 2026 PhD Intern - Hardware Devel",
     "url": "https://jobs.smartrecruiters.com/WesternDigital/744000138191379"
+  },
+  "f5b7d09f2d722bd2": {
+    "company": "Cerebras",
+    "first_seen": "2026-07-25",
+    "title": "Kernel Engineer - New Grad",
+    "url": "https://jobs.ashbyhq.com/cerebras/9c7da4b8-446b-4bf2-8d07-23241590bf2e"
   },
   "f5caf405ec738da7": {
     "company": "Tesla",
@@ -791,6 +2327,24 @@
     "title": "Electrical Engineering Intern [Fall 2",
     "url": "https://job-boards.greenhouse.io/figureai/jobs/4676467006"
   },
+  "f7ef5236fd17e5f6": {
+    "company": "Figure AI",
+    "first_seen": "2026-07-25",
+    "title": "Mechanical Engineer - Integration & Test",
+    "url": "https://job-boards.greenhouse.io/figureai/jobs/4672013006"
+  },
+  "f820a7907e9c6006": {
+    "company": "Figure AI",
+    "first_seen": "2026-07-25",
+    "title": "Validation Engineering Intern [Fall 2026]",
+    "url": "https://job-boards.greenhouse.io/figureai/jobs/4606072006"
+  },
+  "f83091c41752e8da": {
+    "company": "Astranis",
+    "first_seen": "2026-07-25",
+    "title": "Reliability Test Intern (Fall 2026)",
+    "url": "https://job-boards.greenhouse.io/astranis/jobs/4677973006"
+  },
   "f83a2c745ea4cf93": {
     "company": "PlusAI",
     "first_seen": "2026-07-23",
@@ -803,16 +2357,70 @@
     "title": "DFT Intern",
     "url": "https://jobs.ashbyhq.com/Etched/5f1f5739-3b58-467c-b351-ff183c94d96d"
   },
+  "f9d95acb0319b03d": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Development Test Engineer, Structures (Starship)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8551872002?gh_jid=8551872002"
+  },
   "fa2e6d5fa5f7e4c7": {
     "company": "Saronic Technologies",
     "first_seen": "2026-07-23",
     "title": "Electrical Engineer Intern (Fall 2026)",
     "url": "https://jobs.ashbyhq.com/saronic/62c0a94b-c5a7-4b35-8092-d01dba301519/application"
   },
+  "fae5dca0ffd789aa": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "New Graduate Engineer, Mechanical (Starlink)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8542046002?gh_jid=8542046002"
+  },
+  "fb7928ae9f2a8abf": {
+    "company": "E Tech Group",
+    "first_seen": "2026-07-25",
+    "title": "Automation Engineer ",
+    "url": "https://etechgroup.com/careers-list?gh_jid=6112273004"
+  },
+  "fbe63e273c585e93": {
+    "company": "Varda Space Industries",
+    "first_seen": "2026-07-25",
+    "title": "Aerodynamics and Flight Mechanics Engineer II",
+    "url": "https://job-boards.greenhouse.io/vardaspace/jobs/7792159003"
+  },
+  "fbf0721910378e9c": {
+    "company": "Figure AI",
+    "first_seen": "2026-07-25",
+    "title": "Special Projects Intern [Fall 2026]",
+    "url": "https://job-boards.greenhouse.io/figureai/jobs/4694889006"
+  },
+  "fbffda1a668c7907": {
+    "company": "Integer Holdings",
+    "first_seen": "2026-07-25",
+    "title": "Intern-2",
+    "url": "https://integer.wd1.myworkdayjobs.com/en-US/External/job/Santo-Domingo-DR/Intern-2_R35388"
+  },
+  "fdcef851f3afcdc2": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Automation & Controls Engineer (Starlink)",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8456214002?gh_jid=8456214002"
+  },
+  "fef3bacc95a0ef49": {
+    "company": "Interstates",
+    "first_seen": "2026-07-25",
+    "title": "Electrical Controls Engineer- EPLAN Focused",
+    "url": "https://www.interstates.com/careers/jobs?gh_jid=4247459009&gh_jid=4247459009"
+  },
   "ff9d7c592663a2d1": {
     "company": "Thermo Fisher Scientific",
     "first_seen": "2026-07-24",
     "title": "Manufacturing Electrical Engineer 1",
     "url": "https://thermofisher.wd5.myworkdayjobs.com/en-US/ThermoFisherCareers/job/Millersburg-Pennsylvania-USA/Manufacturing-Electrical-Engineer-1_R-01357491"
+  },
+  "ffb4c13617537a48": {
+    "company": "SpaceX",
+    "first_seen": "2026-07-25",
+    "title": "Power Plant Engineer",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8623199002?gh_jid=8623199002"
   }
 }
