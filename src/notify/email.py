@@ -19,6 +19,7 @@ SMTP_PORT = 465
 _CATEGORY_LABELS = {
     "silicon": "Silicon / Chip Design",
     "hardware": "Hardware / Electrical",
+    "medtech_hardware": "Medtech Engineering",
     "firmware": "Firmware / Embedded",
     "other": "Other",
 }
@@ -69,7 +70,7 @@ def build_subject(
         return f"Priority A job alert - {names} ({len(jobs)} new opportunities)"
     if faang:
         names = ", ".join(sorted({job.company for job in faang}))
-        return f"Top-company job alert - {names} ({len(jobs)} new opportunities)"
+        return f"FAANG job out now - {names} ({len(jobs)} new opportunities)"
     return f"{prefix} {len(jobs)} new opportunities - {_counts_summary(grouped)}"
 
 
@@ -79,7 +80,10 @@ def _priority_banner(jobs: list[Job]) -> str:
         return ""
 
     items = []
-    for job in sorted(priority_jobs, key=lambda x: (x.company.lower(), x.title.lower())):
+    for job in sorted(
+        priority_jobs,
+        key=lambda item: (item.company.lower(), item.title.lower()),
+    ):
         location = escape(job.location_str) if job.location_str else ""
         signal = escape(job.hiring_signal or "High-priority match")
         items.append(
@@ -87,7 +91,11 @@ def _priority_banner(jobs: list[Job]) -> str:
             f"<a href='{escape(job.url)}' style='color:#991b1b;font-weight:700;"
             f"text-decoration:none'>{escape(job.title)}</a>"
             f"<span style='color:#7f1d1d'> - {escape(job.company)}</span>"
-            + (f"<span style='color:#777;font-size:12px'> | {location}</span>" if location else "")
+            + (
+                f"<span style='color:#777;font-size:12px'> | {location}</span>"
+                if location
+                else ""
+            )
             + f"<br><span style='color:#7f1d1d;font-size:12px'>{signal}</span>"
             + "</li>"
         )
@@ -96,8 +104,40 @@ def _priority_banner(jobs: list[Job]) -> str:
         "padding:14px 16px;margin:14px 0'>"
         "<div style='font:700 17px system-ui,sans-serif;color:#9a3412;margin-bottom:6px'>"
         "Priority A roles - review immediately</div>"
-        f"<ul style='margin:0;padding-left:20px;font:14px system-ui,sans-serif'>{''.join(items)}</ul>"
-        "</div>"
+        f"<ul style='margin:0;padding-left:20px;font:14px system-ui,sans-serif'>"
+        f"{''.join(items)}</ul></div>"
+    )
+
+
+def _faang_banner(faang: list[Job] | None) -> str:
+    if not faang:
+        return ""
+
+    items = []
+    for job in sorted(
+        faang,
+        key=lambda item: (item.company.lower(), item.title.lower()),
+    ):
+        location = escape(job.location_str) if job.location_str else ""
+        items.append(
+            "<li style='margin:4px 0'>"
+            f"<a href='{escape(job.url)}' style='color:#b91c1c;font-weight:700;"
+            f"text-decoration:none'>{escape(job.title)}</a>"
+            f"<span style='color:#7f1d1d'> - {escape(job.company)}</span>"
+            + (
+                f"<span style='color:#777;font-size:12px'> | {location}</span>"
+                if location
+                else ""
+            )
+            + "</li>"
+        )
+    return (
+        "<div style='background:#fff1f0;border:2px solid #e11d48;border-radius:8px;"
+        "padding:14px 16px;margin:14px 0'>"
+        "<div style='font:700 17px system-ui,sans-serif;color:#b91c1c;margin-bottom:6px'>"
+        "FAANG roles just posted</div>"
+        f"<ul style='margin:0;padding-left:20px;font:14px system-ui,sans-serif'>"
+        f"{''.join(items)}</ul></div>"
     )
 
 
@@ -107,10 +147,11 @@ def build_html(
     faang: list[Job] | None = None,
 ) -> str:
     all_jobs = [job for _, jobs in grouped for job in jobs]
-    rows = [_priority_banner(all_jobs)]
+    rows = [_priority_banner(all_jobs), _faang_banner(faang)]
     rows.append(
-        f"<p style='font:14px system-ui,sans-serif;color:#444'>"
-        f"<b>{total}</b> new internship or early-career posting(s) matched your filters.</p>"
+        "<p style='font:14px system-ui,sans-serif;color:#444'>"
+        f"<b>{total}</b> new internship or early-career posting(s) "
+        "matched your filters.</p>"
     )
 
     for category, jobs in grouped:
@@ -122,10 +163,10 @@ def build_html(
         )
         for job in sorted(
             jobs,
-            key=lambda x: (
-                0 if x.priority == "A" else 1 if x.priority == "B" else 2,
-                x.company.lower(),
-                x.title.lower(),
+            key=lambda item: (
+                0 if item.priority == "A" else 1 if item.priority == "B" else 2,
+                item.company.lower(),
+                item.title.lower(),
             ),
         ):
             location = escape(job.location_str) if job.location_str else "-"
@@ -152,18 +193,18 @@ def build_html(
                 f"text-decoration:none'>{escape(job.title)}</a>"
                 f"<span style='color:#666'> - {escape(job.company)}</span><br>"
                 f"<span style='color:#888;font-size:12px'>{meta}</span>"
-                f"{evidence}"
-                "</div>"
+                f"{evidence}</div>"
             )
 
+    headline = "FAANG job out now" if faang else "Hardware and Early-Career Job Digest"
     return (
         "<div style='max-width:680px;margin:0 auto'>"
         "<h1 style='font:700 22px system-ui,sans-serif;color:#111'>"
-        "Hardware and Early-Career Job Digest</h1>"
+        f"{escape(headline)}</h1>"
         + "".join(rows)
         + "<p style='font:12px system-ui,sans-serif;color:#aaa;margin-top:32px'>"
-        "Generated by hw_emailer. Tune sources and filters in <code>config/</code>.</p>"
-        "</div>"
+        "Generated by hw_emailer. Tune sources and filters in <code>config/</code>."
+        "</p></div>"
     )
 
 
@@ -172,27 +213,41 @@ def build_text(
     total: int,
     faang: list[Job] | None = None,
 ) -> str:
-    lines = [f"{total} new internship or early-career posting(s):", ""]
+    lines: list[str] = []
+    if faang:
+        lines.append("FAANG job out now")
+        for job in sorted(
+            faang,
+            key=lambda item: (item.company.lower(), item.title.lower()),
+        ):
+            lines.append(f"  {job.title} - {job.company}: {job.url}")
+        lines.append("")
+
+    lines.extend([f"{total} new internship or early-career posting(s):", ""])
     for category, jobs in grouped:
-        lines.append(f"== {_CATEGORY_LABELS.get(category, category)} ({len(jobs)}) ==")
+        lines.append(
+            f"== {_CATEGORY_LABELS.get(category, category)} ({len(jobs)}) =="
+        )
         for job in sorted(
             jobs,
-            key=lambda x: (
-                0 if x.priority == "A" else 1 if x.priority == "B" else 2,
-                x.company.lower(),
-                x.title.lower(),
+            key=lambda item: (
+                0 if item.priority == "A" else 1 if item.priority == "B" else 2,
+                item.company.lower(),
+                item.title.lower(),
             ),
         ):
             location = job.location_str or "-"
             role = (job.role_type or "opportunity").replace("_", " ")
             priority = f"Priority {job.priority} | " if job.priority else ""
             lines.append(
-                f"- {priority}{job.title} - {job.company} [{location}] [{role}]"
+                f"- {priority}{job.title} - {job.company} "
+                f"[{location}] [{role}]"
             )
             if job.hiring_signal:
                 lines.append(f"  {job.hiring_signal}")
             if job.entry_level_evidence:
-                lines.append(f"  Evidence: {'; '.join(job.entry_level_evidence[:3])}")
+                evidence = "; ".join(job.entry_level_evidence[:3])
+                lines.append(f"  Evidence: {evidence}")
             lines.append(f"  {job.url}")
         lines.append("")
     return "\n".join(lines)
@@ -207,7 +262,7 @@ def send_email(
     html_override: str | None = None,
     text_override: str | None = None,
 ) -> bool:
-    """Send the digest. Returns False when credentials are missing or send fails."""
+    """Send the digest. Return False if credentials are missing or send fails."""
     user = secrets.get("GMAIL_USER")
     password = secrets.get("GMAIL_APP_PASSWORD")
     to = secrets.get("EMAIL_TO") or user
@@ -217,7 +272,7 @@ def send_email(
 
     order = email_cfg.get(
         "category_order",
-        ["silicon", "hardware", "firmware", "other"],
+        ["silicon", "hardware", "medtech_hardware", "firmware", "other"],
     )
     grouped = group_by_category(jobs, order)
     faang = faang_jobs(jobs, email_cfg.get("faang_companies", []))
