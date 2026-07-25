@@ -10,12 +10,9 @@ from typing import Any
 import yaml
 from dotenv import load_dotenv
 
-# Repo root = parent of the `src/` package.
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG_DIR = ROOT / "config"
 
-# Load .env once on import (no-op if the file is absent, e.g. in CI where
-# secrets come from the environment directly).
 load_dotenv(ROOT / ".env")
 
 
@@ -43,6 +40,11 @@ def companies() -> dict[str, Any]:
 
 
 @lru_cache(maxsize=None)
+def minnesota_medtech() -> dict[str, Any]:
+    return _load_yaml("minnesota_medtech.yaml")
+
+
+@lru_cache(maxsize=None)
 def settings() -> dict[str, Any]:
     return _load_yaml("settings.yaml")
 
@@ -63,4 +65,4 @@ def secrets() -> dict[str, str]:
         "TWILIO_FROM",
         "SMS_TO",
     ]
-    return {k: os.environ.get(k, "") for k in keys}
+    return {key: os.environ.get(key, "") for key in keys}

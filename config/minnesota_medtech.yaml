@@ -1,0 +1,473 @@
+defaults:
+  category: medtech_hardware
+  include_terms:
+  - r&d
+  - research and development
+  - product development
+  - design verification
+  - design validation
+  - systems engineering
+  - test engineering
+  - sustaining engineering
+  - manufacturing engineering
+  - process development
+  - quality engineering
+  - reliability engineering
+  workday_search_terms:
+  - intern
+  - engineer i
+  - engineer 1
+  - associate engineer
+  - early career
+  - new graduate
+  - recent graduate
+  - rotational engineer
+  - development program
+  - engineer ii
+  - electrical engineer
+  - hardware engineer
+  - systems engineer
+  - test engineer
+  - quality engineer
+  - manufacturing engineer
+  - r&d engineer
+  - product engineer
+  - process engineer
+companies:
+  Medtronic:
+    aliases:
+    - Medtronic
+    hiring_model: mixed_fixed_internship_rolling_fulltime
+    seasonal_boost_months:
+    - 2
+    - 3
+    - 8
+    - 9
+    - 10
+    - 11
+    source_status: configured
+  Boston Scientific:
+    aliases:
+    - Boston Scientific
+    - NxThera
+    hiring_model: mixed_rotational_and_rolling
+    seasonal_boost_months:
+    - 1
+    - 2
+    - 3
+    - 8
+    - 9
+    - 10
+    - 11
+    source_status: watchlist_only
+  Abbott:
+    aliases:
+    - Abbott
+    - Cardiovascular Systems
+    - CSI
+    hiring_model: mixed_rotational_and_rolling
+    seasonal_boost_months:
+    - 1
+    - 2
+    - 3
+    - 8
+    - 9
+    - 10
+    - 11
+    source_status: configured
+  Phillips-Medisize:
+    aliases:
+    - Phillips-Medisize
+    - Phillips Medisize
+    - Molex Medical
+    hiring_model: mixed_rotational_and_rolling
+    seasonal_boost_months:
+    - 1
+    - 2
+    - 3
+    - 8
+    - 9
+    - 10
+    - 11
+    source_status: watchlist_only
+  Solventum:
+    aliases:
+    - Solventum
+    - 3M Health Care
+    - 3M Healthcare
+    hiring_model: rolling
+    seasonal_boost_months:
+    - 8
+    - 9
+    - 10
+    - 11
+    source_status: configured
+  Starkey:
+    aliases:
+    - Starkey
+    - Starkey Hearing Technologies
+    hiring_model: rolling
+    seasonal_boost_months:
+    - 8
+    - 9
+    - 10
+    - 11
+    source_status: watchlist_only
+  Tactile Medical:
+    aliases:
+    - Tactile Medical
+    hiring_model: rolling_with_internships
+    seasonal_boost_months:
+    - 8
+    - 9
+    - 10
+    - 11
+    source_status: configured
+  Inspire Medical Systems:
+    aliases:
+    - Inspire Medical Systems
+    - Inspire Medical
+    hiring_model: rolling_with_internships
+    seasonal_boost_months:
+    - 8
+    - 9
+    - 10
+    - 11
+    source_status: configured
+  Coloplast:
+    aliases:
+    - Coloplast
+    - Coloplast Interventional Urology
+    hiring_model: rolling
+    seasonal_boost_months:
+    - 8
+    - 9
+    - 10
+    - 11
+    source_status: watchlist_only
+  ICU Medical:
+    aliases:
+    - ICU Medical
+    - Smiths Medical
+    hiring_model: rolling
+    seasonal_boost_months:
+    - 8
+    - 9
+    - 10
+    - 11
+    source_status: watchlist_only
+  ACIST Medical Systems:
+    aliases:
+    - ACIST Medical Systems
+    - ACIST Medical
+    - ACIST
+    hiring_model: rolling
+    seasonal_boost_months:
+    - 8
+    - 9
+    - 10
+    - 11
+    source_status: watchlist_only
+  Surmodics:
+    aliases:
+    - Surmodics
+    hiring_model: rolling
+    seasonal_boost_months:
+    - 8
+    - 9
+    - 10
+    - 11
+    source_status: watchlist_only
+  Integer Holdings:
+    aliases:
+    - Integer Holdings
+    - Integer
+    hiring_model: rolling
+    seasonal_boost_months:
+    - 8
+    - 9
+    - 10
+    - 11
+    source_status: configured
+  CVRx:
+    aliases:
+    - CVRx
+    hiring_model: rolling_growth_company
+    seasonal_boost_months:
+    - 8
+    - 9
+    - 10
+    - 11
+    source_status: watchlist_only
+  Imricor Medical Systems:
+    aliases:
+    - Imricor Medical Systems
+    - Imricor
+    hiring_model: rolling_growth_company
+    seasonal_boost_months:
+    - 8
+    - 9
+    - 10
+    - 11
+    source_status: watchlist_only
+  Monteris Medical:
+    aliases:
+    - Monteris Medical
+    - Monteris
+    hiring_model: rolling_growth_company
+    seasonal_boost_months:
+    - 8
+    - 9
+    - 10
+    - 11
+    source_status: watchlist_only
+  Francis Medical:
+    aliases:
+    - Francis Medical
+    hiring_model: rolling_growth_company
+    seasonal_boost_months:
+    - 8
+    - 9
+    - 10
+    - 11
+    source_status: watchlist_only
+  MGC Diagnostics:
+    aliases:
+    - MGC Diagnostics
+    hiring_model: rolling
+    seasonal_boost_months:
+    - 8
+    - 9
+    - 10
+    - 11
+    source_status: watchlist_only
+  Enterra Medical:
+    aliases:
+    - Enterra Medical
+    hiring_model: rolling_growth_company
+    seasonal_boost_months:
+    - 8
+    - 9
+    - 10
+    - 11
+    source_status: watchlist_only
+  SynerFuse:
+    aliases:
+    - SynerFuse
+    hiring_model: rolling_startup
+    seasonal_boost_months:
+    - 8
+    - 9
+    - 10
+    - 11
+    source_status: watchlist_only
+  Pelvital:
+    aliases:
+    - Pelvital
+    - Flyte
+    hiring_model: rolling_startup
+    seasonal_boost_months:
+    - 8
+    - 9
+    - 10
+    - 11
+    source_status: watchlist_only
+  Bone Foam:
+    aliases:
+    - Bone Foam
+    hiring_model: rolling_growth_company
+    seasonal_boost_months:
+    - 8
+    - 9
+    - 10
+    - 11
+    source_status: watchlist_only
+  Cryosa:
+    aliases:
+    - Cryosa
+    hiring_model: rolling_startup
+    seasonal_boost_months:
+    - 8
+    - 9
+    - 10
+    - 11
+    source_status: watchlist_only
+  Carbon Medical Technologies:
+    aliases:
+    - Carbon Medical Technologies
+    hiring_model: rolling
+    seasonal_boost_months:
+    - 8
+    - 9
+    - 10
+    - 11
+    source_status: watchlist_only
+  NeuroOne Medical Technologies:
+    aliases:
+    - NeuroOne Medical Technologies
+    - NeuroOne
+    hiring_model: rolling_growth_company
+    seasonal_boost_months:
+    - 8
+    - 9
+    - 10
+    - 11
+    source_status: watchlist_only
+  Nonin Medical:
+    aliases:
+    - Nonin Medical
+    - Nonin
+    hiring_model: rolling
+    seasonal_boost_months:
+    - 8
+    - 9
+    - 10
+    - 11
+    source_status: watchlist_only
+  Forj Medical:
+    aliases:
+    - Forj Medical
+    - IntriCon
+    - Intricon
+    - Minnetronix Medical
+    hiring_model: rolling_cdmo
+    seasonal_boost_months:
+    - 8
+    - 9
+    - 10
+    - 11
+    source_status: watchlist_only
+  Cirtec Medical:
+    aliases:
+    - Cirtec Medical
+    - Cirtec
+    hiring_model: rolling_cdmo
+    seasonal_boost_months:
+    - 8
+    - 9
+    - 10
+    - 11
+    source_status: watchlist_only
+  Cretex Medical:
+    aliases:
+    - Cretex Medical
+    - rms Company
+    - Cretex Medical - rms
+    hiring_model: rolling_cdmo
+    seasonal_boost_months:
+    - 8
+    - 9
+    - 10
+    - 11
+    source_status: configured
+  Nextern:
+    aliases:
+    - Nextern
+    - NPX Medical
+    - Nextern Precision Technologies
+    hiring_model: rolling_cdmo
+    seasonal_boost_months:
+    - 8
+    - 9
+    - 10
+    - 11
+    source_status: watchlist_only
+  VitalPath:
+    aliases:
+    - VitalPath
+    hiring_model: rolling_cdmo
+    seasonal_boost_months:
+    - 8
+    - 9
+    - 10
+    - 11
+    source_status: watchlist_only
+  Heraeus Medevio:
+    aliases:
+    - Heraeus Medevio
+    - Heraeus Medical Components
+    hiring_model: rolling_cdmo
+    seasonal_boost_months:
+    - 8
+    - 9
+    - 10
+    - 11
+    source_status: watchlist_only
+  Resonetics:
+    aliases:
+    - Resonetics
+    hiring_model: rolling_cdmo
+    seasonal_boost_months:
+    - 8
+    - 9
+    - 10
+    - 11
+    source_status: configured
+  Nortech Systems:
+    aliases:
+    - Nortech Systems
+    - Nortech
+    hiring_model: rolling_design_manufacturing
+    seasonal_boost_months:
+    - 8
+    - 9
+    - 10
+    - 11
+    source_status: watchlist_only
+  Beacon EmbeddedWorks:
+    aliases:
+    - Beacon EmbeddedWorks
+    - Beacon Embedded Works
+    hiring_model: rolling_design_manufacturing
+    seasonal_boost_months:
+    - 8
+    - 9
+    - 10
+    - 11
+    source_status: watchlist_only
+  Formacoat:
+    aliases:
+    - Formacoat
+    hiring_model: rolling_supplier
+    seasonal_boost_months:
+    - 8
+    - 9
+    - 10
+    - 11
+    source_status: watchlist_only
+  STERIS:
+    aliases:
+    - STERIS
+    - Steris
+    hiring_model: rolling
+    seasonal_boost_months:
+    - 8
+    - 9
+    - 10
+    - 11
+    source_status: watchlist_only
+  Lifecore Biomedical:
+    aliases:
+    - Lifecore Biomedical
+    - Lifecore
+    hiring_model: rolling
+    seasonal_boost_months:
+    - 8
+    - 9
+    - 10
+    - 11
+    source_status: watchlist_only
+  Beckman Coulter Diagnostics:
+    aliases:
+    - Beckman Coulter Diagnostics
+    - Beckman Coulter
+    hiring_model: rolling_with_early_career_campaigns
+    seasonal_boost_months:
+    - 1
+    - 2
+    - 3
+    - 8
+    - 9
+    - 10
+    - 11
+    source_status: configured

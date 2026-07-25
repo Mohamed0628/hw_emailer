@@ -1,59 +1,56 @@
 # General run settings.
 
-# State file tracking which jobs have already been notified (relative to repo root).
 state_file: data/seen_jobs.json
-
-# Drop a seen job from state after this many days (keeps the file small; if a
-# posting reappears later it will be treated as new again).
 prune_after_days: 120
 
-# HTTP behaviour for all sources.
 http:
   timeout_seconds: 20
   retries: 2
   retry_backoff_seconds: 2
-  user_agent: "intern-pos-emailer/1.0 (+https://github.com/) personal job alerter"
-  # polite delay between requests to the same host (seconds)
+  user_agent: "hw-emailer/2.0 (+https://github.com/) personal job alerter"
   per_request_delay: 0.3
 
-# Per-source cap on number of jobs pulled (0 = unlimited). Safety valve.
 max_jobs_per_source: 0
 
-# Email digest.
 email:
   enabled: true
-  subject_prefix: "[HW Intern Alert]"
-  # group order in the digest
-  category_order: [silicon, hardware, firmware, other]
-  # When a NEW posting is from one of these companies, the digest goes URGENT:
-  # subject + headline get a "top company job out now" banner. Edit freely.
-  faang_companies: [medtronic, starkey, tactile, graco, donaldson, polaris, toro,
-    seagate, skywater, stratasys, tennant, banner, turck, tolomatic, intricon,
-    nortech, daikin, imricor, digi, nvent, tkda, proto, polar, saturn, ultra,
-    3m, nvidia, apple, amd, qualcomm, spacex, anduril] 
-    
+  subject_prefix: "[Hardware Job Alert]"
+  category_order: [silicon, hardware, medtech_hardware, firmware, other]
+  faang_companies:
+    - medtronic
+    - starkey
+    - tactile
+    - boston
+    - abbott
+    - solventum
+    - integer
+    - inspire
+    - coloplast
+    - acist
+    - surmodics
+    - cvrx
+    - imricor
+    - cirtec
+    - cretex
+    - resonetics
+    - nortech
+    - beacon
+    - nvidia
+    - apple
+    - amd
+    - qualcomm
+    - spacex
+    - anduril
 
-# SMS nudge (OFF — email-only setup). To enable later: set enabled: true,
-# uncomment twilio in requirements.txt, and add the TWILIO_* secrets.
 sms:
   enabled: false
-  # template; {n} is replaced with the new-job count
-  template: "{n} new hardware internships today. Check your email for the digest."
-  # don't send an SMS unless at least this many new jobs (avoids paying for tiny alerts)
+  template: "{n} new hardware or early-career opportunities today. Check your email."
   min_jobs: 1
 
-# If true, send nothing on days with zero new jobs (recommended — no noise).
 suppress_when_empty: true
 
-# Auto-apply tool (LOCAL only: python -m src.apply). The daily email job ignores this.
 apply:
-  # auto_simple_review_hard: auto-submit forms with no extra required fields,
-  #                          pause for your review when a form has custom questions.
-  # review_all:  fill everything, always pause for you to submit.
-  # auto_all:    fill and submit everything (riskiest).
   mode: auto_simple_review_hard
-  generate_cover_letter: true   # needs GEMINI_API_KEY (Gemini 2.5 Flash)
-  daily_limit: 10               # max applications per run
-  # ATSes the apply tool knows how to fill. Jobs from other sources are skipped
-  # (you still get them in the email digest).
+  generate_cover_letter: true
+  daily_limit: 10
   supported_ats: [greenhouse, lever, ashby]
