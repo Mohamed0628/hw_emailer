@@ -15,7 +15,7 @@ max_jobs_per_source: 0
 email:
   enabled: true
   subject_prefix: "[Hardware Job Alert]"
-  category_order: [silicon, hardware, firmware, other]
+  category_order: [silicon, hardware, medtech_hardware, firmware, other]
   faang_companies:
     - medtronic
     - starkey
