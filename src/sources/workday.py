@@ -2,8 +2,8 @@
 
 Configured Minnesota medtech employers can use several targeted search terms so
 full-time Engineer I, associate, rotational, and description-qualified roles
-reach the local filter. Individual job details are fetched once per unique
-posting to obtain requirements and experience language.
+reach the local filter. Job details are fetched once per unique plausible title
+to obtain requirements and degree-specific experience language.
 """
 
 from __future__ import annotations
@@ -11,11 +11,12 @@ from __future__ import annotations
 import requests
 
 from ..models import Job
+from ..smart_filters import potential_technical_title
 from .base import Source, request_json
 from .text import plain_text
 
 PAGE = 20
-MAX_PAGES = 25
+MAX_PAGES = 10
 
 
 class WorkdaySource(Source):
@@ -35,7 +36,11 @@ class WorkdaySource(Source):
         self.site = site
         terms = search_texts or [search_text]
         self.search_texts = list(
-            dict.fromkeys(str(term).strip() for term in terms if str(term).strip())
+            dict.fromkeys(
+                str(term).strip()
+                for term in terms
+                if str(term).strip()
+            )
         )
         self.fetch_details = fetch_details
         self.name = f"workday:{company}"
@@ -89,8 +94,13 @@ class WorkdaySource(Source):
                 for raw in postings:
                     title = raw.get("title")
                     external_path = raw.get("externalPath")
-                    if title and external_path:
-                        postings_by_path.setdefault(str(external_path), raw)
+                    if not (title and external_path):
+                        continue
+                    if self.fetch_details and not potential_technical_title(
+                        str(title)
+                    ):
+                        continue
+                    postings_by_path.setdefault(str(external_path), raw)
 
                 offset += PAGE
                 if offset >= int(data.get("total", 0)):
@@ -114,7 +124,11 @@ class WorkdaySource(Source):
                 locations.append(str(location))
             if isinstance(additional_locations, list):
                 for item in additional_locations:
-                    value = item.get("location") if isinstance(item, dict) else item
+                    value = (
+                        item.get("location")
+                        if isinstance(item, dict)
+                        else item
+                    )
                     if value and str(value) not in locations:
                         locations.append(str(value))
 
