@@ -283,6 +283,14 @@ ashby:
   token: physicalintelligence
 - company: FuriosaAI
   token: furiosa-ai
+- company: Podium Automation
+  token: podium-automation
+- company: Revise Robotics
+  token: reviserobotics
+- company: Reflex Robotics
+  token: reflexrobotics
+- company: Cobot
+  token: cobot
 workday:
 - company: NVIDIA
   tenant: nvidia
