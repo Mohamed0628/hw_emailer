@@ -1,9 +1,9 @@
 """Description-aware filtering for internships and full-time early-career roles.
 
-The legacy title filter remains the source of truth for internships and explicit
-new-grad titles. This module adds a conservative fallback for ordinary titles
-such as "Electrical Engineer" or "R&D Engineer II" when the posting itself
-proves that a bachelor's graduate with 0-2 years is eligible.
+The existing title filter remains the source of truth for internships and
+explicit new-grad titles. This module adds a conservative fallback for ordinary
+titles such as "Electrical Engineer" or "R&D Engineer II" when the posting
+itself proves that a bachelor's graduate with 0-2 years is eligible.
 """
 
 from __future__ import annotations
@@ -40,6 +40,18 @@ _TECHNICAL_TITLE_RE = re.compile(
     r"robotics?|mechatronics?|power|design|sustaining)\b",
     re.IGNORECASE,
 )
+_DIRECT_EE_TITLE_RE = re.compile(
+    r"\b(?:electrical|electronics?|hardware|firmware|embedded|pcb|circuit|"
+    r"analog|digital|mixed[- ]signal|fpga|power electronics|motor control|"
+    r"controls?|automation|robotics?|mechatronics?|instrumentation|rf|"
+    r"signal integrity|power integrity|emc|emi)\b",
+    re.IGNORECASE,
+)
+_ADJACENT_ENGINEERING_TITLE_RE = re.compile(
+    r"\b(?:systems?|test|verification|validation|product|r\s*&\s*d|research|"
+    r"reliability|sustaining|manufacturing|process development|quality)\b",
+    re.IGNORECASE,
+)
 _BUSINESS_OR_TRADE_RE = re.compile(
     r"\b(?:technician|mechanic|machinist|welder|product manager|project manager|"
     r"program manager|marketing|sales|finance|accounting|recruiter|human resources|"
@@ -47,8 +59,9 @@ _BUSINESS_OR_TRADE_RE = re.compile(
     re.IGNORECASE,
 )
 _PLAIN_SOFTWARE_RE = re.compile(
-    r"\b(?:frontend|backend|full stack|web developer|mobile developer|ios|android|"
-    r"data scientist|data analyst|machine learning|cloud|devops|cybersecurity)\b",
+    r"\b(?:software|frontend|backend|full stack|web developer|mobile developer|"
+    r"ios|android|data scientist|data analyst|machine learning|cloud|devops|"
+    r"cybersecurity)\b",
     re.IGNORECASE,
 )
 _SOFTWARE_HARDWARE_ALLOW_RE = re.compile(
@@ -72,25 +85,38 @@ _INTERN_PREFERRED_RE = re.compile(
     r"\b(?:internship|co[- ]?op) experience (?:is )?(?:preferred|desired|a plus)\b",
     re.IGNORECASE,
 )
-_BACHELOR_RE = re.compile(r"\b(?:bachelor(?:'s|s)?|b\.?s\.?|undergraduate degree)\b", re.IGNORECASE)
+_BACHELOR_RE = re.compile(
+    r"\b(?:bachelor(?:'s|s)?|b\.?s\.?|undergraduate degree)\b",
+    re.IGNORECASE,
+)
 _MASTER_RE = re.compile(r"\b(?:master(?:'s|s)?|m\.?s\.?)\b", re.IGNORECASE)
+_PREFERRED_RE = re.compile(
+    r"\b(?:preferred|desired|nice to have|ideally|a plus)\b",
+    re.IGNORECASE,
+)
+_REQUIRED_RE = re.compile(
+    r"\b(?:required|minimum|at least|must|basic qualification)\b",
+    re.IGNORECASE,
+)
 
 _EXPERIENCE_RANGE_RE = re.compile(
     r"(?P<lo>\d+)\s*(?:-|to|through)\s*(?P<hi>\d+)\s+years?"
-    r"(?:\s+of)?(?:\s+\w+){0,5}\s+experience",
+    r"(?:\s+of)?(?:\s+[a-z0-9/+&-]+){0,7}\s+experience",
     re.IGNORECASE,
 )
 _EXPERIENCE_PLUS_RE = re.compile(
-    r"(?P<lo>\d+)\s*\+\s*years?(?:\s+of)?(?:\s+\w+){0,5}\s+experience",
+    r"(?P<lo>\d+)\s*\+\s*years?(?:\s+of)?"
+    r"(?:\s+[a-z0-9/+&-]+){0,7}\s+experience",
     re.IGNORECASE,
 )
 _EXPERIENCE_SINGLE_RE = re.compile(
     r"(?:minimum of|at least|requires?|with|and)?\s*(?P<lo>\d+)\s+years?"
-    r"(?:\s+of)?(?:\s+\w+){0,5}\s+experience",
+    r"(?:\s+of)?(?:\s+[a-z0-9/+&-]+){0,7}\s+experience",
     re.IGNORECASE,
 )
 _ZERO_EXPERIENCE_RE = re.compile(
-    r"\b(?:0|zero)\s+years?(?:\s+of)?(?:\s+\w+){0,5}\s+experience\b|"
+    r"\b(?:0|zero)\s+years?(?:\s+of)?"
+    r"(?:\s+[a-z0-9/+&-]+){0,7}\s+experience\b|"
     r"\bno (?:prior|previous|professional) experience required\b",
     re.IGNORECASE,
 )
@@ -127,21 +153,34 @@ def _job_text(job: Job) -> str:
         getattr(job, "department", None),
         getattr(job, "team", None),
     ]
-    return "\n".join(str(x) for x in parts if x)
+    return "\n".join(str(value) for value in parts if value)
 
 
 def _normalized_experience_text(text: str) -> str:
     text = (text or "").lower()
     text = text.replace("–", "-").replace("—", "-").replace("−", "-")
-    text = re.sub(r"\s+", " ", text)
-    return text
+    return re.sub(r"[ \t]+", " ", text)
+
+
+def _is_preferred_only(text: str, start: int, end: int) -> bool:
+    """Return True when a matched experience number is only a preference."""
+    left = max(0, start - 100)
+    right = min(len(text), end + 100)
+    window = text[left:right]
+    return bool(_PREFERRED_RE.search(window) and not _REQUIRED_RE.search(window))
 
 
 def _experience_mins(text: str) -> list[int]:
-    """Return minimum years from explicit experience requirements."""
+    """Return minimum years from required or neutral experience statements."""
     mins: list[int] = []
-    for rx in (_EXPERIENCE_RANGE_RE, _EXPERIENCE_PLUS_RE, _EXPERIENCE_SINGLE_RE):
-        for match in rx.finditer(text):
+    for pattern in (
+        _EXPERIENCE_RANGE_RE,
+        _EXPERIENCE_PLUS_RE,
+        _EXPERIENCE_SINGLE_RE,
+    ):
+        for match in pattern.finditer(text):
+            if _is_preferred_only(text, match.start(), match.end()):
+                continue
             try:
                 mins.append(int(match.group("lo")))
             except (TypeError, ValueError):
@@ -152,11 +191,7 @@ def _experience_mins(text: str) -> list[int]:
 
 
 def _degree_window_mins(text: str, degree_re: re.Pattern[str]) -> list[int]:
-    """Find experience minima in the same alternative as a named degree.
-
-    Splitting on "or", semicolons, and line breaks prevents a master's
-    zero-year option from being assigned to the bachelor's path.
-    """
+    """Find experience minima in the same degree alternative."""
     mins: list[int] = []
     clauses = re.split(r"\b(?:or|and/or)\b|[;\n]", text, flags=re.IGNORECASE)
     for clause in clauses:
@@ -173,17 +208,16 @@ def assess_entry_level(job: Job, role_cfg: dict[str, Any]) -> EntryLevelAssessme
     evidence: list[str] = []
 
     title_is_explicit = base.is_new_grad(title, role_cfg)
+    engineer_i = base.is_engineer_i(title)
     if title_is_explicit:
         score += 6
         evidence.append("explicit early-career title")
-    if base.is_engineer_i(title):
+    if engineer_i:
         score += 6
         evidence.append("Engineer I title")
 
     bachelor_mins = _degree_window_mins(description, _BACHELOR_RE)
-    master_mins = _degree_window_mins(description, _MASTER_RE)
     general_mins = _experience_mins(description)
-
     bachelor_min = min(bachelor_mins) if bachelor_mins else None
     general_min = min(general_mins) if general_mins else None
 
@@ -201,8 +235,10 @@ def assess_entry_level(job: Job, role_cfg: dict[str, Any]) -> EntryLevelAssessme
                 general_min_years=general_min,
             )
     elif general_min is not None:
-        ambiguous_degree_alternatives = bool(_BACHELOR_RE.search(description) and _MASTER_RE.search(description))
-        if general_min <= 2 and not ambiguous_degree_alternatives:
+        has_degree_alternatives = bool(
+            _BACHELOR_RE.search(description) and _MASTER_RE.search(description)
+        )
+        if general_min <= 2 and not has_degree_alternatives:
             score += 4
             evidence.append(f"description allows {general_min}-2 years")
         elif general_min >= 3:
@@ -238,26 +274,33 @@ def assess_entry_level(job: Job, role_cfg: dict[str, Any]) -> EntryLevelAssessme
             bachelor_min is None
             and general_min is not None
             and general_min <= 2
-            and not (_BACHELOR_RE.search(description) and _MASTER_RE.search(description))
+            and not (
+                _BACHELOR_RE.search(description)
+                and _MASTER_RE.search(description)
+            )
         ) or bool(_ZERO_EXPERIENCE_RE.search(description))
         if not proven:
             return EntryLevelAssessment(
                 False,
                 score=score,
                 evidence=evidence,
-                rejection_reason="Engineer II lacks a proven bachelor's 0-2 year path",
+                rejection_reason=(
+                    "Engineer II lacks a proven bachelor's 0-2 year path"
+                ),
                 bachelor_min_years=bachelor_min,
                 general_min_years=general_min,
             )
         score += 2
         evidence.append("Engineer II verified at 0-2 years")
 
-    eligible = title_is_explicit or base.is_engineer_i(title) or score >= 5
+    eligible = title_is_explicit or engineer_i or score >= 5
     return EntryLevelAssessment(
         eligible,
         score=score,
         evidence=evidence,
-        rejection_reason=None if eligible else "insufficient early-career evidence",
+        rejection_reason=(
+            None if eligible else "insufficient early-career evidence"
+        ),
         bachelor_min_years=bachelor_min,
         general_min_years=general_min,
     )
@@ -275,8 +318,12 @@ def _company_match(job: Job) -> tuple[Optional[str], dict[str, Any]]:
     for canonical, spec in (_intelligence().get("companies") or {}).items():
         aliases = [canonical, *(spec.get("aliases") or [])]
         for alias in aliases:
-            norm = base.normalize_text(str(alias))
-            if norm and (norm == company or norm in company or company in norm):
+            normalized_alias = base.normalize_text(str(alias))
+            if normalized_alias and (
+                normalized_alias == company
+                or normalized_alias in company
+                or company in normalized_alias
+            ):
                 return canonical, spec or {}
     return None, {}
 
@@ -299,68 +346,121 @@ def _augmented_filters(f: dict[str, Any]) -> dict[str, Any]:
 
 
 def workday_search_terms(company: str) -> list[str]:
-    """Return configured full-time search terms for a known medtech employer."""
-    fake = type("_Company", (), {"company": company})()
-    canonical, spec = _company_match(fake)  # type: ignore[arg-type]
+    """Return full-time search terms for a known medtech employer."""
+    placeholder = type("_Company", (), {"company": company})()
+    canonical, spec = _company_match(placeholder)  # type: ignore[arg-type]
     if not canonical:
         return []
     defaults = _intelligence().get("defaults") or {}
-    return list(spec.get("workday_search_terms") or defaults.get("workday_search_terms") or [])
+    return list(
+        spec.get("workday_search_terms")
+        or defaults.get("workday_search_terms")
+        or []
+    )
 
 
-def _priority_for(job: Job) -> tuple[Optional[str], Optional[str]]:
-    canonical, spec = _company_match(job)
-    if not canonical:
-        return None, None
-
-    loc = base.normalize_text(getattr(job, "location_str", "") or "")
-    minnesota = any(term in loc for term in ("minnesota", " mn", "minneapolis", "saint paul", "st paul"))
-    months = set(spec.get("seasonal_boost_months") or [])
-    current_month = datetime.now().month
-    seasonal = current_month in months
-
-    if minnesota and seasonal:
-        return "A", f"{canonical}: Minnesota role during seasonal hiring boost"
-    if minnesota:
-        return "A", f"{canonical}: Minnesota medtech target"
-    if seasonal:
-        return "B", f"{canonical}: seasonal hiring boost"
-    return "B", f"{canonical}: Minnesota medtech employer"
-
-
-def _title_allows_fallback(title: str) -> bool:
+def potential_technical_title(title: str) -> bool:
+    """Cheap title screen used before downloading a full ATS description."""
     if _HARD_SENIORITY_RE.search(title) or _LEVEL_III_PLUS_RE.search(title):
         return False
     if _BUSINESS_OR_TRADE_RE.search(title):
         return False
     if _PLAIN_SOFTWARE_RE.search(title) and not _SOFTWARE_HARDWARE_ALLOW_RE.search(title):
         return False
-    return bool(_TECHNICAL_TITLE_RE.search(title) or _LEVEL_II_RE.search(title))
+    normalized = base.normalize_text(title)
+    return bool(
+        _TECHNICAL_TITLE_RE.search(title)
+        or _LEVEL_II_RE.search(title)
+        or base.is_engineer_i(normalized)
+        or base.is_internship(normalized, {"internship_terms": [], "exclude_terms": []})
+        or _EXPLICIT_ENTRY_RE.search(title)
+    )
+
+
+def _priority_for(
+    job: Job,
+    category: Optional[str],
+) -> tuple[Optional[str], Optional[str]]:
+    canonical, spec = _company_match(job)
+    if not canonical:
+        return None, None
+
+    title = getattr(job, "title", "") or ""
+    location = base.normalize_text(getattr(job, "location_str", "") or "")
+    is_minnesota = any(
+        term in location
+        for term in (
+            "minnesota",
+            " mn",
+            "minneapolis",
+            "saint paul",
+            "st paul",
+            "maple grove",
+            "plymouth",
+            "arden hills",
+            "brooklyn park",
+        )
+    )
+    seasonal = datetime.now().month in set(
+        spec.get("seasonal_boost_months") or []
+    )
+
+    direct_categories = {
+        "silicon",
+        "hardware",
+        "firmware",
+        "pcb_hardware",
+        "embedded_firmware",
+        "electrical",
+        "power_electronics",
+        "robotics_controls",
+        "semiconductor",
+    }
+    direct = bool(
+        category in direct_categories or _DIRECT_EE_TITLE_RE.search(title)
+    )
+    adjacent = bool(_ADJACENT_ENGINEERING_TITLE_RE.search(title))
+
+    if is_minnesota and direct:
+        priority = "A"
+        reason = "direct EE or hardware role in Minnesota"
+    elif direct:
+        priority = "B"
+        reason = "direct EE or hardware role at a Minnesota medtech employer"
+    elif is_minnesota and adjacent:
+        priority = "B"
+        reason = "EE-adjacent engineering role in Minnesota"
+    else:
+        priority = "C"
+        reason = "general early-career medtech engineering role"
+
+    if seasonal:
+        reason += " during a seasonal hiring boost"
+    return priority, f"{canonical}: {reason}"
 
 
 def _smart_evaluate(job: Job, f: dict[str, Any]) -> SmartFilterResult:
     augmented = _augmented_filters(f)
     role_cfg = augmented.get("role", {})
-    loc_cfg = augmented.get("location", {})
+    location_cfg = augmented.get("location", {})
 
     legacy = base._evaluate(job, augmented)  # noqa: SLF001
     if legacy.passed:
-        role_type = legacy.role_type
         assessment = EntryLevelAssessment(True)
-        if role_type == "new_grad":
+        if legacy.role_type == "new_grad":
             assessment = assess_entry_level(job, role_cfg)
             if not assessment.eligible:
                 return SmartFilterResult(
                     False,
-                    role_type=role_type,
+                    role_type=legacy.role_type,
                     entry_level_score=assessment.score,
                     evidence=assessment.evidence,
                     rejection_reason=assessment.rejection_reason,
                 )
-        priority, hiring_signal = _priority_for(job)
+        priority, hiring_signal = _priority_for(job, legacy.category)
         return SmartFilterResult(
             True,
-            role_type=role_type,
+            role_type=legacy.role_type,
             category=legacy.category,
             season=legacy.season,
             year=legacy.year,
@@ -372,11 +472,17 @@ def _smart_evaluate(job: Job, f: dict[str, Any]) -> SmartFilterResult:
         )
 
     if not role_cfg.get("allow_new_grad", False):
-        return SmartFilterResult(False, rejection_reason=legacy.rejection_reason or "new_grad_disabled")
+        return SmartFilterResult(
+            False,
+            rejection_reason=legacy.rejection_reason or "new_grad_disabled",
+        )
 
     title = getattr(job, "title", "") or ""
-    if not _title_allows_fallback(title):
-        return SmartFilterResult(False, rejection_reason=legacy.rejection_reason or "title_not_eligible")
+    if not potential_technical_title(title):
+        return SmartFilterResult(
+            False,
+            rejection_reason=legacy.rejection_reason or "title_not_eligible",
+        )
 
     assessment = assess_entry_level(job, role_cfg)
     if not assessment.eligible:
@@ -389,19 +495,32 @@ def _smart_evaluate(job: Job, f: dict[str, Any]) -> SmartFilterResult:
         )
 
     season = base.detect_season(job)
-    allowed_seasons = [str(s).lower() for s in role_cfg.get("seasons", ())]
+    allowed_seasons = [str(value).lower() for value in role_cfg.get("seasons", ())]
     if allowed_seasons and season and season not in allowed_seasons:
-        return SmartFilterResult(False, role_type="new_grad", season=season, rejection_reason="season")
+        return SmartFilterResult(
+            False,
+            role_type="new_grad",
+            season=season,
+            rejection_reason="season",
+        )
 
     year = base.detect_year(job)
     allowed_years = role_cfg.get("years", ())
     if allowed_years and year and year not in allowed_years:
         return SmartFilterResult(
-            False, role_type="new_grad", season=season, year=year, rejection_reason="year"
+            False,
+            role_type="new_grad",
+            season=season,
+            year=year,
+            rejection_reason="year",
         )
 
-    norm_title = base.normalize_text(title)
-    category, matched = base._classify_job(job, augmented, norm_title)  # noqa: SLF001
+    normalized_title = base.normalize_text(title)
+    category, matched = base._classify_job(  # noqa: SLF001
+        job,
+        augmented,
+        normalized_title,
+    )
     if augmented.get("require_category", True) and not category:
         return SmartFilterResult(
             False,
@@ -415,7 +534,7 @@ def _smart_evaluate(job: Job, f: dict[str, Any]) -> SmartFilterResult:
     if matched:
         assessment.evidence.append("category: " + ", ".join(matched[:3]))
 
-    location_passed = base.is_us_location(job, loc_cfg)
+    location_passed = base.is_us_location(job, location_cfg)
     if not location_passed:
         return SmartFilterResult(
             False,
@@ -429,7 +548,7 @@ def _smart_evaluate(job: Job, f: dict[str, Any]) -> SmartFilterResult:
             rejection_reason="location",
         )
 
-    priority, hiring_signal = _priority_for(job)
+    priority, hiring_signal = _priority_for(job, category)
     return SmartFilterResult(
         True,
         role_type="new_grad",
@@ -462,7 +581,10 @@ def passes(job: Job, f: Optional[dict[str, Any]] = None) -> bool:
     return True
 
 
-def explain_pass(job: Job, f: Optional[dict[str, Any]] = None) -> dict[str, Any]:
+def explain_pass(
+    job: Job,
+    f: Optional[dict[str, Any]] = None,
+) -> dict[str, Any]:
     """Explain the exact smart-filter outcome without mutating the job."""
     filters_config = f if f is not None else config.filters()
     result = _smart_evaluate(job, filters_config)
@@ -481,7 +603,10 @@ def explain_pass(job: Job, f: Optional[dict[str, Any]] = None) -> dict[str, Any]
     }
 
 
-def apply_filters(jobs: list[Job], f: Optional[dict[str, Any]] = None) -> list[Job]:
+def apply_filters(
+    jobs: list[Job],
+    f: Optional[dict[str, Any]] = None,
+) -> list[Job]:
     """Apply smart filtering to all collected jobs."""
     filters_config = f if f is not None else config.filters()
     return [job for job in jobs if passes(job, filters_config)]
