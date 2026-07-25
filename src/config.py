@@ -40,6 +40,11 @@ def companies() -> dict[str, Any]:
 
 
 @lru_cache(maxsize=None)
+def direct_companies() -> dict[str, Any]:
+    return _load_yaml("direct_companies.yaml")
+
+
+@lru_cache(maxsize=None)
 def minnesota_medtech() -> dict[str, Any]:
     return _load_yaml("minnesota_medtech.yaml")
 
