@@ -9,6 +9,14 @@ from ..smart_filters import workday_search_terms
 from . import github_lists
 from .ashby import AshbySource
 from .base import Source
+from .direct import (
+    ADPSource,
+    CareerPageSource,
+    JazzHRSource,
+    PaylocitySource,
+    UKGProSource,
+    WordPressJobsSource,
+)
 from .greenhouse import GreenhouseSource
 from .icims import ICIMSSource
 from .lever import LeverSource
@@ -74,6 +82,74 @@ def build_all_sources() -> list[Source]:
                         "fetch_details",
                         bool(workday_search_terms(company)),
                     ),
+                )
+            )
+
+    direct = config.direct_companies()
+
+    for entry in direct.get("jazzhr", []) or []:
+        if _enabled(entry) and entry.get("company") and entry.get("board_url"):
+            sources.append(
+                JazzHRSource(
+                    company=entry["company"],
+                    board_url=entry["board_url"],
+                    default_location=entry.get("default_location", ""),
+                )
+            )
+
+    for entry in direct.get("paylocity", []) or []:
+        if _enabled(entry) and entry.get("company") and entry.get("guid"):
+            sources.append(
+                PaylocitySource(
+                    company=entry["company"],
+                    guid=entry["guid"],
+                )
+            )
+
+    for entry in direct.get("ukg", []) or []:
+        required = all(entry.get(key) for key in ("company", "host", "code", "board"))
+        if _enabled(entry) and required:
+            sources.append(
+                UKGProSource(
+                    company=entry["company"],
+                    host=entry["host"],
+                    code=entry["code"],
+                    board=entry["board"],
+                )
+            )
+
+    for entry in direct.get("adp", []) or []:
+        if _enabled(entry) and entry.get("company") and entry.get("cid"):
+            sources.append(
+                ADPSource(
+                    company=entry["company"],
+                    cid=entry["cid"],
+                    cc_id=entry.get("cc_id", "19000101_000001"),
+                    lang=entry.get("lang", "en_US"),
+                )
+            )
+
+    for entry in direct.get("wordpress_jobs", []) or []:
+        if _enabled(entry) and entry.get("company") and entry.get("board_url"):
+            sources.append(
+                WordPressJobsSource(
+                    company=entry["company"],
+                    board_url=entry["board_url"],
+                    job_path_prefix=entry.get("job_path_prefix", "/jobs/"),
+                    default_location=entry.get("default_location", ""),
+                )
+            )
+
+    for entry in direct.get("career_pages", []) or []:
+        required = all(entry.get(key) for key in ("company", "board_url", "job_host"))
+        if _enabled(entry) and required:
+            sources.append(
+                CareerPageSource(
+                    company=entry["company"],
+                    board_url=entry["board_url"],
+                    job_host=entry["job_host"],
+                    default_location=entry.get("default_location", ""),
+                    follow_details=entry.get("follow_details", True),
                 )
             )
 

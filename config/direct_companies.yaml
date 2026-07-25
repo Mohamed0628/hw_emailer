@@ -1,0 +1,52 @@
+# Direct and public career boards for targeted Minnesota engineering employers.
+# These sources supplement, rather than duplicate, companies already covered by
+# Greenhouse, Lever, Ashby, Workday, or iCIMS.
+
+jazzhr:
+  - company: Enterra Medical
+    board_url: https://enterramedicalinc.applytojob.com/apply
+    default_location: Minneapolis, MN
+
+  - company: Tolomatic
+    board_url: https://tolomatic.applytojob.com/apply
+    default_location: Hamel, MN
+
+paylocity:
+  - company: Beacon EmbeddedWorks
+    guid: 3811a7de-0909-4ba8-9e61-be1c94388bc3
+
+ukg:
+  - company: Nortech Systems
+    host: recruiting2.ultipro.com
+    code: NOR1071NOEC
+    board: 16bd3c41-c284-480c-8f37-da010d414b49
+
+  - company: Banner Engineering
+    host: recruiting.ultipro.com
+    code: ban1010
+    board: e9066a66-c3b9-e25c-d036-116705c05e46
+
+adp:
+  - company: MGC Diagnostics
+    cid: 4b78fe1d-0424-4c04-8b42-6965eee65573
+
+  - company: Circuit Check
+    cid: fdec5e01-7972-4ed7-916b-39eacf46093c
+
+wordpress_jobs:
+  - company: Imricor Medical Systems
+    board_url: https://imricor.com/careers/
+    job_path_prefix: /jobs/
+    default_location: Burnsville, MN
+
+  - company: All Flex Solutions
+    board_url: https://www.allflexinc.com/jobs/
+    job_path_prefix: /jobs/
+    default_location: Minnesota
+
+career_pages:
+  - company: PAR Systems
+    board_url: https://www.par.com/careers/
+    job_host: jobs.dayforcehcm.com
+    default_location: Shoreview, MN
+    follow_details: true
