@@ -48,7 +48,7 @@ def test_engineer_ii_passes_only_when_bachelors_path_is_zero_to_two():
     )
     assert not passes(ineligible)
     info = explain_pass(ineligible)
-    assert "bachelor's path requires 3+ years" == info["rejection_reason"]
+    assert info["rejection_reason"] == "bachelor's path requires 3+ years"
 
 
 def test_engineer_i_is_rejected_when_description_requires_experience():
@@ -59,25 +59,47 @@ def test_engineer_i_is_rejected_when_description_requires_experience():
     assert not passes(job)
 
 
-def test_senior_title_is_never_rescued_by_description():
+def test_preferred_experience_does_not_create_a_hard_rejection():
     job = make_job(
+        "Electrical Engineer I",
+        "Bachelor's degree required. Three years of experience preferred.",
+    )
+    assert passes(job), explain_pass(job)
+
+
+def test_senior_and_plain_software_titles_are_never_rescued():
+    senior = make_job(
         "Senior Electrical Engineer",
         "Bachelor's degree and 0 years of experience.",
     )
-    assert not passes(job)
+    software = make_job(
+        "Software Engineer II",
+        "Bachelor's degree and 0-2 years of experience developing applications.",
+        company="Medtronic",
+    )
+    assert not passes(senior)
+    assert not passes(software)
 
 
 def test_minnesota_medtech_alias_supplies_category_and_priority():
-    job = make_job(
+    adjacent = make_job(
         "R&D Engineer",
         "Bachelor's degree and no previous experience required. "
         "Work under close supervision on medical device verification.",
         company="Minnetronix Medical",
     )
-    assert passes(job), explain_pass(job)
-    assert job.category == "medtech_hardware"
-    assert job.priority == "A"
-    assert job.hiring_signal
+    assert passes(adjacent), explain_pass(adjacent)
+    assert adjacent.category == "medtech_hardware"
+    assert adjacent.priority == "B"
+    assert adjacent.hiring_signal
+
+    direct = make_job(
+        "Electrical Engineer",
+        "Bachelor's degree and 0-2 years of experience.",
+        company="Medtronic",
+    )
+    assert passes(direct), explain_pass(direct)
+    assert direct.priority == "A"
 
 
 def test_existing_internship_behavior_is_preserved():
