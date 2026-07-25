@@ -1,0 +1,99 @@
+# Additional PCB, embedded hardware, automation, and robotics employers in
+# Minnesota, Chicago, Seattle, and New York. These are kept separate from the
+# original company catalog so the expansion can be reviewed and counted cleanly.
+
+ashby:
+  - company: AIM
+    token: aim
+  - company: Voyant Photonics
+    token: voyant-photonics
+  - company: Fauna Robotics
+    token: fauna-robotics
+  - company: Coco
+    token: cocodelivery
+  - company: Nidus Technologies
+    token: nidus-technologies
+  - company: Firefly
+    token: firefly-co
+  - company: BRINC
+    token: brinc
+  - company: Endurance Energy
+    token: endurance-energy
+  - company: Cowboy Space
+    token: cowboyspace
+  - company: Mecka AI
+    token: mecka.ai
+  - company: Tuesday Lab
+    token: tuesday-lab
+  - company: Starfish Space
+    token: starfish-space-inc
+  - company: Bedrock Ocean Exploration
+    token: bedrockocean
+
+greenhouse:
+  - company: Impinj
+    token: impinjexternal
+  - company: Echodyne
+    token: echodynecorp
+  - company: Stoke Space
+    token: stokespacetechnologies
+  - company: Helion Energy
+    token: helionenergy
+  - company: Arena Physica
+    token: arenaphysica
+  - company: Starcloud
+    token: starcloud
+  - company: Second Order Effects
+    token: soeffects
+  - company: Dandelion Energy
+    token: dandelionenergy
+  - company: Overland AI
+    token: overlandai
+  - company: Formic
+    token: formic
+  - company: DoorDash
+    token: doordashusa
+
+workday:
+  - company: Blue Origin
+    tenant: blueorigin
+    wd_num: 5
+    site: BlueOrigin
+    search_texts: &regional_hardware_searches
+      - intern
+      - early career
+      - engineer i
+      - new graduate
+      - electrical engineer
+      - hardware engineer
+    fetch_details: true
+  - company: Graco
+    tenant: graco
+    wd_num: 501
+    site: Graco_Careers
+    search_texts: *regional_hardware_searches
+    fetch_details: true
+  - company: Donaldson
+    tenant: donaldson
+    wd_num: 115
+    site: DonaldsonCareers
+    search_texts: *regional_hardware_searches
+    fetch_details: true
+  - company: Zebra Technologies
+    tenant: zebra
+    wd_num: 501
+    site: Zebra_careers
+    search_texts: *regional_hardware_searches
+    fetch_details: true
+  - company: nVent
+    tenant: nvent
+    wd_num: 5
+    site: nVent
+    search_texts: *regional_hardware_searches
+    fetch_details: true
+  - company: Entegris
+    tenant: entegris
+    wd_num: 1
+    site: EntegrisCareers
+    search_texts: *regional_hardware_searches
+    fetch_details: true

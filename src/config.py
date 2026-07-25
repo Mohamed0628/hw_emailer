@@ -24,6 +24,19 @@ def _load_yaml(name: str) -> dict[str, Any]:
         return yaml.safe_load(fh) or {}
 
 
+def _merge_company_configs(*names: str) -> dict[str, Any]:
+    """Merge ATS company lists while preserving source order."""
+    merged: dict[str, Any] = {}
+    for name in names:
+        payload = _load_yaml(name)
+        for source, entries in payload.items():
+            if isinstance(entries, list):
+                merged.setdefault(source, []).extend(entries)
+            elif source not in merged:
+                merged[source] = entries
+    return merged
+
+
 @lru_cache(maxsize=None)
 def filters() -> dict[str, Any]:
     return _load_yaml("filters.yaml")
@@ -36,7 +49,7 @@ def github_lists() -> dict[str, Any]:
 
 @lru_cache(maxsize=None)
 def companies() -> dict[str, Any]:
-    return _load_yaml("companies.yaml")
+    return _merge_company_configs("companies.yaml", "companies_regional.yaml")
 
 
 @lru_cache(maxsize=None)
