@@ -30,7 +30,7 @@ def make_job(
     )
 
 
-def test_readme_parser_finds_apply_link_before_last_column():
+def test_readme_parser_finds_markdown_apply_link_before_last_column():
     row = (
         "| Oura | Hardware Engineer | San Francisco, CA | $105K-$135K | "
         "[Apply](https://example.com/oura-hardware) | 1d |"
@@ -47,6 +47,27 @@ def test_readme_parser_finds_apply_link_before_last_column():
     assert job.url == "https://example.com/oura-hardware"
     assert job.year == 2027
     assert job.role_type == "new_grad"
+
+
+def test_readme_parser_handles_live_html_company_and_apply_links():
+    row = (
+        '| <a href="https://www.oura.com"><strong>Oura</strong></a> | '
+        "Hardware Engineer | San Francisco, CA | $105K-$135K | "
+        '<a href="https://example.com/oura-hardware"><img src="apply.png" '
+        'alt="Apply" width="70"/></a> | 1d |'
+    )
+    job = _parse_table_row(
+        row,
+        _TRUSTED_SOURCE,
+        default_year=2027,
+        role_type="new_grad",
+        reject_explicit_other_years=True,
+    )
+
+    assert job is not None
+    assert job.company == "Oura"
+    assert job.url == "https://example.com/oura-hardware"
+    assert job.year == 2027
 
 
 def test_2027_feed_rejects_explicit_2026_title():
