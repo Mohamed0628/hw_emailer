@@ -1,30 +1,20 @@
-name: Discover consumer hardware boards
+name: Validate consumer hardware boards
 
 on:
   pull_request:
     paths:
-      - scripts/discover_consumer_hardware_boards.py
-      - scripts/discover_consumer_hardware_boards_round2.py
+      - config/companies_consumer_hardware_more.yaml
+      - scripts/validate_consumer_hardware_catalog.py
       - .github/workflows/discover-consumer-hardware.yml
 
 jobs:
-  discover:
+  validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - run: pip install requests --quiet
-      - name: Probe broad public ATS pool
-        run: python scripts/discover_consumer_hardware_boards.py
-      - name: Probe exact public ATS pool
-        run: python scripts/discover_consumer_hardware_boards_round2.py
-      - name: Upload discovery reports
-        uses: actions/upload-artifact@v4
-        with:
-          name: consumer-hardware-discovery
-          path: |
-            consumer-hardware-discovery.json
-            consumer-hardware-discovery-round2.json
-          retention-days: 1
+      - run: pip install requests pyyaml --quiet
+      - name: Validate final public ATS catalog
+        run: python scripts/validate_consumer_hardware_catalog.py
