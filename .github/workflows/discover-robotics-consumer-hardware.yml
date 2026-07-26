@@ -1,18 +1,17 @@
-name: Discover robotics and consumer hardware boards
+name: Validate robotics and consumer hardware boards
 
 on:
   pull_request:
     paths:
-      - "scripts/discover_robotics_consumer_hardware_boards.py"
-      - "scripts/discover_robotics_consumer_hardware_boards_2.py"
-      - "scripts/discover_robotics_consumer_hardware_boards_3.py"
+      - "config/companies_robotics_consumer_hardware.yaml"
+      - "scripts/validate_robotics_consumer_hardware_boards.py"
       - ".github/workflows/discover-robotics-consumer-hardware.yml"
 
 permissions:
   contents: read
 
 jobs:
-  discover:
+  validate:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -27,17 +26,18 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Discover public ATS boards
+      - name: Validate final public ATS boards
         shell: bash
         run: |
-          python scripts/discover_robotics_consumer_hardware_boards.py > robotics-consumer-hardware-discovery.txt
-          python scripts/discover_robotics_consumer_hardware_boards_2.py >> robotics-consumer-hardware-discovery.txt
-          python scripts/discover_robotics_consumer_hardware_boards_3.py >> robotics-consumer-hardware-discovery.txt
-          cat robotics-consumer-hardware-discovery.txt
+          set +e
+          python scripts/validate_robotics_consumer_hardware_boards.py | tee robotics-consumer-hardware-validation.txt
+          status=${PIPESTATUS[0]}
+          exit "$status"
 
-      - name: Upload discovery report
+      - name: Upload validation report
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: robotics-consumer-hardware-discovery
-          path: robotics-consumer-hardware-discovery.txt
+          name: robotics-consumer-hardware-validation
+          path: robotics-consumer-hardware-validation.txt
           if-no-files-found: error
