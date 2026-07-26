@@ -1,0 +1,365 @@
+# Detailed hardware and electrical engineering job taxonomy.
+# Loaded on top of filters.yaml so role, year, and location rules stay unchanged.
+
+category_priority:
+  - pcb_board_design
+  - analog_mixed_signal
+  - digital_hardware_fpga
+  - semiconductor_asic
+  - embedded_firmware
+  - rf_wireless
+  - signal_power_integrity
+  - power_electronics
+  - controls_motion
+  - robotics_mechatronics
+  - avionics_space
+  - medtech_hardware
+  - test_validation
+  - manufacturing_npi
+  - systems_integration
+  - applications_field
+  - general_electrical
+
+categories:
+  pcb_board_design:
+    - pcb
+    - "printed circuit board"
+    - "circuit board"
+    - "board design"
+    - "board layout"
+    - "pcb layout"
+    - schematic
+    - schematics
+    - "board bring up"
+    - "board bring-up"
+    - "hardware bring up"
+    - "hardware bring-up"
+    - altium
+    - kicad
+    - orcad
+    - allegro
+    - cadence
+    - "electronics design"
+    - "circuit design"
+    - "prototype electronics"
+
+  analog_mixed_signal:
+    - "analog engineer"
+    - "analog design"
+    - "analog circuit"
+    - "analog electronics"
+    - "mixed signal"
+    - "mixed-signal"
+    - "data converter"
+    - adc
+    - dac
+    - pll
+    - oscillator
+    - op amp
+    - amplifier
+    - sensor interface
+    - signal conditioning
+    - instrumentation amplifier
+    - power management ic
+    - pmic
+
+  digital_hardware_fpga:
+    - fpga
+    - rtl
+    - verilog
+    - systemverilog
+    - vhdl
+    - "digital design"
+    - "digital hardware"
+    - "logic design"
+    - "fpga design"
+    - "fpga verification"
+    - "hardware acceleration"
+    - "soc integration"
+    - "embedded logic"
+
+  semiconductor_asic:
+    - asic
+    - vlsi
+    - semiconductor
+    - silicon
+    - "chip design"
+    - "integrated circuit"
+    - "digital ic"
+    - "analog ic"
+    - rfic
+    - "rf ic"
+    - "physical design"
+    - "design verification"
+    - "formal verification"
+    - dft
+    - "design for test"
+    - tapeout
+    - "post silicon"
+    - "pre silicon"
+    - "silicon validation"
+    - "product engineer semiconductor"
+    - "process integration"
+    - "device engineer"
+
+  embedded_firmware:
+    - firmware
+    - embedded
+    - "embedded software"
+    - "embedded systems"
+    - "embedded c"
+    - "embedded c++"
+    - "bare metal"
+    - "bare-metal"
+    - rtos
+    - "real time operating system"
+    - "real-time operating system"
+    - microcontroller
+    - mcu
+    - bootloader
+    - "device driver"
+    - "device drivers"
+    - "board support package"
+    - bsp
+    - "hardware abstraction layer"
+    - hal
+    - "low level software"
+    - "low-level software"
+    - stm32
+    - esp32
+    - nrf52
+    - "arm cortex"
+    - freertos
+    - zephyr
+
+  rf_wireless:
+    - "rf engineer"
+    - "rf design"
+    - "radio frequency"
+    - wireless
+    - antenna
+    - microwave
+    - millimeter wave
+    - mmwave
+    - radar
+    - transceiver
+    - receiver
+    - transmitter
+    - bluetooth
+    - ble
+    - wifi
+    - wi-fi
+    - cellular
+    - lte
+    - 5g
+    - gnss
+    - gps
+    - electromagnetic
+    - emc
+    - emi
+    - "rf test"
+    - "wireless hardware"
+
+  signal_power_integrity:
+    - "signal integrity"
+    - "power integrity"
+    - "high speed design"
+    - "high-speed design"
+    - serdes
+    - pcie
+    - ddr
+    - usb
+    - ethernet phy
+    - eye diagram
+    - impedance control
+    - transmission line
+    - crosstalk
+    - jitter
+    - s parameter
+    - s-parameter
+
+  power_electronics:
+    - "power electronics"
+    - "power conversion"
+    - "power supply"
+    - inverter
+    - converter
+    - rectifier
+    - dc dc
+    - dc-dc
+    - ac dc
+    - ac-dc
+    - buck converter
+    - boost converter
+    - motor drive
+    - electric drive
+    - gate driver
+    - mosfet
+    - igbt
+    - sic
+    - gan
+    - battery management
+    - bms
+    - charger
+    - charging system
+    - energy storage
+    - power distribution
+    - protection and control
+
+  controls_motion:
+    - "controls engineer"
+    - "control systems"
+    - "control engineer"
+    - "motion control"
+    - "motor control"
+    - servo
+    - actuator
+    - actuation
+    - plc
+    - scada
+    - hmi
+    - automation
+    - "industrial controls"
+    - "machine controls"
+    - "embedded controls"
+    - "model based design"
+    - matlab simulink
+    - state space
+    - feedback control
+
+  robotics_mechatronics:
+    - robotics
+    - robotic
+    - robot
+    - mechatronics
+    - mechatronic
+    - electromechanical
+    - autonomous systems
+    - autonomous robot
+    - manipulator
+    - mobile robot
+    - humanoid
+    - cobot
+    - haptics
+    - perception hardware
+    - robotic hardware
+    - robot integration
+
+  avionics_space:
+    - avionics
+    - aerospace electrical
+    - spacecraft
+    - satellite
+    - payload
+    - flight controls
+    - flight software
+    - flight test
+    - telemetry
+    - guidance navigation control
+    - gnc
+    - launch vehicle
+    - rocket electronics
+    - space systems
+    - electrical ground support equipment
+    - egse
+
+  medtech_hardware:
+    - medical device
+    - medtech
+    - biomedical electronics
+    - bioelectronics
+    - implantable
+    - wearable
+    - patient monitoring
+    - diagnostic device
+    - surgical robot
+    - surgical robotics
+    - catheter
+    - neurostimulation
+    - neuromodulation
+    - electrophysiology
+    - ecg
+    - ekg
+    - ppg
+    - medical instrumentation
+    - design assurance
+    - medical systems
+
+  test_validation:
+    - "hardware validation"
+    - "hardware verification"
+    - "electrical test"
+    - "electronics test"
+    - "test hardware"
+    - "validation engineer"
+    - "verification engineer"
+    - "design verification"
+    - "design validation"
+    - "test development"
+    - "automated test equipment"
+    - ate
+    - "hardware in the loop"
+    - hil
+    - environmental test
+    - reliability test
+    - qualification test
+    - compliance test
+    - lab validation
+
+  manufacturing_npi:
+    - "manufacturing engineer electronics"
+    - "electronics manufacturing"
+    - "electrical manufacturing"
+    - "new product introduction"
+    - npi
+    - "design for manufacturing"
+    - dfm
+    - dfa
+    - "production test"
+    - "manufacturing test"
+    - "process engineer electronics"
+    - "sustaining engineer"
+    - "sustaining engineering"
+    - "supplier quality electronics"
+    - pcba manufacturing
+
+  systems_integration:
+    - "electrical systems engineer"
+    - "hardware systems engineer"
+    - "systems integration engineer"
+    - "hardware integration"
+    - "electrical integration"
+    - "system integration"
+    - "requirements engineer hardware"
+    - "system architecture hardware"
+    - "interface control"
+    - "electrical architecture"
+    - "vehicle integration"
+    - "subsystem engineer"
+
+  applications_field:
+    - "field applications engineer"
+    - fae
+    - "applications engineer electronics"
+    - "applications engineer semiconductor"
+    - "field service engineer electrical"
+    - "field service engineer electronics"
+    - "technical applications engineer"
+    - "customer applications engineer"
+    - "product applications engineer"
+    - "commissioning engineer controls"
+
+  general_electrical:
+    - "electrical engineer"
+    - "electrical engineering"
+    - "electrical intern"
+    - "electrical co-op"
+    - "electronics engineer"
+    - "electronics engineering"
+    - "electronics intern"
+    - "hardware engineer"
+    - "hardware engineering"
+    - "hardware intern"
+    - "hardware co-op"
+    - "electronic systems"
+    - instrumentation
