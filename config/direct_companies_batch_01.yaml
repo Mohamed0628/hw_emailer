@@ -1,0 +1,13 @@
+# Direct career boards for additional RF and wireless hardware employers.
+# Board URLs were verified on 2026-07-26.
+
+wordpress_jobs:
+  - company: Airgain
+    board_url: https://www.airgain.com/careers/
+    job_path_prefix: /careers/
+
+career_pages:
+  - company: Ceragon Networks
+    board_url: https://www.comeet.com/jobs/ceragon/d3.003
+    job_host: www.comeet.com
+    follow_details: true
