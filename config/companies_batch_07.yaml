@@ -1,0 +1,63 @@
+# Batch 7: early-career server hardware, power-system electronics,
+# Minnesota electrification, medical hardware, clean-energy robotics,
+# industrial controls, and commercial spacecraft electronics.
+# Public ATS boards and active electrical or hardware openings were verified on 2026-07-26.
+
+greenhouse:
+  - company: ETCH
+    token: etchinc
+
+  - company: Samara Aerospace
+    token: samaraaerospace
+
+lever:
+  - company: Until
+    token: until
+
+ashby:
+  - company: Charge Robotics
+    token: charge-robotics
+
+workday:
+  - company: Hewlett Packard Enterprise
+    tenant: hpe
+    wd_num: 5
+    site: Jobsathpe
+    search_texts:
+      - intern
+      - early career
+      - engineer i
+      - electrical hardware engineer
+      - hardware engineer
+      - electrical engineer
+      - validation engineer
+    fetch_details: true
+
+  - company: Schweitzer Engineering Laboratories
+    tenant: selinc
+    wd_num: 1
+    site: SEL
+    search_texts:
+      - intern
+      - associate hardware engineer
+      - engineer i
+      - electrical engineer
+      - hardware engineer
+      - electronics engineer
+      - firmware engineer
+    fetch_details: true
+
+  - company: The Toro Company
+    tenant: ttc
+    wd_num: 1
+    site: Toro_External_Careers
+    search_texts:
+      - intern
+      - early career
+      - engineer i
+      - electrical engineer
+      - electrical systems engineer
+      - hardware engineer
+      - controls engineer
+      - embedded engineer
+    fetch_details: true
