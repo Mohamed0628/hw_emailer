@@ -47,7 +47,11 @@ def _text(job: Job) -> tuple[str, str]:
 
 
 def _hits(text: str, terms: list[str]) -> list[str]:
-    return [term for term in terms if base._term_pattern(base._norm_term(term)).search(text)]  # noqa: SLF001
+    return [
+        term
+        for term in terms
+        if base._term_pattern(base._norm_term(term)).search(text)  # noqa: SLF001
+    ]
 
 
 def _band(score: int, cfg: dict[str, Any]) -> str:
@@ -72,12 +76,20 @@ def evaluate(job: Job) -> CareerFitResult:
     hard_rejects = _hits(title, list(cfg.get("hard_reject_title_terms") or []))
     if hard_rejects:
         return CareerFitResult(
-            False, 0, "reject", 0, 0, 0, 0, 0,
+            False,
+            0,
+            "reject",
+            0,
+            0,
+            0,
+            0,
+            0,
             evidence=[f"blocked title: {hard_rejects[0]}"],
             rejection_reason="non-hardware career path",
         )
 
     strong_hits = _hits(combined, list(cfg.get("strong_hardware_terms") or []))
+    title_hardware_hits = _hits(title, list(cfg.get("strong_hardware_terms") or []))
     hands_on_hits = _hits(body, list(cfg.get("hands_on_terms") or []))
     negative_hits = _hits(combined, list(cfg.get("negative_description_terms") or []))
     conditional = bool(_hits(title, list(cfg.get("conditional_title_terms") or [])))
@@ -85,33 +97,43 @@ def evaluate(job: Job) -> CareerFitResult:
     elite = category in set(cfg.get("elite_categories") or [])
     conditional_category = category in set(cfg.get("conditional_categories") or [])
 
-    # Conditional titles such as process, quality, manufacturing, systems, and
-    # field service must prove actual hardware work in the posting.
+    # Process, quality, manufacturing, systems, field service, and similar
+    # titles only pass when the posting proves real target hardware work.
     if (conditional or conditional_category) and not strong_hits:
         return CareerFitResult(
-            False, 25, "reject", 10, 10, 5, 0, 0,
+            False,
+            25,
+            "reject",
+            10,
+            10,
+            5,
+            0,
+            0,
             evidence=["conditional engineering title lacks hardware evidence"],
             rejection_reason="generic engineering title without hardware proof",
         )
 
+    # A specific hardware title is meaningful even when an ATS gives us only
+    # a title and no description. Description evidence raises the score further.
     hardware_skill = 0
     if elite:
-        hardware_skill += 24
-    hardware_skill += min(16, len(strong_hits) * 3)
+        hardware_skill += 30
+    hardware_skill += min(10, len(set(title_hardware_hits)) * 4)
+    hardware_skill += min(10, len(set(strong_hits)) * 2)
     hardware_skill = min(40, hardware_skill)
 
     resume_growth = 5
     if elite:
-        resume_growth += 10
-    resume_growth += min(10, len(set(strong_hits)) * 2)
+        resume_growth += 13
+    resume_growth += min(5, len(set(strong_hits)))
     resume_growth += min(5, len(set(hands_on_hits)) * 2)
     resume_growth = min(25, resume_growth)
 
-    career_alignment = 5
+    career_alignment = 4
     if elite:
-        career_alignment += 10
-    if strong_hits:
-        career_alignment += min(5, len(set(strong_hits)))
+        career_alignment += 12
+    if title_hardware_hits:
+        career_alignment += min(4, len(set(title_hardware_hits)))
     career_alignment = min(20, career_alignment)
 
     company = base.normalize_text(getattr(job, "company", "") or "")
@@ -119,7 +141,11 @@ def evaluate(job: Job) -> CareerFitResult:
         base.normalize_text(name) in company
         for name in cfg.get("preferred_companies") or []
     )
-    company_quality = 10 if preferred_company and (elite or strong_hits) else 4 if preferred_company else 0
+    company_quality = (
+        10
+        if preferred_company and (elite or strong_hits)
+        else 4 if preferred_company else 0
+    )
 
     location = base.normalize_text(getattr(job, "location_str", "") or "")
     preferred_location = any(
@@ -128,7 +154,13 @@ def evaluate(job: Job) -> CareerFitResult:
     )
     location_fit = 5 if preferred_location else 2 if location else 0
 
-    score = hardware_skill + resume_growth + career_alignment + company_quality + location_fit
+    score = (
+        hardware_skill
+        + resume_growth
+        + career_alignment
+        + company_quality
+        + location_fit
+    )
     score -= min(25, len(negative_hits) * 8)
     score = max(0, min(100, score))
     band = _band(score, cfg)
@@ -156,7 +188,9 @@ def evaluate(job: Job) -> CareerFitResult:
         company_quality=company_quality,
         location_fit=location_fit,
         evidence=evidence,
-        rejection_reason=None if score >= minimum else "career fit score below threshold",
+        rejection_reason=(
+            None if score >= minimum else "career fit score below threshold"
+        ),
     )
 
 
