@@ -1,0 +1,120 @@
+# Additional employers focused on consumer devices, connected physical products,
+# product-design hardware, industrial robotics, and embodied AI. All entries use
+# lightweight public full-board feeds rather than additional Workday searches.
+
+greenhouse:
+  # Consumer devices, wearables, fitness hardware, and smart-home products
+  - company: Fellow Products
+    token: fellow
+  - company: Formlabs
+    token: formlabs
+  - company: Magic Leap
+    token: magicleap
+  - company: Nanit
+    token: nanit
+  - company: Nothing
+    token: nothing
+  - company: Oura
+    token: oura
+  - company: Peloton
+    token: peloton
+  - company: Roku
+    token: roku
+  - company: SimpliSafe
+    token: simplisafe
+  - company: iFIT
+    token: ifit
+  - company: Butlr
+    token: butlr
+  - company: Mill
+    token: mill
+  - company: Traeger Grills
+    token: traegergrills
+  - company: Willow Innovations
+    token: willowinnovations
+  - company: Zwift
+    token: zwift
+
+  # Connected hardware, cameras, networking, and physical-product platforms
+  - company: Geotab
+    token: geotab
+  - company: Hologram
+    token: hologram
+  - company: LightForce Orthodontics
+    token: lightforceorthodontics
+  - company: Motive
+    token: motive
+  - company: OpenSpace
+    token: openspace
+  - company: Plume
+    token: plume
+  - company: Seurat Technologies
+    token: seurat
+  - company: Carbon 3D
+    token: carbon
+  - company: Catapult Sports
+    token: catapultsports
+  - company: Fictiv
+    token: fictiv
+  - company: Hudl
+    token: hudl
+
+  # Robotics and embodied systems
+  - company: Nimble Robotics
+    token: nimblerobotics
+
+lever:
+  # Consumer and connected hardware
+  - company: Tovala
+    token: tovala
+  - company: Latch
+    token: latch
+  - company: Rhombus Systems
+    token: rhombus-systems
+  - company: BioIntelliSense
+    token: biointellisense
+  - company: Eko Health
+    token: ekohealth
+  - company: Veo Technologies
+    token: veo
+
+  # Robotics research and automation
+  - company: Promise Robotics
+    token: promiserobotics
+  - company: Toyota Research Institute
+    token: tri
+
+ashby:
+  # Consumer hardware, wearables, and smart physical products
+  - company: Iyo
+    token: iyo
+  - company: Level Home
+    token: level
+  - company: PLAUD
+    token: plaud
+  - company: Tonal
+    token: tonal
+  - company: WHOOP
+    token: whoop
+  - company: ButterflyMX
+    token: butterflymx
+  - company: Flock Safety
+    token: flock
+  - company: Meter
+    token: meter
+  - company: Hawk-Eye Innovations
+    token: hawkeyeinnovations
+  - company: Kernel
+    token: kernel
+
+  # Robotics and embodied AI
+  - company: Dyna Robotics
+    token: dyna-robotics
+  - company: Generalist AI
+    token: generalist
+  - company: Sereact
+    token: sereact
+  - company: Sunday Robotics
+    token: sunday
+  - company: The Bot Company
+    token: thebotcompany
