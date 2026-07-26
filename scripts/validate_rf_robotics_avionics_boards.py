@@ -1,8 +1,9 @@
-"""Temporarily validate the new public ATS board identifiers during PR review."""
+"""Temporarily discover and validate public ATS boards during PR review."""
 
 from __future__ import annotations
 
 import concurrent.futures
+import re
 import sys
 from pathlib import Path
 
@@ -11,64 +12,137 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "config" / "companies_rf_robotics_avionics.yaml"
-TIMEOUT = 20
+TIMEOUT = 12
+
+MANUAL_ALIASES: dict[str, list[str]] = {
+    "BETA Technologies": ["beta", "beta-technologies", "betatechnologies"],
+    "Boom Supersonic": ["boom", "boom-supersonic", "boomsupersonic"],
+    "Canvas": ["canvas", "canvas-construction", "canvasconstruction"],
+    "Celona": ["celona", "celonaio"],
+    "Covariant": ["covariant", "covariantai"],
+    "Dusty Robotics": ["dusty", "dusty-robotics", "dustyrobotics"],
+    "Electra.aero": ["electra", "electra-aero", "electraero"],
+    "Elroy Air": ["elroy", "elroy-air", "elroyair"],
+    "Federated Wireless": ["federated", "federated-wireless", "federatedwireless"],
+    "Fox Robotics": ["fox", "fox-robotics", "foxrobotics"],
+    "GrayMatter Robotics": ["graymatter", "graymatter-robotics", "graymatterrobotics"],
+    "Joby Aviation": ["joby", "joby-aviation", "jobyaviation"],
+    "Kymeta": ["kymeta"],
+    "Merlin Labs": ["merlin", "merlin-labs", "merlinlabs"],
+    "Parallel Wireless": ["parallel", "parallel-wireless", "parallelwireless"],
+    "Pivotal Commware": ["pivotal", "pivotal-commware", "pivotalcommware"],
+    "Plus One Robotics": ["plusone", "plus-one", "plus-one-robotics", "plusonerobotics"],
+    "Pyka": ["pyka"],
+    "REGENT": ["regent", "regent-craft", "regentcraft"],
+    "Realtime Robotics": ["realtime", "realtime-robotics", "realtimerobotics"],
+    "RightHand Robotics": ["righthand", "right-hand-robotics", "righthandrobotics"],
+    "Seegrid": ["seegrid"],
+    "Slip Robotics": ["slip", "slip-robotics", "sliprobotics"],
+    "Tarana Wireless": ["tarana", "tarana-wireless", "taranawireless"],
+    "Whisper Aero": ["whisper", "whisper-aero", "whisperaero"],
+    "Wisk Aero": ["wisk", "wisk-aero", "wiskaero"],
+    "XCOM Labs": ["xcom", "xcom-labs", "xcomlabs"],
+    "Skyworks Solutions": ["skyworks", "skyworks-solutions", "skyworkssolutions"],
+    "Qorvo": ["qorvo"],
+    "Qualcomm": ["qualcomm"],
+}
 
 
-def validate_greenhouse(entry: dict) -> tuple[str, bool, str]:
-    company = str(entry["company"])
-    token = str(entry["token"])
+def token_variants(company: str, configured: str | None = None) -> list[str]:
+    lower = company.casefold().replace("&", " and ")
+    words = re.findall(r"[a-z0-9]+", lower)
+    variants = {
+        "".join(words),
+        "-".join(words),
+    }
+    removable = {
+        "technologies",
+        "technology",
+        "robotics",
+        "wireless",
+        "aviation",
+        "aero",
+        "labs",
+        "solutions",
+    }
+    reduced = [word for word in words if word not in removable]
+    if reduced:
+        variants.add("".join(reduced))
+        variants.add("-".join(reduced))
+    if configured:
+        variants.add(configured)
+    variants.update(MANUAL_ALIASES.get(company, []))
+    return sorted(item for item in variants if item)
+
+
+def probe_greenhouse(token: str) -> tuple[bool, int]:
     url = f"https://boards-api.greenhouse.io/v1/boards/{token}/jobs"
-    try:
-        response = requests.get(url, timeout=TIMEOUT)
-        if response.status_code != 200:
-            return company, False, f"Greenhouse HTTP {response.status_code}: {url}"
-        payload = response.json()
-        if not isinstance(payload, dict) or not isinstance(payload.get("jobs"), list):
-            return company, False, f"Greenhouse payload missing jobs list: {url}"
-        return company, True, f"Greenhouse OK, {len(payload['jobs'])} jobs"
-    except Exception as exc:  # noqa: BLE001
-        return company, False, f"Greenhouse error: {exc}"
+    response = requests.get(url, timeout=TIMEOUT)
+    if response.status_code != 200:
+        return False, 0
+    payload = response.json()
+    jobs = payload.get("jobs") if isinstance(payload, dict) else None
+    return isinstance(jobs, list), len(jobs or [])
 
 
-def validate_workday(entry: dict) -> tuple[str, bool, str]:
-    company = str(entry["company"])
-    tenant = str(entry["tenant"])
-    wd_num = entry["wd_num"]
-    site = str(entry["site"])
-    url = f"https://{tenant}.wd{wd_num}.myworkdayjobs.com/wday/cxs/{tenant}/{site}/jobs"
-    body = {"appliedFacets": {}, "limit": 1, "offset": 0, "searchText": "intern"}
-    try:
-        response = requests.post(url, json=body, timeout=TIMEOUT)
-        if response.status_code != 200:
-            return company, False, f"Workday HTTP {response.status_code}: {url}"
-        payload = response.json()
-        if not isinstance(payload, dict) or "jobPostings" not in payload:
-            return company, False, f"Workday payload missing jobPostings: {url}"
-        return company, True, f"Workday OK, total={payload.get('total', 'unknown')}"
-    except Exception as exc:  # noqa: BLE001
-        return company, False, f"Workday error: {exc}"
+def probe_lever(token: str) -> tuple[bool, int]:
+    url = f"https://api.lever.co/v0/postings/{token}"
+    response = requests.get(url, params={"mode": "json"}, timeout=TIMEOUT)
+    if response.status_code != 200:
+        return False, 0
+    payload = response.json()
+    return isinstance(payload, list), len(payload) if isinstance(payload, list) else 0
+
+
+def probe_ashby(token: str) -> tuple[bool, int]:
+    url = f"https://api.ashbyhq.com/posting-api/job-board/{token}"
+    response = requests.get(url, timeout=TIMEOUT)
+    if response.status_code != 200:
+        return False, 0
+    payload = response.json()
+    jobs = payload.get("jobs") if isinstance(payload, dict) else None
+    return isinstance(jobs, list), len(jobs or [])
+
+
+def discover(company: str, configured: str | None) -> tuple[str, list[str]]:
+    matches: list[str] = []
+    for token in token_variants(company, configured):
+        for ats, probe in (
+            ("greenhouse", probe_greenhouse),
+            ("lever", probe_lever),
+            ("ashby", probe_ashby),
+        ):
+            try:
+                ok, count = probe(token)
+            except Exception:  # noqa: BLE001
+                continue
+            if ok:
+                matches.append(f"{ats}:{token}:{count}")
+    return company, sorted(set(matches))
 
 
 def main() -> int:
     with CATALOG.open("r", encoding="utf-8") as fh:
         payload = yaml.safe_load(fh) or {}
 
-    tasks: list[tuple] = []
-    with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor:
-        for entry in payload.get("greenhouse", []):
-            tasks.append(executor.submit(validate_greenhouse, entry))
-        for entry in payload.get("workday", []):
-            tasks.append(executor.submit(validate_workday, entry))
+    entries: list[tuple[str, str | None]] = []
+    for source_entries in payload.values():
+        if not isinstance(source_entries, list):
+            continue
+        for entry in source_entries:
+            entries.append((str(entry["company"]), entry.get("token")))
 
-        results = [future.result() for future in tasks]
+    with concurrent.futures.ThreadPoolExecutor(max_workers=12) as executor:
+        results = list(executor.map(lambda item: discover(*item), entries))
 
-    failed = False
-    for company, ok, detail in sorted(results):
-        marker = "PASS" if ok else "FAIL"
-        print(f"[{marker}] {company}: {detail}")
-        failed = failed or not ok
-
-    return 1 if failed else 0
+    missing = False
+    for company, matches in sorted(results):
+        if matches:
+            print(f"[FOUND] {company}: {' | '.join(matches)}")
+        else:
+            print(f"[MISSING] {company}: no Greenhouse, Lever, or Ashby match")
+            missing = True
+    return 1 if missing else 0
 
 
 if __name__ == "__main__":
