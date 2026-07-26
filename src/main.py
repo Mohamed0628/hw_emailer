@@ -13,7 +13,7 @@ from .dedup import load_state, new_jobs, prune, save_state, update_state
 from .models import Job
 from .notify import email as email_notify
 from .notify import sms as sms_notify
-from .sources.base import make_session
+from .parallel_collect import collect_sources
 from .sources.registry import build_all_sources
 
 log = logging.getLogger("intern_pos_emailer")
@@ -31,12 +31,7 @@ def collect_jobs(limit: int | None = None) -> list[Job]:
     sources = build_all_sources()
     if limit:
         sources = sources[:limit]
-    session = make_session()
-    all_jobs: list[Job] = []
-    for source in sources:
-        all_jobs.extend(source.safe_fetch(session))
-    log.info("collected %d raw jobs from %d sources", len(all_jobs), len(sources))
-    return all_jobs
+    return collect_sources(sources)
 
 
 def _print_digest(jobs: list[Job]) -> None:
