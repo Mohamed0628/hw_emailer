@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import concurrent.futures
 
-from scripts.validate_rf_robotics_avionics_boards import discover
+from validate_rf_robotics_avionics_boards import discover
 
 CANDIDATES = [
     # Connected hardware, RF, GNSS, and IoT
