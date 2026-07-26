@@ -57,20 +57,22 @@ def _job_text(job: Job) -> str:
 
 @lru_cache(maxsize=1)
 def _target_companies() -> frozenset[str]:
-    """Return normalized companies from the consumer-hardware catalog."""
-    payload = config._load_yaml(  # noqa: SLF001
-        "companies_robotics_consumer_hardware.yaml"
-    )
+    """Return normalized companies from every consumer-hardware catalog."""
     names: set[str] = set()
-    for entries in payload.values():
-        if not isinstance(entries, list):
-            continue
-        for entry in entries:
-            if not isinstance(entry, dict) or not entry.get("company"):
+    for catalog in (
+        "companies_robotics_consumer_hardware.yaml",
+        "companies_consumer_hardware_more.yaml",
+    ):
+        payload = config._load_yaml(catalog)  # noqa: SLF001
+        for entries in payload.values():
+            if not isinstance(entries, list):
                 continue
-            normalized = base.normalize_text(str(entry["company"]))
-            if normalized:
-                names.add(normalized)
+            for entry in entries:
+                if not isinstance(entry, dict) or not entry.get("company"):
+                    continue
+                normalized = base.normalize_text(str(entry["company"]))
+                if normalized:
+                    names.add(normalized)
     return frozenset(names)
 
 
