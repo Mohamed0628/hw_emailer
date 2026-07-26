@@ -2,7 +2,8 @@
 
 The JSON adapter tolerates schema drift across SimplifyJobs-style repositories.
 The README adapter supports common markdown tables where the application link may
-appear in any column after company, title, and location.
+appear in any column after company, title, and location. Cells may use Markdown
+links or embedded HTML anchors.
 """
 
 from __future__ import annotations
@@ -10,6 +11,7 @@ from __future__ import annotations
 import logging
 import re
 from datetime import datetime, timezone
+from html import unescape
 from typing import Any
 
 import requests
@@ -17,6 +19,7 @@ import requests
 from .. import config
 from ..models import Job
 from .base import Source, request_json, request_text
+from .text import plain_text
 
 log = logging.getLogger(__name__)
 
@@ -101,7 +104,11 @@ class GithubListSource(Source):
 
 
 # README markdown-table lists.
-_APPLY_URL_RE = re.compile(r"\]\((https?://[^\s)]+)\)")
+_MARKDOWN_URL_RE = re.compile(r"\]\((https?://[^\s)]+)\)")
+_HTML_URL_RE = re.compile(
+    r"<a\b[^>]*\bhref=[\"'](https?://[^\"']+)[\"']",
+    re.IGNORECASE,
+)
 _LINK_TEXT_RE = re.compile(r"\[([^\]]+)\]\(")
 _MD_NOISE_RE = re.compile(r"[*`]")
 
@@ -109,7 +116,16 @@ _MD_NOISE_RE = re.compile(r"[*`]")
 def _clean(cell: str) -> str:
     text = _MD_NOISE_RE.sub("", cell or "").strip()
     match = _LINK_TEXT_RE.search(text)
-    return match.group(1).strip() if match else text
+    if match:
+        text = match.group(1)
+    return plain_text(text)
+
+
+def _application_url(cells: list[str]) -> str:
+    """Extract an application URL from Markdown or HTML table cells."""
+    searchable = " | ".join(cells)
+    match = _MARKDOWN_URL_RE.search(searchable) or _HTML_URL_RE.search(searchable)
+    return unescape(match.group(1)) if match else ""
 
 
 def _parse_table_row(
@@ -142,9 +158,7 @@ def _parse_table_row(
 
     title = _clean(cells[1]).rstrip("…").rstrip(".").strip()
     location = _clean(cells[2])
-
-    apply_match = _APPLY_URL_RE.search(" | ".join(cells[3:]))
-    url = apply_match.group(1) if apply_match else ""
+    url = _application_url(cells[3:])
     if not (company and title and url):
         return None
 
