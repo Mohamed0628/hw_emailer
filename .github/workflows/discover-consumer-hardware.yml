@@ -1,0 +1,25 @@
+name: Discover consumer hardware boards
+
+on:
+  pull_request:
+    paths:
+      - scripts/discover_consumer_hardware_boards.py
+      - .github/workflows/discover-consumer-hardware.yml
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install requests --quiet
+      - name: Probe public ATS boards
+        run: python scripts/discover_consumer_hardware_boards.py
+      - name: Upload discovery report
+        uses: actions/upload-artifact@v4
+        with:
+          name: consumer-hardware-discovery
+          path: consumer-hardware-discovery.json
+          retention-days: 1
