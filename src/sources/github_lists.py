@@ -1,20 +1,9 @@
-"""Community internship aggregators that publish a `listings.json`.
+"""Community internship and new-grad job-list sources.
 
-Tolerant of schema drift across forks — every field access is defensive.
-The canonical schema (SimplifyJobs) looks like:
-
-    {
-      "company_name": "Acme",
-      "title": "Software Engineer Intern",
-      "locations": ["New York, NY"],
-      "url": "https://...",
-      "active": true,
-      "is_visible": true,
-      "season": "Summer",
-      "terms": ["Summer 2026"],
-      "sponsorship": "Does Not Offer Sponsorship",
-      "date_posted": 1700000000
-    }
+The JSON adapter tolerates schema drift across SimplifyJobs-style repositories.
+The README adapter supports common markdown tables where the application link may
+appear in any column after company, title, and location. Cells may use Markdown
+links or embedded HTML anchors.
 """
 
 from __future__ import annotations
@@ -22,6 +11,7 @@ from __future__ import annotations
 import logging
 import re
 from datetime import datetime, timezone
+from html import unescape
 from typing import Any
 
 import requests
@@ -29,6 +19,7 @@ import requests
 from .. import config
 from ..models import Job
 from .base import Source, request_json, request_text
+from .text import plain_text
 
 log = logging.getLogger(__name__)
 
@@ -44,20 +35,26 @@ def _to_iso(ts: Any) -> str | None:
         return None
 
 
-def _detect_year(*texts: Any) -> int | None:
-    for t in texts:
-        if not t:
+def _detect_years(*texts: Any) -> tuple[int, ...]:
+    years: list[int] = []
+    for text in texts:
+        if not text:
             continue
-        m = _YEAR_RE.search(str(t))
-        if m:
-            return int(m.group(1))
-    return None
+        for match in _YEAR_RE.finditer(str(text)):
+            year = int(match.group(1))
+            if year not in years:
+                years.append(year)
+    return tuple(years)
+
+
+def _detect_year(*texts: Any) -> int | None:
+    years = _detect_years(*texts)
+    return years[0] if years else None
 
 
 def _map_listing(raw: dict[str, Any], source_name: str) -> Job | None:
     if not isinstance(raw, dict):
         return None
-    # Respect visibility/active flags when present.
     if raw.get("is_visible") is False:
         return None
 
@@ -79,7 +76,7 @@ def _map_listing(raw: dict[str, Any], source_name: str) -> Job | None:
         company=str(company),
         title=str(title),
         url=str(url),
-        locations=[str(x) for x in locations],
+        locations=[str(value) for value in locations],
         source=source_name,
         ats="github-list",
         season=str(season).lower() if season else None,
@@ -99,12 +96,12 @@ class GithubListSource(Source):
         data = request_json(session, "GET", self.url)
         if data is None:
             return []
-        # listings.json is usually a top-level array; some forks wrap it.
         if isinstance(data, dict):
             data = data.get("listings") or data.get("data") or []
         if not isinstance(data, list):
             log.warning("%s: unexpected JSON shape", self.name)
             return []
+
         jobs: list[Job] = []
         for raw in data:
             job = _map_listing(raw, self.name)
@@ -113,41 +110,79 @@ class GithubListSource(Source):
         return jobs
 
 
-# --- README markdown-table lists (e.g. zapplyjobs) -------------------------
-# Rows look like: | **Company** | Role… | Location | 14m | visa | [Apply](url) |
-# Titles are often truncated with "…"; the apply URL and company come through
-# fully, and dedup keys on the URL, so truncation is harmless.
-
-_APPLY_URL_RE = re.compile(r"\]\((https?://[^\s)]+)\)")
+# README markdown-table lists.
+_MARKDOWN_URL_RE = re.compile(r"\]\((https?://[^\s)]+)\)")
+_HTML_URL_RE = re.compile(
+    r"<a\b[^>]*\bhref=[\"'](https?://[^\"']+)[\"']",
+    re.IGNORECASE,
+)
 _LINK_TEXT_RE = re.compile(r"\[([^\]]+)\]\(")
 _MD_NOISE_RE = re.compile(r"[*`]")
 
 
 def _clean(cell: str) -> str:
     text = _MD_NOISE_RE.sub("", cell or "").strip()
-    m = _LINK_TEXT_RE.search(text)  # unwrap [Name](url) -> Name
-    return (m.group(1).strip() if m else text)
+    match = _LINK_TEXT_RE.search(text)
+    if match:
+        text = match.group(1)
+    return plain_text(text)
 
 
-def _parse_table_row(line: str, source_name: str) -> Job | None:
-    s = line.strip()
-    if not s.startswith("|"):
+def _application_url(cells: list[str]) -> str:
+    """Extract an application URL from Markdown or HTML table cells."""
+    searchable = " | ".join(cells)
+    match = _MARKDOWN_URL_RE.search(searchable) or _HTML_URL_RE.search(searchable)
+    return unescape(match.group(1)) if match else ""
+
+
+def _parse_table_row(
+    line: str,
+    source_name: str,
+    *,
+    default_year: int | None = None,
+    role_type: str | None = None,
+    reject_explicit_other_years: bool = False,
+) -> Job | None:
+    """Parse a common jobs markdown-table row.
+
+    The first three columns are treated as company, title, and location. The
+    application link may appear in any later column because different lists place
+    salary, visa, posting, and age columns in different orders.
+    """
+    stripped = line.strip()
+    if not stripped.startswith("|"):
         return None
-    cells = [c.strip() for c in s.strip("|").split("|")]
-    if len(cells) < 6:
+
+    cells = [cell.strip() for cell in stripped.strip("|").split("|")]
+    if len(cells) < 4:
         return None
+
     company = _clean(cells[0])
     if not company or company.lower() == "company":
         return None
-    if set(cells[0].replace("|", "")) <= set("-: "):  # separator row
+    if set(cells[0].replace("|", "")) <= set("-: "):
         return None
 
     title = _clean(cells[1]).rstrip("…").rstrip(".").strip()
     location = _clean(cells[2])
-    m = _APPLY_URL_RE.search(cells[-1])
-    url = m.group(1) if m else ""
+    url = _application_url(cells[3:])
     if not (company and title and url):
         return None
+
+    explicit_years = _detect_years(title)
+    if (
+        reject_explicit_other_years
+        and default_year is not None
+        and explicit_years
+        and default_year not in explicit_years
+    ):
+        return None
+
+    explicit_year = (
+        default_year
+        if default_year is not None and default_year in explicit_years
+        else (explicit_years[0] if explicit_years else None)
+    )
 
     return Job(
         company=company,
@@ -156,24 +191,43 @@ def _parse_table_row(line: str, source_name: str) -> Job | None:
         locations=[location] if location else [],
         source=source_name,
         ats="github-list",
-        year=_detect_year(title),
+        year=explicit_year or default_year,
+        role_type=role_type,
         active=True,
     )
 
 
 class GithubReadmeTableSource(Source):
-    def __init__(self, name: str, url: str):
+    def __init__(
+        self,
+        name: str,
+        url: str,
+        *,
+        default_year: int | None = None,
+        role_type: str | None = None,
+        reject_explicit_other_years: bool = False,
+    ):
         self.name = f"githublist:{name}"
         self.url = url
+        self.default_year = default_year
+        self.role_type = role_type
+        self.reject_explicit_other_years = reject_explicit_other_years
 
     def fetch(self, session) -> list[Job]:
         text = request_text(session, self.url)
         if not text:
             return []
+
         jobs: list[Job] = []
         seen_urls: set[str] = set()
         for line in text.splitlines():
-            job = _parse_table_row(line, self.name)
+            job = _parse_table_row(
+                line,
+                self.name,
+                default_year=self.default_year,
+                role_type=self.role_type,
+                reject_explicit_other_years=self.reject_explicit_other_years,
+            )
             if job and job.url not in seen_urls:
                 seen_urls.add(job.url)
                 jobs.append(job)
@@ -184,6 +238,7 @@ def build_sources() -> list[Source]:
     cfg = config.github_lists()
     if not cfg.get("enabled", True):
         return []
+
     sources: list[Source] = []
     for entry in cfg.get("lists", []) or []:
         if entry.get("enabled", True) is False:
@@ -191,10 +246,21 @@ def build_sources() -> list[Source]:
         url = entry.get("url")
         if url:
             sources.append(GithubListSource(entry.get("name") or "list", url))
+
     for entry in cfg.get("readme_tables", []) or []:
         if entry.get("enabled", True) is False:
             continue
         url = entry.get("url")
         if url:
-            sources.append(GithubReadmeTableSource(entry.get("name") or "table", url))
+            sources.append(
+                GithubReadmeTableSource(
+                    entry.get("name") or "table",
+                    url,
+                    default_year=entry.get("default_year"),
+                    role_type=entry.get("role_type"),
+                    reject_explicit_other_years=bool(
+                        entry.get("reject_explicit_other_years", False)
+                    ),
+                )
+            )
     return sources

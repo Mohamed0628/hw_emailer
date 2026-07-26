@@ -1,24 +1,29 @@
-# Community-maintained internship aggregators that publish a structured
-# `listings.json`. These lists skew SWE, but hardware/EE/firmware postings do
-# appear in them and are the channel through which custom-career-site giants
-# (Apple, Tesla, Intel, TI, Lockheed, Raytheon, ...) reach you. The hardware
-# keyword filters in config/filters.yaml do the narrowing — SWE-only titles are
-# dropped. If you find a dedicated hardware-internships list repo, add its raw
-# listings.json / README URL below.
+# Community-maintained internship and new-grad aggregators.
 #
-# Currently tracking the Summer 2027 cycle. These repos roll names each cycle
-# (Summer2027 -> Summer2028); update `url` when the next cycle's repo appears.
-# To find the raw URL: open the repo, go to .github/scripts/listings.json on the
-# `dev` branch, click "Raw".
+# These lists skew software, but hardware, EE, firmware, robotics, and consumer
+# electronics roles appear in them. Local filters discard unrelated software
+# titles and non-US postings.
+#
+# Currently tracking the 2027 cycle. Update cycle-specific URLs when the next
+# recruiting cycle begins.
 
 enabled: true
 
-# JSON lists (SimplifyJobs-style listings.json schema).
+# JSON lists using the SimplifyJobs-style listings.json schema.
 lists:
   - name: vanshb03-summer2027
     url: https://raw.githubusercontent.com/vanshb03/Summer2027-Internships/dev/.github/scripts/listings.json
 
-# README markdown-table lists (Company | Role | Location | Posted | Visa | Apply).
+# README markdown tables.
 readme_tables:
   - name: zapply-2027
     url: https://raw.githubusercontent.com/zapplyjobs/Internships-2027/main/README.md
+
+  # Daily 2027 US new-graduate list. Hardware and electronics roles are kept by
+  # the local category filter. Titles that explicitly say 2026 or another year
+  # are rejected instead of being relabeled as 2027.
+  - name: speedyapply-2027-new-grad-usa
+    url: https://raw.githubusercontent.com/speedyapply/2027-SWE-College-Jobs/main/NEW_GRAD_USA.md
+    default_year: 2027
+    role_type: new_grad
+    reject_explicit_other_years: true

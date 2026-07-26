@@ -8,8 +8,8 @@ import sys
 from datetime import datetime
 
 from . import config
+from .consumer_2027_filters import apply_filters
 from .dedup import load_state, new_jobs, prune, save_state, update_state
-from .smart_filters import apply_filters
 from .models import Job
 from .notify import email as email_notify
 from .notify import sms as sms_notify
