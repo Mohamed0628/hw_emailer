@@ -1,0 +1,23 @@
+# Batch 5: AI hardware, quantum electronics, power conversion, storage,
+# and commercial spacecraft employers.
+# Public ATS boards and active engineering openings were verified on 2026-07-26.
+
+greenhouse:
+  - company: Graphcore
+    token: graphcore
+
+  - company: IonQ
+    token: ionq
+
+  - company: SMA America
+    token: smaamerica
+
+  - company: Momentus Space
+    token: momentus
+
+  - company: Pure Storage
+    token: purestorage
+
+ashby:
+  - company: d-Matrix
+    token: d-Matrix
