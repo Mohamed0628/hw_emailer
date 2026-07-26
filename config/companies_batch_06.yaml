@@ -1,0 +1,43 @@
+# Batch 6: AI compute, RISC-V, silicon photonics, quantum hardware,
+# commercial spacecraft electronics, robotics, and advanced manufacturing.
+# Public ATS boards and active hardware openings were verified on 2026-07-26.
+
+greenhouse:
+  - company: Tenstorrent
+    token: Tenstorrent
+
+  - company: Lightmatter
+    token: lightmatter
+
+  - company: QuEra Computing
+    token: queracomputinginc
+
+  - company: Muon Space
+    token: muonspace
+
+  - company: Maven Robotics
+    token: mavenrobotics
+
+  - company: Atomic Machines
+    token: atomicmachines
+
+workday:
+  - company: SiFive
+    tenant: sifive
+    wd_num: 1
+    site: sifivecareers
+    search_texts:
+      - intern
+      - co-op
+      - early career
+      - new graduate
+      - engineer i
+      - electrical engineer
+      - electronics engineer
+      - hardware engineer
+      - validation engineer
+      - product engineer
+      - applications engineer
+      - firmware engineer
+      - design engineer
+    fetch_details: true
