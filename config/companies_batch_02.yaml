@@ -1,0 +1,25 @@
+workday:
+  - company: Analog Devices
+    tenant: analogdevices
+    wd_num: 1
+    site: External
+
+  - company: Microchip Technology
+    tenant: microchiphr
+    wd_num: 5
+    site: External
+
+  - company: Cognex
+    tenant: cognex
+    wd_num: 1
+    site: External_Career_Site
+
+  - company: VIAVI Solutions
+    tenant: viavisolutions
+    wd_num: 1
+    site: careers
+
+  - company: Lumentum
+    tenant: lumentum
+    wd_num: 5
+    site: LITE
