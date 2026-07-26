@@ -1,0 +1,92 @@
+# Additional employers focused on RF and wireless hardware, industrial robotics,
+# and civilian or commercial aviation. Defense-first and weapons-focused
+# aviation employers are intentionally excluded from this catalog.
+
+greenhouse:
+  # RF and wireless hardware
+  - company: Tarana Wireless
+    token: taranawireless
+  - company: Celona
+    token: celona
+  - company: Pivotal Commware
+    token: pivotalcommware
+  - company: Federated Wireless
+    token: federatedwireless
+  - company: Parallel Wireless
+    token: parallelwireless
+  - company: XCOM Labs
+    token: xcomlabs
+  - company: Kymeta
+    token: kymeta
+
+  # Industrial, logistics, and commercial robotics
+  - company: Covariant
+    token: covariant
+  - company: Dusty Robotics
+    token: dustyrobotics
+  - company: Canvas
+    token: canvasconstruction
+  - company: RightHand Robotics
+    token: righthandrobotics
+  - company: GrayMatter Robotics
+    token: graymatterrobotics
+  - company: Realtime Robotics
+    token: realtimerobotics
+  - company: Plus One Robotics
+    token: plusonerobotics
+  - company: Fox Robotics
+    token: foxrobotics
+  - company: Slip Robotics
+    token: sliprobotics
+  - company: Seegrid
+    token: seegrid
+
+  # Civilian and commercial aviation or advanced air mobility
+  - company: Joby Aviation
+    token: jobyaviation
+  - company: Wisk Aero
+    token: wisk
+  - company: BETA Technologies
+    token: betatechnologies
+  - company: Electra.aero
+    token: electraero
+  - company: REGENT
+    token: regentcraft
+  - company: Elroy Air
+    token: elroyair
+  - company: Pyka
+    token: pyka
+  - company: Boom Supersonic
+    token: boomsupersonic
+  - company: Merlin Labs
+    token: merlinlabs
+  - company: Whisper Aero
+    token: whisperaero
+
+workday:
+  # Commercial RF semiconductor employers. A compact search set keeps the
+  # additional Workday runtime controlled while covering relevant internships.
+  - company: Skyworks Solutions
+    tenant: skyworksinc
+    wd_num: 5
+    site: Skyworks
+    search_texts: &rf_early_career_searches
+      - rf intern
+      - electrical engineering intern
+      - hardware intern
+      - applications engineering intern
+      - new graduate rf engineer
+      - engineer i rf
+    fetch_details: true
+  - company: Qorvo
+    tenant: qorvo
+    wd_num: 5
+    site: Qorvo_Careers
+    search_texts: *rf_early_career_searches
+    fetch_details: true
+  - company: Qualcomm
+    tenant: qualcomm
+    wd_num: 5
+    site: External
+    search_texts: *rf_early_career_searches
+    fetch_details: true
