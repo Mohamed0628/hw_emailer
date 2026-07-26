@@ -178,6 +178,17 @@ hard_reject_title_terms:
   - documentation specialist
   - program manager
   - product manager
+  - site reliability engineer
+  - kubernetes
+  - devops engineer
+  - cloud engineer
+  - backend engineer
+  - frontend engineer
+  - full stack engineer
+  - product security engineer
+  - cybersecurity engineer
+  - data engineer
+  - machine learning engineer
 
 negative_description_terms:
   - project scheduling
