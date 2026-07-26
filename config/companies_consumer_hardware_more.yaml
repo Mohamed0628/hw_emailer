@@ -1,0 +1,73 @@
+# Additional consumer-electronics, wearable, smart-home, audio, imaging,
+# connected-device, XR, and physical-product employers. Every entry was checked
+# against its live public ATS board on 2026-07-26 and uses a lightweight full-board
+# feed rather than repeated Workday keyword searches.
+
+greenhouse:
+  # Cameras, trackers, conferencing devices, and security hardware
+  - company: GoPro
+    token: goprocareers
+  - company: Life360
+    token: life360
+  - company: Owl Labs
+    token: owllabs
+  - company: Yubico
+    token: yubico
+
+  # Consumer energy, appliances, and product-development hardware
+  - company: Tempo Energy
+    token: tempo
+  - company: Emporia Energy
+    token: emporiarevolutionizinghomeenergy
+  - company: SharkNinja
+    token: sharkninjaoperatingllc
+  - company: Sharp Electronics
+    token: sharpelectronics
+  - company: Delart
+    token: delartech
+  - company: ALTEN Technology USA
+    token: altentechnologyusa
+
+lever:
+  # Smart security, notification devices, and product engineering
+  - company: Ajax Systems
+    token: ajax
+  - company: Alertus Technologies
+    token: alertus
+  - company: DISHER
+    token: disher
+
+  # Imaging, wearables, and robotics hardware
+  - company: Lumafield
+    token: lumafield
+  - company: Pison
+    token: pison
+  - company: Humble Robotics
+    token: humble-robotics
+
+ashby:
+  # Consumer AI devices, wearables, audio, cameras, and interfaces
+  - company: OpenAI
+    token: openai
+  - company: Egra
+    token: egra
+  - company: Afference
+    token: afference
+  - company: Human Archive
+    token: humanarchive
+  - company: Noia Labs
+    token: noialabs
+  - company: Sabi
+    token: sabi
+  - company: Sandbar
+    token: sandbar
+  - company: Sesame
+    token: sesame
+
+  # Neurotechnology, hardware design tooling, and advanced energy devices
+  - company: Epia Neuro
+    token: epianeuro
+  - company: Flux
+    token: flux
+  - company: Pronoia
+    token: pronoia
