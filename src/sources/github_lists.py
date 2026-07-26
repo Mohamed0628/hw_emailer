@@ -35,14 +35,21 @@ def _to_iso(ts: Any) -> str | None:
         return None
 
 
-def _detect_year(*texts: Any) -> int | None:
+def _detect_years(*texts: Any) -> tuple[int, ...]:
+    years: list[int] = []
     for text in texts:
         if not text:
             continue
-        match = _YEAR_RE.search(str(text))
-        if match:
-            return int(match.group(1))
-    return None
+        for match in _YEAR_RE.finditer(str(text)):
+            year = int(match.group(1))
+            if year not in years:
+                years.append(year)
+    return tuple(years)
+
+
+def _detect_year(*texts: Any) -> int | None:
+    years = _detect_years(*texts)
+    return years[0] if years else None
 
 
 def _map_listing(raw: dict[str, Any], source_name: str) -> Job | None:
@@ -162,14 +169,20 @@ def _parse_table_row(
     if not (company and title and url):
         return None
 
-    explicit_year = _detect_year(title)
+    explicit_years = _detect_years(title)
     if (
         reject_explicit_other_years
         and default_year is not None
-        and explicit_year is not None
-        and explicit_year != default_year
+        and explicit_years
+        and default_year not in explicit_years
     ):
         return None
+
+    explicit_year = (
+        default_year
+        if default_year is not None and default_year in explicit_years
+        else (explicit_years[0] if explicit_years else None)
+    )
 
     return Job(
         company=company,
