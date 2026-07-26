@@ -25,13 +25,7 @@ def _load_yaml(name: str) -> dict[str, Any]:
 
 
 def _merge_dicts(base: dict[str, Any], overlay: dict[str, Any]) -> dict[str, Any]:
-    """Recursively merge configuration dictionaries without mutating inputs.
-
-    Dictionary values are merged recursively. Lists and scalar values in the
-    overlay replace the corresponding base value. This lets focused overlay
-    files replace the category taxonomy while retaining role and location
-    rules from the main filters configuration.
-    """
+    """Recursively merge configuration dictionaries without mutating inputs."""
     merged = dict(base)
     for key, value in overlay.items():
         if isinstance(value, dict) and isinstance(merged.get(key), dict):
@@ -58,7 +52,17 @@ def _merge_company_configs(*names: str) -> dict[str, Any]:
 def filters() -> dict[str, Any]:
     base = _load_yaml("filters.yaml")
     taxonomy = _load_yaml("category_taxonomy.yaml")
-    return _merge_dicts(base, taxonomy)
+    merged = _merge_dicts(base, taxonomy)
+
+    # The taxonomy is a complete replacement for the legacy three-category
+    # block, not an additive merge. Keeping the old categories would create
+    # duplicate keyword matches and unstable labels.
+    if taxonomy.get("categories"):
+        merged["categories"] = taxonomy["categories"]
+    if taxonomy.get("category_priority"):
+        merged["category_priority"] = taxonomy["category_priority"]
+
+    return merged
 
 
 @lru_cache(maxsize=None)
