@@ -36,6 +36,18 @@ class Job(BaseModel):
     priority: Optional[str] = None
     hiring_signal: Optional[str] = None
 
+    # Career outcome scoring. These values answer whether the role develops
+    # PCB, embedded, firmware, RF, controls, robotics, power, silicon, or
+    # hands-on electrical engineering skills rather than generic PM work.
+    career_fit_score: int = 0
+    career_fit_band: Optional[str] = None
+    hardware_skill_score: int = 0
+    resume_growth_score: int = 0
+    career_alignment_score: int = 0
+    company_quality_score: int = 0
+    location_fit_score: int = 0
+    career_fit_evidence: list[str] = Field(default_factory=list)
+
     # Optional metadata when the source provides it.
     posted_date: Optional[str] = None
     sponsorship: Optional[str] = None
