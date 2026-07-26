@@ -1,0 +1,31 @@
+# Batch 4: wireless, test, and industrial robotics employers.
+# Public ATS endpoints were verified on 2026-07-26.
+
+greenhouse:
+  - company: Wireless Logic
+    token: wirelesslogic
+
+lever:
+  - company: Mujin
+    token: mujininc
+
+workday:
+  - company: Symbotic
+    tenant: symbotic
+    wd_num: 504
+    site: Symbotic
+    search_texts:
+      - intern
+      - co-op
+      - early career
+      - new graduate
+      - engineer i
+      - electrical engineer
+      - electronics engineer
+      - hardware engineer
+      - controls engineer
+      - systems engineer
+      - test engineer
+      - automation engineer
+      - field engineer
+    fetch_details: true
