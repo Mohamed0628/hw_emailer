@@ -49,7 +49,11 @@ def github_lists() -> dict[str, Any]:
 
 @lru_cache(maxsize=None)
 def companies() -> dict[str, Any]:
-    return _merge_company_configs("companies.yaml", "companies_regional.yaml")
+    return _merge_company_configs(
+        "companies.yaml",
+        "companies_regional.yaml",
+        "companies_rf_robotics_avionics.yaml",
+    )
 
 
 @lru_cache(maxsize=None)
