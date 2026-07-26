@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - "scripts/discover_robotics_consumer_hardware_boards.py"
+      - "scripts/discover_robotics_consumer_hardware_boards_2.py"
       - ".github/workflows/discover-robotics-consumer-hardware.yml"
 
 permissions:
@@ -26,7 +27,11 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Discover public ATS boards
-        run: python scripts/discover_robotics_consumer_hardware_boards.py | tee robotics-consumer-hardware-discovery.txt
+        shell: bash
+        run: |
+          python scripts/discover_robotics_consumer_hardware_boards.py > robotics-consumer-hardware-discovery.txt
+          python scripts/discover_robotics_consumer_hardware_boards_2.py >> robotics-consumer-hardware-discovery.txt
+          cat robotics-consumer-hardware-discovery.txt
 
       - name: Upload discovery report
         uses: actions/upload-artifact@v4
