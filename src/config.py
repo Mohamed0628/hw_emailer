@@ -80,6 +80,7 @@ def companies() -> dict[str, Any]:
         "companies_consumer_hardware_more.yaml",
         "companies_hardware_expansion.yaml",
         "companies_batch_01.yaml",
+        "companies_batch_02.yaml",
     )
 
 
