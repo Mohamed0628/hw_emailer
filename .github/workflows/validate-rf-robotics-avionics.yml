@@ -1,0 +1,30 @@
+name: Validate new RF robotics avionics boards
+
+on:
+  pull_request:
+    paths:
+      - "config/companies_rf_robotics_avionics.yaml"
+      - "scripts/validate_rf_robotics_avionics_boards.py"
+      - ".github/workflows/validate-rf-robotics-avionics.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Validate public ATS boards
+        run: python scripts/validate_rf_robotics_avionics_boards.py
