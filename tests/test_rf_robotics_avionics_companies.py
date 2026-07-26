@@ -9,36 +9,36 @@ from src import config
 
 CATALOG = "companies_rf_robotics_avionics.yaml"
 EXPECTED_COMPANIES = {
-    "Tarana Wireless",
-    "Celona",
-    "Pivotal Commware",
-    "Federated Wireless",
+    "Eridan",
+    "Hubble Network",
+    "Samsara",
+    "Verkada",
+    "Alarm.com",
     "Parallel Wireless",
-    "XCOM Labs",
-    "Kymeta",
-    "Skyworks Solutions",
-    "Qorvo",
-    "Qualcomm",
-    "Covariant",
-    "Dusty Robotics",
-    "Canvas",
-    "RightHand Robotics",
+    "Cambium Networks",
+    "Morse Micro",
+    "Skylo Technologies",
+    "Arlo Technologies",
+    "Gather AI",
+    "RIVR",
+    "Waabi",
     "GrayMatter Robotics",
-    "Realtime Robotics",
-    "Plus One Robotics",
-    "Fox Robotics",
-    "Slip Robotics",
-    "Seegrid",
-    "Joby Aviation",
-    "Wisk Aero",
-    "BETA Technologies",
-    "Electra.aero",
-    "REGENT",
+    "Human Computer Lab",
+    "Droyd",
+    "1X",
+    "Matic Robots",
+    "RobCo",
+    "Corvus Robotics",
+    "JetZero",
+    "Skyryse",
     "Elroy Air",
-    "Pyka",
-    "Boom Supersonic",
     "Merlin Labs",
-    "Whisper Aero",
+    "Pyka",
+    "Pivotal",
+    "REGENT",
+    "Odys Aviation",
+    "Swoop Aero",
+    "AeroVect",
 }
 
 
@@ -61,8 +61,9 @@ def test_catalog_contains_exactly_30_companies():
     payload = _load(CATALOG)
     assert set(_names(payload)) == EXPECTED_COMPANIES
     assert len(_names(payload)) == 30
-    assert len(payload.get("greenhouse", [])) == 27
-    assert len(payload.get("workday", [])) == 3
+    assert len(payload.get("greenhouse", [])) == 8
+    assert len(payload.get("lever", [])) == 8
+    assert len(payload.get("ashby", [])) == 14
 
 
 def test_catalog_names_are_unique():
@@ -87,12 +88,9 @@ def test_runtime_catalog_includes_all_new_companies():
 
 def test_entries_have_required_ats_identifiers():
     payload = _load(CATALOG)
-    for entry in payload.get("greenhouse", []):
-        assert entry.get("company") and entry.get("token")
-    for entry in payload.get("workday", []):
-        assert all(entry.get(key) for key in ("company", "tenant", "wd_num", "site"))
-        assert entry.get("search_texts")
-        assert entry.get("fetch_details") is True
+    for ats in ("greenhouse", "lever", "ashby"):
+        for entry in payload.get(ats, []):
+            assert entry.get("company") and entry.get("token")
 
 
 def test_civil_aviation_catalog_excludes_defense_first_employers():
@@ -105,5 +103,6 @@ def test_civil_aviation_catalog_excludes_defense_first_employers():
         "kratos defense",
         "bae systems",
         "general dynamics mission systems",
+        "whisper aero",
     }
     assert names.isdisjoint(excluded)
