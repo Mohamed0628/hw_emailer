@@ -1,0 +1,40 @@
+# High-signal expansion for board-level EE, embedded systems, robotics,
+# power electronics, semiconductors, sensing, and medical hardware.
+# Public ATS identifiers were verified against active career pages in July 2026.
+
+ashby:
+  - company: Rhoda AI
+    token: rhoda-ai
+
+  - company: Generalist
+    token: generalist
+
+  - company: Form Energy
+    token: formenergy
+
+  - company: Ambrosia Energy
+    token: Ambrosia Energy
+
+  - company: Terranova
+    token: terranova
+
+lever:
+  - company: Orb Aerospace
+    token: orbaerospace
+
+  - company: ISEE
+    token: isee
+
+workday:
+  - company: Medline
+    tenant: medline
+    wd_num: 5
+    site: Medline
+    search_texts:
+      - electrical engineer
+      - hardware engineer
+      - embedded engineer
+      - firmware engineer
+      - controls engineer
+      - electronics engineer
+    fetch_details: true
