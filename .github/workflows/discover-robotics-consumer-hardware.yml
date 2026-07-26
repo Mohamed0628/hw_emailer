@@ -5,6 +5,7 @@ on:
     paths:
       - "scripts/discover_robotics_consumer_hardware_boards.py"
       - "scripts/discover_robotics_consumer_hardware_boards_2.py"
+      - "scripts/discover_robotics_consumer_hardware_boards_3.py"
       - ".github/workflows/discover-robotics-consumer-hardware.yml"
 
 permissions:
@@ -31,6 +32,7 @@ jobs:
         run: |
           python scripts/discover_robotics_consumer_hardware_boards.py > robotics-consumer-hardware-discovery.txt
           python scripts/discover_robotics_consumer_hardware_boards_2.py >> robotics-consumer-hardware-discovery.txt
+          python scripts/discover_robotics_consumer_hardware_boards_3.py >> robotics-consumer-hardware-discovery.txt
           cat robotics-consumer-hardware-discovery.txt
 
       - name: Upload discovery report
