@@ -4,7 +4,7 @@ state_file: data/seen_jobs.json
 prune_after_days: 120
 
 runtime:
-  source_workers: 24
+  source_workers: 50
   slow_source_seconds: 8
 
 http:
