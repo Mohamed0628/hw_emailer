@@ -1,0 +1,238 @@
+# Career outcome filter for Mohamed's target path.
+# Jobs must build real PCB, embedded, firmware, RF, controls, robotics,
+# power electronics, silicon, test, or electrical design experience.
+minimum_email_score: 70
+
+weights:
+  hardware_skill: 40
+  resume_growth: 25
+  career_alignment: 20
+  company_quality: 10
+  location_fit: 5
+
+elite_categories:
+  - pcb_board_design
+  - analog_mixed_signal
+  - digital_hardware_fpga
+  - semiconductor_asic
+  - embedded_firmware
+  - rf_wireless
+  - signal_power_integrity
+  - power_electronics
+  - controls_motion
+  - robotics_mechatronics
+  - avionics_space
+  - medtech_hardware
+  - test_validation
+  - systems_integration
+  - general_electrical
+
+conditional_categories:
+  - manufacturing_npi
+  - applications_field
+
+strong_hardware_terms:
+  - pcb
+  - pcba
+  - schematic
+  - circuit design
+  - board design
+  - board layout
+  - board bring up
+  - board bring-up
+  - altium
+  - kicad
+  - cadence
+  - allegro
+  - orcad
+  - oscilloscope
+  - logic analyzer
+  - soldering
+  - rework
+  - embedded
+  - firmware
+  - embedded c
+  - embedded c++
+  - microcontroller
+  - stm32
+  - esp32
+  - nrf52
+  - freertos
+  - zephyr
+  - rtos
+  - i2c
+  - spi
+  - uart
+  - can bus
+  - adc
+  - dac
+  - fpga
+  - verilog
+  - systemverilog
+  - vhdl
+  - asic
+  - rtl
+  - analog
+  - mixed signal
+  - mixed-signal
+  - rf
+  - microwave
+  - antenna
+  - bluetooth
+  - ble
+  - wifi
+  - wireless
+  - radar
+  - signal integrity
+  - power integrity
+  - emc
+  - emi
+  - power electronics
+  - buck converter
+  - boost converter
+  - inverter
+  - motor control
+  - motor drive
+  - controls
+  - control systems
+  - robotics
+  - actuator
+  - sensors
+  - instrumentation
+  - hardware validation
+  - hardware test
+  - electrical test
+  - hil
+  - bench testing
+  - prototype
+  - electrical design
+  - electronics design
+  - system integration
+
+hands_on_terms:
+  - oscilloscope
+  - logic analyzer
+  - soldering
+  - rework
+  - lab equipment
+  - bench testing
+  - board bring up
+  - board bring-up
+  - debug hardware
+  - hardware debugging
+  - prototype
+  - schematic capture
+  - pcb layout
+  - test fixture
+  - environmental testing
+  - emi testing
+  - emc testing
+
+conditional_title_terms:
+  - manufacturing engineer
+  - process engineer
+  - product engineer
+  - systems engineer
+  - system engineer
+  - test engineer
+  - validation engineer
+  - quality engineer
+  - design quality engineer
+  - applications engineer
+  - field engineer
+  - field service engineer
+  - sustaining engineer
+  - reliability engineer
+  - automation engineer
+  - npi engineer
+
+hard_reject_title_terms:
+  - project manager
+  - project management
+  - project engineer
+  - construction engineer
+  - construction management
+  - civil engineer
+  - industrial engineer
+  - operations engineer
+  - operations manager
+  - supply chain
+  - procurement
+  - logistics
+  - scheduler
+  - scheduling
+  - planner
+  - facilities engineer
+  - maintenance engineer
+  - safety engineer
+  - environmental engineer
+  - production supervisor
+  - manufacturing supervisor
+  - continuous improvement
+  - lean engineer
+  - six sigma
+  - regulatory affairs
+  - quality assurance
+  - complaint investigation
+  - capa specialist
+  - documentation specialist
+  - program manager
+  - product manager
+
+negative_description_terms:
+  - project scheduling
+  - budget tracking
+  - cost tracking
+  - subcontractor coordination
+  - construction site
+  - field construction
+  - procurement activities
+  - supply chain management
+  - lean six sigma
+  - continuous improvement events
+  - capa management
+  - regulatory submissions
+  - document control
+
+preferred_companies:
+  - medtronic
+  - abbott
+  - boston scientific
+  - stryker
+  - dexcom
+  - intuitive surgical
+  - neuralink
+  - figure
+  - spacex
+  - apple
+  - nvidia
+  - qualcomm
+  - texas instruments
+  - analog devices
+  - marvell
+  - nxp
+  - microchip
+  - onsemi
+  - skyworks
+  - qorvo
+  - rockwell automation
+  - emerson
+
+preferred_locations:
+  - minnesota
+  - minneapolis
+  - saint paul
+  - st paul
+  - plymouth
+  - eden prairie
+  - maple grove
+  - brooklyn park
+  - shakopee
+  - bloomington
+  - rogers
+
+score_bands:
+  must_apply: 95
+  excellent: 90
+  good: 80
+  selective: 70
