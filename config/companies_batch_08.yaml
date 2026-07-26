@@ -1,0 +1,25 @@
+# Batch 8: civilian clean energy, grid hardware, consumer electronics,
+# and commercial spacecraft electronics employers.
+# Public Greenhouse boards and active technical openings were verified on 2026-07-26.
+
+greenhouse:
+  - company: Redwood Materials
+    token: redwoodmaterials
+
+  - company: K2 Space
+    token: k2spacecorporation
+
+  - company: Quantum Space
+    token: quantumspacellc
+
+  - company: Lunar Energy
+    token: lunarenergy
+
+  - company: Electric Hydrogen
+    token: electrichydrogen
+
+  - company: Electra
+    token: electrasteel
+
+  - company: LG Electronics
+    token: lgelectronics
