@@ -7,8 +7,8 @@ rejected posting when it is a technical US role and either:
 2. It belongs to a configured consumer-hardware or robotics employer and its
    title or description explicitly connects 2027 to a start or graduation cohort.
 
-Existing internships, 2026 roles, and ordinary early-career matches are left
-unchanged.
+Every ordinary or rescued match must also pass the hardware career outcome
+filter. Famous employers and broad engineering titles cannot bypass that gate.
 """
 
 from __future__ import annotations
@@ -17,6 +17,7 @@ import re
 from functools import lru_cache
 from typing import Any, Optional
 
+from . import career_fit
 from . import config
 from . import filters as base
 from . import smart_filters as existing
@@ -171,16 +172,17 @@ def _rescue_2027_consumer_role(job: Job, filters_config: dict[str, Any]) -> bool
     job.role_type = "new_grad"
     job.entry_level_score = assessment.score + 5
     job.entry_level_evidence = evidence
-    job.priority = "A"
-    job.hiring_signal = "2027-start consumer electronics or hardware role"
-    return True
+
+    # A trusted source is not enough. The role still has to build target
+    # electrical or hardware skills.
+    return career_fit.apply(job)
 
 
 def passes(job: Job, f: Optional[dict[str, Any]] = None) -> bool:
-    """Keep ordinary smart-filter matches plus qualified 2027 consumer roles."""
+    """Keep only qualified roles that also advance a hardware career."""
     filters_config = f if f is not None else config.filters()
     if existing.passes(job, filters_config):
-        return True
+        return career_fit.apply(job)
     return _rescue_2027_consumer_role(job, filters_config)
 
 
@@ -188,6 +190,6 @@ def apply_filters(
     jobs: list[Job],
     f: Optional[dict[str, Any]] = None,
 ) -> list[Job]:
-    """Apply the additive consumer-electronics 2027 filter to all jobs."""
+    """Apply early-career eligibility and the hardware career outcome gate."""
     filters_config = f if f is not None else config.filters()
     return [job for job in jobs if passes(job, filters_config)]
