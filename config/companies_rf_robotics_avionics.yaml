@@ -1,0 +1,84 @@
+# Additional employers focused on RF and connected hardware, commercial robotics,
+# and civilian or commercial aviation. Defense-first and weapons-focused
+# aviation employers are intentionally excluded from this catalog.
+
+greenhouse:
+  # RF, wireless, and connected hardware
+  - company: Eridan
+    token: eridan
+  - company: Hubble Network
+    token: hubblenetwork
+  - company: Samsara
+    token: samsara
+  - company: Verkada
+    token: verkada
+  - company: Alarm.com
+    token: alarmcom
+
+  # Commercial robotics and autonomous systems
+  - company: Gather AI
+    token: gatherai
+
+  # Civilian and commercial aviation
+  - company: JetZero
+    token: jetzero
+  - company: Skyryse
+    token: skyryse
+
+lever:
+  # RF and wireless infrastructure
+  - company: Parallel Wireless
+    token: parallelwireless
+  - company: Cambium Networks
+    token: cambiumnetworks
+
+  # Commercial robotics and autonomous systems
+  - company: RIVR
+    token: rivr
+  - company: Waabi
+    token: waabi
+
+  # Civilian and commercial aviation
+  - company: Elroy Air
+    token: elroyair
+  - company: Merlin Labs
+    token: merlinlabs
+  - company: Pyka
+    token: pyka
+  - company: Pivotal
+    token: pivotal
+
+ashby:
+  # RF, satellite connectivity, and connected hardware
+  - company: Morse Micro
+    token: morse-micro
+  - company: Skylo Technologies
+    token: skylo
+  - company: Arlo Technologies
+    token: arlo
+
+  # Commercial robotics and autonomous systems
+  - company: GrayMatter Robotics
+    token: graymatter-robotics
+  - company: Human Computer Lab
+    token: human-computer-lab
+  - company: Droyd
+    token: droyd
+  - company: 1X
+    token: 1x
+  - company: Matic Robots
+    token: maticrobots
+  - company: RobCo
+    token: robco
+  - company: Corvus Robotics
+    token: corvus-robotics
+
+  # Civilian and commercial aviation
+  - company: REGENT
+    token: regent
+  - company: Odys Aviation
+    token: odys-aviation
+  - company: Swoop Aero
+    token: swoop
+  - company: AeroVect
+    token: aerovect
