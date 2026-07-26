@@ -82,12 +82,16 @@ def companies() -> dict[str, Any]:
         "companies_batch_01.yaml",
         "companies_batch_02.yaml",
         "companies_batch_03.yaml",
+        "companies_batch_04.yaml",
     )
 
 
 @lru_cache(maxsize=None)
 def direct_companies() -> dict[str, Any]:
-    return _load_yaml("direct_companies.yaml")
+    return _merge_company_configs(
+        "direct_companies.yaml",
+        "direct_companies_batch_01.yaml",
+    )
 
 
 @lru_cache(maxsize=None)
