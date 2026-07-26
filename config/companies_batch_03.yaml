@@ -1,0 +1,53 @@
+# Batch 3: semiconductor, RF, photonics, test, and precision hardware employers.
+# Workday endpoints and active engineering postings were verified on 2026-07-26.
+
+workday:
+  - company: Wolfspeed
+    tenant: cree
+    wd_num: 108
+    site: EXT
+    search_texts: &batch_03_hardware_searches
+      - intern
+      - co-op
+      - early career
+      - new graduate
+      - engineer i
+      - electrical engineer
+      - electronics engineer
+      - hardware engineer
+      - test engineer
+      - systems engineer
+      - product engineer
+      - applications engineer
+      - process engineer
+      - equipment engineer
+      - rf engineer
+    fetch_details: true
+
+  - company: Allegro MicroSystems
+    tenant: allegromicro
+    wd_num: 5
+    site: AllegroCareers
+    search_texts: *batch_03_hardware_searches
+    fetch_details: true
+
+  - company: Teledyne Technologies
+    tenant: flir
+    wd_num: 1
+    site: flircareers
+    search_texts: *batch_03_hardware_searches
+    fetch_details: true
+
+  - company: Novanta
+    tenant: novanta
+    wd_num: 5
+    site: Novanta-Careers
+    search_texts: *batch_03_hardware_searches
+    fetch_details: true
+
+  - company: MKS Instruments
+    tenant: mksinst
+    wd_num: 1
+    site: MKSCareersAmericas
+    search_texts: *batch_03_hardware_searches
+    fetch_details: true
