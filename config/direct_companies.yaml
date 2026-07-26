@@ -7,6 +7,10 @@ jazzhr:
     board_url: https://enterramedicalinc.applytojob.com/apply
     default_location: Minneapolis, MN
 
+  - company: Electromed
+    board_url: https://electromedinc.applytojob.com/apply
+    default_location: New Prague, MN
+
   - company: Tolomatic
     board_url: https://tolomatic.applytojob.com/apply
     default_location: Hamel, MN
@@ -49,4 +53,10 @@ career_pages:
     board_url: https://www.par.com/careers/
     job_host: jobs.dayforcehcm.com
     default_location: Shoreview, MN
+    follow_details: true
+
+  - company: CVRx
+    board_url: https://jobs.lever.co/CVRx
+    job_host: jobs.lever.co
+    default_location: Brooklyn Park, MN
     follow_details: true
