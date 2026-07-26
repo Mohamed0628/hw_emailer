@@ -5,6 +5,7 @@ on:
     paths:
       - "config/companies_rf_robotics_avionics.yaml"
       - "scripts/validate_rf_robotics_avionics_boards.py"
+      - "scripts/discover_more_rf_robotics_avionics_boards.py"
       - ".github/workflows/validate-rf-robotics-avionics.yml"
 
 permissions:
@@ -26,13 +27,11 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Validate public ATS boards
+      - name: Discover public ATS boards
         shell: bash
         run: |
-          set +e
           python scripts/validate_rf_robotics_avionics_boards.py | tee ats-validation-report.txt
-          status=${PIPESTATUS[0]}
-          exit "$status"
+          python scripts/discover_more_rf_robotics_avionics_boards.py | tee -a ats-validation-report.txt
 
       - name: Upload ATS validation report
         if: always()
