@@ -53,6 +53,7 @@ def companies() -> dict[str, Any]:
         "companies.yaml",
         "companies_regional.yaml",
         "companies_rf_robotics_avionics.yaml",
+        "companies_robotics_consumer_hardware.yaml",
     )
 
 
