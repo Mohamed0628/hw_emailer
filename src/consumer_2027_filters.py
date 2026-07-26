@@ -93,9 +93,9 @@ def detect_2027_cohort(job: Job) -> Optional[int]:
         return int(job.year)
 
     title = getattr(job, "title", "") or ""
-    title_year = _YEAR_RE.search(title)
-    if title_year:
-        return int(title_year.group(1))
+    title_years = [int(match.group(1)) for match in _YEAR_RE.finditer(title)]
+    if title_years:
+        return max(title_years)
 
     text = _job_text(job)
     years: list[int] = []
