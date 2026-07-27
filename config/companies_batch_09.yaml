@@ -1,0 +1,88 @@
+# Batch 9: industrial automation, positioning hardware, semiconductor equipment,
+# electronics manufacturing, distributed energy, HVAC controls, and regional power systems.
+# Public Workday boards and active electrical or hardware openings were verified on 2026-07-26.
+
+workday:
+  - company: Rockwell Automation
+    tenant: rockwellautomation
+    wd_num: 1
+    site: External_Rockwell_Automation
+    search_texts: &batch_09_hardware_searches
+      - intern
+      - co-op
+      - early career
+      - new graduate
+      - engineer i
+      - associate electrical engineer
+      - electrical engineer
+      - hardware engineer
+      - embedded engineer
+      - firmware engineer
+      - controls engineer
+      - power electronics engineer
+      - validation engineer
+      - test engineer
+    fetch_details: true
+
+  - company: Trimble
+    tenant: trimble
+    wd_num: 1
+    site: TrimbleCareers
+    search_texts: *batch_09_hardware_searches
+    fetch_details: true
+
+  - company: Daikin Applied
+    tenant: daikinapplied
+    wd_num: 1
+    site: Daikin-Careers
+    search_texts: *batch_09_hardware_searches
+    fetch_details: true
+
+  - company: Applied Materials
+    tenant: amat
+    wd_num: 1
+    site: External
+    search_texts: *batch_09_hardware_searches
+    fetch_details: true
+
+  - company: Jabil
+    tenant: jabil
+    wd_num: 5
+    site: Jabil_Careers
+    search_texts: *batch_09_hardware_searches
+    fetch_details: true
+
+  - company: Generac
+    tenant: generac
+    wd_num: 5
+    site: External
+    search_texts: *batch_09_hardware_searches
+    fetch_details: true
+
+  - company: Carrier
+    tenant: carrier
+    wd_num: 5
+    site: jobs
+    search_texts: *batch_09_hardware_searches
+    fetch_details: true
+
+  - company: Johnson Controls
+    tenant: jci
+    wd_num: 5
+    site: JCI
+    search_texts: *batch_09_hardware_searches
+    fetch_details: true
+
+  - company: Ziegler CAT
+    tenant: zieglercat
+    wd_num: 1
+    site: zieglercat
+    search_texts: *batch_09_hardware_searches
+    fetch_details: true
+
+  - company: Barr Engineering
+    tenant: barr
+    wd_num: 1
+    site: BarrCareers
+    search_texts: *batch_09_hardware_searches
+    fetch_details: true
