@@ -1,0 +1,86 @@
+# Batch 10: circuit protection, sensing, HVAC electronics, motion control,
+# consumer hardware, networking hardware, power electronics, and marine systems.
+# Public Workday boards and active electrical or hardware openings were verified on 2026-07-27.
+
+workday:
+  - company: Littelfuse
+    tenant: littelfuse
+    wd_num: 1
+    site: Littelfuse-Careers
+    search_texts: &batch_10_hardware_searches
+      - intern
+      - co-op
+      - early career
+      - engineer i
+      - electrical engineer
+      - electronics engineer
+      - hardware engineer
+      - embedded engineer
+      - firmware engineer
+      - power electronics engineer
+      - validation engineer
+      - application engineer
+    fetch_details: true
+
+  - company: Sensata Technologies
+    tenant: sensata
+    wd_num: 1
+    site: Sensata-Careers
+    search_texts: *batch_10_hardware_searches
+    fetch_details: true
+
+  - company: Trane Technologies
+    tenant: tranetechnologies
+    wd_num: 12
+    site: Trane_Technologies_Careers
+    search_texts: *batch_10_hardware_searches
+    fetch_details: true
+
+  - company: Regal Rexnord
+    tenant: regalrexnord
+    wd_num: 1
+    site: Careers
+    search_texts: *batch_10_hardware_searches
+    fetch_details: true
+
+  - company: Milwaukee Tool
+    tenant: tti
+    wd_num: 1
+    site: Milwaukee
+    search_texts: *batch_10_hardware_searches
+    fetch_details: true
+
+  - company: Cisco
+    tenant: cisco
+    wd_num: 5
+    site: Cisco_Careers
+    search_texts: *batch_10_hardware_searches
+    fetch_details: true
+
+  - company: GE Vernova
+    tenant: gevernova
+    wd_num: 5
+    site: Vernova_ExternalSite
+    search_texts: *batch_10_hardware_searches
+    fetch_details: true
+
+  - company: HP Inc.
+    tenant: hp
+    wd_num: 5
+    site: ExternalCareerSite
+    search_texts: *batch_10_hardware_searches
+    fetch_details: true
+
+  - company: Brunswick Corporation
+    tenant: brunswick
+    wd_num: 1
+    site: search
+    search_texts: *batch_10_hardware_searches
+    fetch_details: true
+
+  - company: BorgWarner
+    tenant: borgwarner
+    wd_num: 5
+    site: BorgWarner_Careers
+    search_texts: *batch_10_hardware_searches
+    fetch_details: true
