@@ -1,0 +1,85 @@
+# Batch 11: Minnesota electrical products, sensing, filtration, fluid systems,
+# embedded access control, elevators, and water instrumentation employers.
+# Public Workday boards and active electrical or hardware openings were verified on 2026-07-27.
+
+workday:
+  - company: nVent
+    tenant: nvent
+    wd_num: 5
+    site: nVent
+    search_texts: &batch_11_hardware_searches
+      - intern
+      - co-op
+      - early career
+      - engineer i
+      - electrical engineer
+      - electronics engineer
+      - hardware engineer
+      - embedded engineer
+      - firmware engineer
+      - controls engineer
+      - test engineer
+    fetch_details: true
+
+  - company: Nordson
+    tenant: nordsonhcm
+    wd_num: 501
+    site: nordsoncareers
+    search_texts: *batch_11_hardware_searches
+    fetch_details: true
+
+  - company: Entrust
+    tenant: entrust
+    wd_num: 1
+    site: EntrustCareers
+    search_texts: *batch_11_hardware_searches
+    fetch_details: true
+
+  - company: Pentair
+    tenant: pentair
+    wd_num: 5
+    site: Pentair_Careers
+    search_texts: *batch_11_hardware_searches
+    fetch_details: true
+
+  - company: Donaldson
+    tenant: donaldson
+    wd_num: 115
+    site: DonaldsonCareers
+    search_texts: *batch_11_hardware_searches
+    fetch_details: true
+
+  - company: Graco
+    tenant: graco
+    wd_num: 501
+    site: Graco_Careers
+    search_texts: *batch_11_hardware_searches
+    fetch_details: true
+
+  - company: KONE
+    tenant: kone
+    wd_num: 3
+    site: Careers
+    search_texts: *batch_11_hardware_searches
+    fetch_details: true
+
+  - company: Otis
+    tenant: otis
+    wd_num: 5
+    site: REC_Ext_Gateway
+    search_texts: *batch_11_hardware_searches
+    fetch_details: true
+
+  - company: Allegion
+    tenant: allegion
+    wd_num: 5
+    site: careers
+    search_texts: *batch_11_hardware_searches
+    fetch_details: true
+
+  - company: Hach
+    tenant: veralto
+    wd_num: 1
+    site: HachJobs
+    search_texts: *batch_11_hardware_searches
+    fetch_details: true
