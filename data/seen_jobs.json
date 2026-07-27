@@ -41,6 +41,12 @@
     "title": "Hardware Reliability Engineer II (R4675)",
     "url": "https://jobs.lever.co/shieldai/55e14c5c-ee01-4c42-afc1-3583cf5e93d9"
   },
+  "027f19c386ccb4a3": {
+    "company": "Carrier",
+    "first_seen": "2026-07-27",
+    "title": "Controls Field Engineer",
+    "url": "https://carrier.wd5.myworkdayjobs.com/en-US/jobs/job/CAM05-CCS-Baltimore-3701-Commerce-Drive-Baltimore-MD-21227-USA/Controls-Field-Engineer_30203477"
+  },
   "02a1ff639f4b4c59": {
     "company": "Zipline",
     "first_seen": "2026-07-23",
@@ -89,11 +95,23 @@
     "title": "Campus Systems Engineer (Intern)",
     "url": "https://www.jumptrading.com/hr/job?gh_jid=8007788"
   },
+  "087dc942acd9ee14": {
+    "company": "Johnson Controls",
+    "first_seen": "2026-07-27",
+    "title": "Process Engineering Co-Op",
+    "url": "https://jci.wd5.myworkdayjobs.com/en-US/JCI/job/Burlington-Massachusetts-United-States-of-America/Process-Engineering-Co-Op_EB000753256-1"
+  },
   "08f35284e51ac5a2": {
     "company": "Figure AI",
     "first_seen": "2026-07-23",
     "title": "Electrical Engineering Intern [Fall 2026]",
     "url": "https://job-boards.greenhouse.io/figureai/jobs/4676467006"
+  },
+  "09524be3c1e003ab": {
+    "company": "Johnson Controls",
+    "first_seen": "2026-07-27",
+    "title": "Thermal Systems Engineer",
+    "url": "https://jci.wd5.myworkdayjobs.com/en-US/JCI/job/New-Freedom-Pennsylvania-United-States-of-America/Thermal-Systems-Engineer_WD30260174"
   },
   "0b2e190626419304": {
     "company": "Neuralink",
@@ -455,6 +473,12 @@
     "title": "Software Engineer I - Device Drivers",
     "url": "https://job-boards.greenhouse.io/torcrobotics/jobs/8534177002"
   },
+  "22e2af755c337127": {
+    "company": "Generac",
+    "first_seen": "2026-07-27",
+    "title": "Intern- Compliance Engineering",
+    "url": "https://generac.wd5.myworkdayjobs.com/en-US/External/job/Reno-NV---USA/Intern--Compliance-Engineering_JR15190"
+  },
   "238e52221d2d4cdd": {
     "company": "Figure AI",
     "first_seen": "2026-07-25",
@@ -521,11 +545,23 @@
     "title": "Electrical Engineer, Robotics Hardware",
     "url": "https://jobs.lever.co/field-ai/93042d45-ffe3-46a1-8eaf-e229ea228b06"
   },
+  "25fff30abbb4edbb": {
+    "company": "Johnson Controls",
+    "first_seen": "2026-07-27",
+    "title": "HVAC Controls Systems Application Engineer",
+    "url": "https://jci.wd5.myworkdayjobs.com/en-US/JCI/job/Capitol-Heights-Maryland-United-States-of-America/HVAC-Controls-Systems-Application-Engineer_WD30274054-1"
+  },
   "2622d9391b19b6b4": {
     "company": "Base Power",
     "first_seen": "2026-07-23",
     "title": "Firmware Engineering Intern",
     "url": "https://jobs.ashbyhq.com/base-power/a8ee9a66-e90b-42c2-a4a2-28d997c3e8c7/application"
+  },
+  "26791060ca030721": {
+    "company": "Rockwell Automation",
+    "first_seen": "2026-07-27",
+    "title": "Co-op, Firmware Engineering",
+    "url": "https://rockwellautomation.wd1.myworkdayjobs.com/en-US/External_Rockwell_Automation/job/Cambridge-Ontario-Canada/Intern--Firmware-Engineering_R26-4530-1"
   },
   "26fa40e666f566a4": {
     "company": "SpaceX",
@@ -550,6 +586,12 @@
     "first_seen": "2026-07-23",
     "title": "Hardware Engineering Intern",
     "url": "https://biotechne.wd5.myworkdayjobs.com/Biotechne/job/San-Jose-CA/Hardware-Engineering-Intern_JR101533"
+  },
+  "27fc071e1015933e": {
+    "company": "Carrier",
+    "first_seen": "2026-07-27",
+    "title": "Associate Controls Engineer",
+    "url": "https://carrier.wd5.myworkdayjobs.com/en-US/jobs/job/CAT16-CCS-Dallas-1901-N-Glenville-Drive-Richardson-TX-75081-USA/Associate-Controls-Engineer_30204622"
   },
   "28169aa711826567": {
     "company": "Varda Space",
@@ -586,6 +628,18 @@
     "first_seen": "2026-07-25",
     "title": "Mechanical Engineer, Flight Termination System (Starship)  ",
     "url": "https://boards.greenhouse.io/spacex/jobs/8604710002?gh_jid=8604710002"
+  },
+  "2a98d0db31792047": {
+    "company": "Carrier",
+    "first_seen": "2026-07-27",
+    "title": "Controls Field Engineer",
+    "url": "https://carrier.wd5.myworkdayjobs.com/en-US/jobs/job/CAN16-CCS-Jamesburg-1095-Cranbury-South-River-Road-Jamesburg-NJ-08831-USA/Controls-Field-Engineer_30197508"
+  },
+  "2acf58034fd5368a": {
+    "company": "Applied Materials",
+    "first_seen": "2026-07-27",
+    "title": "Software/Systems (Controls) Engineer",
+    "url": "https://amat.wd1.myworkdayjobs.com/en-US/External/job/GloucesterMA/Software-Engineer-II_R2619175"
   },
   "2c1d9be198192f2f": {
     "company": "Nidec",
@@ -899,6 +953,12 @@
     "title": "Assembly, Integration, and Test Associate Engineer (Fall 2026)",
     "url": "https://job-boards.greenhouse.io/astranis/jobs/4679074006"
   },
+  "3f4fe57a5c90e33a": {
+    "company": "Johnson Controls",
+    "first_seen": "2026-07-27",
+    "title": "Controls Application Engineer II",
+    "url": "https://jci.wd5.myworkdayjobs.com/en-US/JCI/job/San-Jose-San-Jose-Costa-Rica/Controls-Application-Engineer-II_WD30272000"
+  },
   "3f5c7c6911d0874b": {
     "company": "Danaher / Beckman Coulter",
     "first_seen": "2026-07-26",
@@ -1085,11 +1145,23 @@
     "title": "Automation Mechanical Engineer II",
     "url": "https://blueorigin.wd5.myworkdayjobs.com/en-US/BlueOrigin/job/Central-Texas/Automation-Mechanical-Engineer-II_R69242"
   },
+  "486f16993d3b4c5f": {
+    "company": "Carrier",
+    "first_seen": "2026-07-27",
+    "title": "Controls Field Service Engineer - Automated Logic",
+    "url": "https://carrier.wd5.myworkdayjobs.com/en-US/jobs/job/CAW12-AL-Wisconsin-MSN-3025-South-Stoughton-Road-Madison-WI-53716-USA/Controls-Service-Field-Engineer_30201329"
+  },
   "48abd0c9fb6d10c4": {
     "company": "Neuralink",
     "first_seen": "2026-07-23",
     "title": "Software Engineer Intern, Robotics",
     "url": "https://boards.greenhouse.io/neuralink/jobs/5469305003?gh_jid=5469305003"
+  },
+  "48c588009993f42d": {
+    "company": "Daikin Applied",
+    "first_seen": "2026-07-27",
+    "title": "Controls Field Engineer I",
+    "url": "https://daikinapplied.wd1.myworkdayjobs.com/en-US/Daikin-Careers/job/Elmhurst-IL-60126/Controls-Field-Engineer-I_R001531-1"
   },
   "49452c565fd4c4f2": {
     "company": "Form Energy",
@@ -1282,6 +1354,12 @@
     "first_seen": "2026-07-23",
     "title": "Hardware Engineer Intern - Summer 2027",
     "url": "https://job-boards.eu.greenhouse.io/imc/jobs/4823945101"
+  },
+  "588a8aceeb869f1d": {
+    "company": "Generac",
+    "first_seen": "2026-07-27",
+    "title": "Controls Engineer I",
+    "url": "https://generac.wd5.myworkdayjobs.com/en-US/External/job/Sussex-WI---USA/Controls-Engineer-I_JR15219"
   },
   "58a2b9971fd0ed0e": {
     "company": "Field AI",
@@ -1528,6 +1606,12 @@
     "first_seen": "2026-07-25",
     "title": "Controls Engineer",
     "url": "https://etechgroup.com/careers-list?gh_jid=5985907004"
+  },
+  "6867172d0e3c3627": {
+    "company": "Applied Materials",
+    "first_seen": "2026-07-27",
+    "title": "Electrical Engineer II \u2013 Semiconductor Equipment",
+    "url": "https://amat.wd1.myworkdayjobs.com/en-US/External/job/Santa-ClaraCA/Electrical-Engineer-II---Semiconductor-Equipment_R2621310"
   },
   "6a575b05c16859bd": {
     "company": "TETRAMEM",
@@ -1877,6 +1961,12 @@
     "title": "Robotics & Embedded Systems Intern",
     "url": "https://jobs.ashbyhq.com/odys-aviation/d15b1f56-d160-403e-8d12-90f531eb490f"
   },
+  "7da4b657da6c8a08": {
+    "company": "Carrier",
+    "first_seen": "2026-07-27",
+    "title": "Controls Engineer",
+    "url": "https://carrier.wd5.myworkdayjobs.com/en-US/jobs/job/CAN79-Clifton-100-Delawanna-Avenue-Clifton-NJ-07014-USA/Controls-Engineer_30213307"
+  },
   "7ddb7e261c237581": {
     "company": "Symbotic",
     "first_seen": "2026-07-26",
@@ -1906,6 +1996,12 @@
     "first_seen": "2026-07-25",
     "title": "Production Engineer (Starship Electronics)",
     "url": "https://boards.greenhouse.io/spacex/jobs/8420823002?gh_jid=8420823002"
+  },
+  "7fa93af016b5c3e1": {
+    "company": "Jabil",
+    "first_seen": "2026-07-27",
+    "title": "Manufacturing Automation Engineer I",
+    "url": "https://jabil.wd5.myworkdayjobs.com/en-US/Jabil_Careers/job/Asheville-NC/Manufacturing-Automation-Engineer-I_J2454512"
   },
   "800eff0798a7f071": {
     "company": "SpaceX",
@@ -1942,6 +2038,12 @@
     "first_seen": "2026-07-25",
     "title": "Fall 2026 Engineering Internship",
     "url": "https://jobs.ashbyhq.com/mach/021b2c1d-5257-4dea-b06d-0c445de44d28"
+  },
+  "8283eb6a6a92fc8e": {
+    "company": "Applied Materials",
+    "first_seen": "2026-07-27",
+    "title": "Electrical Engineer  \u2013 System Design Support (DFT YTG Platform)",
+    "url": "https://amat.wd1.myworkdayjobs.com/en-US/External/job/TainanTWN/Electrical-Engineer----System-Design-Support--DFT-YTG-Platform-_R2618851"
   },
   "82865a648aa3734a": {
     "company": "Zipline",
@@ -1984,6 +2086,12 @@
     "first_seen": "2026-07-23",
     "title": "Embedded Software Engineer Intern, Keys & Authentication",
     "url": "https://www.tesla.com/careers/search/job/internship-embedded-software-engineer-keys-authentication-fall-2026-270067"
+  },
+  "8493c8b799ee3fc0": {
+    "company": "Carrier",
+    "first_seen": "2026-07-27",
+    "title": "Test Engineer- Engineering Laboratory (2nd shift)",
+    "url": "https://carrier.wd5.myworkdayjobs.com/en-US/jobs/job/CAN03-Carrier-Charlotte-9701-Old-Statesville-Road-Charlotte-NC-28269-USA/Test-Engineer--Engineering-Laboratory--2nd-shift-_30197594"
   },
   "8585611276129734": {
     "company": "The Toro Company",
@@ -2249,6 +2357,12 @@
     "title": "Materials Engineer, Test (Starship)",
     "url": "https://boards.greenhouse.io/spacex/jobs/8614546002?gh_jid=8614546002"
   },
+  "9850bb8e87d5833e": {
+    "company": "Johnson Controls",
+    "first_seen": "2026-07-27",
+    "title": "Embedded Software Engineer II",
+    "url": "https://jci.wd5.myworkdayjobs.com/en-US/JCI/job/Westford-Massachusetts-United-States-of-America/Embedded-Software-Engineer-II_WD30273363-1"
+  },
   "98e3b27aaa389360": {
     "company": "Ajax Systems",
     "first_seen": "2026-07-26",
@@ -2296,6 +2410,12 @@
     "first_seen": "2026-07-26",
     "title": "Quality Engineer II",
     "url": "https://abbott.wd5.myworkdayjobs.com/en-US/abbottcareers/job/United-States---Indiana---Westfield/Quality-Engineer-II_31152098-1"
+  },
+  "9c85abb5324af866": {
+    "company": "Daikin Applied",
+    "first_seen": "2026-07-27",
+    "title": "Graduate Engineering Intern \u2013 Building Controls Modeling & Simulation",
+    "url": "https://daikinapplied.wd1.myworkdayjobs.com/en-US/Daikin-Careers/job/Plymouth-MN-55441/Graduate-Engineering-Intern---Building-Controls-Modeling---Simulation_R002564"
   },
   "9d08c79ea7867243": {
     "company": "Base Power",
@@ -2386,6 +2506,12 @@
     "first_seen": "2026-07-25",
     "title": "Mechanical Engineer I, Systems Integration (R5344)",
     "url": "https://jobs.lever.co/shieldai/6df24cd9-5111-4e63-a88a-d76166677000"
+  },
+  "a177a63ee49ec557": {
+    "company": "Carrier",
+    "first_seen": "2026-07-27",
+    "title": "Controls Engineer",
+    "url": "https://carrier.wd5.myworkdayjobs.com/en-US/jobs/job/CO56-ALC-Colorado-Office-8200-South-Akron-Street-Suite-112-Centennial-CO-80112-USA/Controls-Engineer_30206895"
   },
   "a26b382f8493ecbb": {
     "company": "Reliable Robotics",
@@ -2699,11 +2825,23 @@
     "title": "Process Engineer II",
     "url": "https://medtronic.wd1.myworkdayjobs.com/en-US/MedtronicCareers/job/Tempe-Arizona-United-States-of-America/Process-Engineer-II_R72876-1"
   },
+  "b80fe60e45dc31f0": {
+    "company": "Generac",
+    "first_seen": "2026-07-27",
+    "title": "Firmware Engineer II",
+    "url": "https://generac.wd5.myworkdayjobs.com/en-US/External/job/Waukesha-WI---USA/Firmware-Engineer-II_JR9163"
+  },
   "b85ba04cf4744b1b": {
     "company": "Anduril",
     "first_seen": "2026-07-25",
     "title": "Materials and Process Engineer, Air Dominance and Strike ",
     "url": "https://boards.greenhouse.io/andurilindustries/jobs/5187843007?gh_jid=5187843007"
+  },
+  "b8a36a3bae819278": {
+    "company": "Ziegler CAT",
+    "first_seen": "2026-07-27",
+    "title": "Electrical Engineer",
+    "url": "https://zieglercat.wd1.myworkdayjobs.com/en-US/zieglercat/job/Shakopee-MN-55379/Electrical-Engineer_2026-1111"
   },
   "b8ba5daf062cd0da": {
     "company": "SpaceX",
@@ -2722,6 +2860,12 @@
     "first_seen": "2026-07-26",
     "title": "Automation Development & Tooling Engineer Intern",
     "url": "https://www.tesla.com/careers/search/job/244845?source=Indeed&source=Indeed&tags=organicjob"
+  },
+  "b9852b9968506522": {
+    "company": "Carrier",
+    "first_seen": "2026-07-27",
+    "title": "Associate Controls Engineer - Automated Logic - Building Automation (BAS)",
+    "url": "https://carrier.wd5.myworkdayjobs.com/en-US/jobs/job/CAM68-ALC---Mass-Chicopee-260-Griffith-Road-Chicopee-MA-01022-USA/Associate-Controls-Engineer---Automated-Logic---Building-Automation--BAS-_30208747"
   },
   "b98a95eeab93ae6b": {
     "company": "Schweitzer Engineering Laboratories",
@@ -2765,6 +2909,12 @@
     "title": "Manufacturing Engineering Intern (Fall 2026)",
     "url": "https://jobs.ashbyhq.com/sunday/08feb65a-08b0-462d-aebf-4f0239a16ed8"
   },
+  "be2bd7c126cb975d": {
+    "company": "Rockwell Automation",
+    "first_seen": "2026-07-27",
+    "title": "Early Career Talent Advisor (Campus/University Recruiting)",
+    "url": "https://rockwellautomation.wd1.myworkdayjobs.com/en-US/External_Rockwell_Automation/job/Milwaukee-Wisconsin-United-States/Early-Career-Talent-Advisor--Campus-University-Recruiting-_R26-5233"
+  },
   "be533d003301c363": {
     "company": "SpaceX",
     "first_seen": "2026-07-25",
@@ -2794,6 +2944,12 @@
     "first_seen": "2026-07-25",
     "title": "New Graduate Engineer, Propulsion (Starship)",
     "url": "https://boards.greenhouse.io/spacex/jobs/8497447002?gh_jid=8497447002"
+  },
+  "c0dbaa577e33a50f": {
+    "company": "Carrier",
+    "first_seen": "2026-07-27",
+    "title": "Controls Field Engineer",
+    "url": "https://carrier.wd5.myworkdayjobs.com/en-US/jobs/job/CAV03-CCS-Ashburn-21750-Red-Rum-Drive-Ashburn-VA-20147-USA/Controls-Field-Engineer_30203476-1"
   },
   "c122a28164f10a49": {
     "company": "Astranis",
@@ -2878,6 +3034,12 @@
     "first_seen": "2026-07-23",
     "title": "Test Engineer Intern (Fall 2026)",
     "url": "https://jobs.ashbyhq.com/saronic/927985ae-7a48-4628-9e03-36510d64fb5f"
+  },
+  "c5d123366e00181c": {
+    "company": "Generac",
+    "first_seen": "2026-07-27",
+    "title": "Electrical Engineer II",
+    "url": "https://generac.wd5.myworkdayjobs.com/en-US/External/job/South-Portland-ME---USA/Electrical-Engineer-II_JR14541"
   },
   "c665019f0f0dab15": {
     "company": "SpaceX",
@@ -3017,6 +3179,12 @@
     "title": "Automation & Controls Engineer, Launch Pad (Starship)",
     "url": "https://boards.greenhouse.io/spacex/jobs/8536717002?gh_jid=8536717002"
   },
+  "cf5d844efeea294e": {
+    "company": "Rockwell Automation",
+    "first_seen": "2026-07-27",
+    "title": "Quality Engineer",
+    "url": "https://rockwellautomation.wd1.myworkdayjobs.com/en-US/External_Rockwell_Automation/job/Twinsburg-Ohio-United-States/Quality-Engineer_R26-5684-1"
+  },
   "cf6d2c809552f7ea": {
     "company": "K2 Space",
     "first_seen": "2026-07-27",
@@ -3028,6 +3196,12 @@
     "first_seen": "2026-07-26",
     "title": "Engineer II, Systems Test (R5038)",
     "url": "https://jobs.lever.co/shieldai/dfe3c9f3-900f-4f97-afac-7acf1cb7e592"
+  },
+  "cfa622747ab778cd": {
+    "company": "Barr Engineering",
+    "first_seen": "2026-07-27",
+    "title": "Electrical Instrumentation & Controls CADD Designer \u2013 Entry Level (Hybrid)",
+    "url": "https://barr.wd1.myworkdayjobs.com/en-US/BarrCareers/job/Duluth-MN/Electrical-Instrumentation---Controls-Designer---Entry-Level--Hybrid-_R-101970"
   },
   "d017b1b5a68e85c4": {
     "company": "SpaceX",
@@ -3088,6 +3262,12 @@
     "first_seen": "2026-07-25",
     "title": "Security Engineer (Embedded & Networking)",
     "url": "https://boards.greenhouse.io/spacex/jobs/8593384002?gh_jid=8593384002"
+  },
+  "d2c244b0ef5fb6a3": {
+    "company": "Johnson Controls",
+    "first_seen": "2026-07-27",
+    "title": "Quality Engineer",
+    "url": "https://jci.wd5.myworkdayjobs.com/en-US/JCI/job/Burlington-Massachusetts-United-States-of-America/Quality-Engineer_EB000753199"
   },
   "d3433d8659ebdff2": {
     "company": "Atomic Machines",
@@ -3239,6 +3419,12 @@
     "title": "R&D Engineer II",
     "url": "https://abbott.wd5.myworkdayjobs.com/en-US/abbottcareers/job/United-States---Minnesota---Plymouth/R-D-Engineer-II_31154130-1"
   },
+  "ded032b6aba5b506": {
+    "company": "Rockwell Automation",
+    "first_seen": "2026-07-27",
+    "title": "Controls Engineer",
+    "url": "https://rockwellautomation.wd1.myworkdayjobs.com/en-US/External_Rockwell_Automation/job/Twinsburg-Ohio-United-States/Controls-Engineer_R26-3498"
+  },
   "df2258e68a5f802a": {
     "company": "Blue Origin",
     "first_seen": "2026-07-25",
@@ -3316,6 +3502,12 @@
     "first_seen": "2026-07-23",
     "title": "Robotics Engineering Co-op",
     "url": "https://job-boards.greenhouse.io/aevexaerospace/jobs/5255526008"
+  },
+  "e43fe8f4370c206a": {
+    "company": "Barr Engineering",
+    "first_seen": "2026-07-27",
+    "title": "Electrical Engineer \u2013 Entry Level \u2013 2+ Years (Hybrid)",
+    "url": "https://barr.wd1.myworkdayjobs.com/en-US/BarrCareers/job/Minneapolis-MN/Electrical-Engineer---Entry-Level---2--Years--Hybrid-_R-102047"
   },
   "e48f4d7ff6343f49": {
     "company": "Etched",
@@ -3742,6 +3934,12 @@
     "first_seen": "2026-07-23",
     "title": "DFT Intern",
     "url": "https://jobs.ashbyhq.com/Etched/5f1f5739-3b58-467c-b351-ff183c94d96d"
+  },
+  "f909b35157699c88": {
+    "company": "Carrier",
+    "first_seen": "2026-07-27",
+    "title": "Associate Controls Engineer - Automated Logic - Building Automation (BAS)",
+    "url": "https://carrier.wd5.myworkdayjobs.com/en-US/jobs/job/CAM68-ALC---Mass-Chicopee-260-Griffith-Road-Chicopee-MA-01022-USA/Associate-Controls-Engineer---Automated-Logic---Building-Automation--BAS-_30208740"
   },
   "f942a70d4e22c19b": {
     "company": "Penumbra",
