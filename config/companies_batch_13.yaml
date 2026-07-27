@@ -1,0 +1,46 @@
+# Batch 13: robotics automation, efficient computing, consumer hardware,
+# electrical consulting, quantum hardware, fleet devices, clean power,
+# home electrification, grid converters, industrial heat, and AI cooling.
+# Public ATS boards and active electrical or hardware openings were verified on 2026-07-27.
+
+greenhouse:
+  - company: Fulfil Solutions
+    token: fulfil
+
+  - company: Efficient Computer
+    token: efficientcomputer
+
+  - company: Mill
+    token: Mill
+
+  - company: Second Order Effects
+    token: soeffects
+
+  - company: PsiQuantum
+    token: psiquantum
+
+  - company: Motive
+    token: gomotive
+
+  - company: Strategic Mission Critical
+    token: strategicmissioncritical
+
+  - company: Submer
+    token: submer
+
+lever:
+  - company: Mainspring Energy
+    token: mainspringenergy
+
+ashby:
+  - company: SPAN
+    token: span
+
+  - company: Impulse Labs
+    token: impulse
+
+  - company: Heron Power
+    token: heron-power
+
+  - company: Karman Industries
+    token: "Karman Industries"
