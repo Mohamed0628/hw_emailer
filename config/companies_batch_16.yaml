@@ -13,15 +13,15 @@ lever:
   - company: Thea Energy
     token: thea.energy
 
+  - company: Exowatt
+    token: exowatt
+
 ashby:
   - company: Pano AI
     token: pano-ai
 
-  - company: First Order Effects
-    token: firstordereffects
-
-  - company: Exowatt
-    token: exowatt
+  - company: ALSO
+    token: ridealso
 
   - company: Earth Force
     token: earthforce
