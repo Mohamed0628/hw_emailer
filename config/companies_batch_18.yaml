@@ -1,0 +1,21 @@
+ashby:
+  - company: Antares
+    token: antares
+  - company: Mind Robotics
+    token: mindrobotics
+  - company: Afference
+    token: afference
+  - company: Gradient Robotics
+    token: gradientrobotics
+  - company: Aetherflux
+    token: aetherflux
+  - company: Nudge
+    token: nudge
+  - company: Sandbar
+    token: sandbar
+  - company: ALSO
+    token: Ridealso
+
+greenhouse:
+  - company: ETCH
+    token: etchinc
