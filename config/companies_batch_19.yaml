@@ -1,0 +1,19 @@
+ashby:
+  - company: Persona AI
+    token: persona.ai
+  - company: Rivet Industries
+    token: rivet
+  - company: Epia Neuro
+    token: epianeuro
+  - company: Northwood Space
+    token: northwoodspace
+  - company: Arxlight
+    token: arxlight-ai
+  - company: Charge Robotics
+    token: charge-robotics
+  - company: Eyebot
+    token: eyebot
+  - company: Sereact
+    token: sereact
+  - company: Molg
+    token: Molg
