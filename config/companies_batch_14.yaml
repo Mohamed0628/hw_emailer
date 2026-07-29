@@ -1,0 +1,37 @@
+# Batch 14: robotics electronics, industrial automation, optical interconnects,
+# satellite hardware, quantum control electronics, test instrumentation,
+# environmental sensing, and hardware validation employers.
+# Public lightweight ATS boards and active electrical or hardware openings were verified on 2026-07-28.
+
+greenhouse:
+  - company: Planet
+    token: planetlabs
+
+  - company: Cspeed
+    token: cspeed
+
+  - company: Liquid Instruments
+    token: liquidinstruments
+
+  - company: Lab37
+    token: lab37
+
+  - company: Vailexa
+    token: vailexa
+
+lever:
+  - company: Teleo
+    token: teleo
+
+  - company: Rigetti Computing
+    token: rigetti
+
+ashby:
+  - company: Menlo
+    token: menlo
+
+  - company: Molg
+    token: Molg
+
+  - company: Dexmate
+    token: dexmate
