@@ -1,0 +1,31 @@
+ashby:
+  - company: Human Computer Lab
+    token: human-computer-lab
+  - company: Rhoda AI
+    token: rhoda-ai
+  - company: Tacit
+    token: tacit
+  - company: Blackstar Computers
+    token: blackstar
+  - company: Rivian and Volkswagen Group Technologies
+    token: rivianvw.tech
+  - company: Deft AI
+    token: deft-ai
+  - company: Fab2
+    token: Fab2
+  - company: Brelle
+    token: brelle
+  - company: Droyd
+    token: droyd
+  - company: Generalist
+    token: generalist
+  - company: OpenAI
+    token: openai
+  - company: Sunday Robotics
+    token: sunday
+
+lever:
+  - company: Tutor Intelligence
+    token: tutorintelligence
+  - company: Pyka
+    token: pyka
