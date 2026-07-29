@@ -1,0 +1,36 @@
+# Batch 16: early-career semiconductor hardware, industrial controls,
+# climate sensing, clean energy, EV electrical systems, and power electronics.
+# Public lightweight ATS boards and active electrical or hardware openings were verified on 2026-07-28.
+
+greenhouse:
+  - company: Astera Labs Early Career
+    token: asteraearlycareer2026
+
+lever:
+  - company: Diversified Automation
+    token: diversified-automation
+
+  - company: Thea Energy
+    token: thea.energy
+
+ashby:
+  - company: Pano AI
+    token: pano-ai
+
+  - company: First Order Effects
+    token: firstordereffects
+
+  - company: Exowatt
+    token: exowatt
+
+  - company: Earth Force
+    token: earthforce
+
+  - company: Grounded RV
+    token: grounded
+
+  - company: Eden Technologies
+    token: edentech
+
+  - company: Critical Energy
+    token: critical-energy
