@@ -1,0 +1,36 @@
+# Batch 15: programmable optics, AI compute hardware, semiconductor systems,
+# retail sensing, networking hardware, advanced metrology, robotics electronics,
+# and connected-device firmware employers.
+# Public lightweight ATS boards and active electrical or hardware openings were verified on 2026-07-28.
+
+greenhouse:
+  - company: Celestial AI
+    token: celestialai
+
+  - company: Groq
+    token: groq
+
+  - company: SambaNova Systems
+    token: sambanovarecruiting
+
+  - company: Samsung Semiconductor
+    token: samsungsemiconductor
+
+  - company: SirenOpt
+    token: sirenopt
+
+  - company: Edged Global
+    token: edged_global
+
+  - company: RADAR
+    token: radar
+
+lever:
+  - company: Lumotive
+    token: lumotive
+
+  - company: Array Labs
+    token: arraylabs.io
+
+  - company: Afero
+    token: afero
