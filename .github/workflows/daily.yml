@@ -2,8 +2,8 @@ name: Internship digest
 
 on:
   schedule:
-    # Run every 30 minutes. GitHub cron can be delayed under load.
-    - cron: "*/30 * * * *"
+    # Run hourly. GitHub cron can be delayed under load.
+    - cron: "0 * * * *"
   workflow_dispatch:
     inputs:
       dry_run:
