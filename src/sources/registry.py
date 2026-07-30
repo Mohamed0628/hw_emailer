@@ -29,6 +29,20 @@ def _enabled(entry: dict) -> bool:
     return entry.get("enabled", True) is not False
 
 
+def _has_required(entry: dict, source: str, *keys: str) -> bool:
+    """Return False and log malformed source configuration entries."""
+    missing = [key for key in keys if not entry.get(key)]
+    if missing:
+        log.warning(
+            "skipping invalid %s config entry missing %s: %r",
+            source,
+            ", ".join(missing),
+            entry,
+        )
+        return False
+    return True
+
+
 def build_all_sources() -> list[Source]:
     sources: list[Source] = []
 
@@ -36,19 +50,23 @@ def build_all_sources() -> list[Source]:
     companies = config.companies()
 
     for entry in companies.get("greenhouse", []) or []:
-        if _enabled(entry) and entry.get("token"):
+        if _enabled(entry) and _has_required(
+            entry, "Greenhouse", "company", "token"
+        ):
             sources.append(GreenhouseSource(entry["company"], entry["token"]))
 
     for entry in companies.get("lever", []) or []:
-        if _enabled(entry) and entry.get("token"):
+        if _enabled(entry) and _has_required(entry, "Lever", "company", "token"):
             sources.append(LeverSource(entry["company"], entry["token"]))
 
     for entry in companies.get("ashby", []) or []:
-        if _enabled(entry) and entry.get("token"):
+        if _enabled(entry) and _has_required(entry, "Ashby", "company", "token"):
             sources.append(AshbySource(entry["company"], entry["token"]))
 
     for entry in companies.get("workday", []) or []:
-        if _enabled(entry) and entry.get("tenant") and entry.get("site"):
+        if _enabled(entry) and _has_required(
+            entry, "Workday", "company", "tenant", "site"
+        ):
             company = entry["company"]
             intelligence_terms = workday_search_terms(company)
             configured_terms = entry.get("search_texts") or []
