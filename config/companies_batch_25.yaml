@@ -1,0 +1,15 @@
+ashby:
+  - company: Terranova
+    token: Terranova
+  - company: Odys Aviation
+    token: odys-aviation
+  - company: H3X Technologies
+    token: H3X-Technologies
+  - company: WindBorne Systems
+    token: windborne-systems
+  - company: Fuse
+    token: Fuse
+
+greenhouse:
+  - company: RoboForce
+    token: roboforce
