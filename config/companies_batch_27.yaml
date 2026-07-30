@@ -1,0 +1,9 @@
+lever:
+  - company: Rainmaker Technology Corporation
+    token: make-rain
+
+ashby:
+  - company: Atomic Semi
+    token: AtomicSemi
+  - company: Rivian and Volkswagen Group Technologies
+    token: rivianvw.tech
