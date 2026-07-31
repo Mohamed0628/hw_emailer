@@ -126,6 +126,7 @@ def companies() -> dict[str, Any]:
         "companies_batch_45.yaml",
         "companies_batch_46.yaml",
         "companies_batch_47.yaml",
+        "companies_batch_48.yaml",
     )
 
 
