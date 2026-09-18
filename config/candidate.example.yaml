@@ -1,4 +1,3 @@
-# Legacy filename. Prefer copying candidate.example.yaml to candidate.yaml.
 # Copy to config/candidate.yaml (gitignored). Never infer consequential answers.
 full_name: ""
 email: ""

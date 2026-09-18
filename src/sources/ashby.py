@@ -54,6 +54,7 @@ class AshbySource(Source):
                     locations=locations,
                     source=self.name,
                     ats="ashby",
+                    requisition_id=str(raw.get("id") or "") or None,
                     posted_date=(raw.get("publishedAt") or "")[:10] or None,
                     description=plain_text(
                         raw.get("descriptionPlain")

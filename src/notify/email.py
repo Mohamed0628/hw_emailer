@@ -22,6 +22,15 @@ _CATEGORY_LABELS = {
     "medtech_hardware": "Medtech Engineering",
     "firmware": "Firmware / Embedded",
     "other": "Other",
+    "pcb_board_design": "PCB / Board Hardware",
+    "rf_wireless": "RF / Wireless Hardware",
+    "power_electronics": "Power Electronics",
+    "analog_mixed_signal": "Analog / Mixed Signal",
+    "controls_motion": "Controls / Motor Drives",
+    "digital_hardware_fpga": "FPGA / Digital Hardware",
+    "semiconductor_asic": "Semiconductor / Silicon",
+    "general_electrical": "Electrical Engineering",
+    "avionics_space": "Avionics / Space Electronics",
 }
 
 
@@ -64,7 +73,10 @@ def build_subject(
     prefix: str,
     faang: list[Job] | None = None,
 ) -> str:
-    priority_a = [job for job in jobs if job.priority == "A"]
+    high_value = [job for job in jobs if job.classification == "HIGH_VALUE_REVIEW"]
+    if high_value:
+        return f"[Hardware Review] {len(high_value)} high-value roles ({len(jobs)} new opportunities)"
+    priority_a = [job for job in jobs if job.priority in {"A", "A+"}]
     if priority_a:
         names = ", ".join(sorted({job.company for job in priority_a}))
         return f"Priority A job alert - {names} ({len(jobs)} new opportunities)"
@@ -180,8 +192,19 @@ def build_html(
             ]
             meta = escape(" | ".join(bit for bit in meta_bits if bit))
             evidence = ""
+            if job.classification:
+                evidence += "<br><b>" + escape(job.classification) + "</b>"
+            if job.career_fit_evidence:
+                evidence += "<br>" + escape("; ".join(job.career_fit_evidence[:3]))
+            if job.review_brief:
+                brief = job.review_brief
+                evidence += "<br>Resume: " + escape(str(brief.get("best_resume", "compare locally")))
+                evidence += "<br>Focus: " + escape(", ".join(brief.get("important_keywords", [])[:8]))
+                evidence += "<br>" + escape("; ".join(brief.get("suggested_resume_changes", [])))
+                evidence += "<br>" + escape(str(brief.get("networking_opportunity", "")))
+                evidence += "<br>Deadline: " + escape(str(brief.get("deadline", "unknown")))
             if job.entry_level_evidence:
-                evidence = (
+                evidence += (
                     "<br><span style='color:#777;font-size:11px'>"
                     + escape("; ".join(job.entry_level_evidence[:3]))
                     + "</span>"
@@ -243,6 +266,11 @@ def build_text(
                 f"- {priority}{job.title} - {job.company} "
                 f"[{location}] [{role}]"
             )
+            if job.classification:
+                lines.append(f"  {job.classification}; career fit {job.career_fit_score}/100")
+            if job.review_brief:
+                for key in ["best_resume", "suggested_resume_changes", "important_keywords", "networking_opportunity", "outreach_recommendation", "deadline"]:
+                    lines.append(f"  {key}: {job.review_brief.get(key)}")
             if job.hiring_signal:
                 lines.append(f"  {job.hiring_signal}")
             if job.entry_level_evidence:

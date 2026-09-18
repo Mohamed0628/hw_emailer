@@ -1,17 +1,20 @@
-"""Ashby applicator: the application form lives at <jobUrl>/application."""
-
-from __future__ import annotations
-
-from ..models import Job
+"""Ashby's application view, preserving requisition query parameters."""
+from urllib.parse import urlsplit,urlunsplit
+from ..identity import detect_ats
 from .base import Applicator
 
 
 class AshbyApplicator(Applicator):
-    ats = "ashby"
+    ats='ashby'
 
-    def can_handle(self, job: Job) -> bool:
-        return job.ats == "ashby" or "jobs.ashbyhq.com" in (job.url or "")
+    def can_handle(self,job):
+        return detect_ats(job.url)==self.ats
 
-    def application_url(self, job: Job) -> str:
-        base = (job.url or "").rstrip("/")
-        return base if base.endswith("/application") else f"{base}/application"
+    def application_url(self,job):
+        if job.application_url:
+            return job.application_url
+        p=urlsplit(job.url)
+        path=p.path.rstrip('/')
+        if not path.endswith('/application'):
+            path+='/application'
+        return urlunsplit((p.scheme,p.netloc,path,p.query,''))

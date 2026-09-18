@@ -8,7 +8,7 @@ import sys
 from datetime import datetime
 
 from . import config
-from .consumer_2027_filters import apply_filters
+from .evaluation import apply_filters
 from .dedup import load_state, new_jobs, prune, save_state, update_state
 from .models import Job
 from .notify import email as email_notify
@@ -50,6 +50,8 @@ def _print_digest(jobs: list[Job]) -> None:
             role = (job.role_type or "opportunity").replace("_", " ")
             priority = f"Priority {job.priority} | " if job.priority else ""
             print(f"  {priority}{job.title} - {job.company} [{location}] [{role}]")
+            if job.classification:
+                print(f"      {job.classification}")
             if job.hiring_signal:
                 print(f"      {job.hiring_signal}")
             print(f"      {job.url}")
@@ -98,6 +100,10 @@ def run(
 
     state = load_state(config.state_path())
 
+    if seed and dry_run:
+        _print_digest(matched)
+        return 0
+
     if seed:
         before = len(state)
         state = update_state(state, matched, today)
@@ -130,7 +136,9 @@ def run(
         email_cfg = settings.get("email", {})
         sms_cfg = settings.get("sms", {})
         if do_email and email_cfg.get("enabled", True):
-            email_notify.send_email(fresh, secrets, email_cfg)
+            if not email_notify.send_email(fresh, secrets, email_cfg):
+                log.error("email failed; seen state remains unchanged so the next run can retry")
+                return 1
         if (
             do_sms
             and sms_cfg.get("enabled", True)

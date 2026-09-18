@@ -53,6 +53,7 @@ class GreenhouseSource(Source):
                     locations=locations,
                     source=self.name,
                     ats="greenhouse",
+                    requisition_id=str(raw.get("id") or "") or None,
                     posted_date=(raw.get("updated_at") or "")[:10] or None,
                     description=plain_text(raw.get("content")),
                     department=" | ".join(departments) or None,

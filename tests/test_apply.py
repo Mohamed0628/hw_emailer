@@ -52,9 +52,11 @@ def test_greenhouse_apply_url_is_job_url():
     assert GreenhouseApplicator().application_url(j) == j.url
 
 
-def test_registry_picks_by_ats():
-    assert get_applicator(Job(company="X", title="t", url="u", ats="ashby")).ats == "ashby"
-    assert get_applicator(Job(company="X", title="t", url="u", ats="workday")) is None
+def test_registry_requires_verified_hostname():
+    assert get_applicator(Job(company="X", title="t", url="u", ats="ashby")).ats == "generic"
+    job = Job(company="X", title="t", url="https://x.wd1.myworkdayjobs.com/careers/job/1")
+    assert get_applicator(job).ats == "workday"
+    assert not get_applicator(job).automatic
 
 
 # --- is_done: never re-apply to handled jobs ---------------------------------

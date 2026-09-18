@@ -99,7 +99,7 @@ def test_target_company_role_uses_2027_start_language_in_description():
     assert apply_filters([job]) == [job]
     assert job.year == 2027
     assert job.role_type == "new_grad"
-    assert job.priority == "A"
+    assert job.career_fit_score >= 65  # Cohort/feed membership alone does not earn priority A
     assert "2027 start or graduation cohort" in job.entry_level_evidence
 
 
@@ -125,7 +125,7 @@ def test_trusted_2027_feed_can_rescue_non_catalog_hardware_company():
 
     assert apply_filters([job]) == [job]
     assert job.year == 2027
-    assert job.priority == "A"
+    assert job.career_fit_score >= 65  # Cohort/feed membership alone does not earn priority A
     assert "trusted 2027 US new-grad feed" in job.entry_level_evidence
 
 

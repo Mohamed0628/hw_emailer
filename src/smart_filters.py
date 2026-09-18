@@ -32,12 +32,12 @@ _LEVEL_III_PLUS_RE = re.compile(
 _TECHNICAL_TITLE_RE = re.compile(
     r"\b(?:electrical|electronics?|hardware|firmware|embedded|systems?|test|"
     r"verification|validation|product|r\s*&\s*d|research|manufacturing|"
-    r"process|quality|reliability|automation|controls?|robotics?|"
+    r"process|quality|reliability|automation|controls?|robotics?|rf|antenna|microwave|"
     r"mechatronics?|power|design|sustaining)\b.*\bengineer(?:ing)?\b|"
     r"\bengineer(?:ing)?\b.*\b(?:electrical|electronics?|hardware|firmware|"
     r"embedded|systems?|test|verification|validation|product|r\s*&\s*d|"
     r"research|manufacturing|process|quality|reliability|automation|controls?|"
-    r"robotics?|mechatronics?|power|design|sustaining)\b",
+    r"robotics?|mechatronics?|rf|antenna|microwave|power|design|sustaining)\b",
     re.IGNORECASE,
 )
 _DIRECT_EE_TITLE_RE = re.compile(
@@ -164,21 +164,32 @@ def _normalized_experience_text(text: str) -> str:
 
 def _is_preferred_only(text: str, start: int, end: int) -> bool:
     """Return True when a matched experience number is only a preference."""
-    left = max(0, start - 100)
-    right = min(len(text), end + 100)
+    # Scope qualifiers to the same sentence/line, so a neighboring required
+    # clause cannot turn a preferred skill into a hard minimum.
+    left = max(text.rfind(".", 0, start), text.rfind("\n", 0, start), text.rfind(";", 0, start)) + 1
+    boundaries = [p for p in (text.find(".", end), text.find("\n", end), text.find(";", end)) if p >= 0]
+    right = min(boundaries) if boundaries else len(text)
     window = text[left:right]
-    return bool(_PREFERRED_RE.search(window) and not _REQUIRED_RE.search(window))
+    if _PREFERRED_RE.search(window) and not _REQUIRED_RE.search(window):
+        return True
+    # A Preferred Qualifications heading applies until the next section.
+    headings = list(re.finditer(r"(?im)^\s*(preferred qualifications|required qualifications|minimum qualifications|requirements|responsibilities)\s*:?\s*$", text[:start]))
+    return bool(headings and headings[-1].group(1).startswith("preferred") and not _REQUIRED_RE.search(window))
 
 
 def _experience_mins(text: str) -> list[int]:
     """Return minimum years from required or neutral experience statements."""
     mins: list[int] = []
+    matched_spans: list[tuple[int, int]] = []
     for pattern in (
         _EXPERIENCE_RANGE_RE,
         _EXPERIENCE_PLUS_RE,
         _EXPERIENCE_SINGLE_RE,
     ):
         for match in pattern.finditer(text):
+            if any(match.start() < end and match.end() > start for start, end in matched_spans):
+                continue
+            matched_spans.append(match.span())
             if _is_preferred_only(text, match.start(), match.end()):
                 continue
             try:
@@ -219,7 +230,11 @@ def assess_entry_level(job: Job, role_cfg: dict[str, Any]) -> EntryLevelAssessme
     bachelor_mins = _degree_window_mins(description, _BACHELOR_RE)
     general_mins = _experience_mins(description)
     bachelor_min = min(bachelor_mins) if bachelor_mins else None
-    general_min = min(general_mins) if general_mins else None
+    general_min = max(general_mins) if general_mins else None
+    # Multiple independent required skills are conjunctive. A zero-year statement
+    # must not erase a separate five-year minimum. Degree alternatives stay separate.
+    if bachelor_mins:
+        bachelor_min = max(bachelor_mins)
 
     if bachelor_min is not None:
         if bachelor_min <= 2:

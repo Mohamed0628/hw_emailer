@@ -140,6 +140,7 @@ class WorkdaySource(Source):
                     locations=locations,
                     source=self.name,
                     ats="workday",
+                    requisition_id=str(detail.get("jobReqId") or "") or None,
                     posted_date=None,
                     description=plain_text(
                         detail.get("jobDescription")

@@ -12,6 +12,8 @@ from datetime import date, datetime, timedelta
 from pathlib import Path
 
 from .models import Job
+from .identity import strong_keys, prefer_direct
+from .apply.applog import _atomic_text
 
 log = logging.getLogger(__name__)
 
@@ -19,31 +21,30 @@ log = logging.getLogger(__name__)
 def load_state(path: Path) -> dict[str, dict]:
     if not path.exists():
         return {}
-    try:
-        with path.open("r", encoding="utf-8") as fh:
-            data = json.load(fh)
-        return data if isinstance(data, dict) else {}
-    except (json.JSONDecodeError, OSError) as exc:
-        log.warning("could not read state %s: %s — starting fresh", path, exc)
-        return {}
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(data, dict):
+        raise ValueError("Invalid seen-job state; restore it before notifying")
+    return data
 
 
 def save_state(path: Path, state: dict[str, dict]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8") as fh:
-        json.dump(state, fh, indent=2, sort_keys=True, ensure_ascii=False)
-        fh.write("\n")
+    _atomic_text(path, json.dumps(state, indent=2, sort_keys=True, ensure_ascii=False) + "\n")
 
 
 def new_jobs(jobs: list[Job], state: dict[str, dict]) -> list[Job]:
     """Jobs whose id is not already in state (deduped within the batch too)."""
-    seen_now: set[str] = set()
-    out: list[Job] = []
-    for job in jobs:
-        jid = job.job_id
-        if jid in state or jid in seen_now:
+    known = {"legacy:" + jid for jid in state}
+    for entry in state.values():
+        if entry.get("url"):
+            old = Job(company=entry.get("company", ""), title=entry.get("title", ""), url=entry["url"],
+                      requisition_id=entry.get("requisition_id"))
+            known.update(strong_keys(old))
+    out = []
+    for job in prefer_direct(jobs):
+        keys = strong_keys(job)
+        if keys & known:
             continue
-        seen_now.add(jid)
+        known.update(keys)
         out.append(job)
     return out
 
@@ -59,6 +60,7 @@ def update_state(
             "company": job.company,
             "title": job.title,
             "url": job.url,
+            "requisition_id": job.requisition_id,
         }
     return state
 

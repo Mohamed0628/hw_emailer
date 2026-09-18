@@ -181,6 +181,9 @@ def _rescue_2027_consumer_role(job: Job, filters_config: dict[str, Any]) -> bool
 def passes(job: Job, f: Optional[dict[str, Any]] = None) -> bool:
     """Keep only qualified roles that also advance a hardware career."""
     filters_config = f if f is not None else config.filters()
+    if not job.active or not career_fit.evaluate(job).passed:
+        career_fit.apply(job)
+        return False
     if existing.passes(job, filters_config):
         return career_fit.apply(job)
     return _rescue_2027_consumer_role(job, filters_config)

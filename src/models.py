@@ -56,6 +56,15 @@ class Job(BaseModel):
     department: Optional[str] = None
     team: Optional[str] = None
     employment_type: Optional[str] = None
+    requisition_id: Optional[str] = None
+    application_url: Optional[str] = None
+    deadline: Optional[str] = None
+    classification: Optional[str] = None
+    decision_reasons: list[str] = Field(default_factory=list)
+    review_brief: dict = Field(default_factory=dict)
+    selected_resume: Optional[str] = None
+    resume_fit_score: int = 0
+    resume_match: dict = Field(default_factory=dict)
 
     @property
     def location_str(self) -> str:
@@ -86,6 +95,12 @@ class ApplicantProfile(BaseModel):
     resume_path: str = ""
     summary: str = ""
     common_answers: dict[str, str] = Field(default_factory=dict)
+    # Exact question -> confirmed answer. No substring or LLM answer matching.
+    confirmed_answers: dict[str, str | bool] = Field(default_factory=dict)
+    demographics: dict[str, str] = Field(default_factory=dict)
+    resumes: list[dict] = Field(default_factory=list)
+    available_start_date: Optional[str] = None
+    approved_cover_letters: dict[str, str] = Field(default_factory=dict)
 
     @property
     def is_configured(self) -> bool:

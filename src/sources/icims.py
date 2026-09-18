@@ -85,6 +85,7 @@ class ICIMSSource(Source):
                     locations=locations,
                     source=self.name,
                     ats="icims",
+                    requisition_id=match.group("id"),
                     posted_date=None,
                     description=description or None,
                 )
