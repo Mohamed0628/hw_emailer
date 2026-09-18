@@ -54,5 +54,5 @@ def evaluate_jobs(jobs: list[Job], resumes: list[Resume] | None = None) -> list[
     return sorted(result, key=lambda j: (j.classification == "HARD_NO", j.role_type != "new_grad", -j.career_fit_score))
 
 
-def apply_filters(jobs: list[Job]) -> list[Job]:
-    return [job for job in evaluate_jobs(jobs) if job.classification != "HARD_NO"]
+def apply_filters(jobs: list[Job], resumes: list[Resume] | None = None) -> list[Job]:
+    return [job for job in evaluate_jobs(jobs, resumes) if job.classification != "HARD_NO"]

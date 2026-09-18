@@ -89,7 +89,8 @@ execution is rejected when `CI` is set. Tests are a separate, intercepted harnes
 | ATS | Stage |
 | --- | --- |
 | Greenhouse, Lever, Ashby | Best-effort native-control filling, gated submission and explicit confirmation detection |
-| Workday, iCIMS, SmartRecruiters | Recognized, linked and tracked for manual review; no automated fill/submit |
+| Workday | Discovery/email only; hard routing prohibition on browser creation, filling, preparation and submission in every mode |
+| iCIMS, SmartRecruiters | Recognized, linked and tracked for manual review; no automated fill/submit |
 | Other/custom sites | Manual only |
 
 Iframe-based forms, custom combobox widgets, unfamiliar upload purposes,
@@ -100,6 +101,16 @@ inventory checks for conditional questions, unexpected fields and changed values
 An ordinary “Apply now” navigation button is never treated as submission.
 
 ## Tracker, duplicates and recovery
+
+Workday is always labeled **Application: Manual — Workday**. ATS/provider metadata,
+the discovery source, or either job/application URL can establish this restriction.
+It takes precedence over mode, score, review approval, adapter support and config.
+`--prepare-only` and `--review-job` do not open Workday forms. Eligible Workday jobs
+are recorded as `needs_input` with the manual reason and their resume recommendation.
+Their fit classification remains separate: even `AUTO_APPLY` means only that the
+role is an ordinary fit; `application_restriction` forbids automation for Workday.
+Apply through the posted link yourself. Existing submitted/uncertain records retain
+duplicate protection. Changing `allowed_auto_ats` cannot enable Workday applications.
 
 `data/applications.json` is authoritative; `data/applications.csv` is a readable
 mirror. Entries include requisition/company/title/location, URLs, ATS/source,

@@ -40,7 +40,13 @@ remains a recognizable taxonomy label for diagnostics and historic state.
 - No LLM is used for scoring, answers or letters. The former Gemini dependency was
   removed, so a provider abstraction is unnecessary. Future semantic assistance must
   remain separate from deterministic submission gates.
-- Workday/iCIMS/SmartRecruiters/custom application adapters are explicitly manual.
+- Workday is discovery/email-only, independently of adapters and configuration.
+  `identity.is_workday_job` checks ATS, provider, source and both URLs; duplicate
+  consolidation retains restrictive Workday provenance. JSON reports expose the
+  computed `application_restriction`; fit classifications are unchanged. CLI avoids
+  browser creation, engine returns `needs_input` before adapters, and policy/runner
+  entry points independently refuse Workday. Submission also checks the current URL.
+- iCIMS/SmartRecruiters/custom application adapters remain explicitly manual.
 - Optional unknown contact/demographic fields can be left blank. Other unknown fields,
   including optional custom questions, block automation.
 - Native radio/select/checkbox controls are supported. Custom widgets and iframes
@@ -78,3 +84,33 @@ of this verification.
 
 The five supplied PDFs and private candidate setup are delivered separately from Git.
 Their facts are not embedded in application code or public test fixtures.
+
+## Workday discovery bounds and endpoint follow-up
+
+Workday uses a dedicated HTTP policy: 3-second connect and 8-second read timeout,
+at most two attempts for timeout/connection failures, 408, 429 or 5xx, with a
+0.5-second retry delay. Other 4xx and invalid JSON are not retried. A failed listing
+request ends searches for that employer endpoint in the current run, preserving
+earlier results. Other employers continue in the existing worker pool. A later
+scheduled run can try the source again; none are permanently disabled.
+
+Details are fetched once per distinct posting. Individual 404/422 detail errors
+do not block the next posting; 401/403 or three consecutive systemic failures stop
+remaining detail requests and retain the listing metadata. Missing descriptions
+are not invented and may fail normal relevance checks. Healthy pagination and all
+configured search terms remain available. Repeated definitions of the same company
+and endpoint are consolidated with the union of search terms and detail settings.
+Requests timeouts bound connect/read waits, not total elapsed runtime for a healthy
+large employer or a server that continuously streams data.
+
+The supplied local-run log (not a new live endpoint audit) shows repeated 422s for:
+
+- Cepheid: `vhr-cepheid.wd1.myworkdayjobs.com/wday/cxs/vhr-cepheid/External_English/jobs`
+- Otis: `otis.wd5.myworkdayjobs.com/wday/cxs/otis/REC_Ext_Gateway/jobs`
+
+These tenant/site configurations need separate verification against current company
+career links; a 422 alone does not prove the source is obsolete. The same log showed
+slow Applied Materials (134.1s), GE Vernova (128.9s), Cisco (97.4s), Medtronic (96.6s),
+Johnson Controls (89.8s), and Abbott (88.3s). Timing alone is not a reason to disable
+them: they may have many legitimate search/detail requests. No company sources are
+removed or globally disabled in this change.

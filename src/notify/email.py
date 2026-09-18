@@ -194,6 +194,12 @@ def build_html(
             evidence = ""
             if job.classification:
                 evidence += "<br><b>" + escape(job.classification) + "</b>"
+            if job.application_restriction:
+                evidence += "<br><b>" + escape(job.application_restriction) + "</b>"
+            evidence += f"<br>Career fit: {job.career_fit_score}/100"
+            evidence += "<br>Recommended resume: " + escape(job.selected_resume or "unavailable (configure five resumes)")
+            if job.resume_match.get("evidence"):
+                evidence += "<br>Resume evidence: " + escape(", ".join(job.resume_match["evidence"][:6]))
             if job.career_fit_evidence:
                 evidence += "<br>" + escape("; ".join(job.career_fit_evidence[:3]))
             if job.review_brief:
@@ -268,6 +274,12 @@ def build_text(
             )
             if job.classification:
                 lines.append(f"  {job.classification}; career fit {job.career_fit_score}/100")
+            if job.application_restriction:
+                lines.append(f"  {job.application_restriction}")
+            lines.append(f"  Recommended resume: {job.selected_resume or 'unavailable (configure five resumes)'}")
+            lines.append(f"  Hardware evidence: {'; '.join(job.career_fit_evidence[:3])}")
+            if job.resume_match.get("evidence"):
+                lines.append(f"  Resume evidence: {', '.join(job.resume_match['evidence'][:6])}")
             if job.review_brief:
                 for key in ["best_resume", "suggested_resume_changes", "important_keywords", "networking_opportunity", "outreach_recommendation", "deadline"]:
                     lines.append(f"  {key}: {job.review_brief.get(key)}")

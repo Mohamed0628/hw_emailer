@@ -19,7 +19,7 @@ APPLOG_CSV = config.ROOT / "data" / "applications.csv"
 CSV_COLUMNS = ["date", "company", "title", "location", "job_id", "requisition_id", "status", "ats", "url",
                "application_url", "date_discovered", "date_applied", "classification", "career_fit_score",
                "resume_used", "resume_fit_score", "failure_reason", "review_reason", "unknown_questions",
-               "networking_priority", "source", "note"]
+               "networking_priority", "source", "application_restriction", "note"]
 _TERMINAL = {"submitted", "reviewed", "skipped", "closed", "expired", "submitting", "submission_unknown"}
 
 
@@ -127,6 +127,7 @@ def record(applog: dict[str, dict], job: Job, status: str, note: str = "", **ext
         "date_discovered": old.get("date_discovered", now),
         "date_applied": now if status == "submitted" else old.get("date_applied"),
         "classification": job.classification, "career_fit_score": job.career_fit_score,
+        "application_restriction": job.application_restriction,
         "resume_used": job.selected_resume, "resume_fit_score": job.resume_fit_score,
         "resume_match": job.resume_match, "decision_reasons": job.decision_reasons,
         "failure_reason": note if status in {"failed", "submission_unknown"} else None,

@@ -74,7 +74,8 @@ candidate facts. File hashes must be refreshed only after reviewing changed resu
 
 Copy `.env.example` to `.env` and set `GMAIL_USER`, `GMAIL_APP_PASSWORD` and
 `EMAIL_TO`. Put the same values in repository Secrets for scheduled discovery.
-The application profile and resumes do not belong in Actions secrets or artifacts.
+The application profile and PDFs do not belong in Actions secrets or artifacts.
+For scheduled resume recommendations, use only the matching catalog described below.
 
 ```bash
 python -m src.main --test-notify  # Explicitly sends a sample notification
@@ -89,9 +90,26 @@ does not advance seen state. Corrupt state stops processing instead of silently
 starting fresh.
 
 High-value digest entries include the technical reasons, keywords, recommended
-customization and an outreach research task. CI has no private resume catalog, so
-its email explicitly requests local resume comparison. The local application
-tracker contains the actual five-resume ranking and review brief. Contacts and
+customization and an outreach research task. The local email runner loads the same
+five reviewed resumes from `config/candidate.yaml` as the application runner, so
+its digest includes the selected resume and evidence for every eligible role.
+For GitHub's scheduled runner, export a private matching-only catalog locally:
+
+```bash
+python -m src.resume_catalog
+```
+
+Copy the contents of the gitignored `data/candidate_matching_catalog.json` into a
+GitHub Actions repository secret named `RESUME_MATCHING_CATALOG_JSON`. The digest
+workflow reads this secret to compare all five resumes without PDF uploads. The
+catalog contains only IDs, source file hashes, matching keywords and project keyword
+sets; it excludes contact information and resume prose. It reproduces the local
+matcher's rankings and cannot replace actual files in the application runner.
+Regenerate the secret after changing resumes or the matching vocabulary. Local
+reviewed PDFs take precedence when available. Without either source, email explicitly
+reports the recommendation unavailable; an invalid catalog stops the run before
+sending. The local application tracker
+contains the actual five-resume ranking and review brief. Contacts and
 unknown deadlines are never invented and outreach is never automatically sent.
 
 ## Growing coverage
