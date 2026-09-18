@@ -35,6 +35,11 @@ def _merge_dicts(base: dict[str, Any], overlay: dict[str, Any]) -> dict[str, Any
     return merged
 
 
+@lru_cache(maxsize=8)
+def taxonomy() -> dict[str, Any]:
+    return _load_yaml("category_taxonomy.yaml")
+
+
 def _merge_company_configs(*names: str) -> dict[str, Any]:
     """Merge ATS company lists while preserving source order."""
     merged: dict[str, Any] = {}
@@ -42,7 +47,10 @@ def _merge_company_configs(*names: str) -> dict[str, Any]:
         payload = _load_yaml(name)
         for source, entries in payload.items():
             if isinstance(entries, list):
-                merged.setdefault(source, []).extend(entries)
+                merged.setdefault(source, []).extend(
+                    entry for entry in entries
+                    if isinstance(entry, dict) and entry.get("company")
+                )
             elif source not in merged:
                 merged[source] = entries
     return merged
@@ -72,68 +80,9 @@ def github_lists() -> dict[str, Any]:
 
 @lru_cache(maxsize=None)
 def companies() -> dict[str, Any]:
-    return _merge_company_configs(
-        "companies.yaml",
-        "companies_regional.yaml",
-        "companies_rf_robotics_avionics.yaml",
-        "companies_robotics_consumer_hardware.yaml",
-        "companies_consumer_hardware_more.yaml",
-        "companies_hardware_expansion.yaml",
-        "companies_batch_01.yaml",
-        "companies_batch_02.yaml",
-        "companies_batch_03.yaml",
-        "companies_batch_04.yaml",
-        "companies_batch_05.yaml",
-        "companies_batch_06.yaml",
-        "companies_batch_07.yaml",
-        "companies_batch_08.yaml",
-        "companies_batch_09.yaml",
-        "companies_batch_10.yaml",
-        "companies_batch_11.yaml",
-        "companies_batch_12.yaml",
-        "companies_batch_13.yaml",
-        "companies_batch_14.yaml",
-        "companies_batch_15.yaml",
-        "companies_batch_16.yaml",
-        "companies_batch_17.yaml",
-        "companies_batch_18.yaml",
-        "companies_batch_19.yaml",
-        "companies_batch_20.yaml",
-        "companies_batch_21.yaml",
-        "companies_batch_22.yaml",
-        "companies_batch_23.yaml",
-        "companies_batch_24.yaml",
-        "companies_batch_25.yaml",
-        "companies_batch_26.yaml",
-        "companies_batch_27.yaml",
-        "companies_batch_28.yaml",
-        "companies_batch_29.yaml",
-        "companies_batch_30.yaml",
-        "companies_batch_31.yaml",
-        "companies_batch_32.yaml",
-        "companies_batch_33.yaml",
-        "companies_batch_34.yaml",
-        "companies_batch_35.yaml",
-        "companies_batch_36.yaml",
-        "companies_batch_37.yaml",
-        "companies_batch_38.yaml",
-        "companies_batch_39.yaml",
-        "companies_batch_40.yaml",
-        "companies_batch_41.yaml",
-        "companies_batch_42.yaml",
-        "companies_batch_43.yaml",
-        "companies_batch_44.yaml",
-        "companies_batch_45.yaml",
-        "companies_batch_46.yaml",
-        "companies_batch_47.yaml",
-        "companies_batch_48.yaml",
-        "companies_batch_49.yaml",
-        "companies_batch_50.yaml",
-        "companies_batch_51.yaml",
-        "companies_batch_52.yaml",
-        "companies_batch_53.yaml",
-        "companies_batch_54.yaml",
-    )
+    names = ["companies.yaml", *sorted(p.name for p in CONFIG_DIR.glob("companies_*.yaml"))]
+    return _merge_company_configs(*names)
+
 
 
 @lru_cache(maxsize=None)

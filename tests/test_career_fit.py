@@ -13,10 +13,10 @@ def job(title: str, category: str, description: str = "", company: str = "Exampl
     )
 
 
-def test_direct_hardware_title_passes_without_description():
+def test_firmware_is_no_longer_a_target():
     result = career_fit.evaluate(job("Embedded Firmware Engineer I", "embedded_firmware"))
-    assert result.passed
-    assert result.score >= 70
+    assert not result.passed
+    assert result.score == 0
 
 
 def test_pcb_design_role_is_high_value():

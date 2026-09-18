@@ -19,7 +19,7 @@ max_jobs_per_source: 0
 email:
   enabled: true
   subject_prefix: "[Hardware Job Alert]"
-  category_order: [silicon, hardware, medtech_hardware, firmware, other]
+  category_order: [rf_wireless, power_electronics, pcb_board_design, analog_mixed_signal, medtech_hardware, controls_motion, semiconductor_asic, digital_hardware_fpga, avionics_space, general_electrical, other]
   faang_companies:
     - medtronic
     - starkey
@@ -53,8 +53,4 @@ sms:
 
 suppress_when_empty: true
 
-apply:
-  mode: auto_simple_review_hard
-  generate_cover_letter: true
-  daily_limit: 10
-  supported_ats: [greenhouse, lever, ashby]
+# Application modes and limits live in application_policy.yaml.

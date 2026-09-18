@@ -1,166 +1,126 @@
-# hw_intern_emailer
+# hw_emailer
 
-A bot that **runs daily on GitHub Actions** and **emails you** **new US hardware engineering internship openings** (Summer & Spring / off-cycle).
-It pulls from community internship aggregators and directly from company career
-sites (via their ATS APIs), filters to what you care about, remembers what it has
-already shown you, and only alerts on **new** postings.
+Hardware-focused job discovery, explainable screening, five-resume comparison,
+and a local application assistant. RF, power electronics, PCB, analog/mixed-signal,
+physical controls, semiconductor, medtech and avionics hardware are the targets.
+Firmware/software-focused jobs are rejected; supporting embedded work in a genuine
+hardware role is acceptable.
 
-```
-sources (github lists + Greenhouse/Lever/Ashby/Workday)
-   → normalize → filter (internship · season · category · US)
-   → dedup vs data/seen_jobs.json
-   → email digest (Gmail)
-   → commit updated state back to the repo
-```
+## Start here
 
-> SMS (Twilio) is supported but **off by default** — this is an email-only setup.
-> To turn it on later, see "Optional: SMS" below.
-
-## What it tracks
-- **Roles:** internships only — Summer & Spring / off-cycle / co-op (configurable).
-- **Categories:** software engineering, software development, quant dev, quant
-  trading, big tech, unicorns, startups, consulting (tech tracks).
-- **Location:** United States (incl. US-remote).
-
-All of this is tunable in `config/` — no code changes needed.
-
-## Layout
-```
-config/        # all tunables (no code): companies, github lists, filters, settings
-src/sources/   # one module per source type (github lists + 4 ATS APIs)
-src/filters.py # internship / season / category / US-location rules
-src/dedup.py   # seen-jobs state (data/seen_jobs.json)
-src/notify/    # email.py (Gmail SMTP) + sms.py (Twilio)
-src/apply/     # FUTURE auto-apply scaffold (not yet implemented)
-src/main.py    # orchestrator + CLI
-.github/workflows/daily.yml  # the daily cron
-tests/         # pytest: filters + dedup
-```
-
-## Quick start (local)
 ```bash
-python -m venv .venv && source .venv/bin/activate
+python -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
-
-# See what it would send today — fetches live sources, no email/SMS, no state write:
 python -m src.main --dry-run
 ```
 
-Add credentials to send for real:
-```bash
-cp .env.example .env      # then fill in GMAIL_USER / GMAIL_APP_PASSWORD / EMAIL_TO
-python -m src.main --test-notify   # sends one sample email to verify creds
-python -m src.main                 # full run
-```
-
-**First-run tip:** with an empty `data/seen_jobs.json`, the first real run will
-email the *entire current backlog* (~hundreds of postings) in one digest. If you'd
-rather start clean and only get *new* postings from then on, seed the state once:
-```bash
-python -m src.main --seed   # marks everything currently open as "seen", sends nothing
-```
-
-Run the tests:
-```bash
-pytest
-```
-
-## Credentials
-Set these as **GitHub repo Secrets** (Settings → Secrets and variables → Actions),
-and/or in a local `.env` (see `.env.example`). With none set, the bot still runs in
-`--dry-run` and prints results.
-
-| Secret | What it is |
-| --- | --- |
-| `GMAIL_USER` | Gmail address to send from |
-| `GMAIL_APP_PASSWORD` | 16-char [App Password](https://myaccount.google.com/apppasswords) (needs 2FA on) — **not** your login password |
-| `EMAIL_TO` | where the digest goes (comma-separate for multiple) |
-
-That's the whole setup — email is free and needs no other accounts.
-
-## Deploy (private repo + daily cron)
-1. Create a **private** GitHub repo and push this project.
-2. Add the secrets above.
-3. (Optional) Run `python -m src.main --seed` locally once and commit the updated
-   `data/seen_jobs.json`, so your first scheduled email is a small delta rather than
-   the whole backlog.
-4. The workflow `.github/workflows/daily.yml` runs at **13:00 UTC daily** and also
-   on-demand from the **Actions tab** (`workflow_dispatch`, with a dry-run toggle).
-5. Each run commits the updated `data/seen_jobs.json` back to the repo, so the bot
-   remembers what it already sent.
-
-Notes:
-- Private-repo Actions get 2,000 free minutes/month; a run is ~1–2 min → effectively free.
-- GitHub disables scheduled workflows after **60 days of no repo activity** — the daily
-  state commit normally counts, but you can also re-trigger manually to keep it alive.
-- Adjust the time by editing the `cron:` line (it's in UTC).
-
-## Populating companies.yaml from the 1,182-company target list
-
-`data/companies_master.csv` holds the full deduplicated target list (sector +
-A/B/C priority). The discovery tool probes each company's likely board tokens
-against the Greenhouse / Lever / Ashby public APIs and keeps only confirmed
-live boards:
-
-```
-python -m src.discover --priority A       # start with Priority A (~620 companies)
-python -m src.discover                    # rest of the list; Ctrl-C safe, resumes
-python -m src.discover --write-config     # merge verified hits into config/companies.yaml
-```
-
-Progress checkpoints to `data/discovery_state.json` after every company, and
-verified hits land in `data/discovered_companies.yaml` for review. Workday
-tenants can't be auto-guessed — for big companies that miss, check whether
-their careers URL looks like `<tenant>.wd<N>.myworkdayjobs.com/<site>` and add
-it to the `workday:` section by hand. Companies with fully custom career sites
-(many large industrials) reach you via the community lists instead. Expect a
-large fraction of the list to miss — small manufacturers and non-US industrials
-often have no public ATS API at all; that's the list telling you which
-companies need a manual careers-page check, not a bug.
-
-## Tuning
-- **`config/companies.yaml`** — add companies by ATS + token. Quant firms and
-  consulting are seeded here because the community lists skew SWE. Some seed tokens
-  are best-effort — run `--dry-run` and disable any that 404 (`enabled: false`).
-- **`config/github_lists.yaml`** — the community `listings.json` URLs. These repos
-  roll names each cycle (`Summer2026` → `Summer2027`); update the URL when the new
-  cycle's repo appears.
-- **`config/filters.yaml`** — keywords, allowed seasons/years, and US location terms.
-- **`config/settings.yaml`** — digest format, state pruning, suppression.
-
-## Optional: SMS
-This is an email-only setup, but an SMS-nudge channel (`src/notify/sms.py`, via
-Twilio) ships dormant. To enable it later:
-1. In `config/settings.yaml`, set `sms.enabled: true`.
-2. Uncomment `twilio>=8` in `requirements.txt` and reinstall.
-3. Add `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, `TWILIO_FROM`, `SMS_TO` (E.164)
-   as secrets / `.env` values, and uncomment them in `.github/workflows/daily.yml`.
-
-It sends a short "N new internships today" text alongside the email digest. Twilio
-costs a few cents per message.
-
-## Auto-apply (local) — implemented
-`src/apply/` is a working local tool that applies to the jobs the bot finds:
-opens each Greenhouse / Lever / Ashby application form in a real browser, fills
-your details, generates a tailored cover letter via Gemini 2.5 Flash, and
-**auto-submits simple forms while pausing for your review on forms with custom
-questions**.
+Discovery uses existing Greenhouse, Lever, Ashby, Workday, iCIMS, company-page and
+community sources. The hourly GitHub Actions digest remains in
+`.github/workflows/daily.yml`. Application execution is local only.
 
 ```bash
-pip install -r requirements.txt -r requirements-apply.txt
+pip install -r requirements-apply.txt
 python -m playwright install chromium
-python -m src.apply --prepare-only      # safe first run: fills but never submits
-python -m src.apply                     # real run (visible browser)
+cp config/candidate.example.yaml config/candidate.yaml
+# Add five reviewed resumes and their SHA256 hashes; fill known candidate fields.
+python -m src.apply --dry-run --jobs-json tests/fixtures/hardware_jobs.json --limit 10
+python -m src.apply --prepare-only --limit 3
 ```
 
-Runs on your machine (not CI) so you can watch, solve CAPTCHAs, and review before
-submit. It needs your resume in `resumes/`, a filled `config/profile.yaml` (copy
-`config/profile.example.yaml`), and optionally `GEMINI_API_KEY` for cover letters.
-Every attempt is logged to `data/applications.json` so re-runs never double-apply.
+See [APPLYING.md](APPLYING.md) before enabling applications.
 
-**See [APPLYING.md](APPLYING.md) for the full guide, modes, and what to provide.**
+## Decisions
 
-## Legal / etiquette
-Uses official public JSON APIs (Greenhouse, Lever, Ashby, Workday) and open,
-community-maintained data — no scraping of LinkedIn/Indeed or other anti-bot sites.
-Requests are rate-limited and retried politely. Respect each site's Terms of Service.
+Both commands use `src/evaluation.py` and the same hardware career gate.
+
+| Class | Behavior |
+| --- | --- |
+| `AUTO_APPLY` | Eligible ordinary hardware fit. Submission still requires every form, resume and candidate gate. |
+| `HIGH_VALUE_REVIEW` | Valuable technical fit. Held for customization and explicit interactive review. |
+| `HARD_NO` | Wrong career, seniority, experience, location/cohort, inactive posting or insufficient hardware evidence. |
+
+Career scoring separates hardware evidence, hands-on work, entry level, company
+fit and Minnesota location. Programming words alone earn no positive points.
+Every result carries its evidence. The taxonomy still recognizes firmware so it
+can explain exclusions; recognizing a category does not make it eligible.
+
+Resume matching compares all five reviewed documents using technical evidence
+from their full text, including coursework, projects, skills and experience.
+Job-title and required-skill evidence weigh more than preferred skills. It reports
+all five rankings, selected and alternative resumes, gaps and confidence.
+A score measures vocabulary coverage, not a guarantee of meeting qualifications.
+No years of experience, citizenship, GPA or accomplishments are inferred.
+
+## Configuration
+
+| File | Purpose |
+| --- | --- |
+| `config/job_preferences.yaml` | Hardware domains, supporting embedded signals, software dominance, target companies |
+| `config/career_fit.yaml` | Explainable weights, minimum discovery score and high-value threshold |
+| `config/application_policy.yaml` | Modes, run/daily limits, resume confidence, supported automatic ATSs |
+| `config/candidate.yaml` | Private candidate facts, all five resume files/hashes, exact confirmed answers |
+| `config/filters.yaml`, `category_taxonomy.yaml` | Existing cohort, location and detailed category rules |
+| `config/companies*.yaml`, `direct_companies*.yaml` | Company source catalogs |
+| `config/github_lists.yaml` | Community feeds, including companies outside existing catalogs |
+| `config/sources.yaml` | Default Workday searches and bounded detail retrieval |
+| `config/settings.yaml` | HTTP, notification and discovery-state settings |
+
+`config/profile.yaml` remains a legacy loading fallback. Private profiles, resumes,
+application logs, backups and review reports are gitignored. Examples contain no
+candidate facts. File hashes must be refreshed only after reviewing changed resumes.
+
+## Email and state
+
+Copy `.env.example` to `.env` and set `GMAIL_USER`, `GMAIL_APP_PASSWORD` and
+`EMAIL_TO`. Put the same values in repository Secrets for scheduled discovery.
+The application profile and resumes do not belong in Actions secrets or artifacts.
+
+```bash
+python -m src.main --test-notify  # Explicitly sends a sample notification
+python -m src.main --seed        # Mark current matches seen without sending
+python -m src.main              # Discover, email and update seen state
+```
+
+Seen-job IDs remain compatible with existing history. Canonical URLs and
+requisition IDs additionally detect source/tracking-link variants. Direct listings
+with descriptions take precedence over community duplicates. Failed email delivery
+does not advance seen state. Corrupt state stops processing instead of silently
+starting fresh.
+
+High-value digest entries include the technical reasons, keywords, recommended
+customization and an outreach research task. CI has no private resume catalog, so
+its email explicitly requests local resume comparison. The local application
+tracker contains the actual five-resume ranking and review brief. Contacts and
+unknown deadlines are never invented and outreach is never automatically sent.
+
+## Growing coverage
+
+Community feeds admit employers that are not already in a company YAML file.
+The existing discovery command can probe new company names and the master CSV:
+
+```bash
+python -m src.discover --company "Example Electronics"
+python -m src.discover --priority A --limit 20
+python -m src.discover --write-config
+```
+
+Review company identity and board ownership before adding discovered tokens.
+This is not a universal web search engine. Workday tenants/custom sites still
+need their public careers URLs configured. iCIMS discovery already exists;
+SmartRecruiters currently has a manual application adapter, not a discovery source.
+
+## Verification
+
+```bash
+python -m pytest -q
+# Require real, fully intercepted browser fixtures locally:
+REQUIRE_BROWSER_TESTS=1 python -m pytest tests/test_browser_forms.py -q
+```
+
+CI installs Chromium and requires browser fixtures. Fixtures intercept every
+network request; they do not submit production applications. Without Chromium,
+the browser tests are explicitly skipped locally. All other tests still run.
+
+See [architecture and migration](docs/architecture.md) for implementation boundaries
+and staged ATS support. Quality and truthful applications take priority over volume.

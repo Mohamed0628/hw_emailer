@@ -1,0 +1,3 @@
+# Added to configured Workday searches so internship-only catalogs do not hide full-time roles.
+workday_search_terms: [electrical, hardware, rf, power electronics, new grad]
+workday_fetch_details: true

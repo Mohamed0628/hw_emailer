@@ -1,0 +1,72 @@
+[
+  {
+    "company": "Example Electronics",
+    "title": "RF Hardware Engineer I",
+    "description": "RF antennas VNA HFSS S-parameters impedance matching Smith chart noise figure RF PCB board bring-up. Entry level.",
+    "locations": [
+      "Minneapolis, MN"
+    ],
+    "url": "https://jobs.lever.co/example/fixture-0",
+    "source": "offline-fixture"
+  },
+  {
+    "company": "Example Electronics",
+    "title": "Power Electronics Engineer I",
+    "description": "Power electronics buck converters MOSFET gate drivers switching loops STM32G4 PWM PCB oscilloscope. Entry level.",
+    "locations": [
+      "Minneapolis, MN"
+    ],
+    "url": "https://jobs.lever.co/example/fixture-1",
+    "source": "offline-fixture"
+  },
+  {
+    "company": "Example Electronics",
+    "title": "Analog Hardware Engineer I",
+    "description": "Analog front ends photodiode transimpedance amplifier low-noise signal conditioning mixed-signal PCB PPG neural sensing. Entry level.",
+    "locations": [
+      "Minneapolis, MN"
+    ],
+    "url": "https://jobs.lever.co/example/fixture-2",
+    "source": "offline-fixture"
+  },
+  {
+    "company": "Example Electronics",
+    "title": "Controls Engineer I",
+    "description": "DC motor modeling PI PID Quanser Simulink system identification encoders motor controllers HIL. 1-2 years of experience.",
+    "locations": [
+      "Minneapolis, MN"
+    ],
+    "url": "https://jobs.lever.co/example/fixture-3",
+    "source": "offline-fixture"
+  },
+  {
+    "company": "Example Electronics",
+    "title": "FPGA Hardware Engineer I",
+    "description": "FPGA Verilog RTL Lattice ECP5 RGMII MDIO Ethernet PHY synthesis PCB Altium. Entry level.",
+    "locations": [
+      "Minneapolis, MN"
+    ],
+    "url": "https://jobs.lever.co/example/fixture-4",
+    "source": "offline-fixture"
+  },
+  {
+    "company": "Example Electronics",
+    "title": "Firmware Engineer I",
+    "description": "Firmware C++ RTOS Linux device drivers bootloader SPI STM32.",
+    "locations": [
+      "Minneapolis, MN"
+    ],
+    "url": "https://jobs.lever.co/example/fixture-5",
+    "source": "offline-fixture"
+  },
+  {
+    "company": "Example Electronics",
+    "title": "Senior Electrical Engineer",
+    "description": "PCB schematic capture Altium MOSFET gate driver. 8 years of experience required.",
+    "locations": [
+      "Minneapolis, MN"
+    ],
+    "url": "https://jobs.lever.co/example/fixture-6",
+    "source": "offline-fixture"
+  }
+]

@@ -587,6 +587,10 @@ def is_new_grad(title_lc: str, role_cfg: dict) -> bool:
 
 def _builtin_for_configured(name: str) -> Optional[str]:
     """Map a configured category name onto a built-in canonical category."""
+    # The detailed taxonomy owns its vocabulary. Broad legacy aliases caused
+    # FPGA to inherit analog and signal-integrity to inherit power-converter terms.
+    if name in config.taxonomy().get("categories", {}):
+        return None
     if name in _BUILTIN_CATEGORIES:
         return name
     norm = normalize_text(name).replace(" ", "_")
@@ -690,6 +694,8 @@ def _score_categories(
         s_hits = strong_hits[name]
         w_hits = () if strong_only or not context else _match_terms(norm_text, weak)
         score = sum(10 + 2 * _tokens(t) for t in s_hits)
+        if name == "general_electrical" and any(h for n, h in strong_hits.items() if n != name):
+            score = min(score, 5)  # Specific technical families outrank the fallback label.
         score += sum(3 + _tokens(t) for t in w_hits)
         if score <= 0:
             continue

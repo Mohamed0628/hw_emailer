@@ -65,6 +65,7 @@ class LeverSource(Source):
                     locations=locations,
                     source=self.name,
                     ats="lever",
+                    requisition_id=str(raw.get("id") or "") or None,
                     posted_date=_ms_to_iso(raw.get("createdAt")),
                     description=plain_text(
                         " ".join(str(part) for part in description_parts if part)

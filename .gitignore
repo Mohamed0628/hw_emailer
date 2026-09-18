@@ -29,3 +29,13 @@ env/
 .DS_Store
 .idea/
 .vscode/
+
+# Private candidate configuration and application checkpoints
+config/candidate.yaml
+config/profile*backup*
+config/profile.yaml*
+!config/profile.example.yaml
+data/applications*
+data/candidate*
+data/review*
+apply-debug.log

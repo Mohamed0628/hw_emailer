@@ -48,6 +48,7 @@ def build_all_sources() -> list[Source]:
 
     sources.extend(github_lists.build_sources())
     companies = config.companies()
+    source_cfg = config._load_yaml("sources.yaml")
 
     for entry in companies.get("greenhouse", []) or []:
         if _enabled(entry) and _has_required(
@@ -73,8 +74,9 @@ def build_all_sources() -> list[Source]:
             search_terms = (
                 configured_terms
                 or intelligence_terms
-                or [entry.get("search_text", "intern")]
+                or [entry.get("search_text", "intern"), "electrical", "hardware", "rf", "power electronics", "new grad"]
             )
+            search_terms = list(dict.fromkeys([*search_terms, *source_cfg.get("workday_search_terms", [])]))
             sources.append(
                 WorkdaySource(
                     company,
@@ -84,7 +86,7 @@ def build_all_sources() -> list[Source]:
                     search_texts=search_terms,
                     fetch_details=entry.get(
                         "fetch_details",
-                        bool(intelligence_terms),
+                        source_cfg.get("workday_fetch_details", True),
                     ),
                 )
             )

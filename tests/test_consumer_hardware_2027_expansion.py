@@ -29,4 +29,4 @@ def test_new_catalog_role_can_use_description_based_2027_start():
     assert apply_filters([job]) == [job]
     assert job.year == 2027
     assert job.role_type == "new_grad"
-    assert job.priority == "A"
+    assert job.career_fit_score >= 65  # Cohort/feed membership alone does not earn priority A

@@ -1,0 +1,204 @@
+# Hardware evidence is required; programming only supports it.
+domains:
+  rf_wireless:
+  - rf
+  - wireless hardware
+  - antenna*
+  - microwave
+  - s parameter*
+  - vna
+  - smith chart*
+  - impedance matching
+  - rf front end
+  - lna*
+  - power amplifier*
+  - radar
+  - hfss
+  - noise figure
+  - transmission line*
+  - s11
+  - vswr
+  power_electronics:
+  - power electronics
+  - power conversion
+  - power suppl*
+  - dc dc
+  - buck converter*
+  - boost converter*
+  - inverter*
+  - smps
+  - motor drive*
+  - gate driv*
+  - mosfet*
+  - igbt*
+  - gan
+  - sic
+  - power stage
+  - switching loop*
+  - current sensing
+  pcb_board_design:
+  - pcb
+  - pcba
+  - schematic*
+  - board design
+  - board layout
+  - pcb layout
+  - altium
+  - kicad
+  - orcad
+  - board bring up
+  - pcb bring up
+  - component selection
+  - power rail*
+  - grounding
+  - signal integrity
+  - power integrity
+  - oscilloscope
+  - logic analyzer
+  - rework
+  analog_mixed_signal:
+  - analog
+  - mixed signal
+  - sensor interface*
+  - op amp*
+  - transimpedance amplifier*
+  - tia
+  - adc*
+  - dac*
+  - signal conditioning
+  - instrumentation
+  - low noise
+  - analog front end
+  - photodiode*
+  controls_motion:
+  - motor control*
+  - motor controller*
+  - motor modeling
+  - dc motor
+  - mechatronic*
+  - actuator*
+  - encoder*
+  - hil
+  - hardware in the loop
+  - pi control*
+  - pid control*
+  - system identification
+  - bode
+  - stability margin*
+  - quanser
+  - simulink
+  semiconductor_asic:
+  - semiconductor*
+  - silicon
+  - asic*
+  - rfic
+  - wafer*
+  - device characterization
+  - chip design
+  - ic design
+  - tapeout
+  digital_hardware_fpga:
+  - fpga*
+  - verilog
+  - systemverilog
+  - vhdl
+  - rtl
+  - lattice ecp5
+  - rgmii
+  - mdio
+  - ethernet phy*
+  - digital logic
+  - synthesis
+  medtech_hardware:
+  - biosensing
+  - biosignal*
+  - neural sensing
+  - neural recording
+  - electrode interface*
+  - implantable electronic*
+  - medical sensing
+  - ppg
+  - ecg
+  avionics_space:
+  - avionics
+  - flight control electronic*
+  - sensor system*
+  - spacecraft electronic*
+  - electrical integration
+supporting_embedded:
+- stm32*
+- esp32*
+- teensy
+- microcontroller*
+- spi
+- i2c
+- uart
+- can bus
+- ble
+- embedded c
+- c++
+- pwm
+software_dominance:
+- firmware
+- embedded software
+- rtos
+- freertos
+- zephyr
+- device driver*
+- bootloader*
+- linux
+- kernel
+- bsp
+- backend
+- frontend
+- cloud
+- software development
+software_titles:
+- firmware engineer
+- firmware intern
+- embedded software
+- software engineer
+- software intern
+- device driver engineer
+- rtos engineer
+- linux embedded
+- firmware developer
+hands_on:
+- pcb layout
+- schematic capture
+- board bring up
+- pcb bring up
+- oscilloscope
+- logic analyzer
+- rework
+- solder*
+- vna
+- bench test*
+- hardware debugging
+- prototype*
+- test fixture*
+hardware_titles:
+- electrical engineer*
+- hardware engineer*
+- hardware design
+- electronics engineer*
+- rf
+- antenna*
+- microwave
+- power electronics
+- analog
+- mixed signal
+- pcb
+- fpga
+- semiconductor*
+minimum_hardware_hits: 2
+high_value_domains:
+- rf_wireless
+- power_electronics
+- analog_mixed_signal
+- semiconductor_asic
+max_required_years: 2
+graduation_year: 2027
+prefer_full_time: true
+require_us: true
+dream_companies: []

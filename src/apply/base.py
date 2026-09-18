@@ -28,11 +28,16 @@ class FillOutcome:
     submit_available: bool = False
     closed: bool = False  # posting no longer accepting applications
     error: str = ""
+    unknown_questions: list[str] = field(default_factory=list)
+    blockers: list[str] = field(default_factory=list)
+    inventory_complete: bool = False
+    form_fingerprint: str = ""
 
     @property
     def is_simple(self) -> bool:
         """No leftover required fields → safe to auto-submit."""
-        return not self.unfilled_required and not self.error
+        return bool(self.inventory_complete and self.resume_uploaded and not
+                    (self.unfilled_required or self.unknown_questions or self.blockers or self.error))
 
 
 class Applicator(ABC):
