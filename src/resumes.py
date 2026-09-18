@@ -19,11 +19,21 @@ class Resume:
     sha256: str
     text: str
     sections: dict[str, str]
+    catalog_terms: frozenset[str] | None = None
+    catalog_project_terms: frozenset[str] | None = None
 
     @property
     def terms(self) -> set[str]:
+        if self.catalog_terms is not None:
+            return set(self.catalog_terms)
         technical = {t for values in features(self.text).values() for t in values}
         return technical | set(hits(self.text, vocabulary()["supporting_embedded"]))
+
+    @property
+    def project_terms(self) -> set[str]:
+        if self.catalog_project_terms is not None:
+            return set(self.catalog_project_terms)
+        return {t for values in features(self.sections.get("projects", "")).values() for t in values}
 
 
 def extract_text(path: Path) -> str:
@@ -104,7 +114,7 @@ def match_job(job: Job, resumes: list[Resume]) -> ResumeMatch:
     for resume in resumes:
         matched = sorted(all_terms & sets[resume.id])
         score = round(100 * sum(weights[t] for t in matched) / total) if total else 0
-        project_terms = {t for v in features(resume.sections.get("projects", "")).values() for t in v}
+        project_terms = resume.project_terms
         project_hits = sorted(set(matched) & project_terms)
         rankings.append({"id": resume.id, "score": score, "matched_terms": matched,
                          "project_evidence": project_hits,
