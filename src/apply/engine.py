@@ -8,6 +8,7 @@ from urllib.parse import urlsplit
 from ..evaluation import evaluate
 from ..models import ApplicantProfile, Job
 from ..resumes import Resume
+from ..identity import WORKDAY_MANUAL_REASON, is_workday_job
 from . import applog, runner
 from .base import FillOutcome
 from .policy import Mode, decide, settings
@@ -36,6 +37,13 @@ class ApplicationEngine:
                 applog.save(state)
                 return 'duplicate'   # Preserve the original confirmed/uncertain record.
             evaluate(job, self.resumes)
+            if is_workday_job(job):
+                # Discovery/scoring/resume matching are retained. No adapter, browser,
+                # preparation or review callback is allowed beyond this boundary.
+                status = 'rejected' if job.classification == 'HARD_NO' else 'needs_input'
+                applog.record(state, job, status, WORKDAY_MANUAL_REASON)
+                applog.save(state)
+                return status
             adapter = get_applicator(job)
             job.application_url = adapter.application_url(job)
             job.ats = adapter.ats
@@ -88,7 +96,7 @@ class ApplicationEngine:
             applog.record(state, job, 'submitting', decision.reason)
             applog.save(state)
             try:
-                result = runner.submit(page)
+                result = runner.submit(page, job=job)
             except Exception:
                 result = runner.SubmissionResult('submission_unknown', 'unexpected interruption during submit; reconcile manually')
             applog.record(state, job, result.status, result.reason)

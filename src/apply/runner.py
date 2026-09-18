@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from urllib.parse import urlsplit
 from . import fields
 from .base import FillOutcome
-from ..identity import detect_ats, requisition, canonical_url
+from ..identity import detect_ats, requisition, canonical_url, is_workday_job, WORKDAY_MANUAL_REASON
 
 
 def trusted_url(url: str) -> bool:
@@ -14,6 +14,9 @@ def trusted_url(url: str) -> bool:
 
 
 def inspect_application(page, job, applicator, profile, *, fill=False) -> FillOutcome:
+    if is_workday_job(job):
+        return FillOutcome(job=job, application_url=job.application_url or job.url,
+                           blockers=[WORKDAY_MANUAL_REASON])
     outcome = FillOutcome(job=job, application_url=applicator.application_url(job))
     try:
         if not trusted_url(page.url) or detect_ats(page.url) != applicator.ats:
@@ -45,6 +48,9 @@ def inspect_application(page, job, applicator, profile, *, fill=False) -> FillOu
 
 
 def fill_application(page, job, applicator, profile) -> FillOutcome:
+    if is_workday_job(job):
+        return FillOutcome(job=job, application_url=job.application_url or job.url,
+                           blockers=[WORKDAY_MANUAL_REASON])
     url = applicator.application_url(job)
     outcome = FillOutcome(job=job, application_url=url)
     if not trusted_url(url) or not getattr(applicator, 'automatic', True):
@@ -65,9 +71,11 @@ class SubmissionResult:
     reason: str
 
 
-def submit(page) -> SubmissionResult:
+def submit(page, *, job=None) -> SubmissionResult:
     """Success requires new, explicit confirmation, never merely a successful click."""
     try:
+        if (job is not None and is_workday_job(job)) or detect_ats(page.url) == 'workday':
+            return SubmissionResult('needs_input', WORKDAY_MANUAL_REASON)
         btn = fields.find_submit_button(page)
         if btn is None:
             return SubmissionResult('failed', 'no unambiguous submit button; nothing clicked')

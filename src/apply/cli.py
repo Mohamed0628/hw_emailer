@@ -13,6 +13,7 @@ from ..evaluation import evaluate_jobs
 from ..main import collect_jobs
 from ..models import Job
 from ..resumes import load_resumes
+from ..identity import is_workday_job
 from . import applog
 from .browser import BrowserSession
 from .engine import ApplicationEngine
@@ -77,7 +78,7 @@ def main(argv=None) -> int:
         engine = ApplicationEngine(profile, resumes, mode)
         # Only open a browser if at least one supported job actually needs it.
         from .registry import get_applicator
-        needs_browser = any(j.classification != 'HARD_NO' and getattr(get_applicator(j), 'automatic', True)
+        needs_browser = any(not is_workday_job(j) and j.classification != 'HARD_NO' and getattr(get_applicator(j), 'automatic', True)
                             and (j.classification != 'HIGH_VALUE_REVIEW' or args.review_job or mode == Mode.PREPARE_ONLY)
                             for j in evaluated[:limit])
         from contextlib import nullcontext

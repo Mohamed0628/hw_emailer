@@ -6,7 +6,7 @@ import hashlib
 import re
 from typing import Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, computed_field
 
 Category = str
 
@@ -25,6 +25,7 @@ class Job(BaseModel):
     locations: list[str] = Field(default_factory=list)
     source: str = ""
     ats: Optional[str] = None
+    provider: Optional[str] = None
 
     # Filled in by the filter step.
     category: Optional[Category] = None
@@ -65,6 +66,12 @@ class Job(BaseModel):
     selected_resume: Optional[str] = None
     resume_fit_score: int = 0
     resume_match: dict = Field(default_factory=dict)
+
+    @computed_field
+    @property
+    def application_restriction(self) -> Optional[str]:
+        from .identity import WORKDAY_MANUAL_REASON, is_workday_job
+        return WORKDAY_MANUAL_REASON if is_workday_job(self) else None
 
     @property
     def location_str(self) -> str:

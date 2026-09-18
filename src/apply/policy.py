@@ -5,6 +5,7 @@ from enum import Enum
 from .. import config
 from ..models import Job, ApplicantProfile
 from .base import FillOutcome
+from ..identity import WORKDAY_MANUAL_REASON, is_workday_job
 
 
 class Mode(str, Enum):
@@ -35,6 +36,8 @@ class Decision:
 
 def decide(job: Job, outcome: FillOutcome, mode: Mode, profile: ApplicantProfile,
            duplicate_reason: str | None = None, reviewed: bool = False) -> Decision:
+    if is_workday_job(job):
+        return Decision("needs_input", WORKDAY_MANUAL_REASON)
     if duplicate_reason:
         return Decision("duplicate", duplicate_reason)
     if job.classification == "HARD_NO":

@@ -8,15 +8,27 @@ to obtain requirements and degree-specific experience language.
 
 from __future__ import annotations
 
+import logging
+import time
+
 import requests
 
 from ..models import Job
 from ..smart_filters import potential_technical_title
-from .base import Source, request_json
+from .base import Source
 from .text import plain_text
 
 PAGE = 20
 MAX_PAGES = 10
+REQUEST_TIMEOUT = (3, 8)  # connect/read seconds; independent of global retry settings
+MAX_ATTEMPTS = 2
+log = logging.getLogger(__name__)
+
+
+class WorkdayRequestError(Exception):
+    def __init__(self, message: str, status: int | None = None):
+        super().__init__(message)
+        self.status = status
 
 
 class WorkdaySource(Source):
@@ -53,6 +65,31 @@ class WorkdaySource(Source):
     def _detail_url(self, external_path: str) -> str:
         return f"{self.base}/wday/cxs/{self.tenant}/{self.site}{external_path}"
 
+    def _request_json(self, session, method, url, *, json_body=None):
+        """One retry for transient failures only; never repeat deterministic 4xx."""
+        for attempt in range(MAX_ATTEMPTS):
+            status = None
+            try:
+                response = session.request(method, url, json=json_body, timeout=REQUEST_TIMEOUT)
+                status = response.status_code
+                if status >= 400:
+                    raise WorkdayRequestError(f"HTTP {status}", status)
+                data = response.json()
+                if not isinstance(data, dict):
+                    raise WorkdayRequestError("expected JSON object")
+                return data
+            except (requests.Timeout, requests.ConnectionError) as exc:
+                transient = True
+                error = WorkdayRequestError(type(exc).__name__)
+            except (ValueError, requests.RequestException, WorkdayRequestError) as exc:
+                transient = status in {408, 429} or (status is not None and 500 <= status < 600)
+                error = WorkdayRequestError(str(exc), status)
+            if not transient or attempt + 1 == MAX_ATTEMPTS:
+                log.warning("%s %s failed: %s (%s; attempts=%d)",
+                            self.name, method, url, error, attempt + 1)
+                raise error
+            time.sleep(0.5)
+
     def _fetch_detail(
         self,
         session: requests.Session,
@@ -60,7 +97,7 @@ class WorkdaySource(Source):
     ) -> dict:
         if not self.fetch_details:
             return {}
-        data = request_json(session, "GET", self._detail_url(external_path))
+        data = self._request_json(session, "GET", self._detail_url(external_path))
         if not isinstance(data, dict):
             return {}
         info = data.get("jobPostingInfo")
@@ -68,6 +105,7 @@ class WorkdaySource(Source):
 
     def fetch(self, session: requests.Session) -> list[Job]:
         postings_by_path: dict[str, dict] = {}
+        search_failed = False
 
         for search_text in self.search_texts:
             offset = 0
@@ -78,13 +116,14 @@ class WorkdaySource(Source):
                     "offset": offset,
                     "searchText": search_text,
                 }
-                data = request_json(
-                    session,
-                    "POST",
-                    self.api,
-                    json_body=body,
-                )
-                if not data or not isinstance(data, dict):
+                try:
+                    data = self._request_json(session, "POST", self.api, json_body=body)
+                    if not isinstance(data.get("jobPostings"), list):
+                        raise WorkdayRequestError("missing/invalid jobPostings list")
+                except WorkdayRequestError as exc:
+                    log.warning("%s stopping searches for this endpoint (%s); preserving %d postings",
+                                self.name, exc, len(postings_by_path))
+                    search_failed = True
                     break
 
                 postings = data.get("jobPostings") or []
@@ -92,6 +131,9 @@ class WorkdaySource(Source):
                     break
 
                 for raw in postings:
+                    if not isinstance(raw, dict):
+                        log.warning("%s skipping malformed posting", self.name)
+                        continue
                     title = raw.get("title")
                     external_path = raw.get("externalPath")
                     if not (title and external_path):
@@ -103,16 +145,40 @@ class WorkdaySource(Source):
                     postings_by_path.setdefault(str(external_path), raw)
 
                 offset += PAGE
-                if offset >= int(data.get("total", 0)):
+                try:
+                    total = int(data.get("total", 0))
+                except (TypeError, ValueError):
+                    log.warning("%s invalid pagination total; preserving collected postings", self.name)
+                    search_failed = True
                     break
+                if offset >= total:
+                    break
+            if search_failed:
+                break  # Do not hammer the same failed endpoint for every search term.
 
         jobs: list[Job] = []
+        detail_failures = 0
+        stop_details = False
         for external_path, raw in postings_by_path.items():
             title = raw.get("title")
             if not title:
                 continue
 
-            detail = self._fetch_detail(session, external_path)
+            detail = {}
+            if not stop_details:
+                try:
+                    detail = self._fetch_detail(session, external_path)
+                    detail_failures = 0
+                except WorkdayRequestError as exc:
+                    # A missing individual posting must not prevent another valid detail.
+                    if exc.status not in {404, 422}:
+                        detail_failures += 1
+                    else:
+                        detail_failures = 0
+                    if exc.status in {401, 403} or detail_failures >= 3:
+                        stop_details = True
+                        log.warning("%s stopping failing detail requests; retaining listing metadata for remaining jobs",
+                                    self.name)
             location = (
                 detail.get("location")
                 or detail.get("locationsText")
@@ -145,6 +211,8 @@ class WorkdaySource(Source):
                     description=plain_text(
                         detail.get("jobDescription")
                         or detail.get("description")
+                        or raw.get("jobDescription")
+                        or raw.get("description")
                     ),
                     department=detail.get("jobFamilyGroup"),
                     team=detail.get("jobFamily"),

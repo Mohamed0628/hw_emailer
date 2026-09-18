@@ -10,7 +10,7 @@ HOSTS = {
     "greenhouse": ("greenhouse.io",),
     "lever": ("lever.co",),
     "ashby": ("ashbyhq.com",),
-    "workday": ("myworkdayjobs.com",),
+    "workday": ("myworkdayjobs.com", "myworkdaysite.com"),
     "icims": ("icims.com",),
     "smartrecruiters": ("smartrecruiters.com",),
 }
@@ -20,6 +20,21 @@ def detect_ats(url: str) -> str | None:
     host = (urlsplit(url).hostname or "").lower()
     return next((ats for ats, domains in HOSTS.items()
                  if any(host == d or host.endswith("." + d) for d in domains)), None)
+
+
+WORKDAY_MANUAL_REASON = "Application: Manual — Workday"
+
+
+def is_workday_job(job: Job) -> bool:
+    """Deny automation on ANY Workday evidence; conflicting metadata cannot opt in.
+
+    This is deliberately independent of scores, modes, adapters and configuration.
+    Inspect both links so an alternate application URL cannot erase provenance.
+    """
+    return (any((value or "").strip().casefold() == "workday"
+                for value in (job.ats, job.provider, job.source.split(":", 1)[0]))
+            or any(detect_ats(url) == "workday"
+                   for url in (job.url, job.application_url or "")))
 
 
 def canonical_url(url: str) -> str:
@@ -73,12 +88,19 @@ def possible_key(job: Job) -> str:
 
 def prefer_direct(jobs: list[Job]) -> list[Job]:
     """Choose description-rich direct sources before community duplicates."""
-    seen: set[str] = set()
+    owners: dict[str, Job] = {}
     result = []
     for job in sorted(jobs, key=lambda j: (j.source.startswith("github"), not bool(j.description))):
         keys = strong_keys(job)
-        if keys & seen:
+        duplicates = [owners[key] for key in keys if key in owners]
+        if duplicates:
+            # A richer duplicate must not erase a discovery-only provider marker.
+            if is_workday_job(job) or any(is_workday_job(old) for old in duplicates):
+                for old in duplicates:
+                    old.provider = "workday"
+            for key in keys:
+                owners.setdefault(key, duplicates[0])
             continue
-        seen.update(keys)
+        owners.update({key: job for key in keys})
         result.append(job)
     return result

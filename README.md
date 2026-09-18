@@ -89,9 +89,14 @@ does not advance seen state. Corrupt state stops processing instead of silently
 starting fresh.
 
 High-value digest entries include the technical reasons, keywords, recommended
-customization and an outreach research task. CI has no private resume catalog, so
-its email explicitly requests local resume comparison. The local application
-tracker contains the actual five-resume ranking and review brief. Contacts and
+customization and an outreach research task. The local email runner loads the same
+five reviewed resumes from `config/candidate.yaml` as the application runner, so
+its digest includes the selected resume and evidence for every eligible role.
+CI has no private resume catalog, so its email explicitly reports that a resume
+recommendation is unavailable; no recommendation is invented. Configure the private
+catalog in the machine running discovery to enable all-five comparison. An invalid
+configured catalog stops the run before sending. The local application tracker
+contains the actual five-resume ranking and review brief. Contacts and
 unknown deadlines are never invented and outreach is never automatically sent.
 
 ## Growing coverage

@@ -15,6 +15,8 @@ from .notify import email as email_notify
 from .notify import sms as sms_notify
 from .parallel_collect import collect_sources
 from .sources.registry import build_all_sources
+from .apply.profile import load_profile
+from .resumes import load_resumes
 
 log = logging.getLogger("intern_pos_emailer")
 
@@ -52,6 +54,10 @@ def _print_digest(jobs: list[Job]) -> None:
             print(f"  {priority}{job.title} - {job.company} [{location}] [{role}]")
             if job.classification:
                 print(f"      {job.classification}")
+            if job.application_restriction:
+                print(f"      {job.application_restriction}")
+            print(f"      Career fit: {job.career_fit_score}/100; Resume: {job.selected_resume or 'unavailable (configure five resumes)'}")
+            print(f"      Evidence: {'; '.join(job.career_fit_evidence[:3])}")
             if job.hiring_signal:
                 print(f"      {job.hiring_signal}")
             print(f"      {job.url}")
@@ -94,8 +100,14 @@ def run(
     secrets = config.secrets()
     today = datetime.now().date()
 
+    profile = load_profile()
+    # Use the same reviewed five-document catalog as local application evaluation.
+    # Missing private files in CI must never yield a fabricated recommendation.
+    resumes = load_resumes(profile) if profile.resumes else None
+    if resumes is None:
+        log.warning("five-resume catalog unavailable; digest cannot recommend a resume")
     raw = collect_jobs(limit=limit)
-    matched = apply_filters(raw)
+    matched = apply_filters(raw, resumes)
     log.info("%d jobs passed filters", len(matched))
 
     state = load_state(config.state_path())

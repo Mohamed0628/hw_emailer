@@ -64,6 +64,7 @@ def build_all_sources() -> list[Source]:
         if _enabled(entry) and _has_required(entry, "Ashby", "company", "token"):
             sources.append(AshbySource(entry["company"], entry["token"]))
 
+    workday_sources = {}
     for entry in companies.get("workday", []) or []:
         if _enabled(entry) and _has_required(
             entry, "Workday", "company", "tenant", "site"
@@ -77,19 +78,25 @@ def build_all_sources() -> list[Source]:
                 or [entry.get("search_text", "intern"), "electrical", "hardware", "rf", "power electronics", "new grad"]
             )
             search_terms = list(dict.fromkeys([*search_terms, *source_cfg.get("workday_search_terms", [])]))
-            sources.append(
-                WorkdaySource(
-                    company,
-                    entry["tenant"],
-                    entry.get("wd_num", 1),
-                    entry["site"],
-                    search_texts=search_terms,
-                    fetch_details=entry.get(
-                        "fetch_details",
-                        source_cfg.get("workday_fetch_details", True),
-                    ),
-                )
+            candidate = WorkdaySource(
+                company,
+                entry["tenant"],
+                entry.get("wd_num", 1),
+                entry["site"],
+                search_texts=search_terms,
+                fetch_details=entry.get(
+                    "fetch_details",
+                    source_cfg.get("workday_fetch_details", True),
+                ),
             )
+            key = (company.strip().casefold(), candidate.api)
+            if key in workday_sources:
+                previous = workday_sources[key]
+                previous.search_texts = list(dict.fromkeys([*previous.search_texts, *candidate.search_texts]))
+                previous.fetch_details = previous.fetch_details or candidate.fetch_details
+            else:
+                workday_sources[key] = candidate
+                sources.append(candidate)
 
     for entry in companies.get("icims", []) or []:
         if _enabled(entry) and entry.get("company") and entry.get("url"):
