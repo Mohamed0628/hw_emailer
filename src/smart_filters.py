@@ -164,10 +164,17 @@ def _normalized_experience_text(text: str) -> str:
 
 def _is_preferred_only(text: str, start: int, end: int) -> bool:
     """Return True when a matched experience number is only a preference."""
-    left = max(0, start - 100)
-    right = min(len(text), end + 100)
+    # Scope qualifiers to the same sentence/line, so a neighboring required
+    # clause cannot turn a preferred skill into a hard minimum.
+    left = max(text.rfind(".", 0, start), text.rfind("\n", 0, start), text.rfind(";", 0, start)) + 1
+    boundaries = [p for p in (text.find(".", end), text.find("\n", end), text.find(";", end)) if p >= 0]
+    right = min(boundaries) if boundaries else len(text)
     window = text[left:right]
-    return bool(_PREFERRED_RE.search(window) and not _REQUIRED_RE.search(window))
+    if _PREFERRED_RE.search(window) and not _REQUIRED_RE.search(window):
+        return True
+    # A Preferred Qualifications heading applies until the next section.
+    headings = list(re.finditer(r"(?im)^\s*(preferred qualifications|required qualifications|minimum qualifications|requirements|responsibilities)\s*:?\s*$", text[:start]))
+    return bool(headings and headings[-1].group(1).startswith("preferred") and not _REQUIRED_RE.search(window))
 
 
 def _experience_mins(text: str) -> list[int]:

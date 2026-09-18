@@ -25,7 +25,16 @@ class ApplicationEngine:
             state = applog.load()
             duplicate = applog.duplicate(job, state, retry_failed)
             if duplicate:
-                return 'duplicate'  # Preserve the original confirmed/uncertain record.
+                if job.job_id in state:
+                    from datetime import datetime, timezone
+                    state[job.job_id].setdefault('duplicate_checks', []).append({
+                        'ts': datetime.now(timezone.utc).isoformat(), 'reason': duplicate})
+                else:
+                    job.classification = 'HARD_NO'
+                    job.decision_reasons = [duplicate]
+                    applog.record(state, job, 'duplicate', duplicate)
+                applog.save(state)
+                return 'duplicate'   # Preserve the original confirmed/uncertain record.
             evaluate(job, self.resumes)
             adapter = get_applicator(job)
             job.application_url = adapter.application_url(job)

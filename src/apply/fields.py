@@ -26,10 +26,16 @@ def looks_closed(page) -> bool:
 INVENTORY_JS = r"""() => {
  const visible = el => !!(el.getClientRects().length && getComputedStyle(el).visibility !== 'hidden');
  const text = el => (el?.textContent || '').trim().replace(/\s+/g, ' ');
+ const labelText = el => {
+   if(!el) return '';
+   const copy=el.cloneNode(true);
+   copy.querySelectorAll('input,textarea,select,button,[role="combobox"]').forEach(n=>n.remove());
+   return text(copy);
+ };
  const label = el => {
    const ids=(el.getAttribute('aria-labelledby')||'').split(/\s+/).filter(Boolean);
-   return ids.map(id=>text(document.getElementById(id))).join(' ') ||
-     Array.from(el.labels||[]).map(text).join(' ') || el.getAttribute('aria-label') ||
+   return ids.map(id=>labelText(document.getElementById(id))).join(' ') ||
+     Array.from(el.labels||[]).map(labelText).join(' ') || el.getAttribute('aria-label') ||
      el.getAttribute('placeholder') || '';
  };
  const nodes=Array.from(document.querySelectorAll('input,textarea,select,[role="combobox"],[role="checkbox"],[role="radiogroup"],[contenteditable="true"]'));
@@ -85,9 +91,9 @@ def blockers(page, profile: ApplicantProfile) -> list[str]:
     # Unknown frames may contain application questions invisible to the main inventory.
     if page.locator('iframe').count():
         result.append("embedded form/frame requires manual inspection")
-    form_text = page.locator('form').all_text_contents()
+    form_text = [page.inner_text('body')]  # SPAs may render forms without a <form> element
     for body in form_text:
-        for match in re.finditer(r"(?i)by\s+(?:clicking|submitting|sending)[^.\n]*(?:agree|consent|certify|acknowledge)[^.\n]*", body):
+        for match in re.finditer(r"(?i)by\s+(?:clicking|submitting|sending|applying|proceeding)[^.\n]*(?:agree|consent|certify|acknowledge)[^.\n]*", body):
             answer = resolve(match.group(), profile)
             if not answer.known or answer.value is not True:
                 result.append("unconfigured submission attestation: " + match.group()[:240])

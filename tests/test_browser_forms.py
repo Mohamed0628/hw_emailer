@@ -152,3 +152,16 @@ def test_implied_legal_consent_needs_exact_confirmation(form):
     page,profile=form;render(page,'<p>By submitting this application, I consent to background screening.</p>')
     result=audit_and_fill(page,profile)
     assert any('attestation' in s for s in result.blockers)
+
+
+def test_redirect_to_different_requisition_never_uploads(form):
+    from src.apply.runner import inspect_application
+    from src.apply.lever import LeverApplicator
+    from src.models import Job
+    page,profile=form
+    page.goto('https://jobs.lever.co/example/wrong/apply')
+    render(page)
+    job=Job(company='Example',title='Hardware Engineer I',url='https://jobs.lever.co/example/expected')
+    result=inspect_application(page,job,LeverApplicator(),profile,fill=True)
+    assert any('requisition' in b for b in result.blockers)
+    assert page.locator('input[type="file"]').evaluate('(el)=>el.files.length')==0

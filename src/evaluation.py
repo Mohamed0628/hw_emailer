@@ -13,6 +13,12 @@ from .smart_filters import explain_pass
 def evaluate(job: Job, resumes: list[Resume] | None = None) -> Job:
     job.classification = None
     job.review_brief = {}
+    from urllib.parse import urlsplit
+    parsed_url = urlsplit(job.url)
+    if parsed_url.scheme not in {"https", "http"} or not parsed_url.hostname or parsed_url.username:
+        job.classification = "HARD_NO"
+        job.decision_reasons = ["invalid or suspicious application URL"]
+        return job
     career = career_fit.evaluate(job)
     if not career.passed or not passes(job):
         career_fit.apply(job)

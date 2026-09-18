@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from urllib.parse import urlsplit
 from . import fields
 from .base import FillOutcome
-from ..identity import detect_ats
+from ..identity import detect_ats, requisition, canonical_url
 
 
 def trusted_url(url: str) -> bool:
@@ -18,6 +18,14 @@ def inspect_application(page, job, applicator, profile, *, fill=False) -> FillOu
     try:
         if not trusted_url(page.url) or detect_ats(page.url) != applicator.ats:
             outcome.blockers.append('unexpected application host or redirect; manual review required')
+            return outcome
+        expected = applicator.application_url(job)
+        actual_job = job.model_copy(update={'url': page.url, 'application_url': None, 'requisition_id': None})
+        expected_job = job.model_copy(update={'url': expected, 'application_url': None, 'requisition_id': None})
+        # Same ATS is insufficient: redirects must still point at this requisition.
+        expected_id, actual_id = requisition(expected_job), requisition(actual_job)
+        if (expected_id and actual_id != expected_id) or (not expected_id and canonical_url(expected) != canonical_url(page.url)):
+            outcome.blockers.append('application redirected to a different or unverifiable requisition')
             return outcome
         if fields.looks_closed(page):
             outcome.closed = True

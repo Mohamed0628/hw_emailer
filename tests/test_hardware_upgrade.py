@@ -268,3 +268,13 @@ def test_seen_state_url_variant_preserves_legacy_history():
     j=job(url='https://jobs.lever.co/example/abc?utm_source=old')
     state={j.job_id:{'company':j.company,'title':j.title,'url':j.url,'first_seen':'2026-01-01'}}
     assert new_jobs([job(url='https://jobs.lever.co/example/abc/apply?utm_source=new')],state)==[]
+
+
+def test_preferred_experience_does_not_inherit_neighboring_required_clause():
+    from src.smart_filters import assess_entry_level
+    j=job(description="Bachelor's degree and 1-2 years of experience required. Five-axis PCB testing. 5 years of experience preferred.")
+    assert assess_entry_level(j,{}).eligible
+
+
+def test_suspicious_url_is_rejected():
+    assert evaluate(job(url='javascript:alert(1)')).classification=='HARD_NO'
