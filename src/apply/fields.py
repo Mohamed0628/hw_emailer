@@ -41,6 +41,7 @@ INVENTORY_JS = r"""() => {
  const nodes=Array.from(document.querySelectorAll('input,textarea,select,[role="combobox"],[role="checkbox"],[role="radiogroup"],[contenteditable="true"]'));
  const fields=[]; const radios=new Set();
  nodes.forEach((el,index)=>{
+   if(el.closest('[role="combobox"]') && el.getAttribute('role')!=='combobox') return;
    const type=(el.type||el.getAttribute('role')||el.tagName).toLowerCase();
    if(['hidden','submit','button','reset'].includes(type)||el.disabled) return;
    if(!visible(el)&&type!=='file') return;
@@ -57,8 +58,10 @@ INVENTORY_JS = r"""() => {
    const voluntary=/voluntary|self.identification/i.test(text(scope)) || scope?.getAttribute('data-voluntary')==='true';
    const options=el.tagName==='SELECT'?Array.from(el.options).filter(o=>o.value&&!o.disabled).map(o=>({label:text(o),value:o.value})):
      type==='radio'?members.map(n=>({label:label(n),value:n.value})):[];
-   fields.push({index,type,tag:el.tagName,label:question,required:el.required||el.getAttribute('aria-required')==='true',
-     value:type==='radio'?(members.find(n=>n.checked)?.value||''):type==='checkbox'?el.checked:el.value||'',
+   const required=!!(el.required||el.getAttribute('aria-required')==='true'||el.querySelector?.('[required],[aria-required="true"]'));
+   const customValue=type==='combobox'?(el.getAttribute('aria-valuetext')||el.querySelector?.('input')?.value||''):'';
+   fields.push({index,type,tag:el.tagName,label:question,required,
+     value:type==='radio'?(members.find(n=>n.checked)?.value||''):type==='checkbox'?el.checked:type==='combobox'?customValue:el.value||'',
      options,voluntary,files:type==='file'?Array.from(el.files||[]).map(f=>f.name):[],
      custom:!['INPUT','TEXTAREA','SELECT'].includes(el.tagName)||!!el.getAttribute('role')});
  });
@@ -117,7 +120,130 @@ def audit_and_fill(page, profile: ApplicantProfile, *, fill: bool = True) -> For
             label = item['label'] or '<unlabeled field>'
             el = page.locator(f'[data-hw-field="{item["index"]}"]')
             if item['custom']:
-                result.unknown.append(label + " (unsupported custom widget)")
+                if item['type'] != 'combobox':
+                    if item['required']:
+                        result.unknown.append(label + " (unsupported custom widget)")
+                    continue
+                answer = resolve(label, profile, None, item['voluntary'])
+                if not answer.known or not isinstance(answer.value, str):
+                    if item['required']:
+                        result.unknown.append(label + ": " + answer.reason)
+                    continue
+                expected = str(answer.value).strip()
+                current = str(item.get('value') or '').strip()
+                if normalize(current) == normalize(expected):
+                    result.filled.append(label)
+                    continue
+                if not fill:
+                    if item['required']:
+                        result.unknown.append(label + ": custom widget value not verified")
+                    continue
+                try:
+                    el.click()
+                    page.keyboard.type(expected)
+                    option = page.get_by_role('option', name=re.compile(r'^' + re.escape(expected) + r'
+            if item['type'] == 'file':
+                if not _resume_label(label):
+                    if item['required']:
+                        result.unknown.append(label + " (unrecognized upload purpose)")
+                    continue
+                if fill and profile.resume_path:
+                    el.set_input_files(profile.resume_path)
+                files = el.evaluate('(el)=>Array.from(el.files||[]).map(f=>f.name)')
+                from pathlib import Path
+                result.resume_uploaded = bool(profile.resume_path and files == [Path(profile.resume_path).name])
+                if not result.resume_uploaded:
+                    result.required.append(label)
+                continue
+            answer = resolve(label, profile, [o['label'] for o in item['options']] or None, item['voluntary'])
+            if not answer.known:
+                # Blank optional questions may be left unanswered. Required or
+                # prefilled unknown controls still require review.
+                if item['required'] or item['value']:
+                    result.unknown.append(label + ': ' + answer.reason)
+                continue
+            value = answer.value
+            if item['type'] == 'checkbox':
+                if not isinstance(value, bool):
+                    result.unknown.append(label + ': checkbox needs explicit true/false')
+                    continue
+                if fill:
+                    el.set_checked(value)
+                matches = el.is_checked() == value
+            elif item['type'] == 'radio':
+                option = next(o for o in item['options'] if o['label'] == value)
+                if fill:
+                    group = el.get_attribute('name')
+                    candidates = page.locator('input[type="radio"]')
+                    for i in range(candidates.count()):
+                        candidate = candidates.nth(i)
+                        if candidate.get_attribute('name') == group and candidate.get_attribute('value') == option['value']:
+                            candidate.check()
+                matches = page.evaluate(INVENTORY_JS)[result.fields.index(item)]['value'] == option['value']
+            elif item['tag'] == 'SELECT':
+                option = next(o for o in item['options'] if o['label'] == value)
+                if fill:
+                    el.select_option(value=option['value'])
+                matches = el.input_value() == option['value']
+            else:
+                if fill:
+                    el.fill(str(value))
+                matches = el.input_value().strip() == str(value).strip()
+            if not matches:
+                result.blockers.append(label + ': value not verified')
+            else:
+                result.filled.append(label)
+        # A fresh snapshot catches conditional fields after answers are filled.
+        after = page.evaluate(INVENTORY_JS)
+        signature = lambda xs: [(x['label'],x['type'],x['required'],x['options']) for x in xs]
+        if signature(after) != signature(result.fields):
+            result.blockers.append('form changed after filling; inspect again')
+        result.fingerprint = hashlib.sha256(json.dumps(after, sort_keys=True).encode()).hexdigest()
+        for x in after:
+            if x['required'] and not (x['value'] or x['files']):
+                result.required.append(x['label'] or '<unlabeled required field>')
+        result.complete = True
+    except Exception as exc:
+        # Never interpret a selector or script failure as a simple form.
+        result.blockers.append('form inspection failed: ' + type(exc).__name__)
+    return result
+
+
+def find_submit_button(page):
+    # "Apply now" can navigate to another step and is not a confirmed submit action.
+    loc = page.get_by_role('button', name=re.compile(r'^(submit application|send application|submit)$', re.I))
+    candidates = [loc.nth(i) for i in range(loc.count()) if loc.nth(i).is_visible() and loc.nth(i).is_enabled()]
+    return candidates[0] if len(candidates) == 1 else None
+
+
+def fill_text_fields(page, profile):
+    return audit_and_fill(page, profile).filled
+
+
+def find_unfilled_required(page):
+    return [x['label'] for x in page.evaluate(INVENTORY_JS) if x['required'] and not(x['value'] or x['files'])]
+
+
+def fill_cover_letter(page, text):
+    loc = page.get_by_label(re.compile(r'^cover letter\s*\*?$', re.I))
+    if loc.count() == 1:
+        loc.fill(text)
+        return True
+    return False
+, re.I))
+                    visible = [option.nth(i) for i in range(option.count()) if option.nth(i).is_visible()]
+                    if len(visible) != 1:
+                        result.unknown.append(label + ": no unique exact custom option")
+                        continue
+                    visible[0].click()
+                    refreshed = page.evaluate(INVENTORY_JS)
+                    updated = next((x for x in refreshed if x['index'] == item['index']), None)
+                    if not updated or normalize(str(updated.get('value') or '')) != normalize(expected):
+                        result.blockers.append(label + ": custom widget value not verified")
+                    else:
+                        result.filled.append(label)
+                except Exception as exc:
+                    result.blockers.append(label + ": custom widget fill failed: " + type(exc).__name__)
                 continue
             if item['type'] == 'file':
                 if not _resume_label(label):
