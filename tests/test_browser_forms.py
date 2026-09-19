@@ -201,3 +201,10 @@ def test_exact_known_custom_combobox_can_be_filled(form):
     assert 'School' in result.filled
     assert not any('School' in s for s in result.unknown)
     assert not any('School' in s for s in result.blockers)
+
+
+def test_cookie_consent_text_is_not_application_attestation(form):
+    page,profile=form
+    render(page,'<p>By clicking Accept, you agree to the use of cookies.</p>')
+    result=audit_and_fill(page,profile)
+    assert not any('cookies' in s.lower() for s in result.blockers)
