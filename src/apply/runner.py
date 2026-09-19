@@ -58,10 +58,31 @@ def fill_application(page, job, applicator, profile) -> FillOutcome:
         return outcome
     try:
         page.goto(url, wait_until='domcontentloaded', timeout=30000)
-        page.wait_for_selector('input,textarea,select', timeout=8000)
     except Exception as exc:
+        # Some ATS pages finish rendering useful DOM after the navigation
+        # deadline. If we are still on the trusted target ATS, inspect what
+        # actually loaded before classifying the job as a hard failure.
+        if trusted_url(page.url) and detect_ats(page.url) == applicator.ats:
+            inspected = inspect_application(page, job, applicator, profile, fill=True)
+            if inspected.closed or inspected.inventory_complete or inspected.blockers:
+                return inspected
         outcome.error = 'navigation/form loading failed: ' + type(exc).__name__
         return outcome
+
+    if fields.looks_closed(page):
+        outcome.closed = True
+        return outcome
+
+    try:
+        page.wait_for_selector(
+            'input,textarea,select,[role="combobox"],[role="checkbox"],[role="radiogroup"]',
+            timeout=12000,
+        )
+    except Exception:
+        # Let the normal inventory explain the page (closed, custom/manual,
+        # no controls, redirect) instead of turning every selector timeout into
+        # a generic navigation failure.
+        return inspect_application(page, job, applicator, profile, fill=True)
     return inspect_application(page, job, applicator, profile, fill=True)
 
 
