@@ -10,8 +10,7 @@ from filelock import Timeout
 
 from .. import config
 from ..evaluation import evaluate_jobs
-from ..alert_store import jobs_from_seen_state, load_alert_jobs, merge_alert_jobs
-from ..dedup import load_state
+from ..alert_store import load_alert_jobs
 from ..main import collect_jobs
 from ..models import Job
 from ..resumes import load_resumes
@@ -40,7 +39,7 @@ def main(argv=None) -> int:
     source = parser.add_mutually_exclusive_group()
     source.add_argument('--jobs-json', type=Path, help='local array of normalized job postings (offline fixtures or saved jobs)')
     source.add_argument('--from-alerts', action='store_true',
-                        help='use jobs previously surfaced by hw_emailer; includes legacy seen-state backfill')
+                        help='use full normalized jobs persisted by hw_emailer alerts; legacy title-only history is excluded')
     parser.add_argument('--dry-run', action='store_true', help='evaluate only; no browser, notification, or tracker writes')
     parser.add_argument('--prepare-only', action='store_true', help='fill recognized forms; never click Submit')
     parser.add_argument('--mode', type=parse_mode, choices=list(Mode))
@@ -69,11 +68,15 @@ def main(argv=None) -> int:
         if args.jobs_json:
             jobs = [Job(**j) for j in json.loads(args.jobs_json.read_text())]
         elif args.from_alerts:
-            stored = load_alert_jobs(config.alert_jobs_path())
-            legacy = jobs_from_seen_state(load_state(config.state_path()))
-            jobs = merge_alert_jobs(legacy, stored)
+            # Only full normalized alert records are eligible for the application
+            # pipeline. Legacy seen_jobs history lacks descriptions and other
+            # context needed for hardware scoring/resume selection, so merging it
+            # here creates false 0-fit results and unsafe browser work.
+            jobs = load_alert_jobs(config.alert_jobs_path())
             if not jobs:
-                raise ValueError('No prior alert jobs found; run the notifier first')
+                raise ValueError(
+                    'No full alert jobs found; run the notifier to populate data/alert_jobs.json'
+                )
             # Alert records are the source of truth for navigation. They already
             # contain the exact URL discovered by hw_emailer, so application runs
             # must not reconstruct/verify every posting through an ATS API first.
