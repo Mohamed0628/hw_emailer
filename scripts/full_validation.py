@@ -93,12 +93,11 @@ def run_stream(
 
 def alert_jobs():
     from src import config
-    from src.alert_store import jobs_from_seen_state, load_alert_jobs, merge_alert_jobs
-    from src.dedup import load_state
+    from src.alert_store import load_alert_jobs
 
-    stored = load_alert_jobs(config.alert_jobs_path())
-    legacy = jobs_from_seen_state(load_state(config.state_path()))
-    return merge_alert_jobs(legacy, stored)
+    # Validate the same queue the application runner uses: full normalized
+    # alert records only. Legacy seen-state history is intentionally excluded.
+    return load_alert_jobs(config.alert_jobs_path())
 
 
 def alert_count() -> int:
