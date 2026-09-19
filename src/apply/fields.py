@@ -85,6 +85,17 @@ def _resume_label(label: str) -> bool:
     return normalize(label) in {"resume", "cv", "resume/cv", "resume / cv", "attach resume", "upload resume", "resume cv"}
 
 
+def _consequential_optional(label: str) -> bool:
+    """Optional questions that still require an explicit configured answer/review."""
+    return bool(re.search(
+        r"(?i)\b(?:sponsor|work\s+author|citizen|citizenship|country|clearance|"
+        r"background|relocat|salary|compensation|hourly\s+rate|availability|"
+        r"start\s+date|graduat|gpa|reference|consent|certif|government\s+id|"
+        r"passport|driver'?s?\s+license)\b",
+        label or "",
+    ))
+
+
 def blockers(page, profile: ApplicantProfile) -> list[str]:
     result = []
     if page.locator('iframe[src*="recaptcha"],iframe[src*="hcaptcha"],iframe[src*="challenges.cloudflare"],[data-sitekey]').count():
@@ -124,13 +135,13 @@ def audit_and_fill(page, profile: ApplicantProfile, *, fill: bool = True) -> For
             el = page.locator(f'[data-hw-field="{item["index"]}"]')
             if item['custom']:
                 if item['type'] != 'combobox':
-                    if item['required']:
+                    if item['required'] or _consequential_optional(label):
                         result.unknown.append(label + " (unsupported custom widget)")
                     continue
                 answer = resolve(label, profile, None, item['voluntary'])
                 if not answer.known or not isinstance(answer.value, str):
-                    if item['required']:
-                        result.unknown.append(label + ": " + answer.reason)
+                    if item['required'] or _consequential_optional(label):
+                        result.unknown.append(label + " (unsupported custom widget): " + answer.reason)
                     continue
                 expected = str(answer.value).strip()
                 current = str(item.get('value') or '').strip()
@@ -173,7 +184,7 @@ def audit_and_fill(page, profile: ApplicantProfile, *, fill: bool = True) -> For
                 continue
             if item['type'] == 'file':
                 if not _resume_label(label):
-                    if item['required']:
+                    if item['required'] or _consequential_optional(label):
                         result.unknown.append(label + " (unrecognized upload purpose)")
                     continue
                 if fill and profile.resume_path:
@@ -188,7 +199,7 @@ def audit_and_fill(page, profile: ApplicantProfile, *, fill: bool = True) -> For
             if not answer.known:
                 # Blank optional questions may be left unanswered. Required or
                 # prefilled unknown controls still require review.
-                if item['required'] or item['value']:
+                if item['required'] or item['value'] or _consequential_optional(label):
                     result.unknown.append(label + ': ' + answer.reason)
                 continue
             value = answer.value
