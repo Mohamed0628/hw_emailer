@@ -1,4 +1,4 @@
-from src.alert_store import jobs_from_seen_state, load_alert_jobs, merge_alert_jobs, save_alert_jobs
+from src.alert_store import application_alert_jobs, jobs_from_seen_state, load_alert_jobs, merge_alert_jobs, save_alert_jobs
 from src.models import Job
 
 
@@ -38,3 +38,27 @@ def test_seen_state_backfills_legacy_email_alerts():
     assert jobs[0].company == "Legacy Co"
     assert jobs[0].source == "alert-history"
     assert jobs[0].requisition_id == "123"
+
+
+def test_application_alert_jobs_excludes_legacy_and_descriptionless_records():
+    rich = Job(
+        company="Rich Co",
+        title="RF Hardware Engineer",
+        url="https://jobs.lever.co/rich/1",
+        description="Design RF hardware and PCBs.",
+        source="lever",
+    )
+    legacy = Job(
+        company="Legacy Co",
+        title="Electrical Engineer",
+        url="https://example.com/legacy",
+        description="Old reconstructed text",
+        source="alert-history",
+    )
+    no_description = Job(
+        company="Thin Co",
+        title="Hardware Engineer",
+        url="https://jobs.lever.co/thin/2",
+        source="lever",
+    )
+    assert application_alert_jobs([legacy, no_description, rich]) == [rich]
