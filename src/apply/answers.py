@@ -31,6 +31,31 @@ DEMOGRAPHIC_OPTIONS = {
 }
 
 
+def _date_parts(value: str) -> tuple[str, str]:
+    """Return (month name, year) from explicit profile date text when possible."""
+    text = (value or "").strip()
+    if not text:
+        return "", ""
+    months = {
+        "01": "January", "02": "February", "03": "March", "04": "April",
+        "05": "May", "06": "June", "07": "July", "08": "August",
+        "09": "September", "10": "October", "11": "November", "12": "December",
+    }
+    iso = re.fullmatch(r"(\d{4})-(\d{2})(?:-\d{2})?", text)
+    if iso:
+        return months.get(iso.group(2), ""), iso.group(1)
+    year = re.search(r"\b(20\d{2})\b", text)
+    month = next((name for name in months.values() if re.search(r"\b" + name + r"\b", text, re.I)), "")
+    return month, year.group(1) if year else ""
+
+
+def _exact_option(value: str, options: list[str] | None, reason: str) -> Answer:
+    if not options:
+        return Answer(True, value, reason)
+    matches = [o for o in options if normalize(o) == normalize(value)]
+    return Answer(True, matches[0], reason) if len(matches) == 1 else Answer(False, reason="candidate value not present as a unique option")
+
+
 def resolve(label: str, profile: ApplicantProfile, options: list[str] | None = None,
             voluntary: bool = False) -> Answer:
     key = normalize(label)
@@ -49,6 +74,7 @@ def resolve(label: str, profile: ApplicantProfile, options: list[str] | None = N
         matches = [o for o in options or [] if normalize(o) in allowed]
         return Answer(True, matches[0], "configured voluntary demographic") if len(matches) == 1 else Answer(False, reason="demographic option not an exact supported match")
     first, _, last = profile.full_name.partition(" ")
+    grad_month, grad_year = _date_parts(profile.graduation_date)
     values = {
         "first name": first, "given name": first, "last name": last, "family name": last,
         "full name": profile.full_name, "name": profile.full_name,
@@ -59,12 +85,31 @@ def resolve(label: str, profile: ApplicantProfile, options: list[str] | None = N
         "website": profile.website, "portfolio": profile.website,
         "school": profile.school, "university": profile.school,
         "current location": profile.current_location, "current city": profile.current_location,
-        "gpa": profile.gpa,
+        "location (city)": profile.current_location, "location city": profile.current_location,
+        "gpa": profile.gpa, "current gpa": profile.gpa, "cumulative gpa": profile.gpa,
+        "what is your current gpa": profile.gpa, "please enter your cumulative gpa": profile.gpa,
+        "graduation date": profile.graduation_date,
+        "anticipated graduation date": profile.graduation_date,
+        "expected graduation date": profile.graduation_date,
+        "graduation year": grad_year, "end date year": grad_year,
+        "what year do you intend to complete your degree": grad_year,
+        "what year will you graduate": grad_year,
+        "end date month": grad_month,
+        "earliest available start date": profile.available_start_date or "",
+        "what is your earliest available start date": profile.available_start_date or "",
     }
+
+    sponsorship_keys = {
+        "will you now or in the future require sponsorship for employment in the us",
+        "will you now or in the future require visa sponsorship",
+        "will you, at any point, require employer sponsorship to work in the united states",
+        "will you require immigration sponsorship to begin working for imc examples of sponsorship would include (but is not limited to) f-1 opt, h-1b, h-4 ead, l-1, l-2, tn, o-1, j-1, e-1/e-2, and e-3",
+        "will you require immigration sponsorship in the future to continue working for imc examples of sponsorship would include (but is not limited to) f-1 opt, h-1b, h-4 ead, l-1, l-2, tn, o-1, j-1, e-1/e-2, and e-3",
+    }
+    if key in sponsorship_keys and profile.requires_sponsorship is not None:
+        return _exact_option("Yes" if profile.requires_sponsorship else "No", options, "configured sponsorship answer")
+
     value = values.get(key)
     if not value:
         return Answer(False)
-    if options:
-        matches = [o for o in options if normalize(o) == normalize(value)]
-        return Answer(True, matches[0], "candidate field") if len(matches) == 1 else Answer(False, reason="candidate value not present in options")
-    return Answer(True, value, "candidate field")
+    return _exact_option(str(value), options, "candidate field")
