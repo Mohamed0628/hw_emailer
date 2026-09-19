@@ -14,9 +14,9 @@ DEFENSE_MANUAL_REASON = "Application: Manual — defense/government-clearance re
 # Explicit company-level exclusions. Keep this deliberately conservative and
 # editable; job-text signals below catch defense/clearance work at other firms.
 DEFENSE_COMPANIES = {
-    "anduril", "bae systems", "booz allen hamilton", "collins aerospace",
+    "anduril", "bae systems", "blue origin", "booz allen hamilton", "collins aerospace",
     "general dynamics", "hermeus", "l3harris", "leidos", "lockheed martin",
-    "northrop grumman", "palantir", "raytheon", "rtx", "shield ai",
+    "northrop grumman", "palantir", "radiant industries", "raytheon", "rocket lab",\n    "rtx", "shield ai", "spacex",
 }
 
 _PATTERNS = tuple(re.compile(p, re.I) for p in (
