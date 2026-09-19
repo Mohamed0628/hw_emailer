@@ -77,6 +77,14 @@ class ApplicationEngine:
             if cover:
                 profile = profile.model_copy(update={'confirmed_answers': {**profile.confirmed_answers, 'Cover letter': cover}})
             outcome = runner.fill_application(page, job, adapter, profile)
+            # PREPARE_ONLY must rehearse the final pre-submit inspection too.
+            # A second inventory catches delayed iframes/widgets/conditional fields
+            # that can appear after the initial fill.
+            if self.mode == Mode.PREPARE_ONLY and not outcome.closed and not outcome.error:
+                first = outcome
+                outcome = runner.inspect_application(page, job, adapter, profile)
+                if first.form_fingerprint and outcome.form_fingerprint and first.form_fingerprint != outcome.form_fingerprint:
+                    outcome.blockers.append('form changed after initial preparation; manual inspection required')
             if reviewed or self.mode == Mode.REVIEW_ALL:
                 reviewed = bool(review_callback and review_callback(job, outcome))
                 # Re-inventory after the person has inspected the browser.
