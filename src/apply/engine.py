@@ -13,6 +13,7 @@ from . import applog, runner
 from .base import FillOutcome
 from .policy import Mode, decide, settings
 from .registry import get_applicator
+from .defense_gate import DEFENSE_MANUAL_REASON, is_defense_or_clearance_job
 
 
 class ApplicationEngine:
@@ -44,6 +45,12 @@ class ApplicationEngine:
                 applog.record(state, job, status, WORKDAY_MANUAL_REASON)
                 applog.save(state)
                 return status
+            if is_defense_or_clearance_job(job):
+                # Keep these jobs in discovery/scoring, but never open/fill/submit
+                # them through browser automation.
+                applog.record(state, job, 'needs_input', DEFENSE_MANUAL_REASON)
+                applog.save(state)
+                return 'needs_input'
             adapter = get_applicator(job)
             job.application_url = adapter.application_url(job)
             job.ats = adapter.ats
