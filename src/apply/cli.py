@@ -12,7 +12,6 @@ from .. import config
 from ..evaluation import evaluate_jobs
 from ..alert_store import jobs_from_seen_state, load_alert_jobs, merge_alert_jobs
 from ..dedup import load_state
-from ..job_hydration import hydrate_job
 from ..main import collect_jobs
 from ..models import Job
 from ..resumes import load_resumes
@@ -75,17 +74,14 @@ def main(argv=None) -> int:
             jobs = merge_alert_jobs(legacy, stored)
             if not jobs:
                 raise ValueError('No prior alert jobs found; run the notifier first')
-            hydrated = []
-            for candidate in jobs:
-                result = hydrate_job(candidate)
-                if result.status in {'verified', 'manual'}:
-                    hydrated.append(result.job)
-                else:
-                    # Temporary verification failures are not closed jobs and must
-                    # never be scored/applied from incomplete legacy metadata.
-                    print(json.dumps({'job_id': candidate.job_id, 'company': candidate.company,
-                                      'status': result.status, 'reason': result.reason}))
-            jobs = hydrated
+            # Alert records are the source of truth for navigation. They already
+            # contain the exact URL discovered by hw_emailer, so application runs
+            # must not reconstruct/verify every posting through an ATS API first.
+            # The browser will detect a genuinely closed posting at that exact URL.
+            if args.review_job:
+                jobs = [j for j in jobs if j.job_id == args.review_job]
+                if not jobs:
+                    raise ValueError(f'Alert job not found: {args.review_job}')
         else:
             jobs = collect_jobs()
         evaluated = evaluate_jobs(jobs, resumes)
@@ -93,7 +89,7 @@ def main(argv=None) -> int:
             evaluated = [j for j in evaluated if args.company.casefold() in j.company.casefold()]
         if args.category:
             evaluated = [j for j in evaluated if j.category == args.category]
-        if args.review_job:
+        if args.review_job and not args.from_alerts:
             evaluated = [j for j in evaluated if j.job_id == args.review_job]
         if args.dry_run:
             for j in evaluated[:limit]:
