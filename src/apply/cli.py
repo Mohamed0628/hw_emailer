@@ -10,6 +10,8 @@ from filelock import Timeout
 
 from .. import config
 from ..evaluation import evaluate_jobs
+from ..alert_store import jobs_from_seen_state, load_alert_jobs, merge_alert_jobs
+from ..dedup import load_state
 from ..main import collect_jobs
 from ..models import Job
 from ..resumes import load_resumes
@@ -35,7 +37,10 @@ def _review(job, outcome):
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description='Local hardware applications; never run submission in CI')
     parser.add_argument('--profile', type=Path, help='private candidate YAML')
-    parser.add_argument('--jobs-json', type=Path, help='local array of normalized job postings (offline fixtures or saved jobs)')
+    source = parser.add_mutually_exclusive_group()
+    source.add_argument('--jobs-json', type=Path, help='local array of normalized job postings (offline fixtures or saved jobs)')
+    source.add_argument('--from-alerts', action='store_true',
+                        help='use jobs previously surfaced by hw_emailer; includes legacy seen-state backfill')
     parser.add_argument('--dry-run', action='store_true', help='evaluate only; no browser, notification, or tracker writes')
     parser.add_argument('--prepare-only', action='store_true', help='fill recognized forms; never click Submit')
     parser.add_argument('--mode', type=parse_mode, choices=list(Mode))
@@ -61,7 +66,16 @@ def main(argv=None) -> int:
         profile.approved_cover_letters = {}
     try:
         resumes = load_resumes(profile)
-        jobs = [Job(**j) for j in json.loads(args.jobs_json.read_text())] if args.jobs_json else collect_jobs()
+        if args.jobs_json:
+            jobs = [Job(**j) for j in json.loads(args.jobs_json.read_text())]
+        elif args.from_alerts:
+            stored = load_alert_jobs(config.alert_jobs_path())
+            legacy = jobs_from_seen_state(load_state(config.state_path()))
+            jobs = merge_alert_jobs(legacy, stored)
+            if not jobs:
+                raise ValueError('No prior alert jobs found; run the notifier first')
+        else:
+            jobs = collect_jobs()
         evaluated = evaluate_jobs(jobs, resumes)
         if args.company:
             evaluated = [j for j in evaluated if args.company.casefold() in j.company.casefold()]
