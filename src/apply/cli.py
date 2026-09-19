@@ -10,7 +10,7 @@ from filelock import Timeout
 
 from .. import config
 from ..evaluation import evaluate_jobs
-from ..alert_store import load_alert_jobs
+from ..alert_store import application_alert_jobs, load_alert_jobs
 from ..main import collect_jobs
 from ..models import Job
 from ..resumes import load_resumes
@@ -72,10 +72,10 @@ def main(argv=None) -> int:
             # pipeline. Legacy seen_jobs history lacks descriptions and other
             # context needed for hardware scoring/resume selection, so merging it
             # here creates false 0-fit results and unsafe browser work.
-            jobs = load_alert_jobs(config.alert_jobs_path())
+            jobs = application_alert_jobs(load_alert_jobs(config.alert_jobs_path()))
             if not jobs:
                 raise ValueError(
-                    'No full alert jobs found; run the notifier to populate data/alert_jobs.json'
+                    'No application-ready alert jobs found; run the notifier to populate full descriptions in data/alert_jobs.json'
                 )
             # Alert records are the source of truth for navigation. They already
             # contain the exact URL discovered by hw_emailer, so application runs
