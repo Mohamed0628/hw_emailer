@@ -11,12 +11,25 @@ from ..models import Job
 
 DEFENSE_MANUAL_REASON = "Application: Manual — defense/government-clearance related role"
 
-# Explicit company-level exclusions. Keep this deliberately conservative and
-# editable; job-text signals below catch defense/clearance work at other firms.
 DEFENSE_COMPANIES = {
-    "anduril", "bae systems", "blue origin", "booz allen hamilton", "collins aerospace",
-    "general dynamics", "hermeus", "l3harris", "leidos", "lockheed martin",
-    "northrop grumman", "palantir", "radiant industries", "raytheon", "rocket lab",\n    "rtx", "shield ai", "spacex",
+    "anduril",
+    "bae systems",
+    "blue origin",
+    "booz allen hamilton",
+    "collins aerospace",
+    "general dynamics",
+    "hermeus",
+    "l3harris",
+    "leidos",
+    "lockheed martin",
+    "northrop grumman",
+    "palantir",
+    "radiant industries",
+    "raytheon",
+    "rocket lab",
+    "rtx",
+    "shield ai",
+    "spacex",
 }
 
 _PATTERNS = tuple(re.compile(p, re.I) for p in (
