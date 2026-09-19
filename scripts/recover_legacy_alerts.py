@@ -15,6 +15,11 @@ import json
 from pathlib import Path
 import time
 from urllib.parse import urlsplit
+import sys
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from src import config
 from src.alert_store import jobs_from_seen_state, load_alert_jobs, merge_alert_jobs, save_alert_jobs
