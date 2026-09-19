@@ -12,6 +12,7 @@ from .. import config
 from ..evaluation import evaluate_jobs
 from ..alert_store import jobs_from_seen_state, load_alert_jobs, merge_alert_jobs
 from ..dedup import load_state
+from ..job_hydration import hydrate_job
 from ..main import collect_jobs
 from ..models import Job
 from ..resumes import load_resumes
@@ -74,6 +75,15 @@ def main(argv=None) -> int:
             jobs = merge_alert_jobs(legacy, stored)
             if not jobs:
                 raise ValueError('No prior alert jobs found; run the notifier first')
+            hydrated = []
+            for candidate in jobs:
+                result = hydrate_job(candidate)
+                if result.status in {'verified', 'manual'}:
+                    hydrated.append(result.job)
+                else:
+                    print(json.dumps({'job_id': candidate.job_id, 'company': candidate.company,
+                                      'status': result.status, 'reason': result.reason}))
+            jobs = hydrated
         else:
             jobs = collect_jobs()
         evaluated = evaluate_jobs(jobs, resumes)
