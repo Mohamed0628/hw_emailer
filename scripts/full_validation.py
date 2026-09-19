@@ -259,6 +259,7 @@ def main() -> int:
             "src.apply",
             "--from-alerts",
             "--prepare-only",
+            "--retry-failed",
             "--limit",
             str(max(total, 1)),
         ],
