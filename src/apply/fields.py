@@ -141,7 +141,33 @@ def audit_and_fill(page, profile: ApplicantProfile, *, fill: bool = True) -> For
                 try:
                     el.click()
                     page.keyboard.type(expected)
-                    option = page.get_by_role('option', name=re.compile(r'^' + re.escape(expected) + r'
+                    option = page.get_by_role(
+                        'option',
+                        name=re.compile(r'^' + re.escape(expected) + r'$', re.I),
+                    )
+                    visible = [
+                        option.nth(i)
+                        for i in range(option.count())
+                        if option.nth(i).is_visible()
+                    ]
+                    if len(visible) != 1:
+                        result.unknown.append(label + ": no unique exact custom option")
+                        continue
+                    visible[0].click()
+                    refreshed = page.evaluate(INVENTORY_JS)
+                    updated = next(
+                        (x for x in refreshed if x['index'] == item['index']),
+                        None,
+                    )
+                    if not updated or normalize(str(updated.get('value') or '')) != normalize(expected):
+                        result.blockers.append(label + ": custom widget value not verified")
+                    else:
+                        result.filled.append(label)
+                except Exception as exc:
+                    result.blockers.append(
+                        label + ": custom widget fill failed: " + type(exc).__name__
+                    )
+                continue
             if item['type'] == 'file':
                 if not _resume_label(label):
                     if item['required']:
