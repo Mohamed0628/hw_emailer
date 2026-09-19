@@ -34,3 +34,10 @@ def test_normal_hardware_job_is_not_blocked():
         url="https://example.com/job",
         description="Design mixed-signal PCBs for medical devices.",
     ))
+
+
+def test_expanded_defense_company_list_is_manual():
+    for company in ("Rocket Lab", "Blue Origin", "Radiant Industries", "SpaceX", "Shield AI"):
+        assert is_defense_or_clearance_job(
+            Job(company=company, title="Electrical Engineer", url="https://example.com/job")
+        )
