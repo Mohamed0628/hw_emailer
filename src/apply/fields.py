@@ -97,9 +97,12 @@ def blockers(page, profile: ApplicantProfile) -> list[str]:
     form_text = [page.inner_text('body')]  # SPAs may render forms without a <form> element
     for body in form_text:
         for match in re.finditer(r"(?i)by\s+(?:clicking|submitting|sending|applying|proceeding)[^.\n]*(?:agree|consent|certify|acknowledge)[^.\n]*", body):
-            answer = resolve(match.group(), profile)
+            text = match.group()
+            if re.search(r"(?i)\bcookies?\b", text):
+                continue
+            answer = resolve(text, profile)
             if not answer.known or answer.value is not True:
-                result.append("unconfigured submission attestation: " + match.group()[:240])
+                result.append("unconfigured submission attestation: " + text[:240])
     return result
 
 
