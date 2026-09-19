@@ -88,9 +88,9 @@ def _resume_label(label: str) -> bool:
 def _consequential_optional(label: str) -> bool:
     """Optional questions that still require an explicit configured answer/review."""
     return bool(re.search(
-        r"(?i)\b(?:sponsor|work\s+author|citizen|citizenship|country|clearance|"
-        r"background|relocat|salary|compensation|hourly\s+rate|availability|"
-        r"start\s+date|graduat|gpa|reference|consent|certif|government\s+id|"
+        r"(?i)\b(?:sponsor\w*|work\s+author\w*|citizen\w*|country|clearance\w*|"
+        r"background\w*|relocat\w*|salary|compensation|hourly\s+rate|availability|"
+        r"start\s+date|graduat\w*|gpa|reference\w*|consent\w*|certif\w*|government\s+id|"
         r"passport|driver'?s?\s+license)\b",
         label or "",
     ))
