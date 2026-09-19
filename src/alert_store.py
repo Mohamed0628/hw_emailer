@@ -77,3 +77,16 @@ def jobs_from_seen_state(state: dict[str, dict]) -> list[Job]:
                 source="alert-history",
             ))
     return prefer_direct(out)
+
+
+def application_alert_jobs(jobs: list[Job]) -> list[Job]:
+    """Return alert records with enough context for guarded application work.
+
+    Legacy seen-state backfills and descriptionless records stay available for
+    history/email purposes, but must not enter resume selection or browser
+    automation.
+    """
+    return prefer_direct([
+        job for job in jobs
+        if job.source != "alert-history" and bool((job.description or "").strip())
+    ])
