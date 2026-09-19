@@ -165,3 +165,39 @@ def test_redirect_to_different_requisition_never_uploads(form):
     result=inspect_application(page,job,LeverApplicator(),profile,fill=True)
     assert any('requisition' in b for b in result.blockers)
     assert page.locator('input[type="file"]').evaluate('(el)=>el.files.length')==0
+
+
+def test_optional_unknown_text_field_can_remain_blank(form):
+    page,profile=form
+    render(page,'<label>Preferred First Name<input></label>')
+    result=audit_and_fill(page,profile)
+    assert not any('Preferred First Name' in s for s in result.unknown)
+
+
+def test_optional_unrecognized_upload_can_remain_blank(form):
+    page,profile=form
+    render(page,'<label>Portfolio attachment<input type="file"></label>')
+    result=audit_and_fill(page,profile)
+    assert not any('Portfolio attachment' in s for s in result.unknown)
+
+
+def test_exact_known_custom_combobox_can_be_filled(form):
+    page,profile=form
+    profile.school='University of Minnesota'
+    page.set_content('''
+      <form>
+        <label>Full name<input name="name" required></label>
+        <label>Email<input name="email" type="email" required></label>
+        <label>Resume<input name="resume" type="file" required></label>
+        <div role="combobox" aria-label="School" aria-required="true"><input required></div>
+        <div role="option"
+             onclick="document.querySelector('[role=combobox]').setAttribute('aria-valuetext','University of Minnesota')">
+          University of Minnesota
+        </div>
+        <button type="submit">Submit application</button>
+      </form>
+    ''')
+    result=audit_and_fill(page,profile)
+    assert 'School' in result.filled
+    assert not any('School' in s for s in result.unknown)
+    assert not any('School' in s for s in result.blockers)
