@@ -81,6 +81,8 @@ def main(argv=None) -> int:
                 if result.status in {'verified', 'manual'}:
                     hydrated.append(result.job)
                 else:
+                    # Temporary verification failures are not closed jobs and must
+                    # never be scored/applied from incomplete legacy metadata.
                     print(json.dumps({'job_id': candidate.job_id, 'company': candidate.company,
                                       'status': result.status, 'reason': result.reason}))
             jobs = hydrated
