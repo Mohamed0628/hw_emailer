@@ -240,7 +240,7 @@ def test_city_and_country_custom_comboboxes_use_configured_location(form):
         </div>
         <div role="combobox" aria-label="Location (City)" aria-required="true"><input required></div>
         <div role="option"
-             onclick="document.querySelector('[aria-label=\\'Location (City)\\']').setAttribute('aria-valuetext','Minneapolis')">
+             onclick="document.querySelectorAll('[role=combobox]')[1].setAttribute('aria-valuetext','Minneapolis')">
           Minneapolis, Minnesota, United States
         </div>
         <button type="submit">Submit application</button>
