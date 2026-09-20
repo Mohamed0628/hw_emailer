@@ -11,6 +11,7 @@ import json
 import os
 from dataclasses import dataclass, field
 from pathlib import Path
+from typing import Callable
 from urllib.parse import urlsplit
 
 from pydantic import BaseModel, Field
@@ -34,6 +35,7 @@ class MissingQuestion(BaseModel):
 
 
 class BrowserApplyResult(BaseModel):
+    ready_to_submit: bool = False
     submitted: bool = False
     confirmation: str = ""
     missing_questions: list[MissingQuestion] = Field(default_factory=list)
@@ -133,8 +135,31 @@ def _profile_payload(profile: ApplicantProfile) -> dict:
     }
 
 
-def _task(job: Job, profile: ApplicantProfile, resume_path: str, *, continuation: bool = False) -> str:
-    verb = "Continue" if continuation else "Apply"
+def _task(
+    job: Job,
+    profile: ApplicantProfile,
+    resume_path: str,
+    *,
+    phase: str,
+    continuation: bool = False,
+) -> str:
+    if phase == "submit":
+        return f"""
+FINAL SUBMISSION PHASE for this single job:
+Company: {job.company}
+Title: {job.title}
+Exact application URL: {job.application_url or job.url}
+Job ID: {job.job_id}
+
+The application was already filled in this same browser session. Re-check that you
+are still on this exact requisition and that no new required question appeared.
+If everything required is complete, click the FINAL submit control exactly once.
+Set submitted=true only after observing a new explicit confirmation that the
+application was received/submitted. If anything required is missing, do not submit;
+return it in missing_questions. Never invent candidate data.
+""".strip()
+
+    verb = "Continue filling" if continuation else "Fill"
     return f"""
 {verb} the single job application below on behalf of the candidate.
 
@@ -153,8 +178,9 @@ VERIFIED CANDIDATE DATA
 
 RULES
 1. Work only on this exact requisition. Do not search for or apply to any other job.
-2. Complete the application and SUBMIT it when every required answer is supported by
-   the verified candidate data above.
+2. Fill every supported required field, but DO NOT CLICK THE FINAL SUBMIT BUTTON in
+   this phase. When the form is fully ready for final submission, stop and return
+   ready_to_submit=true.
 3. Never invent employment history, education, dates, skills, citizenship, work
    authorization, sponsorship, salary expectations, legal attestations, addresses,
    demographic answers, or any other candidate fact.
@@ -164,13 +190,12 @@ RULES
 6. Optional marketing/source/referral questions may be left blank when the verified
    data does not contain an answer.
 7. If a required or consequential question cannot be answered from the verified data,
-   DO NOT GUESS and DO NOT SUBMIT. Return its exact visible question text and visible
-   options in missing_questions.
+   DO NOT GUESS. Return its exact visible question text and visible options in
+   missing_questions.
 8. If a CAPTCHA, login wall, or 2FA challenge is actually visible, stop and set
    captcha_or_login=true. Do not attempt to bypass it.
-9. Set submitted=true only after clicking the final submit control AND observing a new,
-   explicit confirmation that this application was received/submitted.
-10. If submission did not happen, submitted must be false and notes should say why.
+9. In this fill phase, submitted MUST remain false and the final submit control MUST
+   NOT be clicked.
 """.strip()
 
 
@@ -256,7 +281,12 @@ async def _close_session(session) -> None:
             return
 
 
-async def _run(job: Job, profile: ApplicantProfile, resume_path: str) -> AgentOutcome:
+async def _run(
+    job: Job,
+    profile: ApplicantProfile,
+    resume_path: str,
+    before_submit: Callable[[], None] | None = None,
+) -> AgentOutcome:
     Agent, BrowserProfile, BrowserSession, ChatOpenAI = _imports()
     key = _api_key()
     cfg = _agent_settings()
@@ -284,23 +314,31 @@ async def _run(job: Job, profile: ApplicantProfile, resume_path: str) -> AgentOu
     learned: dict[str, str | bool] = {}
     current = profile
     continuation = False
+    phase = "fill"
     started = False
+    submit_checkpointed = False
+    interventions = 0
     try:
-        for _ in range(max_interventions + 1):
+        while interventions <= max_interventions:
             agent_kwargs = {
-                "task": _task(job, current, resume_path, continuation=continuation),
+                "task": _task(
+                    job,
+                    current,
+                    resume_path,
+                    phase=phase,
+                    continuation=continuation,
+                ),
                 "llm": llm,
                 "browser_session": session,
                 "output_model_schema": BrowserApplyResult,
                 "max_failures": 3,
                 "extend_system_message": (
                     "You are an application execution agent. Accuracy is more important than "
-                    "completion. Never fabricate candidate data. Submit only this exact job."
+                    "completion. Never fabricate candidate data. Work only on the exact job. "
+                    "During the fill phase, never click the final submit control."
                 ),
             }
-            # Do not spend LLM steps figuring out how to leave about:blank.
-            # browser-use executes initial_actions before the first model call.
-            if not continuation:
+            if not started:
                 agent_kwargs["initial_actions"] = [{
                     "navigate": {
                         "url": job.application_url or job.url,
@@ -314,6 +352,10 @@ async def _run(job: Job, profile: ApplicantProfile, resume_path: str) -> AgentOu
 
             if result.submitted:
                 confirmation = result.confirmation.strip() or result.notes.strip()
+                if phase != "submit" and not submit_checkpointed:
+                    raise AgentSubmissionUnknown(
+                        "agent reported submission before the durable submit checkpoint"
+                    )
                 return AgentOutcome(
                     "submitted",
                     confirmation or "agent observed explicit application submission confirmation",
@@ -327,12 +369,9 @@ async def _run(job: Job, profile: ApplicantProfile, resume_path: str) -> AgentOu
                     "then press Enter to continue (type skip to stop): ",
                 )
                 if answer.strip().casefold() == "skip":
-                    return AgentOutcome(
-                        "needs_input",
-                        "human challenge not completed",
-                        learned,
-                    )
+                    return AgentOutcome("needs_input", "human challenge not completed", learned)
                 continuation = True
+                interventions += 1
                 continue
 
             if result.missing_questions:
@@ -347,12 +386,29 @@ async def _run(job: Job, profile: ApplicantProfile, resume_path: str) -> AgentOu
                 current = current.model_copy(update={
                     "confirmed_answers": {**current.confirmed_answers, **learned}
                 })
+                # If a new conditional question appeared after the submit checkpoint,
+                # remain conservative: answer it in-place, but never remove the
+                # checkpoint because the browser is already in the final phase.
+                continuation = True
+                interventions += 1
+                continue
+
+            if phase == "fill" and result.ready_to_submit:
+                if before_submit:
+                    before_submit()
+                submit_checkpointed = True
+                phase = "submit"
                 continuation = True
                 continue
 
             return AgentOutcome(
                 "needs_input",
-                result.notes.strip() or "agent stopped without confirmed submission",
+                result.notes.strip()
+                or (
+                    "agent stopped before final submission"
+                    if phase == "fill"
+                    else "final submit phase ended without confirmation"
+                ),
                 learned,
             )
 
@@ -363,13 +419,15 @@ async def _run(job: Job, profile: ApplicantProfile, resume_path: str) -> AgentOu
         )
     except AgentPrerequisiteError:
         raise
+    except AgentSubmissionUnknown:
+        raise
     except Exception as exc:
-        if started:
+        if submit_checkpointed:
             raise AgentSubmissionUnknown(
-                f"agent/browser interrupted after live actions began: {type(exc).__name__}: {exc}"
+                f"agent/browser interrupted during final submit phase: {type(exc).__name__}: {exc}"
             ) from exc
         raise AgentPrerequisiteError(
-            f"agent/browser could not start: {type(exc).__name__}: {exc}"
+            f"agent/browser interrupted before final submit phase: {type(exc).__name__}: {exc}"
         ) from exc
     finally:
         await _close_session(session)
@@ -384,7 +442,15 @@ def require_ready(resume_path: str | Path) -> None:
     _imports()
 
 
-def apply(job: Job, profile: ApplicantProfile, resume_path: str | Path) -> AgentOutcome:
+def apply(
+    job: Job,
+    profile: ApplicantProfile,
+    resume_path: str | Path,
+    *,
+    before_submit: Callable[[], None] | None = None,
+) -> AgentOutcome:
     path = Path(resume_path)
     require_ready(path)
-    return asyncio.run(_run(job, profile, str(path.resolve())))
+    return asyncio.run(
+        _run(job, profile, str(path.resolve()), before_submit=before_submit)
+    )
