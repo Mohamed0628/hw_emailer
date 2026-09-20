@@ -89,6 +89,24 @@ class ApplicationEngine:
                 reviewed = bool(review_callback and review_callback(job, outcome))
                 # Re-inventory after the person has inspected the browser.
                 outcome = runner.inspect_application(page, job, adapter, profile)
+            # A real CAPTCHA cannot be safely automated, but it also should not
+            # permanently fail an otherwise-fillable application. In live modes,
+            # pause on the visible browser, let the user solve the challenge, then
+            # re-inspect and continue automatically.
+            if (
+                page is not None
+                and self.mode != Mode.PREPARE_ONLY
+                and any("CAPTCHA/anti-bot" in b for b in outcome.blockers)
+            ):
+                try:
+                    input(
+                        f"CAPTCHA detected for {job.company}. Solve it in the browser, "
+                        "then press Enter here to continue submission: "
+                    )
+                except EOFError:
+                    pass
+                outcome = runner.inspect_application(page, job, adapter, profile, fill=True)
+
             decision = decide(job, outcome, self.mode, profile, reviewed=reviewed)
             if decision.may_submit:
                 # Detect newly appearing questions, changed values and redirects immediately before click.
