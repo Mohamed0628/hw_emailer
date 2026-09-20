@@ -68,6 +68,33 @@ DEMOGRAPHIC_OPTIONS = {
 }
 
 
+def _state_from_location(value: str) -> str:
+    pieces = [p.strip() for p in (value or "").split(",") if p.strip()]
+    for piece in pieces[1:]:
+        token = piece.casefold().strip(".")
+        if token in _US_STATE_CODES:
+            return piece.upper()
+        if token in _US_STATE_NAMES:
+            return piece
+    return ""
+
+
+def _work_authorized(profile: ApplicantProfile) -> bool | None:
+    raw = normalize(profile.work_authorization)
+    if not raw:
+        return None
+    if raw in {"no", "not authorized", "not authorized to work in the us", "unauthorized"}:
+        return False
+    if (
+        raw in {"yes", "authorized", "authorized to work in the us", "authorized to work in the united states"}
+        or "citizen" in raw
+        or "permanent resident" in raw
+        or "green card" in raw
+    ):
+        return True
+    return None
+
+
 def _date_parts(value: str) -> tuple[str, str]:
     """Return (month name, year) from explicit profile date text when possible."""
     text = (value or "").strip()
@@ -113,6 +140,7 @@ def resolve(label: str, profile: ApplicantProfile, options: list[str] | None = N
     first, _, last = profile.full_name.partition(" ")
     grad_month, grad_year = _date_parts(profile.graduation_date)
     current_city, current_country = _location_parts(profile.current_location)
+    current_state = _state_from_location(profile.current_location)
     values = {
         "first name": first, "given name": first, "last name": last, "family name": last,
         "full name": profile.full_name, "name": profile.full_name,
@@ -124,7 +152,9 @@ def resolve(label: str, profile: ApplicantProfile, options: list[str] | None = N
         "school": profile.school, "university": profile.school,
         "current location": profile.current_location, "current city": current_city,
         "location (city)": current_city, "location city": current_city,
-        "city": current_city, "country": current_country, "country/region": current_country,
+        "city": current_city, "state": current_state, "state/province": current_state,
+        "state or province": current_state,
+        "country": current_country, "country/region": current_country,
         "country or region": current_country,
         "gpa": profile.gpa, "current gpa": profile.gpa, "cumulative gpa": profile.gpa,
         "what is your current gpa": profile.gpa, "please enter your cumulative gpa": profile.gpa,
@@ -138,6 +168,18 @@ def resolve(label: str, profile: ApplicantProfile, options: list[str] | None = N
         "earliest available start date": profile.available_start_date or "",
         "what is your earliest available start date": profile.available_start_date or "",
     }
+
+    if re.search(r"(?i)\\b(?:sponsor\\w*|sponsorship)\\b", label or "") and profile.requires_sponsorship is not None:
+        return _exact_option(
+            "Yes" if profile.requires_sponsorship else "No",
+            options,
+            "configured sponsorship answer",
+        )
+
+    if re.search(r"(?i)\\b(?:legally )?authorized to work\\b", label or ""):
+        authorized = _work_authorized(profile)
+        if authorized is not None:
+            return _exact_option("Yes" if authorized else "No", options, "configured work authorization")
 
     sponsorship_keys = {
         "will you now or in the future require sponsorship for employment in the us",
