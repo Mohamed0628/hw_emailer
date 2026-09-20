@@ -11,6 +11,7 @@ from pathlib import Path
 
 from .identity import prefer_direct, strong_keys
 from .models import Job
+from .application_targets import enrich_missing_target_location
 
 
 def load_alert_jobs(path: Path) -> list[Job]:
@@ -86,7 +87,9 @@ def application_alert_jobs(jobs: list[Job]) -> list[Job]:
     history/email purposes, but must not enter resume selection or browser
     automation.
     """
-    return prefer_direct([
-        job for job in jobs
+    eligible = [
+        enrich_missing_target_location(job)
+        for job in jobs
         if job.source != "alert-history" and bool((job.description or "").strip())
-    ])
+    ]
+    return prefer_direct(eligible)
