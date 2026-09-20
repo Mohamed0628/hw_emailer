@@ -2,7 +2,7 @@
 mode: AUTO_SAFE
 daily_limit: 5
 run_limit: 5
-minimum_resume_fit: 55
+minimum_resume_fit: 70
 minimum_resume_margin: 5
 require_description: true
 require_confirmed_start_date: true
