@@ -84,11 +84,24 @@ class ApplicationEngine:
                     applog.save(state)
                     return 'needs_input'
 
-                # Durable checkpoint before an autonomous agent is allowed to click.
-                applog.record(state, job, 'submitting', 'agentic browser started; exact job only')
-                applog.save(state)
+                def _before_agent_submit():
+                    # Called by the agent runner only after the form is filled and
+                    # immediately before the final-submit phase begins.
+                    applog.record(
+                        state,
+                        job,
+                        'submitting',
+                        'agentic form complete; entering final submit phase',
+                    )
+                    applog.save(state)
+
                 try:
-                    agent_result = agent_browser.apply(job, profile, spec.path)
+                    agent_result = agent_browser.apply(
+                        job,
+                        profile,
+                        spec.path,
+                        before_submit=_before_agent_submit,
+                    )
                 except agent_browser.AgentPrerequisiteError as exc:
                     applog.record(state, job, 'needs_input', str(exc))
                     applog.save(state)
