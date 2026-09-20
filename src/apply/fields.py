@@ -32,46 +32,99 @@ INVENTORY_JS = r"""() => {
    copy.querySelectorAll('input,textarea,select,button,[role="combobox"]').forEach(n=>n.remove());
    return text(copy);
  };
+ const metaLabel = el => {
+   const raw=(el.getAttribute('name')||el.id||'').trim();
+   if(!raw) return '';
+   const parts=raw.split(/[\[\].:_-]+/).filter(Boolean);
+   return (parts[parts.length-1]||raw).replace(/\s+/g,' ');
+ };
+ const containerFor = el => el.closest(
+   'fieldset,[role="radiogroup"],[class*="application-question"],[class*="question"],[class*="field"],[data-field]'
+ );
+ const containerQuestion = el => {
+   const box=containerFor(el);
+   if(!box) return '';
+   const labelled=(box.getAttribute('aria-labelledby')||'').split(/\s+/).filter(Boolean)
+     .map(id=>labelText(document.getElementById(id))).join(' ');
+   if(labelled) return labelled;
+   if(box.getAttribute('aria-label')) return box.getAttribute('aria-label');
+   const kids=Array.from(box.children||[]);
+   const candidate=kids.find(n =>
+     n.matches?.('legend,label,h1,h2,h3,h4,p,[class*="label"],[class*="question-title"],[class*="question-label"]')
+   );
+   return labelText(candidate);
+ };
  const label = el => {
    const ids=(el.getAttribute('aria-labelledby')||'').split(/\s+/).filter(Boolean);
    return ids.map(id=>labelText(document.getElementById(id))).join(' ') ||
-     Array.from(el.labels||[]).map(labelText).join(' ') || el.getAttribute('aria-label') ||
+     Array.from(el.labels||[]).map(labelText).join(' ') ||
+     el.getAttribute('aria-label') ||
      labelText(el.closest('label')) ||
-     labelText(el.closest('[class*="field"],[class*="question"],[data-field]')?.querySelector('legend,[class*="label"],[class*="question"],label,h1,h2,h3,h4,p')) ||
-     el.getAttribute('placeholder') || '';
+     containerQuestion(el) ||
+     el.getAttribute('placeholder') ||
+     metaLabel(el) || '';
  };
- const nodes=Array.from(document.querySelectorAll('input,textarea,select,[role="combobox"],[role="checkbox"],[role="radiogroup"],[contenteditable="true"]'));
- const fields=[]; const radios=new Set();
+ const nodes=Array.from(document.querySelectorAll(
+   'input,textarea,select,[role="combobox"],[role="checkbox"],[role="radiogroup"],[contenteditable="true"]'
+ ));
+ const fields=[]; const grouped=new Set();
  nodes.forEach((el,index)=>{
    if(el.closest('[role="combobox"]') && el.getAttribute('role')!=='combobox') return;
    const role=(el.getAttribute('role')||'').toLowerCase();
-   const type=(role||el.type||el.tagName).toLowerCase();
+   let type=(role||el.type||el.tagName).toLowerCase();
+   if(type==='radiogroup') return;
+   if(role==='checkbox' && el.tagName!=='INPUT') return;
    if(['hidden','submit','button','reset'].includes(type)||el.disabled) return;
    if(!visible(el)&&type!=='file') return;
-   el.setAttribute('data-hw-field',String(index));
-   const group=el.closest('fieldset');
-   let question=label(el);
+
    let members=[el];
+   let question=label(el);
+   let groupKey='';
+   const name=el.getAttribute('name')||'';
+
    if(type==='radio') {
-     if(!el.name) { question='Unlabeled radio group'; }
-     else {if(radios.has(el.name)) return;radios.add(el.name);members=nodes.filter(n=>n.type==='radio'&&n.name===el.name);}
-     const radioGroup=group||el.closest('[role="radiogroup"],[class*="question"],[class*="field"],[data-field]');
-     const labelled=(radioGroup?.getAttribute('aria-labelledby')||'').split(/\s+/).filter(Boolean)
-       .map(id=>labelText(document.getElementById(id))).join(' ');
-     question=text(group?.querySelector('legend')) || labelled || radioGroup?.getAttribute('aria-label') ||
-       labelText(radioGroup?.querySelector('legend,[class*="question-label"],[class*="field-label"],h1,h2,h3,h4,p')) ||
-       el.getAttribute('aria-label') || 'Unlabeled radio group';
+     const group=el.closest('fieldset,[role="radiogroup"],[class*="application-question"],[class*="question"],[data-field]');
+     if(name) members=nodes.filter(n=>n.type==='radio'&&n.name===name);
+     else if(group) members=Array.from(group.querySelectorAll('input[type="radio"]'));
+     groupKey='radio:'+(name||group?.getAttribute('aria-labelledby')||group?.getAttribute('aria-label')||question);
+     if(grouped.has(groupKey)) return;
+     grouped.add(groupKey);
+     question=containerQuestion(el)||question||'Unlabeled radio group';
+   } else if(type==='checkbox' && name) {
+     const same=nodes.filter(n=>n.type==='checkbox'&&n.name===name);
+     if(same.length>1) {
+       members=same;
+       type='checkboxgroup';
+       groupKey='checkbox:'+name;
+       if(grouped.has(groupKey)) return;
+       grouped.add(groupKey);
+       question=containerQuestion(el)||question||'Unlabeled checkbox group';
+     }
    }
+
+   el.setAttribute('data-hw-field',String(index));
+   const group=el.closest('fieldset,[role="radiogroup"],[class*="application-question"],[class*="question"],[data-field]');
    const scope=group||el.closest('section')||el.closest('[data-voluntary]');
    const voluntary=/voluntary|self.identification/i.test(text(scope)) || scope?.getAttribute('data-voluntary')==='true';
-   const options=el.tagName==='SELECT'?Array.from(el.options).filter(o=>o.value&&!o.disabled).map(o=>({label:text(o),value:o.value})):
-     type==='radio'?members.map(n=>({label:label(n),value:n.value})):[];
-   const required=!!(el.required||el.getAttribute('aria-required')==='true'||el.querySelector?.('[required],[aria-required="true"]'));
+   const options=el.tagName==='SELECT'
+     ?Array.from(el.options).filter(o=>o.value&&!o.disabled).map(o=>({label:text(o),value:o.value}))
+     :type==='radio'||type==='checkboxgroup'
+       ?members.map(n=>({label:label(n),value:n.value}))
+       :[];
+   const required=type==='radio'||type==='checkboxgroup'
+     ?!!(group?.getAttribute('aria-required')==='true'||members.some(n=>n.required||n.getAttribute('aria-required')==='true'))
+     :!!(el.required||el.getAttribute('aria-required')==='true'||el.querySelector?.('[required],[aria-required="true"]'));
    const customValue=type==='combobox'?(el.getAttribute('aria-valuetext')||el.querySelector?.('input')?.value||''):'';
-   fields.push({index,type,tag:el.tagName,label:question,required,
-     value:type==='radio'?(members.find(n=>n.checked)?.value||''):type==='checkbox'?el.checked:type==='combobox'?customValue:el.value||'',
-     options,voluntary,files:type==='file'?Array.from(el.files||[]).map(f=>f.name):[],
-     custom:!['INPUT','TEXTAREA','SELECT'].includes(el.tagName)||!!el.getAttribute('role')});
+   const value=type==='radio'
+     ?(members.find(n=>n.checked)?.value||'')
+     :type==='checkboxgroup'
+       ?members.filter(n=>n.checked).map(n=>n.value)
+       :type==='checkbox'?el.checked:type==='combobox'?customValue:el.value||'';
+   fields.push({
+     index,type,tag:el.tagName,label:question,required,value,options,name,voluntary,
+     files:type==='file'?Array.from(el.files||[]).map(f=>f.name):[],
+     custom:!['INPUT','TEXTAREA','SELECT'].includes(el.tagName)||!!role
+   });
  });
  return fields;
 }"""
@@ -187,7 +240,9 @@ def audit_and_fill(page, profile: ApplicantProfile, *, fill: bool = True) -> For
                     continue
                 expected = str(answer.value).strip()
                 current = str(item.get('value') or '').strip()
-                if normalize(current) == normalize(expected):
+                current_norm = normalize(current)
+                expected_norm = normalize(expected)
+                if current_norm == expected_norm or current_norm.startswith(expected_norm + ","):
                     result.filled.append(label)
                     continue
                 if not fill:
@@ -227,7 +282,10 @@ def audit_and_fill(page, profile: ApplicantProfile, *, fill: bool = True) -> For
                         (x for x in refreshed if x['index'] == item['index']),
                         None,
                     )
-                    if not updated or normalize(str(updated.get('value') or '')) != normalize(expected):
+                    updated_value = normalize(str((updated or {}).get('value') or ''))
+                    if not updated or not (
+                        updated_value == expected_norm or updated_value.startswith(expected_norm + ",")
+                    ):
                         result.blockers.append(label + ": custom widget value not verified")
                     else:
                         result.filled.append(label)
@@ -235,6 +293,25 @@ def audit_and_fill(page, profile: ApplicantProfile, *, fill: bool = True) -> For
                     result.blockers.append(
                         label + ": custom widget fill failed: " + type(exc).__name__
                     )
+                continue
+            if item['type'] == 'checkboxgroup':
+                answer = resolve(label, profile, [o['label'] for o in item['options']] or None, item['voluntary'])
+                if not answer.known:
+                    if item['required'] or _consequential_optional(label):
+                        result.unknown.append(label + ': ' + answer.reason)
+                    continue
+                selected = next((o for o in item['options'] if o['label'] == answer.value), None)
+                if selected is None:
+                    result.unknown.append(label + ': configured option not found')
+                    continue
+                if fill:
+                    group_name = item.get('name') or ''
+                    candidates = page.locator('input[type="checkbox"]')
+                    for i in range(candidates.count()):
+                        candidate = candidates.nth(i)
+                        if candidate.get_attribute('name') == group_name:
+                            candidate.set_checked(candidate.get_attribute('value') == selected['value'])
+                result.filled.append(label)
                 continue
             if item['type'] == 'file':
                 if not _resume_label(label):
