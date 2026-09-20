@@ -119,7 +119,10 @@ def blockers(page, profile: ApplicantProfile) -> list[str]:
     visible_frame = any(
         captcha_frames.nth(i).is_visible() for i in range(captcha_frames.count())
     )
-    if not solved and (sitekeys.count() or visible_frame):
+    visible_sitekey = any(
+        sitekeys.nth(i).is_visible() for i in range(sitekeys.count())
+    )
+    if not solved and (visible_sitekey or visible_frame):
         result.append("CAPTCHA/anti-bot challenge requires human action")
     if page.locator('input[type="password"]').count():
         result.append("authentication requires human action")
