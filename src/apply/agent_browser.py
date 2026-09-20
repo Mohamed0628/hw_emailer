@@ -68,10 +68,19 @@ def _api_key() -> str:
 
 def _imports():
     try:
-        from browser_use import Agent, BrowserProfile, BrowserSession, ChatOpenAI
+        from browser_use import Agent, ChatOpenAI
+        from browser_use.browser import BrowserProfile, BrowserSession
+    except ModuleNotFoundError as exc:
+        if (exc.name or "").split(".")[0] == "browser_use":
+            raise AgentPrerequisiteError(
+                "browser-use is not installed; run: python -m pip install -r requirements-apply.txt"
+            ) from exc
+        raise AgentPrerequisiteError(
+            f"browser-use dependency is missing: {exc.name or exc}"
+        ) from exc
     except ImportError as exc:
         raise AgentPrerequisiteError(
-            "browser-use is not installed; run: python -m pip install -r requirements-apply.txt"
+            f"browser-use API import failed: {exc}"
         ) from exc
     return Agent, BrowserProfile, BrowserSession, ChatOpenAI
 
@@ -81,16 +90,16 @@ def _allowed_domains(job: Job) -> list[str]:
     host = (urlsplit(url).hostname or "").lower()
     ats = detect_ats(url)
     if ats == "lever":
-        return ["https://jobs.lever.co", "https://*.lever.co"]
+        return ["jobs.lever.co", "*.lever.co"]
     if ats == "greenhouse":
         return [
-            "https://job-boards.greenhouse.io",
-            "https://boards.greenhouse.io",
-            "https://*.greenhouse.io",
+            "job-boards.greenhouse.io",
+            "boards.greenhouse.io",
+            "*.greenhouse.io",
         ]
     if ats == "ashby":
-        return ["https://jobs.ashbyhq.com", "https://*.ashbyhq.com"]
-    return [f"https://{host}"] if host else []
+        return ["jobs.ashbyhq.com", "*.ashbyhq.com"]
+    return [host] if host else []
 
 
 def _non_demographic_answers(values: dict[str, str | bool]) -> dict[str, str | bool]:
