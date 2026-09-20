@@ -105,13 +105,20 @@ def _allowed_domains(job: Job) -> list[str]:
 
 
 def _non_demographic_answers(values: dict[str, str | bool]) -> dict[str, str | bool]:
-    """Do not send voluntary demographic answers to the browser LLM."""
+    """Do not send demographics or legacy parser junk to the browser LLM."""
     blocked = ("race", "ethnicity", "gender", "sex", "veteran", "disability")
-    return {
-        key: value
-        for key, value in values.items()
-        if not any(word in key.casefold() for word in blocked)
-    }
+    cleaned: dict[str, str | bool] = {}
+    for key, value in values.items():
+        label = " ".join(str(key).split())
+        folded = label.casefold()
+        if any(word in folded for word in blocked):
+            continue
+        if not label or folded in {"yes", "no", "field", "unlabeled field"}:
+            continue
+        if folded.startswith("field") and folded[5:].isdigit():
+            continue
+        cleaned[label] = value
+    return cleaned
 
 
 def _profile_payload(profile: ApplicantProfile) -> dict:
@@ -330,6 +337,7 @@ async def _run(
                 ),
                 "llm": llm,
                 "browser_session": session,
+                "available_file_paths": [resume_path],
                 "output_model_schema": BrowserApplyResult,
                 "max_failures": 3,
                 "extend_system_message": (
