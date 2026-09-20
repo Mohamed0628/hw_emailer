@@ -36,15 +36,16 @@ INVENTORY_JS = r"""() => {
    const ids=(el.getAttribute('aria-labelledby')||'').split(/\s+/).filter(Boolean);
    return ids.map(id=>labelText(document.getElementById(id))).join(' ') ||
      Array.from(el.labels||[]).map(labelText).join(' ') || el.getAttribute('aria-label') ||
-     el.getAttribute('placeholder') ||
      labelText(el.closest('label')) ||
-     labelText(el.closest('[class*="field"],[data-field]')?.querySelector('label,[class*="label"],legend')) || '';
+     labelText(el.closest('[class*="field"],[class*="question"],[data-field]')?.querySelector('legend,[class*="label"],[class*="question"],label,h1,h2,h3,h4,p')) ||
+     el.getAttribute('placeholder') || '';
  };
  const nodes=Array.from(document.querySelectorAll('input,textarea,select,[role="combobox"],[role="checkbox"],[role="radiogroup"],[contenteditable="true"]'));
  const fields=[]; const radios=new Set();
  nodes.forEach((el,index)=>{
    if(el.closest('[role="combobox"]') && el.getAttribute('role')!=='combobox') return;
-   const type=(el.type||el.getAttribute('role')||el.tagName).toLowerCase();
+   const role=(el.getAttribute('role')||'').toLowerCase();
+   const type=(role||el.type||el.tagName).toLowerCase();
    if(['hidden','submit','button','reset'].includes(type)||el.disabled) return;
    if(!visible(el)&&type!=='file') return;
    el.setAttribute('data-hw-field',String(index));
@@ -54,7 +55,12 @@ INVENTORY_JS = r"""() => {
    if(type==='radio') {
      if(!el.name) { question='Unlabeled radio group'; }
      else {if(radios.has(el.name)) return;radios.add(el.name);members=nodes.filter(n=>n.type==='radio'&&n.name===el.name);}
-     question=text(group?.querySelector('legend')) || el.getAttribute('aria-label') || 'Unlabeled radio group';
+     const radioGroup=group||el.closest('[role="radiogroup"],[class*="question"],[class*="field"],[data-field]');
+     const labelled=(radioGroup?.getAttribute('aria-labelledby')||'').split(/\s+/).filter(Boolean)
+       .map(id=>labelText(document.getElementById(id))).join(' ');
+     question=text(group?.querySelector('legend')) || labelled || radioGroup?.getAttribute('aria-label') ||
+       labelText(radioGroup?.querySelector('legend,[class*="question-label"],[class*="field-label"],h1,h2,h3,h4,p')) ||
+       el.getAttribute('aria-label') || 'Unlabeled radio group';
    }
    const scope=group||el.closest('section')||el.closest('[data-voluntary]');
    const voluntary=/voluntary|self.identification/i.test(text(scope)) || scope?.getAttribute('data-voluntary')==='true';
@@ -85,6 +91,18 @@ class FormAudit:
 
 def _resume_label(label: str) -> bool:
     return normalize(label) in {"resume", "cv", "resume/cv", "resume / cv", "attach resume", "upload resume", "resume cv"}
+
+
+def _clean_label(label: str) -> str:
+    text = re.sub(r"[✱＊*]+", "", (label or "")).strip()
+    # Lever/react-select autocomplete status text can be included in the
+    # accessible label even though it is not part of the question.
+    text = re.sub(
+        r"(?i)\\b(?:no location found\\.?\\s*try entering a different location|loading)(?:\\s*[:.]?\\s*)?.*$",
+        "",
+        text,
+    ).strip()
+    return re.sub(r"\\s+", " ", text)
 
 
 def _consequential_optional(label: str) -> bool:
@@ -155,7 +173,7 @@ def audit_and_fill(page, profile: ApplicantProfile, *, fill: bool = True) -> For
             result.blockers.append("form exceeds bounded inventory; review manually")
             return result
         for item in result.fields:
-            label = item['label'] or '<unlabeled field>'
+            label = _clean_label(item['label']) or '<unlabeled field>'
             el = page.locator(f'[data-hw-field="{item["index"]}"]')
             if item['custom']:
                 if item['type'] != 'combobox':
@@ -277,7 +295,7 @@ def audit_and_fill(page, profile: ApplicantProfile, *, fill: bool = True) -> For
         result.fingerprint = hashlib.sha256(json.dumps(after, sort_keys=True).encode()).hexdigest()
         for x in after:
             if x['required'] and not (x['value'] or x['files']):
-                result.required.append(x['label'] or '<unlabeled required field>')
+                result.required.append(_clean_label(x['label']) or '<unlabeled required field>')
         result.complete = True
     except Exception as exc:
         # Never interpret a selector or script failure as a simple form.
