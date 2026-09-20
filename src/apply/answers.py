@@ -6,7 +6,10 @@ from ..models import ApplicantProfile
 
 
 def normalize(value: str) -> str:
-    return re.sub(r"\s+", " ", value.casefold().strip().rstrip("* :?"))
+    text = (value or "").casefold().strip()
+    # ATSs use several visual required markers, including Lever's heavy asterisk.
+    text = re.sub(r"[\\*✱＊]+", "", text)
+    return re.sub(r"\\s+", " ", text).strip(" :?")
 
 
 @dataclass
