@@ -110,6 +110,13 @@ class ApplicationEngine:
             if (
                 page is not None
                 and self.mode == Mode.AUTO_ELIGIBLE
+                and outcome.blockers == ['form changed after filling; inspect again']
+            ):
+                outcome = runner.inspect_application(page, job, adapter, profile, fill=True)
+
+            if (
+                page is not None
+                and self.mode == Mode.AUTO_ELIGIBLE
                 and not outcome.blockers
                 and (outcome.unknown_questions or outcome.unfilled_required)
             ):
