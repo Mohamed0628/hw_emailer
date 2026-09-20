@@ -153,11 +153,11 @@ def _clean_label(label: str) -> str:
     # Lever/react-select autocomplete status text can be included in the
     # accessible label even though it is not part of the question.
     text = re.sub(
-        r"(?i)\\b(?:no location found\\.?\\s*try entering a different location|loading)(?:\\s*[:.]?\\s*)?.*$",
+        r"(?i)\b(?:no location found\.?\s*try entering a different location|loading)(?:\s*[:.]?\s*)?.*$",
         "",
         text,
     ).strip()
-    return re.sub(r"\\s+", " ", text)
+    return re.sub(r"\s+", " ", text)
 
 
 def _consequential_optional(label: str) -> bool:
