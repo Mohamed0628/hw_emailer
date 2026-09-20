@@ -15,3 +15,11 @@ target_markets:
   - California
   - Seattle/Washington
   - New York
+
+# AUTO_ELIGIBLE uses browser-use to reason over live ATS forms instead of
+# relying on the deterministic DOM parser. The model/key are read from env.
+agentic_browser:
+  enabled: true
+  model: gpt-4o
+  max_steps: 45
+  max_interventions: 3
