@@ -36,7 +36,9 @@ INVENTORY_JS = r"""() => {
    const ids=(el.getAttribute('aria-labelledby')||'').split(/\s+/).filter(Boolean);
    return ids.map(id=>labelText(document.getElementById(id))).join(' ') ||
      Array.from(el.labels||[]).map(labelText).join(' ') || el.getAttribute('aria-label') ||
-     el.getAttribute('placeholder') || '';
+     el.getAttribute('placeholder') ||
+     labelText(el.closest('label')) ||
+     labelText(el.closest('[class*="field"],[data-field]')?.querySelector('label,[class*="label"],legend')) || '';
  };
  const nodes=Array.from(document.querySelectorAll('input,textarea,select,[role="combobox"],[role="checkbox"],[role="radiogroup"],[contenteditable="true"]'));
  const fields=[]; const radios=new Set();
@@ -98,13 +100,14 @@ def _consequential_optional(label: str) -> bool:
 
 def blockers(page, profile: ApplicantProfile) -> list[str]:
     result = []
-    if page.locator('iframe[src*="recaptcha"],iframe[src*="hcaptcha"],iframe[src*="challenges.cloudflare"],[data-sitekey]').count():
+    captcha = page.locator('iframe[src*="recaptcha"],iframe[src*="hcaptcha"],iframe[src*="challenges.cloudflare"],[data-sitekey]')
+    if any(captcha.nth(i).is_visible() for i in range(captcha.count())):
         result.append("CAPTCHA/anti-bot challenge requires human action")
     if page.locator('input[type="password"]').count():
         result.append("authentication requires human action")
-    # Unknown frames may contain application questions invisible to the main inventory.
-    if page.locator('iframe').count():
-        result.append("embedded form/frame requires manual inspection")
+    # Do not block merely because a page contains an iframe. Modern ATS pages commonly
+    # embed analytics, upload helpers, or dormant CAPTCHA frames. Actual CAPTCHA/auth
+    # challenges are handled explicitly above; application controls still must inventory.
     form_text = [page.inner_text('body')]  # SPAs may render forms without a <form> element
     for body in form_text:
         for match in re.finditer(r"(?i)by\s+(?:clicking|submitting|sending|applying|proceeding)[^.\n]*(?:agree|consent|certify|acknowledge)[^.\n]*", body):
@@ -121,7 +124,7 @@ def audit_and_fill(page, profile: ApplicantProfile, *, fill: bool = True) -> For
     result = FormAudit()
     try:
         result.blockers = blockers(page, profile)
-        if any('CAPTCHA' in b or 'authentication' in b or 'frame' in b for b in result.blockers):
+        if any('authentication' in b for b in result.blockers):
             return result
         result.fields = page.evaluate(INVENTORY_JS)
         if not isinstance(result.fields, list) or not result.fields:
@@ -155,19 +158,31 @@ def audit_and_fill(page, profile: ApplicantProfile, *, fill: bool = True) -> For
                 try:
                     el.click()
                     page.keyboard.type(expected)
-                    option = page.get_by_role(
-                        'option',
-                        name=re.compile(r'^' + re.escape(expected) + r'$', re.I),
-                    )
+                    options = page.get_by_role('option')
                     visible = [
-                        option.nth(i)
-                        for i in range(option.count())
-                        if option.nth(i).is_visible()
+                        options.nth(i)
+                        for i in range(options.count())
+                        if options.nth(i).is_visible()
                     ]
-                    if len(visible) != 1:
-                        result.unknown.append(label + ": no unique exact custom option")
+                    expected_norm = normalize(expected)
+                    exact = [
+                        opt for opt in visible
+                        if normalize(opt.inner_text()) == expected_norm
+                    ]
+                    matches = exact
+                    if not matches:
+                        # React-select style city widgets often render e.g.
+                        # "Minneapolis, Minnesota, United States" while the profile
+                        # stores the exact city "Minneapolis". Accept only one unique
+                        # option whose visible label begins with that configured value.
+                        matches = [
+                            opt for opt in visible
+                            if normalize(opt.inner_text()).startswith(expected_norm + ",")
+                        ]
+                    if len(matches) != 1:
+                        result.unknown.append(label + ": no unique configured custom option")
                         continue
-                    visible[0].click()
+                    matches[0].click()
                     refreshed = page.evaluate(INVENTORY_JS)
                     updated = next(
                         (x for x in refreshed if x['index'] == item['index']),
