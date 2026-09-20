@@ -16,6 +16,7 @@ DEFENSE_MANUAL_REASON = "Application: Manual — defense/government-clearance re
 
 DEFENSE_COMPANIES = {
     "anduril",
+    "astranis",
     "bae systems",
     "blue origin",
     "booz allen hamilton",
