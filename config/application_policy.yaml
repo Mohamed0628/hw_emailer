@@ -7,3 +7,11 @@ minimum_resume_margin: 5
 require_description: true
 require_confirmed_start_date: true
 allowed_auto_ats: [greenhouse, lever, ashby]
+
+# Discovery can remain broad; live auto-apply is restricted to these markets.
+require_target_market_for_auto_apply: true
+target_markets:
+  - Minnesota
+  - California
+  - Seattle/Washington
+  - New York
