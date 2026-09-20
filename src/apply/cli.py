@@ -169,7 +169,16 @@ def main(argv=None) -> int:
                                         reviewed=bool(args.review_job), retry_failed=args.retry_failed,
                                         review_callback=_review if args.review_job or mode == Mode.REVIEW_ALL else None)
                 counts[status] = counts.get(status, 0) + 1
-                print(json.dumps({'job_id': job.job_id, 'company': job.company, 'status': status}))
+                record = applog.load().get(job.job_id, {})
+                print(json.dumps({
+                    'job_id': job.job_id,
+                    'company': job.company,
+                    'status': status,
+                    'reason': record.get('note') or record.get('review_reason') or record.get('failure_reason'),
+                    'unknown_questions': record.get('unknown_questions') or [],
+                    'blockers': record.get('blockers') or [],
+                    'unfilled_required': record.get('unfilled_required') or [],
+                }, ensure_ascii=False))
         print(json.dumps({'summary': counts}))
         return 0
     except (ValueError, OSError, KeyError, Timeout) as exc:
