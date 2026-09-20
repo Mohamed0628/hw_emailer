@@ -114,7 +114,9 @@ INVENTORY_JS = r"""() => {
    const required=type==='radio'||type==='checkboxgroup'
      ?!!(group?.getAttribute('aria-required')==='true'||members.some(n=>n.required||n.getAttribute('aria-required')==='true'))
      :!!(el.required||el.getAttribute('aria-required')==='true'||el.querySelector?.('[required],[aria-required="true"]'));
-   const customValue=type==='combobox'?(el.getAttribute('aria-valuetext')||el.querySelector?.('input')?.value||''):'';
+   const customValue=type==='combobox'
+     ?(el.getAttribute('aria-valuetext')||el.querySelector?.('input')?.value||el.getAttribute('data-value')||text(el)||'')
+     :'';
    const value=type==='radio'
      ?(members.find(n=>n.checked)?.value||'')
      :type==='checkboxgroup'
@@ -123,7 +125,7 @@ INVENTORY_JS = r"""() => {
    fields.push({
      index,type,tag:el.tagName,label:question,required,value,options,name,voluntary,
      files:type==='file'?Array.from(el.files||[]).map(f=>f.name):[],
-     custom:!['INPUT','TEXTAREA','SELECT'].includes(el.tagName)||!!role
+     custom:type==='combobox'||!['INPUT','TEXTAREA','SELECT'].includes(el.tagName)
    });
  });
  return fields;
