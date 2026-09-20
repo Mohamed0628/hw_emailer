@@ -9,7 +9,7 @@ from ..evaluation import evaluate
 from ..models import ApplicantProfile, Job
 from ..resumes import Resume
 from ..identity import WORKDAY_MANUAL_REASON, is_workday_job
-from . import applog, runner, fields
+from . import applog, runner, fields, agent_browser
 from .base import FillOutcome
 from .policy import Mode, decide, settings
 from .registry import get_applicator
@@ -62,16 +62,54 @@ class ApplicationEngine:
                 applog.record(state, job, 'high_value_review', 'customize and explicitly review this opportunity')
                 applog.save(state)
                 return 'high_value_review'
-            if page is None or not getattr(adapter, 'automatic', True) or adapter.ats not in settings().get('allowed_auto_ats', []):
-                applog.record(state, job, 'needs_input', 'manual ATS stage; open the recorded application link')
-                applog.save(state)
-                return 'needs_input'
             spec = next(r for r in self.resumes if r.id == job.selected_resume)
             if hashlib.sha256(Path(spec.path).read_bytes()).hexdigest() != spec.sha256:
                 applog.record(state, job, 'needs_input', 'selected resume changed since review')
                 applog.save(state)
                 return 'needs_input'
             profile = self.profile.model_copy(update={'resume_path': spec.path})
+
+            # AUTO_ELIGIBLE uses browser-use as the execution layer. Discovery,
+            # scoring, resume choice, duplicate checks, exclusions and logging all
+            # remain owned by hw_emailer.
+            if self.mode == Mode.AUTO_ELIGIBLE and agent_browser.enabled():
+                if applog.daily_attempts(state) >= settings().get('daily_limit', 5):
+                    applog.record(state, job, 'needs_input', 'daily submission-attempt limit reached')
+                    applog.save(state)
+                    return 'needs_input'
+                try:
+                    agent_browser.require_ready(spec.path)
+                except agent_browser.AgentPrerequisiteError as exc:
+                    applog.record(state, job, 'needs_input', str(exc))
+                    applog.save(state)
+                    return 'needs_input'
+
+                # Durable checkpoint before an autonomous agent is allowed to click.
+                applog.record(state, job, 'submitting', 'agentic browser started; exact job only')
+                applog.save(state)
+                try:
+                    agent_result = agent_browser.apply(job, profile, spec.path)
+                except agent_browser.AgentPrerequisiteError as exc:
+                    applog.record(state, job, 'needs_input', str(exc))
+                    applog.save(state)
+                    return 'needs_input'
+                except agent_browser.AgentSubmissionUnknown as exc:
+                    applog.record(state, job, 'submission_unknown', str(exc))
+                    applog.save(state)
+                    return 'submission_unknown'
+
+                if agent_result.learned_answers:
+                    from .profile import remember_confirmed_answers
+                    self.profile = remember_confirmed_answers(self.profile, agent_result.learned_answers)
+
+                applog.record(state, job, agent_result.status, agent_result.reason)
+                applog.save(state)
+                return agent_result.status
+
+            if page is None or not getattr(adapter, 'automatic', True) or adapter.ats not in settings().get('allowed_auto_ats', []):
+                applog.record(state, job, 'needs_input', 'manual ATS stage; open the recorded application link')
+                applog.save(state)
+                return 'needs_input'
             from .coverletter import generate_cover_letter
             cover = generate_cover_letter(job, profile)
             if cover:
