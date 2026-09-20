@@ -40,6 +40,8 @@ _PATTERNS = tuple(re.compile(p, re.I) for p in (
     r"\b(?:active\s+)?security clearance\b",
     r"\b(?:secret|top secret|ts\/sci) clearance\b",
     r"\b(?:dod|department of defense)\b",
+    r"\bu\.?s\.? military\b",
+    r"\bgovernment (?:space|defense|classified) (?:program|work|technology)\b",
     r"\bclassified (?:program|work|environment|information)\b",
     r"\bdefense contractor\b",
     r"\bgovernment clearance\b",
