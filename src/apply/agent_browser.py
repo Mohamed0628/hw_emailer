@@ -93,6 +93,16 @@ def _allowed_domains(job: Job) -> list[str]:
     return [f"https://{host}"] if host else []
 
 
+def _non_demographic_answers(values: dict[str, str | bool]) -> dict[str, str | bool]:
+    """Do not send voluntary demographic answers to the browser LLM."""
+    blocked = ("race", "ethnicity", "gender", "sex", "veteran", "disability")
+    return {
+        key: value
+        for key, value in values.items()
+        if not any(word in key.casefold() for word in blocked)
+    }
+
+
 def _profile_payload(profile: ApplicantProfile) -> dict:
     return {
         "full_name": profile.full_name,
@@ -109,10 +119,8 @@ def _profile_payload(profile: ApplicantProfile) -> dict:
         "website": profile.website,
         "summary": profile.summary,
         "available_start_date": profile.available_start_date,
-        "common_answers": profile.common_answers,
-        "confirmed_answers": profile.confirmed_answers,
-        # Use only if the form itself clearly identifies the section as voluntary.
-        "voluntary_demographics": profile.demographics,
+        "common_answers": _non_demographic_answers(profile.common_answers),
+        "confirmed_answers": _non_demographic_answers(profile.confirmed_answers),
     }
 
 
@@ -142,9 +150,8 @@ RULES
    authorization, sponsorship, salary expectations, legal attestations, addresses,
    demographic answers, or any other candidate fact.
 4. Exact confirmed_answers override generic/common answers.
-5. Voluntary demographic data may be used only in a section that is clearly marked
-   voluntary/self-identification/EEOC. Otherwise leave demographic fields blank unless
-   the form requires them, in which case report them as missing.
+5. Leave voluntary demographic/self-identification/EEOC questions blank. If a
+   demographic field is required, report it in missing_questions instead of guessing.
 6. Optional marketing/source/referral questions may be left blank when the verified
    data does not contain an answer.
 7. If a required or consequential question cannot be answered from the verified data,
