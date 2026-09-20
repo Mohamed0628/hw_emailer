@@ -16,7 +16,7 @@ from ..models import Job
 from ..resumes import load_resumes
 from ..identity import is_workday_job
 from ..application_targets import auto_apply_location_allowed, target_market
-from . import applog
+from . import applog, agent_browser
 from .browser import BrowserSession
 from .engine import ApplicationEngine
 from .defense_gate import is_defense_or_clearance_job
@@ -156,10 +156,22 @@ def main(argv=None) -> int:
         if not profile.full_name or not profile.email:
             raise ValueError('Full name and email are required in the candidate profile')
         engine = ApplicationEngine(profile, resumes, mode)
-        # Only open a browser if at least one supported job actually needs it.
-        needs_browser = any(not is_workday_job(j) and j.classification != 'HARD_NO' and getattr(get_applicator(j), 'automatic', True)
-                            and (j.classification != 'HIGH_VALUE_REVIEW' or args.review_job or mode in {Mode.PREPARE_ONLY, Mode.AUTO_ELIGIBLE})
-                            for j in evaluated[:limit])
+        agentic_execution = mode == Mode.AUTO_ELIGIBLE and agent_browser.enabled()
+        if agentic_execution:
+            print("Execution layer: browser-use agent")
+        # AUTO_ELIGIBLE's agent owns its own browser session. The deterministic
+        # Playwright browser remains available for PREPARE_ONLY/AUTO_SAFE/review.
+        needs_browser = False if agentic_execution else any(
+            not is_workday_job(j)
+            and j.classification != 'HARD_NO'
+            and getattr(get_applicator(j), 'automatic', True)
+            and (
+                j.classification != 'HIGH_VALUE_REVIEW'
+                or args.review_job
+                or mode in {Mode.PREPARE_ONLY, Mode.AUTO_ELIGIBLE}
+            )
+            for j in evaluated[:limit]
+        )
         from contextlib import nullcontext
         session = BrowserSession(headless=args.headless) if needs_browser else nullcontext()
         counts = {}
