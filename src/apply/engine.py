@@ -9,7 +9,7 @@ from ..evaluation import evaluate
 from ..models import ApplicantProfile, Job
 from ..resumes import Resume
 from ..identity import WORKDAY_MANUAL_REASON, is_workday_job
-from . import applog, runner
+from . import applog, runner, fields
 from .base import FillOutcome
 from .policy import Mode, decide, settings
 from .registry import get_applicator
@@ -106,6 +106,21 @@ class ApplicationEngine:
                 except EOFError:
                     pass
                 outcome = runner.inspect_application(page, job, adapter, profile, fill=True)
+
+            if (
+                page is not None
+                and self.mode == Mode.AUTO_ELIGIBLE
+                and not outcome.blockers
+                and (outcome.unknown_questions or outcome.unfilled_required)
+            ):
+                updates = fields.prompt_for_missing_answers(page, profile)
+                if updates:
+                    from .profile import remember_confirmed_answers
+                    self.profile = remember_confirmed_answers(self.profile, updates)
+                    profile = profile.model_copy(update={
+                        'confirmed_answers': self.profile.confirmed_answers
+                    })
+                    outcome = runner.inspect_application(page, job, adapter, profile, fill=True)
 
             decision = decide(job, outcome, self.mode, profile, reviewed=reviewed)
             if decision.may_submit:
