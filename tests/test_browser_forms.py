@@ -208,3 +208,46 @@ def test_cookie_consent_text_is_not_application_attestation(form):
     render(page,'<p>By clicking Accept, you agree to the use of cookies.</p>')
     result=audit_and_fill(page,profile)
     assert not any('cookies' in s.lower() for s in result.blockers)
+
+
+def test_benign_iframe_does_not_block_application(form):
+    page,profile=form
+    render(page,'<iframe srcdoc="<p>analytics helper</p>"></iframe>')
+    result=audit_and_fill(page,profile)
+    assert not any('frame' in s.lower() for s in result.blockers)
+    assert result.complete and result.resume_uploaded
+
+
+def test_completed_captcha_token_does_not_keep_blocking(form):
+    page,profile=form
+    render(page,'<div data-sitekey="fixture"></div><textarea name="g-recaptcha-response">solved-token</textarea>')
+    result=audit_and_fill(page,profile)
+    assert not any('CAPTCHA' in s for s in result.blockers)
+
+
+def test_city_and_country_custom_comboboxes_use_configured_location(form):
+    page,profile=form
+    profile.current_location='Minneapolis, MN'
+    page.set_content('''
+      <form>
+        <label>Full name<input name="name" required></label>
+        <label>Email<input name="email" type="email" required></label>
+        <label>Resume<input name="resume" type="file" required></label>
+        <div role="combobox" aria-label="Country" aria-required="true"><input required></div>
+        <div role="option"
+             onclick="document.querySelector('[aria-label=Country]').setAttribute('aria-valuetext','United States')">
+          United States
+        </div>
+        <div role="combobox" aria-label="Location (City)" aria-required="true"><input required></div>
+        <div role="option"
+             onclick="document.querySelector('[aria-label=\\'Location (City)\\']').setAttribute('aria-valuetext','Minneapolis')">
+          Minneapolis, Minnesota, United States
+        </div>
+        <button type="submit">Submit application</button>
+      </form>
+    ''')
+    result=audit_and_fill(page,profile)
+    assert 'Country' in result.filled
+    assert 'Location (City)' in result.filled
+    assert not result.unknown
+    assert not result.required
