@@ -15,11 +15,56 @@ from ..main import collect_jobs
 from ..models import Job
 from ..resumes import load_resumes
 from ..identity import is_workday_job
+from ..application_targets import auto_apply_location_allowed, target_market
 from . import applog
 from .browser import BrowserSession
 from .engine import ApplicationEngine
+from .defense_gate import is_defense_or_clearance_job
+from .registry import get_applicator
 from .policy import Mode, parse_mode, settings
 from .profile import load_profile
+
+
+def _live_auto_candidates(jobs, retry_failed: bool) -> list[Job]:
+    """Return jobs that are worth spending a live browser slot on."""
+    cfg = settings()
+    allowed_ats = set(cfg.get("allowed_auto_ats", []))
+    min_fit = int(cfg.get("minimum_resume_fit", 70))
+    state = applog.load()
+    market_order = {
+        "Minnesota": 0,
+        "California": 1,
+        "Seattle/Washington": 2,
+        "New York": 3,
+    }
+
+    candidates = []
+    for job in jobs:
+        if job.classification != "AUTO_APPLY":
+            continue
+        if (job.resume_fit_score or 0) < min_fit or not job.resume_match.get("confident"):
+            continue
+        if is_workday_job(job) or is_defense_or_clearance_job(job):
+            continue
+        if not auto_apply_location_allowed(job):
+            continue
+        adapter = get_applicator(job)
+        if not getattr(adapter, "automatic", True) or adapter.ats not in allowed_ats:
+            continue
+        if applog.duplicate(job, state, retry_failed):
+            continue
+        candidates.append(job)
+
+    return sorted(
+        candidates,
+        key=lambda job: (
+            market_order.get(target_market(job) or "", 99),
+            -(job.resume_fit_score or 0),
+            -(job.career_fit_score or 0),
+            job.company.casefold(),
+            job.title.casefold(),
+        ),
+    )
 
 
 def _review(job, outcome):
@@ -94,6 +139,13 @@ def main(argv=None) -> int:
             evaluated = [j for j in evaluated if j.category == args.category]
         if args.review_job and not args.from_alerts:
             evaluated = [j for j in evaluated if j.job_id == args.review_job]
+
+        # Live automatic modes should spend --limit on genuinely auto-ready
+        # candidates, not on Workday/defense/manual/rejected records.
+        if mode in {Mode.AUTO_SAFE, Mode.AUTO_ELIGIBLE} and not args.review_job and not args.dry_run:
+            evaluated = _live_auto_candidates(evaluated, args.retry_failed)
+            print(f"Live auto-ready queue: {len(evaluated)}")
+
         if args.dry_run:
             for j in evaluated[:limit]:
                 print(json.dumps(j.model_dump(), ensure_ascii=False))
@@ -102,7 +154,6 @@ def main(argv=None) -> int:
             raise ValueError('Full name and email are required in the candidate profile')
         engine = ApplicationEngine(profile, resumes, mode)
         # Only open a browser if at least one supported job actually needs it.
-        from .registry import get_applicator
         needs_browser = any(not is_workday_job(j) and j.classification != 'HARD_NO' and getattr(get_applicator(j), 'automatic', True)
                             and (j.classification != 'HIGH_VALUE_REVIEW' or args.review_job or mode == Mode.PREPARE_ONLY)
                             for j in evaluated[:limit])
