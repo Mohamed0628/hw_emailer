@@ -25,7 +25,7 @@ from .policy import Mode, parse_mode, settings
 from .profile import load_profile
 
 
-def _live_auto_candidates(jobs, retry_failed: bool) -> list[Job]:
+def _live_auto_candidates(jobs, retry_failed: bool, mode: Mode) -> list[Job]:
     """Return jobs that are worth spending a live browser slot on."""
     cfg = settings()
     allowed_ats = set(cfg.get("allowed_auto_ats", []))
@@ -40,7 +40,10 @@ def _live_auto_candidates(jobs, retry_failed: bool) -> list[Job]:
 
     candidates = []
     for job in jobs:
-        if job.classification != "AUTO_APPLY":
+        allowed_classes = {"AUTO_APPLY"}
+        if mode == Mode.AUTO_ELIGIBLE:
+            allowed_classes.add("HIGH_VALUE_REVIEW")
+        if job.classification not in allowed_classes:
             continue
         if (job.resume_fit_score or 0) < min_fit or not job.resume_match.get("confident"):
             continue
@@ -143,7 +146,7 @@ def main(argv=None) -> int:
         # Live automatic modes should spend --limit on genuinely auto-ready
         # candidates, not on Workday/defense/manual/rejected records.
         if mode in {Mode.AUTO_SAFE, Mode.AUTO_ELIGIBLE} and not args.review_job and not args.dry_run:
-            evaluated = _live_auto_candidates(evaluated, args.retry_failed)
+            evaluated = _live_auto_candidates(evaluated, args.retry_failed, mode)
             print(f"Live auto-ready queue: {len(evaluated)}")
 
         if args.dry_run:
@@ -155,7 +158,7 @@ def main(argv=None) -> int:
         engine = ApplicationEngine(profile, resumes, mode)
         # Only open a browser if at least one supported job actually needs it.
         needs_browser = any(not is_workday_job(j) and j.classification != 'HARD_NO' and getattr(get_applicator(j), 'automatic', True)
-                            and (j.classification != 'HIGH_VALUE_REVIEW' or args.review_job or mode == Mode.PREPARE_ONLY)
+                            and (j.classification != 'HIGH_VALUE_REVIEW' or args.review_job or mode in {Mode.PREPARE_ONLY, Mode.AUTO_ELIGIBLE})
                             for j in evaluated[:limit])
         from contextlib import nullcontext
         session = BrowserSession(headless=args.headless) if needs_browser else nullcontext()
