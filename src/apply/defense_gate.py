@@ -2,6 +2,9 @@
 
 Jobs matching this gate remain discoverable and reviewable, but browser automation
 must not fill or submit them.
+
+Export-control wording (for example ITAR/EAR or U.S.-person requirements) is not,
+by itself, evidence that a role is defense- or clearance-related.
 """
 from __future__ import annotations
 
@@ -39,8 +42,6 @@ _PATTERNS = tuple(re.compile(p, re.I) for p in (
     r"\bclassified (?:program|work|environment|information)\b",
     r"\bdefense contractor\b",
     r"\bgovernment clearance\b",
-    r"\b(?:itar|ear)\b",
-    r"\bu\.?s\.? person(?:s)?\b.*\b(?:itar|export control)\b",
 ))
 
 
