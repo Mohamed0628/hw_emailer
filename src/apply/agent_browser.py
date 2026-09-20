@@ -287,17 +287,27 @@ async def _run(job: Job, profile: ApplicantProfile, resume_path: str) -> AgentOu
     started = False
     try:
         for _ in range(max_interventions + 1):
-            agent = Agent(
-                task=_task(job, current, resume_path, continuation=continuation),
-                llm=llm,
-                browser_session=session,
-                output_model_schema=BrowserApplyResult,
-                max_failures=3,
-                extend_system_message=(
+            agent_kwargs = {
+                "task": _task(job, current, resume_path, continuation=continuation),
+                "llm": llm,
+                "browser_session": session,
+                "output_model_schema": BrowserApplyResult,
+                "max_failures": 3,
+                "extend_system_message": (
                     "You are an application execution agent. Accuracy is more important than "
                     "completion. Never fabricate candidate data. Submit only this exact job."
                 ),
-            )
+            }
+            # Do not spend LLM steps figuring out how to leave about:blank.
+            # browser-use executes initial_actions before the first model call.
+            if not continuation:
+                agent_kwargs["initial_actions"] = [{
+                    "navigate": {
+                        "url": job.application_url or job.url,
+                        "new_tab": False,
+                    }
+                }]
+            agent = Agent(**agent_kwargs)
             started = True
             history = await agent.run(max_steps=max_steps)
             result = _extract(history)
