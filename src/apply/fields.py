@@ -163,7 +163,7 @@ def _consequential_optional(label: str) -> bool:
     return bool(re.search(
         r"(?i)\b(?:sponsor\w*|work\s+author\w*|citizen\w*|country|clearance\w*|"
         r"background\w*|relocat\w*|salary|compensation|hourly\s+rate|availability|"
-        r"start\s+date|graduat\w*|gpa|reference\w*|consent\w*|certif\w*|government\s+id|"
+        r"start\s+date|graduat\w*|gpa|reference\w*|certif\w*|government\s+id|"
         r"passport|driver'?s?\s+license)\b",
         label or "",
     ))
@@ -379,6 +379,85 @@ def audit_and_fill(page, profile: ApplicantProfile, *, fill: bool = True) -> For
         result.blockers.append('form inspection failed: ' + type(exc).__name__)
     return result
 
+
+
+
+def prompt_for_missing_answers(page, profile: ApplicantProfile) -> dict[str, str | bool]:
+    """Ask only for real required/consequential facts missing from the local profile.
+
+    AUTO_ELIGIBLE uses this as a human-intervention fallback. The returned answers
+    are exact question -> value pairs; callers may persist them locally and retry.
+    """
+    try:
+        items = page.evaluate(INVENTORY_JS)
+    except Exception:
+        return {}
+    if not isinstance(items, list):
+        return {}
+
+    answers: dict[str, str | bool] = {}
+    seen: set[str] = set()
+    for item in items:
+        label = _clean_label(str(item.get("label") or ""))
+        if not label or label.startswith("<unlabeled"):
+            continue
+        key = normalize(label)
+        if key in seen:
+            continue
+        seen.add(key)
+
+        required = bool(item.get("required"))
+        if not required and not _consequential_optional(label):
+            continue
+        if item.get("type") == "file":
+            continue
+
+        options = [
+            str(o.get("label") or "").strip()
+            for o in (item.get("options") or [])
+            if str(o.get("label") or "").strip()
+        ]
+        existing = resolve(label, profile, options or None, bool(item.get("voluntary")))
+        if existing.known:
+            continue
+
+        print("\nApplication needs one factual answer:")
+        print("  " + label)
+        if options:
+            for i, option in enumerate(options, 1):
+                print(f"    {i}. {option}")
+            raw = input("Choose a number (blank = leave this application paused): ").strip()
+            if not raw:
+                continue
+            try:
+                idx = int(raw) - 1
+            except ValueError:
+                idx = -1
+            if 0 <= idx < len(options):
+                answers[label] = options[idx]
+                continue
+            exact = [o for o in options if normalize(o) == normalize(raw)]
+            if len(exact) == 1:
+                answers[label] = exact[0]
+            else:
+                print("  Answer not recognized; leaving this application paused.")
+            continue
+
+        if item.get("type") == "checkbox":
+            raw = input("Answer yes/no (blank = leave this application paused): ").strip().casefold()
+            if raw in {"y", "yes", "true", "1"}:
+                answers[label] = True
+            elif raw in {"n", "no", "false", "0"}:
+                answers[label] = False
+            elif raw:
+                print("  Answer not recognized; leaving this application paused.")
+            continue
+
+        raw = input("Enter the exact answer (blank = leave this application paused): ").strip()
+        if raw:
+            answers[label] = raw
+
+    return answers
 
 def find_submit_button(page):
     # "Apply now" can navigate to another step and is not a confirmed submit action.
