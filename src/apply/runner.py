@@ -25,11 +25,33 @@ def inspect_application(page, job, applicator, profile, *, fill=False) -> FillOu
         expected = applicator.application_url(job)
         actual_job = job.model_copy(update={'url': page.url, 'application_url': None, 'requisition_id': None})
         expected_job = job.model_copy(update={'url': expected, 'application_url': None, 'requisition_id': None})
-        # Same ATS is insufficient: redirects must still point at this requisition.
+        # Same ATS is not enough, but application views often rewrite the URL and
+        # omit the requisition id. Reject a conflicting explicit requisition; when
+        # the redirected URL has no id, accept only if the rendered page still
+        # identifies the same posting by title (and company when present).
         expected_id, actual_id = requisition(expected_job), requisition(actual_job)
-        if (expected_id and actual_id != expected_id) or (not expected_id and canonical_url(expected) != canonical_url(page.url)):
-            outcome.blockers.append('application redirected to a different or unverifiable requisition')
+        if expected_id and actual_id and actual_id != expected_id:
+            outcome.blockers.append('application redirected to a different requisition')
             return outcome
+        if expected_id and not actual_id:
+            body = page.inner_text('body')[:8000]
+            body_norm = ' '.join(body.casefold().split())
+            title_norm = ' '.join(job.title.casefold().split())
+            company_norm = ' '.join(job.company.casefold().split())
+            id_in_page = expected_id.casefold() in page.content().casefold()
+            title_in_page = bool(title_norm and title_norm in body_norm)
+            company_in_page = bool(company_norm and company_norm in body_norm)
+            if not id_in_page and not (title_in_page and company_in_page):
+                outcome.blockers.append('application redirected to an unverifiable requisition')
+                return outcome
+        if not expected_id and canonical_url(expected) != canonical_url(page.url):
+            body = page.inner_text('body')[:8000]
+            body_norm = ' '.join(body.casefold().split())
+            title_norm = ' '.join(job.title.casefold().split())
+            company_norm = ' '.join(job.company.casefold().split())
+            if not (title_norm in body_norm and company_norm in body_norm):
+                outcome.blockers.append('application redirected to an unverifiable requisition')
+                return outcome
         if fields.looks_closed(page):
             outcome.closed = True
             return outcome
