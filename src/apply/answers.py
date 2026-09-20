@@ -8,8 +8,8 @@ from ..models import ApplicantProfile
 def normalize(value: str) -> str:
     text = (value or "").casefold().strip()
     # ATSs use several visual required markers, including Lever's heavy asterisk.
-    text = re.sub(r"[\\*✱＊]+", "", text)
-    return re.sub(r"\\s+", " ", text).strip(" :?")
+    text = re.sub(r"[*✱＊]+", "", text)
+    return re.sub(r"\s+", " ", text).strip(" :?")
 
 
 @dataclass
@@ -169,14 +169,14 @@ def resolve(label: str, profile: ApplicantProfile, options: list[str] | None = N
         "what is your earliest available start date": profile.available_start_date or "",
     }
 
-    if re.search(r"(?i)\\b(?:sponsor\\w*|sponsorship)\\b", label or "") and profile.requires_sponsorship is not None:
+    if re.search(r"(?i)\b(?:sponsor\w*|sponsorship)\b", label or "") and profile.requires_sponsorship is not None:
         return _exact_option(
             "Yes" if profile.requires_sponsorship else "No",
             options,
             "configured sponsorship answer",
         )
 
-    if re.search(r"(?i)\\b(?:legally )?authorized to work\\b", label or ""):
+    if re.search(r"(?i)\b(?:legally )?authorized to work\b", label or ""):
         authorized = _work_authorized(profile)
         if authorized is not None:
             return _exact_option("Yes" if authorized else "No", options, "configured work authorization")
