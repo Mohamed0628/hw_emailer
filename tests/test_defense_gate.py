@@ -18,12 +18,21 @@ def test_clearance_language_is_manual():
     ))
 
 
-def test_dod_or_itar_language_is_manual():
+def test_dod_language_is_manual():
     assert is_defense_or_clearance_job(Job(
         company="Example Systems",
         title="Hardware Engineer",
         url="https://example.com/job",
         description="Hardware development for DoD programs subject to ITAR requirements.",
+    ))
+
+
+def test_export_control_alone_is_not_treated_as_defense():
+    assert not is_defense_or_clearance_job(Job(
+        company="Example Semiconductor",
+        title="Hardware Engineer",
+        url="https://example.com/job",
+        description="This role is subject to ITAR/EAR export-control requirements and U.S.-person rules.",
     ))
 
 
