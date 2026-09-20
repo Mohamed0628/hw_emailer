@@ -349,10 +349,16 @@ async def _run(job: Job, profile: ApplicantProfile, resume_path: str) -> AgentOu
         await _close_session(session)
 
 
-def apply(job: Job, profile: ApplicantProfile, resume_path: str | Path) -> AgentOutcome:
+def require_ready(resume_path: str | Path) -> None:
+    """Validate local agent prerequisites without opening a browser."""
     path = Path(resume_path)
     if not path.exists():
         raise AgentPrerequisiteError(f"selected resume file not found: {path}")
     _api_key()
     _imports()
+
+
+def apply(job: Job, profile: ApplicantProfile, resume_path: str | Path) -> AgentOutcome:
+    path = Path(resume_path)
+    require_ready(path)
     return asyncio.run(_run(job, profile, str(path.resolve())))
