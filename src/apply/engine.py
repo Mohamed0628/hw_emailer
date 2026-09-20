@@ -58,7 +58,7 @@ class ApplicationEngine:
                 applog.record(state, job, 'rejected', '; '.join(job.decision_reasons))
                 applog.save(state)
                 return 'rejected'
-            if job.classification == 'HIGH_VALUE_REVIEW' and not reviewed and self.mode != Mode.PREPARE_ONLY:
+            if job.classification == 'HIGH_VALUE_REVIEW' and not reviewed and self.mode not in {Mode.PREPARE_ONLY, Mode.AUTO_ELIGIBLE}:
                 applog.record(state, job, 'high_value_review', 'customize and explicitly review this opportunity')
                 applog.save(state)
                 return 'high_value_review'
