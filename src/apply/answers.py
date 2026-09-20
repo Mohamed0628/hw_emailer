@@ -22,6 +22,40 @@ DEMOGRAPHIC_FIELDS = {
     "veteran status": "veteran", "protected veteran status": "veteran",
     "disability status": "disability", "disability": "disability",
 }
+_US_STATE_CODES = {
+    "al","ak","az","ar","ca","co","ct","de","fl","ga","hi","id","il","in","ia","ks","ky","la",
+    "me","md","ma","mi","mn","ms","mo","mt","ne","nv","nh","nj","nm","ny","nc","nd","oh","ok",
+    "or","pa","ri","sc","sd","tn","tx","ut","vt","va","wa","wv","wi","wy","dc",
+}
+_US_STATE_NAMES = {
+    "alabama","alaska","arizona","arkansas","california","colorado","connecticut","delaware",
+    "florida","georgia","hawaii","idaho","illinois","indiana","iowa","kansas","kentucky",
+    "louisiana","maine","maryland","massachusetts","michigan","minnesota","mississippi",
+    "missouri","montana","nebraska","nevada","new hampshire","new jersey","new mexico",
+    "new york","north carolina","north dakota","ohio","oklahoma","oregon","pennsylvania",
+    "rhode island","south carolina","south dakota","tennessee","texas","utah","vermont",
+    "virginia","washington","west virginia","wisconsin","wyoming","district of columbia",
+}
+
+
+def _location_parts(value: str) -> tuple[str, str]:
+    """Return (city, country) only when the configured location proves the country."""
+    text = (value or "").strip()
+    if not text:
+        return "", ""
+    pieces = [p.strip() for p in text.split(",") if p.strip()]
+    city = pieces[0] if pieces else text
+    low = text.casefold()
+    country = ""
+    if re.search(r"\b(?:united states|usa|u\.s\.a?\.?|us)\b", low):
+        country = "United States"
+    else:
+        tokens = {p.casefold().strip(".") for p in pieces[1:]}
+        if tokens & _US_STATE_CODES or tokens & _US_STATE_NAMES:
+            country = "United States"
+    return city, country
+
+
 DEMOGRAPHIC_OPTIONS = {
     "male": {"male"},
     "black": {"black", "black or african american", "black / african american", "black/african american"},
@@ -75,6 +109,7 @@ def resolve(label: str, profile: ApplicantProfile, options: list[str] | None = N
         return Answer(True, matches[0], "configured voluntary demographic") if len(matches) == 1 else Answer(False, reason="demographic option not an exact supported match")
     first, _, last = profile.full_name.partition(" ")
     grad_month, grad_year = _date_parts(profile.graduation_date)
+    current_city, current_country = _location_parts(profile.current_location)
     values = {
         "first name": first, "given name": first, "last name": last, "family name": last,
         "full name": profile.full_name, "name": profile.full_name,
@@ -84,8 +119,10 @@ def resolve(label: str, profile: ApplicantProfile, options: list[str] | None = N
         "github": profile.github, "github url": profile.github,
         "website": profile.website, "portfolio": profile.website,
         "school": profile.school, "university": profile.school,
-        "current location": profile.current_location, "current city": profile.current_location,
-        "location (city)": profile.current_location, "location city": profile.current_location,
+        "current location": profile.current_location, "current city": current_city,
+        "location (city)": current_city, "location city": current_city,
+        "city": current_city, "country": current_country, "country/region": current_country,
+        "country or region": current_country,
         "gpa": profile.gpa, "current gpa": profile.gpa, "cumulative gpa": profile.gpa,
         "what is your current gpa": profile.gpa, "please enter your cumulative gpa": profile.gpa,
         "graduation date": profile.graduation_date,
