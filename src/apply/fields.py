@@ -101,7 +101,19 @@ def _consequential_optional(label: str) -> bool:
 def blockers(page, profile: ApplicantProfile) -> list[str]:
     result = []
     captcha = page.locator('iframe[src*="recaptcha"],iframe[src*="hcaptcha"],iframe[src*="challenges.cloudflare"],[data-sitekey]')
-    if any(captcha.nth(i).is_visible() for i in range(captcha.count())):
+    response = page.locator(
+        'textarea[name="g-recaptcha-response"],textarea[name="h-captcha-response"],'
+        'input[name="cf-turnstile-response"]'
+    )
+    solved = False
+    for i in range(response.count()):
+        try:
+            if (response.nth(i).input_value() or "").strip():
+                solved = True
+                break
+        except Exception:
+            continue
+    if not solved and any(captcha.nth(i).is_visible() for i in range(captcha.count())):
         result.append("CAPTCHA/anti-bot challenge requires human action")
     if page.locator('input[type="password"]').count():
         result.append("authentication requires human action")
