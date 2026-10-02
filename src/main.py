@@ -10,6 +10,7 @@ from datetime import datetime
 
 from . import config
 from .evaluation import apply_filters
+from .alert_store import load_alert_jobs, merge_alert_jobs, save_alert_jobs
 from .dedup import load_state, new_jobs, prune, save_state, update_state
 from .models import Job
 from .notify import email as email_notify
@@ -165,6 +166,13 @@ def run(
                 sms_cfg.get("template", "{n} new opportunities"),
             )
             sms_notify.send_sms(body, secrets)
+
+    # Persist the exact normalized jobs that were surfaced. This is the durable
+    # discovery -> application handoff and avoids rediscovery during apply runs.
+    if fresh:
+        alert_path = config.alert_jobs_path()
+        stored = load_alert_jobs(alert_path)
+        save_alert_jobs(alert_path, merge_alert_jobs(stored, fresh))
 
     state = update_state(state, fresh, today)
     state = prune(state, settings.get("prune_after_days", 120), today)
