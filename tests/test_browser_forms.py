@@ -165,3 +165,89 @@ def test_redirect_to_different_requisition_never_uploads(form):
     result=inspect_application(page,job,LeverApplicator(),profile,fill=True)
     assert any('requisition' in b for b in result.blockers)
     assert page.locator('input[type="file"]').evaluate('(el)=>el.files.length')==0
+
+
+def test_optional_unknown_text_field_can_remain_blank(form):
+    page,profile=form
+    render(page,'<label>Preferred First Name<input></label>')
+    result=audit_and_fill(page,profile)
+    assert not any('Preferred First Name' in s for s in result.unknown)
+
+
+def test_optional_unrecognized_upload_can_remain_blank(form):
+    page,profile=form
+    render(page,'<label>Portfolio attachment<input type="file"></label>')
+    result=audit_and_fill(page,profile)
+    assert not any('Portfolio attachment' in s for s in result.unknown)
+
+
+def test_exact_known_custom_combobox_can_be_filled(form):
+    page,profile=form
+    profile.school='University of Minnesota'
+    page.set_content('''
+      <form>
+        <label>Full name<input name="name" required></label>
+        <label>Email<input name="email" type="email" required></label>
+        <label>Resume<input name="resume" type="file" required></label>
+        <div role="combobox" aria-label="School" aria-required="true"><input required></div>
+        <div role="option"
+             onclick="document.querySelector('[role=combobox]').setAttribute('aria-valuetext','University of Minnesota')">
+          University of Minnesota
+        </div>
+        <button type="submit">Submit application</button>
+      </form>
+    ''')
+    result=audit_and_fill(page,profile)
+    assert 'School' in result.filled
+    assert not any('School' in s for s in result.unknown)
+    assert not any('School' in s for s in result.blockers)
+
+
+def test_cookie_consent_text_is_not_application_attestation(form):
+    page,profile=form
+    render(page,'<p>By clicking Accept, you agree to the use of cookies.</p>')
+    result=audit_and_fill(page,profile)
+    assert not any('cookies' in s.lower() for s in result.blockers)
+
+
+def test_benign_iframe_does_not_block_application(form):
+    page,profile=form
+    render(page,'<iframe srcdoc="<p>analytics helper</p>"></iframe>')
+    result=audit_and_fill(page,profile)
+    assert not any('frame' in s.lower() for s in result.blockers)
+    assert result.complete and result.resume_uploaded
+
+
+def test_completed_captcha_token_does_not_keep_blocking(form):
+    page,profile=form
+    render(page,'<div data-sitekey="fixture"></div><textarea name="g-recaptcha-response">solved-token</textarea>')
+    result=audit_and_fill(page,profile)
+    assert not any('CAPTCHA' in s for s in result.blockers)
+
+
+def test_city_and_country_custom_comboboxes_use_configured_location(form):
+    page,profile=form
+    profile.current_location='Minneapolis, MN'
+    page.set_content('''
+      <form>
+        <label>Full name<input name="name" required></label>
+        <label>Email<input name="email" type="email" required></label>
+        <label>Resume<input name="resume" type="file" required></label>
+        <div role="combobox" aria-label="Country" aria-required="true"><input required></div>
+        <div role="option"
+             onclick="document.querySelector('[aria-label=Country]').setAttribute('aria-valuetext','United States')">
+          United States
+        </div>
+        <div role="combobox" aria-label="Location (City)" aria-required="true"><input required></div>
+        <div role="option"
+             onclick="document.querySelectorAll('[role=combobox]')[1].setAttribute('aria-valuetext','Minneapolis')">
+          Minneapolis, Minnesota, United States
+        </div>
+        <button type="submit">Submit application</button>
+      </form>
+    ''')
+    result=audit_and_fill(page,profile)
+    assert 'Country' in result.filled
+    assert 'Location (City)' in result.filled
+    assert not result.unknown
+    assert not result.required

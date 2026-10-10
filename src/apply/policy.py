@@ -48,9 +48,7 @@ def decide(job: Job, outcome: FillOutcome, mode: Mode, profile: ApplicantProfile
         return Decision("expired", "posting closed")
     if outcome.error:
         return Decision("failed", outcome.error)
-    if mode == Mode.PREPARE_ONLY:
-        return Decision("prepared", "prepare-only; no submission permitted")
-    if job.classification == "HIGH_VALUE_REVIEW" and not reviewed:
+    if job.classification == "HIGH_VALUE_REVIEW" and not reviewed and mode != Mode.AUTO_ELIGIBLE:
         return Decision("high_value_review", "customize this valuable opportunity and review explicitly")
     if mode == Mode.REVIEW_ALL and not reviewed:
         return Decision("needs_input", "review-all requires explicit review")
@@ -68,4 +66,6 @@ def decide(job: Job, outcome: FillOutcome, mode: Mode, profile: ApplicantProfile
         return Decision("needs_input", "exact available start date must be configured")
     if not outcome.submit_available:
         return Decision("needs_input", "unambiguous submit control not found")
+    if mode == Mode.PREPARE_ONLY:
+        return Decision("prepared", "all submission-readiness checks passed; prepare-only forbids submission")
     return Decision("auto_apply", "all candidate, resume, duplicate and form checks passed", True)
