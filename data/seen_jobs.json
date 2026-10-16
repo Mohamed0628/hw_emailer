@@ -10062,6 +10062,13 @@
     "title": "RF Phased Array Engineer I/II",
     "url": "https://job-boards.greenhouse.io/rocketlab/jobs/7980759003"
   },
+  "aa4636f72151dcc6": {
+    "company": "NVIDIA",
+    "first_seen": "2026-10-16",
+    "requisition_id": null,
+    "title": "NVIDIA 2027 Internships: Hardware Design for Test (DFT)",
+    "url": "https://zapply.jobs/l/d/workday-nvidia-nvidiaexternalcareersite-JR2023487?s=gh-internships-2027"
+  },
   "aa57f8bc88aa4e56": {
     "company": "Olsson",
     "first_seen": "2026-09-28",
@@ -15109,5 +15116,12 @@
     "first_seen": "2026-07-25",
     "title": "Power Plant Engineer",
     "url": "https://boards.greenhouse.io/spacex/jobs/8623199002?gh_jid=8623199002"
+  },
+  "ffb686d9c6e54dcf": {
+    "company": "Rocket Lab",
+    "first_seen": "2026-10-16",
+    "requisition_id": "8034180003",
+    "title": "Junior Ground Systems Engineer - Instrumentation & Control",
+    "url": "https://job-boards.greenhouse.io/rocketlab/jobs/8034180003"
   }
 }
