@@ -9,10 +9,11 @@ from ..evaluation import evaluate
 from ..models import ApplicantProfile, Job
 from ..resumes import Resume
 from ..identity import WORKDAY_MANUAL_REASON, is_workday_job
-from . import applog, runner
+from . import applog, runner, fields, agent_browser
 from .base import FillOutcome
 from .policy import Mode, decide, settings
 from .registry import get_applicator
+from .defense_gate import DEFENSE_MANUAL_REASON, is_defense_or_clearance_job
 
 
 class ApplicationEngine:
@@ -44,6 +45,12 @@ class ApplicationEngine:
                 applog.record(state, job, status, WORKDAY_MANUAL_REASON)
                 applog.save(state)
                 return status
+            if is_defense_or_clearance_job(job):
+                # Keep these jobs in discovery/scoring, but never open/fill/submit
+                # them through browser automation.
+                applog.record(state, job, 'needs_input', DEFENSE_MANUAL_REASON)
+                applog.save(state)
+                return 'needs_input'
             adapter = get_applicator(job)
             job.application_url = adapter.application_url(job)
             job.ats = adapter.ats
@@ -51,29 +58,128 @@ class ApplicationEngine:
                 applog.record(state, job, 'rejected', '; '.join(job.decision_reasons))
                 applog.save(state)
                 return 'rejected'
-            if job.classification == 'HIGH_VALUE_REVIEW' and not reviewed and self.mode != Mode.PREPARE_ONLY:
+            if job.classification == 'HIGH_VALUE_REVIEW' and not reviewed and self.mode not in {Mode.PREPARE_ONLY, Mode.AUTO_ELIGIBLE}:
                 applog.record(state, job, 'high_value_review', 'customize and explicitly review this opportunity')
                 applog.save(state)
                 return 'high_value_review'
-            if page is None or not getattr(adapter, 'automatic', True) or adapter.ats not in settings().get('allowed_auto_ats', []):
-                applog.record(state, job, 'needs_input', 'manual ATS stage; open the recorded application link')
-                applog.save(state)
-                return 'needs_input'
             spec = next(r for r in self.resumes if r.id == job.selected_resume)
             if hashlib.sha256(Path(spec.path).read_bytes()).hexdigest() != spec.sha256:
                 applog.record(state, job, 'needs_input', 'selected resume changed since review')
                 applog.save(state)
                 return 'needs_input'
             profile = self.profile.model_copy(update={'resume_path': spec.path})
+
+            # AUTO_ELIGIBLE uses browser-use as the execution layer. Discovery,
+            # scoring, resume choice, duplicate checks, exclusions and logging all
+            # remain owned by hw_emailer.
+            if self.mode == Mode.AUTO_ELIGIBLE and agent_browser.enabled():
+                if applog.daily_attempts(state) >= settings().get('daily_limit', 5):
+                    applog.record(state, job, 'needs_input', 'daily submission-attempt limit reached')
+                    applog.save(state)
+                    return 'needs_input'
+                try:
+                    agent_browser.require_ready(spec.path)
+                except agent_browser.AgentPrerequisiteError as exc:
+                    applog.record(state, job, 'needs_input', str(exc))
+                    applog.save(state)
+                    return 'needs_input'
+
+                def _before_agent_submit():
+                    # Called by the agent runner only after the form is filled and
+                    # immediately before the final-submit phase begins.
+                    applog.record(
+                        state,
+                        job,
+                        'submitting',
+                        'agentic form complete; entering final submit phase',
+                    )
+                    applog.save(state)
+
+                try:
+                    agent_result = agent_browser.apply(
+                        job,
+                        profile,
+                        spec.path,
+                        before_submit=_before_agent_submit,
+                    )
+                except agent_browser.AgentPrerequisiteError as exc:
+                    applog.record(state, job, 'needs_input', str(exc))
+                    applog.save(state)
+                    return 'needs_input'
+                except agent_browser.AgentSubmissionUnknown as exc:
+                    applog.record(state, job, 'submission_unknown', str(exc))
+                    applog.save(state)
+                    return 'submission_unknown'
+
+                if agent_result.learned_answers:
+                    from .profile import remember_confirmed_answers
+                    self.profile = remember_confirmed_answers(self.profile, agent_result.learned_answers)
+
+                applog.record(state, job, agent_result.status, agent_result.reason)
+                applog.save(state)
+                return agent_result.status
+
+            if page is None or not getattr(adapter, 'automatic', True) or adapter.ats not in settings().get('allowed_auto_ats', []):
+                applog.record(state, job, 'needs_input', 'manual ATS stage; open the recorded application link')
+                applog.save(state)
+                return 'needs_input'
             from .coverletter import generate_cover_letter
             cover = generate_cover_letter(job, profile)
             if cover:
                 profile = profile.model_copy(update={'confirmed_answers': {**profile.confirmed_answers, 'Cover letter': cover}})
             outcome = runner.fill_application(page, job, adapter, profile)
+            # PREPARE_ONLY must rehearse the final pre-submit inspection too.
+            # A second inventory catches delayed iframes/widgets/conditional fields
+            # that can appear after the initial fill.
+            if self.mode == Mode.PREPARE_ONLY and not outcome.closed and not outcome.error:
+                first = outcome
+                outcome = runner.inspect_application(page, job, adapter, profile)
+                if first.form_fingerprint and outcome.form_fingerprint and first.form_fingerprint != outcome.form_fingerprint:
+                    outcome.blockers.append('form changed after initial preparation; manual inspection required')
             if reviewed or self.mode == Mode.REVIEW_ALL:
                 reviewed = bool(review_callback and review_callback(job, outcome))
                 # Re-inventory after the person has inspected the browser.
                 outcome = runner.inspect_application(page, job, adapter, profile)
+            # A real CAPTCHA cannot be safely automated, but it also should not
+            # permanently fail an otherwise-fillable application. In live modes,
+            # pause on the visible browser, let the user solve the challenge, then
+            # re-inspect and continue automatically.
+            if (
+                page is not None
+                and self.mode != Mode.PREPARE_ONLY
+                and any("CAPTCHA/anti-bot" in b for b in outcome.blockers)
+            ):
+                try:
+                    input(
+                        f"CAPTCHA detected for {job.company}. Solve it in the browser, "
+                        "then press Enter here to continue submission: "
+                    )
+                except EOFError:
+                    pass
+                outcome = runner.inspect_application(page, job, adapter, profile, fill=True)
+
+            if (
+                page is not None
+                and self.mode == Mode.AUTO_ELIGIBLE
+                and outcome.blockers == ['form changed after filling; inspect again']
+            ):
+                outcome = runner.inspect_application(page, job, adapter, profile, fill=True)
+
+            if (
+                page is not None
+                and self.mode == Mode.AUTO_ELIGIBLE
+                and not outcome.blockers
+                and (outcome.unknown_questions or outcome.unfilled_required)
+            ):
+                updates = fields.prompt_for_missing_answers(page, profile)
+                if updates:
+                    from .profile import remember_confirmed_answers
+                    self.profile = remember_confirmed_answers(self.profile, updates)
+                    profile = profile.model_copy(update={
+                        'confirmed_answers': self.profile.confirmed_answers
+                    })
+                    outcome = runner.inspect_application(page, job, adapter, profile, fill=True)
+
             decision = decide(job, outcome, self.mode, profile, reviewed=reviewed)
             if decision.may_submit:
                 # Detect newly appearing questions, changed values and redirects immediately before click.

@@ -124,3 +124,41 @@ def test_exact_review_can_submit_safe_form(case):
     engine=ApplicationEngine(profile,resumes,Mode.REVIEW_ALL)
     assert engine.process(job,Mock(),review_callback=lambda *_:True)=='submitted'
     assert submit.call_count==1
+
+
+def test_prepare_only_blocker_never_reports_prepared(case):
+    profile,resumes,job,outcome,submit=case
+    outcome.blockers=['embedded form/frame requires manual inspection']
+    assert ApplicationEngine(profile,resumes,Mode.PREPARE_ONLY).process(job,Mock())=='needs_input'
+    saved=applog.load()[job.job_id]
+    assert saved['status']=='needs_input'
+    assert saved['blockers']==['embedded form/frame requires manual inspection']
+    submit.assert_not_called()
+
+
+def test_prepare_only_uncertain_resume_never_reports_prepared(case, monkeypatch):
+    profile,resumes,job,outcome,submit=case
+    from src.apply import engine as engine_module
+
+    def fake_evaluate(target, _resumes):
+        target.classification='AUTO_APPLY'
+        target.selected_resume='digital'
+        target.resume_fit_score=0
+        target.resume_match={
+            'selected_resume':'digital',
+            'resume_fit_score':0,
+            'alternative_resume':'rf',
+            'confident':False,
+            'evidence':[],
+            'rankings':[],
+            'reason':'fixture uncertainty',
+        }
+        target.decision_reasons=[]
+        return target
+
+    monkeypatch.setattr(engine_module,'evaluate',fake_evaluate)
+    assert ApplicationEngine(profile,resumes,Mode.PREPARE_ONLY).process(job,Mock())=='needs_input'
+    saved=applog.load()[job.job_id]
+    assert saved['status']=='needs_input'
+    assert 'uncertain resume match' in saved['note']
+    submit.assert_not_called()
