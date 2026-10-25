@@ -108,6 +108,12 @@ def state_path() -> Path:
     return ROOT / rel
 
 
+def alert_jobs_path() -> Path:
+    """Normalized jobs that have been surfaced by the notifier."""
+    rel = settings().get("alert_jobs_file", "data/alert_jobs.json")
+    return ROOT / rel
+
+
 def secrets() -> dict[str, str]:
     """Return notification secrets from the environment (may be empty)."""
     keys = [

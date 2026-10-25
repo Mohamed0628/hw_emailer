@@ -57,7 +57,7 @@ Optional unanswered demographics stay blank. Uncertain required options pause.
 | `PREPARE_ONLY` | Fills recognized fields, records preparation, never submits. |
 | `REVIEW_ALL` | Requests interactive review; every safety gate still applies. |
 | `AUTO_SAFE` | Submits only ordinary eligible jobs with complete, verified known forms. |
-| `AUTO_ELIGIBLE` | Same mandatory gates as AUTO_SAFE. No unsafe “submit everything” mode. |
+| `AUTO_ELIGIBLE` | Uses browser-use + an LLM to reason over the selected ATS form and submit autonomously; missing facts/CAPTCHA/login trigger human intervention. |
 
 Old names `auto_simple_review_hard`, `review_all`, `auto_all` map to the protected
 new modes. `auto_all` cannot bypass blockers.
@@ -70,9 +70,12 @@ python -m src.apply --dry-run --limit 10
 # Fill only. PREPARE_ONLY does not send an application, but it does enter/upload
 # your candidate data to the employer's form.
 python -m src.apply --prepare-only --company "Example" --limit 1
-# Normal local operation; watch the headed browser.
+# Deterministic local operation.
 python -m src.apply --limit 3
 python -m src.apply --mode REVIEW_ALL --limit 1
+# Agentic live submission. Requires browser-use plus OPENAI_API_KEY (or
+# BROWSER_AGENT_API_KEY) in .env / the shell.
+python -m src.apply --from-alerts --mode AUTO_ELIGIBLE --limit 5
 # Explicit review of one valuable/uncertain job from a previous report:
 python -m src.apply --review-job JOB_ID --limit 1
 ```
@@ -93,9 +96,12 @@ execution is rejected when `CI` is set. Tests are a separate, intercepted harnes
 | iCIMS, SmartRecruiters | Recognized, linked and tracked for manual review; no automated fill/submit |
 | Other/custom sites | Manual only |
 
-Iframe-based forms, custom combobox widgets, unfamiliar upload purposes,
-CAPTCHAs and authentication stop automatic progress. This conservative adapter
-support does not claim every form on a supported platform works. Query parameters
+AUTO_SAFE and PREPARE_ONLY still use the conservative deterministic form parser.
+AUTO_ELIGIBLE instead delegates live form interaction to browser-use, while
+hw_emailer keeps ownership of job selection, resume choice, duplicate prevention,
+Workday/defense exclusions, limits and the application log. Visible CAPTCHA/login/2FA
+challenges pause for human intervention; the agent is instructed never to bypass them
+or invent candidate data. Query parameters
 are preserved; spoofed ATS hostname substrings cannot authorize uploads. A final
 inventory checks for conditional questions, unexpected fields and changed values.
 An ordinary “Apply now” navigation button is never treated as submission.
@@ -135,7 +141,8 @@ record without distinct requisition IDs is held as a possible duplicate.
 ## Letters
 
 Automatic Gemini drafting and unconditional cover-letter filling have been removed.
-No LLM provider is required. To use a letter, review it against the selected resume
+No LLM provider is required for discovery, scoring, PREPARE_ONLY, AUTO_SAFE, or letters.
+AUTO_ELIGIBLE's browser-use execution does require its configured browser-agent LLM key. To use a letter, review it against the selected resume
 and configure a UTF-8 text file under `approved_cover_letters`, keyed by canonical
 job URL. Only a field exactly labeled “Cover letter” receives that text. Unrecognized
 essay questions and required file uploads pause. There is no lone-textarea fallback.
