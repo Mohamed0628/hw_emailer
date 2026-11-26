@@ -219,6 +219,13 @@
     "title": "RF Phased Array Engineer I",
     "url": "https://job-boards.greenhouse.io/rocketlab/jobs/8056063003"
   },
+  "04b4f18d004284bc": {
+    "company": "Stantec",
+    "first_seen": "2026-11-26",
+    "requisition_id": null,
+    "title": "Electrical Engineering Intern - Buildings (Summer 2027)",
+    "url": "https://zapply.jobs/l/d/oracle-hdhl-1009024?s=gh-internships-2027"
+  },
   "04d92e88b20f1203": {
     "company": "Interstates",
     "first_seen": "2026-08-13",
@@ -501,12 +508,6 @@
     "requisition_id": null,
     "title": "Electrical Engineering Intern - Summer 2027",
     "url": "https://zapply.jobs/l/d/oracle-wsp-94977?s=gh-internships-2027"
-  },
-  "08d8520e8c6c56e2": {
-    "company": "Field AI",
-    "first_seen": "2026-07-28",
-    "title": "Internship - Robot Control Systems (Fall 2026)",
-    "url": "https://jobs.lever.co/field-ai/8a3b5d4b-f88f-4704-bfdd-74e8dcd30704"
   },
   "08d9e518c840f478": {
     "company": "NVIDIA",
@@ -2503,12 +2504,6 @@
     "title": "Avionics Engineering Intern (Fall 2026)",
     "url": "https://job-boards.greenhouse.io/rendezvousrobotics/jobs/4329032009"
   },
-  "29eea0f8e0674776": {
-    "company": "Figure AI",
-    "first_seen": "2026-07-28",
-    "title": "Hardware Test Intern [Fall 2026]",
-    "url": "https://job-boards.greenhouse.io/figureai/jobs/4613067006"
-  },
   "2a1187d4d3d50ce5": {
     "company": "Gecko Robotics",
     "first_seen": "2026-09-15",
@@ -3010,6 +3005,13 @@
     "title": "Engineering intern",
     "url": "https://www.interstates.com/careers/jobs?gh_jid=4368652009&gh_jid=4368652009"
   },
+  "338350bd0c8aadee": {
+    "company": "Zebra",
+    "first_seen": "2026-11-26",
+    "requisition_id": null,
+    "title": "2027 Summer Internship (US) - Electrical Engineer, Advanced Data Capture",
+    "url": "https://zapply.jobs/l/d/workday-zebra-zebra-careers-JR103913?s=gh-internships-2027"
+  },
   "338611079758d3c0": {
     "company": "Abbott",
     "first_seen": "2026-08-26",
@@ -3461,17 +3463,18 @@
     "title": "ML Engineer, I - MLOps Framework",
     "url": "https://job-boards.greenhouse.io/torcrobotics/jobs/8728723002"
   },
-  "3a58af2abba53037": {
-    "company": "Field AI",
-    "first_seen": "2026-07-28",
-    "title": "Robotics Research Internship, Humanoid Manipulation (Summer 2026) | PhD Internship",
-    "url": "https://jobs.lever.co/field-ai/2a2c8f00-3a28-481b-882c-33cb0ec4a3a0"
-  },
   "3a619345c7fd1646": {
     "company": "Zipline",
     "first_seen": "2026-08-25",
     "title": "Embedded Software Engineer Intern (Sp",
     "url": "https://www.zipline.com/open-roles?gh_jid=7974897003"
+  },
+  "3a6cd3301f46ab92": {
+    "company": "Stantec",
+    "first_seen": "2026-11-26",
+    "requisition_id": null,
+    "title": "Electrical Engineering Intern - Buildings (Summer 2027)",
+    "url": "https://zapply.jobs/l/d/oracle-hdhl-1009012?s=gh-internships-2027"
   },
   "3a8e7cae88974b45": {
     "company": "Generac",
@@ -3839,12 +3842,6 @@
     "requisition_id": "R263805",
     "title": "Product Engineer / Design Evaluation",
     "url": "https://analogdevices.wd1.myworkdayjobs.com/en-US/External/job/US-MA-Wilmington/Product-Engineer---RF-System_R263805"
-  },
-  "3f8f69bc3958fa09": {
-    "company": "TTM Technologies",
-    "first_seen": "2026-07-28",
-    "title": "Embedded Software Engineer I",
-    "url": "https://ttmtech.wd5.myworkdayjobs.com/en-US/jobs/job/Farmingdale-NY/Embedded-Software-Engineer-II_R15693"
   },
   "3fcdff2c14f31121": {
     "company": "Space Kinetic",
@@ -5205,12 +5202,6 @@
     "title": "FPGA Intern",
     "url": "https://www.drw.com/work-at-drw/listings/fpga-intern-3484423"
   },
-  "57da454128548a82": {
-    "company": "SpaceX",
-    "first_seen": "2026-07-28",
-    "title": "Manufacturing Engineering Specialist",
-    "url": "https://boards.greenhouse.io/spacex/jobs/8653398002?gh_jid=8653398002"
-  },
   "57efc48a50669479": {
     "company": "Cisco",
     "first_seen": "2026-09-29",
@@ -5524,12 +5515,6 @@
     "title": "Avionics Electrical Engineering Intern - Fall 2026",
     "url": "https://jobs.lever.co/hermeus/3cee58bc-55ef-4230-acf2-9a2e2851cf43"
   },
-  "5dc7a6b0f898f7e0": {
-    "company": "ALTEN Technology USA",
-    "first_seen": "2026-07-28",
-    "title": "Manufacturing Engineering Specialist",
-    "url": "https://job-boards.greenhouse.io/altentechnologyusa/jobs/5189085007"
-  },
   "5dd783fd88c39bef": {
     "company": "Micron Technology",
     "first_seen": "2026-10-12",
@@ -5742,12 +5727,6 @@
     "first_seen": "2026-09-12",
     "title": "Digital Physical Design Intern - Spring 2027",
     "url": "https://zapply.jobs/l/d/workday-nxp-careers-R-10065545?s=gh-internships-2027"
-  },
-  "6162bbe63068d0c6": {
-    "company": "Skydio",
-    "first_seen": "2026-07-28",
-    "title": "Electrical Engineer Intern",
-    "url": "https://jobs.ashbyhq.com/skydio/9ac944bc-89da-44bb-bf9c-3b9922e7cbee"
   },
   "6195adf1f12c62a2": {
     "company": "Entegris",
@@ -6219,12 +6198,6 @@
     "title": "Field Service Engineer, Controls",
     "url": "https://rockwellautomation.wd1.myworkdayjobs.com/en-US/External_Rockwell_Automation/job/Pittsburgh-Pennsylvania-United-States/Field-Service-Engineer--Controls_R26-5739"
   },
-  "6a62a876dd22e697": {
-    "company": "Draper",
-    "first_seen": "2026-07-28",
-    "title": "Electronics & Embedded Systems Intern",
-    "url": "https://draper.wd5.myworkdayjobs.com/Draper_Careers/job/Cambridge-MA/Electronics---Embedded-Systems-Intern--Summer-2027-_JR002735"
-  },
   "6a9a7aaf2529846f": {
     "company": "Insulet Corporation",
     "first_seen": "2026-09-11",
@@ -6374,6 +6347,13 @@
     "requisition_id": "R26-6891",
     "title": "Co-op, Hardware Development Engineer (June - Dec 2027)",
     "url": "https://rockwellautomation.wd1.myworkdayjobs.com/en-US/External_Rockwell_Automation/job/Mayfield-Heights-Ohio-United-States/Co-op--Hardware-Development-Engineer--June---Dec-2027-_R26-6891-1"
+  },
+  "6e05d202ec75f38b": {
+    "company": "SpaceX",
+    "first_seen": "2026-11-26",
+    "requisition_id": "8955154002",
+    "title": "Automation & Controls Engineer (Starship) ",
+    "url": "https://boards.greenhouse.io/spacex/jobs/8955154002?gh_jid=8955154002"
   },
   "6e16e030f29128ce": {
     "company": "Abbott",
@@ -8299,6 +8279,13 @@
     "title": "Electrical Engineering Intern",
     "url": "https://zapply.jobs/l/d/workday-hpe-jobsathpe-1213424?s=gh-internships-2027"
   },
+  "91e00f64683f04a1": {
+    "company": "NREL",
+    "first_seen": "2026-11-26",
+    "requisition_id": null,
+    "title": "Graduate/PhD Graduate Intern: Electrical Engineering \u2013 Power Electronics and Grid Modeling",
+    "url": "https://zapply.jobs/l/d/workday-nrel-nlr-R14648?s=gh-internships-2027"
+  },
   "92319541001506a4": {
     "company": "RTX",
     "first_seen": "2026-10-20",
@@ -8834,6 +8821,13 @@
     "first_seen": "2026-09-17",
     "title": "Instrumentation/Automation Service Engineer I",
     "url": "https://abbott.wd5.myworkdayjobs.com/en-US/abbottcareers/job/United-States--Madison--1-Exact-Lane/Instrumentation-Automation-Service-Engineer-I_31161618"
+  },
+  "9df06055c62c568b": {
+    "company": "Aerospace Corporation",
+    "first_seen": "2026-11-26",
+    "requisition_id": null,
+    "title": "2027 RF/Antenna Undergrad Intern",
+    "url": "https://zapply.jobs/l/d/workday-aero-external-R017114?s=gh-internships-2027"
   },
   "9df111e6af1a8bf7": {
     "company": "Analog Devices",
@@ -10471,12 +10465,6 @@
     "title": "Research Park Intern - Student Researcher",
     "url": "https://abbott.wd5.myworkdayjobs.com/en-US/abbottcareers/job/United-States---Illinois---Champaign/Research-Park-Intern---Student-Researcher_31128619"
   },
-  "be90956d5de697ea": {
-    "company": "WHOOP",
-    "first_seen": "2026-07-28",
-    "title": "Mechanical Engineer I",
-    "url": "https://jobs.ashbyhq.com/whoop/1f206734-8f96-4622-840a-5e81c8bce266"
-  },
   "be9ecb2cc15316de": {
     "company": "Applied Materials",
     "first_seen": "2026-10-27",
@@ -10580,12 +10568,6 @@
     "first_seen": "2026-08-04",
     "title": "Field Service Engineer II- Greenville, NC",
     "url": "https://abbott.wd5.myworkdayjobs.com/en-US/abbottcareers/job/United-States---North-Carolina---Greenville/Field-Service-Engineer-II--Greensville--NC_31158078-1"
-  },
-  "c10efea1621d6ce3": {
-    "company": "Anduril",
-    "first_seen": "2026-07-28",
-    "title": "2026 Early Career Test & Evaluation Systems Integrator",
-    "url": "https://boards.greenhouse.io/andurilindustries/jobs/5185888007?gh_jid=5185888007"
   },
   "c11d4801b4155a3b": {
     "company": "Symbotic",
@@ -12177,12 +12159,6 @@
     "title": "Reinforcement Learning Engineering Intern",
     "url": "https://jobs.ashbyhq.com/persona.ai/2a136483-0d0c-4de3-a433-d4878b75dfcb"
   },
-  "dd4a23f3b6879f51": {
-    "company": "Medtronic",
-    "first_seen": "2026-07-28",
-    "title": "Manufacturing Engineer I",
-    "url": "https://medtronic.wd1.myworkdayjobs.com/en-US/MedtronicCareers/job/Plymouth-Minnesota-United-States-of-America/Manufacturing-Engineer-I_R72864-1"
-  },
   "dd4e304bfe7cda70": {
     "company": "Symbotic",
     "first_seen": "2026-08-03",
@@ -12277,6 +12253,13 @@
     "first_seen": "2026-08-05",
     "title": "RAN Validation Engineer (Starlink Mobile)",
     "url": "https://boards.greenhouse.io/spacex/jobs/8674890002?gh_jid=8674890002"
+  },
+  "de5f3afca9afa288": {
+    "company": "Stantec",
+    "first_seen": "2026-11-26",
+    "requisition_id": null,
+    "title": "Electrical Engineering Intern - Buildings (Summer 2027)",
+    "url": "https://zapply.jobs/l/d/oracle-hdhl-1009013?s=gh-internships-2027"
   },
   "de784cc04912e21c": {
     "company": "Microchip Technology",
@@ -13043,12 +13026,6 @@
     "first_seen": "2026-08-26",
     "title": "Physical Design Intern",
     "url": "https://marvell.wd1.myworkdayjobs.com/en-US/MarvellCareers/job/Petah-Tikva/Physical-Design-Intern_2603505-1"
-  },
-  "ec8967003029f9b0": {
-    "company": "Anduril",
-    "first_seen": "2026-07-28",
-    "title": "Development Test Engineer - Air Dominance & Strike",
-    "url": "https://boards.greenhouse.io/andurilindustries/jobs/5034522007?gh_jid=5034522007"
   },
   "ecb472e20820680c": {
     "company": "Formlabs",
