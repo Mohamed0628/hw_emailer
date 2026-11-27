@@ -2,8 +2,24 @@
 mode: AUTO_SAFE
 daily_limit: 5
 run_limit: 5
-minimum_resume_fit: 55
+minimum_resume_fit: 70
 minimum_resume_margin: 5
 require_description: true
 require_confirmed_start_date: true
 allowed_auto_ats: [greenhouse, lever, ashby]
+
+# Discovery can remain broad; live auto-apply is restricted to these markets.
+require_target_market_for_auto_apply: true
+target_markets:
+  - Minnesota
+  - California
+  - Seattle/Washington
+  - New York
+
+# AUTO_ELIGIBLE uses browser-use to reason over live ATS forms instead of
+# relying on the deterministic DOM parser. The model/key are read from env.
+agentic_browser:
+  enabled: true
+  model: gpt-4o
+  max_steps: 45
+  max_interventions: 3
